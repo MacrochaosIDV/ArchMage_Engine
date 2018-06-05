@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Prerequisites">
+      <UniqueIdentifier>{12f2d60b-280b-4506-a38d-56e8d1898396}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Math">
+      <UniqueIdentifier>{58b1af74-8fb5-4c44-8c0b-200cafd3b0ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Math\Obj2D">
+      <UniqueIdentifier>{50e9ac05-aedd-4154-80aa-6ae4e0f95f79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Math\Obj3D">
+      <UniqueIdentifier>{0e48f38e-0971-404a-8f60-6d607027ef7c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Src\Source.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amMath.cpp">
+      <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Point2D.cpp">
+      <Filter>Source Files\Math\Obj2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Line2D.cpp">
+      <Filter>Source Files\Math\Obj2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Box2D.cpp">
+      <Filter>Source Files\Math\Obj2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector2.cpp">
+      <Filter>Source Files\Math\Obj2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector3.cpp">
+      <Filter>Source Files\Math\Obj3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Matix3x3.cpp">
+      <Filter>Source Files\Math\Obj3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Quaternion.cpp">
+      <Filter>Source Files\Math\Obj3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Circle2D.cpp">
+      <Filter>Source Files\Math\Obj2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Ray.cpp">
+      <Filter>Source Files\Math\Obj3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Plane.cpp">
+      <Filter>Source Files\Math\Obj3D</Filter>
+    </ClCompile>
+    <ClCompile Include="AABB.cpp">
+      <Filter>Source Files\Math\Obj3D</Filter>
+    </ClCompile>
+    <ClCompile Include="OOBB.cpp">
+      <Filter>Source Files\Math\Obj3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Sphere.cpp">
+      <Filter>Source Files\Math\Obj3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Triangle.cpp">
+      <Filter>Source Files\Math\Obj3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Capsule.cpp">
+      <Filter>Source Files\Math\Obj3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Frustrum.cpp">
+      <Filter>Source Files\Math\Obj3D</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Include\amMath.h">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amPlatformDefines.h">
+      <Filter>Source Files\Prerequisites</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amPlatformTypes.h">
+      <Filter>Source Files\Prerequisites</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amStdHeaders.h">
+      <Filter>Source Files\Prerequisites</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amFwdDeclUtilities.h">
+      <Filter>Source Files\Prerequisites</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amPrerequisitesUtilities.h">
+      <Filter>Source Files\Prerequisites</Filter>
+    </ClInclude>
+    <ClInclude Include="Point2D.h">
+      <Filter>Source Files\Math\Obj2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Line2D.h">
+      <Filter>Source Files\Math\Obj2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Box2D.h">
+      <Filter>Source Files\Math\Obj2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2.h">
+      <Filter>Source Files\Math\Obj2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3.h">
+      <Filter>Source Files\Math\Obj3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Matix3x3.h">
+      <Filter>Source Files\Math\Obj3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Quaternion.h">
+      <Filter>Source Files\Math\Obj3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Circle2D.h">
+      <Filter>Source Files\Math\Obj2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Ray.h">
+      <Filter>Source Files\Math\Obj3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Plane.h">
+      <Filter>Source Files\Math\Obj3D</Filter>
+    </ClInclude>
+    <ClInclude Include="AABB.h">
+      <Filter>Source Files\Math\Obj3D</Filter>
+    </ClInclude>
+    <ClInclude Include="OOBB.h">
+      <Filter>Source Files\Math\Obj3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Sphere.h">
+      <Filter>Source Files\Math\Obj3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Triangle.h">
+      <Filter>Source Files\Math\Obj3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Capsule.h">
+      <Filter>Source Files\Math\Obj3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Frustrum.h">
+      <Filter>Source Files\Math\Obj3D</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
