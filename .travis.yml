@@ -4,6 +4,7 @@ sudo: false
 
 
 script:
+
 gcc -Wall ArchMage Engine.sln
 msbuild ArchMage Engine.sln 
 devenv ArchMage Engine.sln /Build Debug
