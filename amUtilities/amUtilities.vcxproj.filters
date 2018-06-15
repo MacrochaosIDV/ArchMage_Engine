@@ -22,55 +22,55 @@
     <ClCompile Include="Src\Source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\amMath.cpp">
-      <Filter>Source Files\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Point2D.cpp">
+    <ClCompile Include="Source\amBox2D.cpp">
       <Filter>Source Files\Math\Obj2D</Filter>
     </ClCompile>
-    <ClCompile Include="Line2D.cpp">
+    <ClCompile Include="Source\amCircle2D.cpp">
       <Filter>Source Files\Math\Obj2D</Filter>
     </ClCompile>
-    <ClCompile Include="Box2D.cpp">
+    <ClCompile Include="Source\amLine2D.cpp">
       <Filter>Source Files\Math\Obj2D</Filter>
     </ClCompile>
-    <ClCompile Include="Vector2.cpp">
+    <ClCompile Include="Source\amPoint2D.cpp">
       <Filter>Source Files\Math\Obj2D</Filter>
     </ClCompile>
-    <ClCompile Include="Vector3.cpp">
-      <Filter>Source Files\Math\Obj3D</Filter>
-    </ClCompile>
-    <ClCompile Include="Matix3x3.cpp">
-      <Filter>Source Files\Math\Obj3D</Filter>
-    </ClCompile>
-    <ClCompile Include="Quaternion.cpp">
-      <Filter>Source Files\Math\Obj3D</Filter>
-    </ClCompile>
-    <ClCompile Include="Circle2D.cpp">
+    <ClCompile Include="Source\amVector2.cpp">
       <Filter>Source Files\Math\Obj2D</Filter>
     </ClCompile>
-    <ClCompile Include="Ray.cpp">
+    <ClCompile Include="Source\amAABB.cpp">
       <Filter>Source Files\Math\Obj3D</Filter>
     </ClCompile>
-    <ClCompile Include="Plane.cpp">
+    <ClCompile Include="Source\amCapsule.cpp">
       <Filter>Source Files\Math\Obj3D</Filter>
     </ClCompile>
-    <ClCompile Include="AABB.cpp">
+    <ClCompile Include="Source\amFrustrum.cpp">
       <Filter>Source Files\Math\Obj3D</Filter>
     </ClCompile>
-    <ClCompile Include="OOBB.cpp">
+    <ClCompile Include="Source\amOOBB.cpp">
       <Filter>Source Files\Math\Obj3D</Filter>
     </ClCompile>
-    <ClCompile Include="Sphere.cpp">
+    <ClCompile Include="Source\amPlane.cpp">
       <Filter>Source Files\Math\Obj3D</Filter>
     </ClCompile>
-    <ClCompile Include="Triangle.cpp">
+    <ClCompile Include="Source\amQuaternion.cpp">
       <Filter>Source Files\Math\Obj3D</Filter>
     </ClCompile>
-    <ClCompile Include="Capsule.cpp">
+    <ClCompile Include="Source\amRay.cpp">
       <Filter>Source Files\Math\Obj3D</Filter>
     </ClCompile>
-    <ClCompile Include="Frustrum.cpp">
+    <ClCompile Include="Source\amSphere.cpp">
+      <Filter>Source Files\Math\Obj3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amTriangle.cpp">
+      <Filter>Source Files\Math\Obj3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amVector3.cpp">
+      <Filter>Source Files\Math\Obj3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amMatix4x4.cpp">
+      <Filter>Source Files\Math\Obj3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amBox.cpp">
       <Filter>Source Files\Math\Obj3D</Filter>
     </ClCompile>
   </ItemGroup>
@@ -93,52 +93,55 @@
     <ClInclude Include="Include\amPrerequisitesUtilities.h">
       <Filter>Source Files\Prerequisites</Filter>
     </ClInclude>
-    <ClInclude Include="Point2D.h">
+    <ClInclude Include="Include\amAABB.h">
+      <Filter>Source Files\Math\Obj3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amCapsule.h">
+      <Filter>Source Files\Math\Obj3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amFrustrum.h">
+      <Filter>Source Files\Math\Obj3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amOOBB.h">
+      <Filter>Source Files\Math\Obj3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amPlane.h">
+      <Filter>Source Files\Math\Obj3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amQuaternion.h">
+      <Filter>Source Files\Math\Obj3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amRay.h">
+      <Filter>Source Files\Math\Obj3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amSphere.h">
+      <Filter>Source Files\Math\Obj3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amTriangle.h">
+      <Filter>Source Files\Math\Obj3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amVector3.h">
+      <Filter>Source Files\Math\Obj3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amBox2D.h">
       <Filter>Source Files\Math\Obj2D</Filter>
     </ClInclude>
-    <ClInclude Include="Line2D.h">
+    <ClInclude Include="Include\amCircle2D.h">
       <Filter>Source Files\Math\Obj2D</Filter>
     </ClInclude>
-    <ClInclude Include="Box2D.h">
+    <ClInclude Include="Include\amLine2D.h">
       <Filter>Source Files\Math\Obj2D</Filter>
     </ClInclude>
-    <ClInclude Include="Vector2.h">
+    <ClInclude Include="Include\amPoint2D.h">
       <Filter>Source Files\Math\Obj2D</Filter>
     </ClInclude>
-    <ClInclude Include="Vector3.h">
-      <Filter>Source Files\Math\Obj3D</Filter>
-    </ClInclude>
-    <ClInclude Include="Matix3x3.h">
-      <Filter>Source Files\Math\Obj3D</Filter>
-    </ClInclude>
-    <ClInclude Include="Quaternion.h">
-      <Filter>Source Files\Math\Obj3D</Filter>
-    </ClInclude>
-    <ClInclude Include="Circle2D.h">
+    <ClInclude Include="Include\amVector2.h">
       <Filter>Source Files\Math\Obj2D</Filter>
     </ClInclude>
-    <ClInclude Include="Ray.h">
+    <ClInclude Include="Include\amMatix4x4.h">
       <Filter>Source Files\Math\Obj3D</Filter>
     </ClInclude>
-    <ClInclude Include="Plane.h">
-      <Filter>Source Files\Math\Obj3D</Filter>
-    </ClInclude>
-    <ClInclude Include="AABB.h">
-      <Filter>Source Files\Math\Obj3D</Filter>
-    </ClInclude>
-    <ClInclude Include="OOBB.h">
-      <Filter>Source Files\Math\Obj3D</Filter>
-    </ClInclude>
-    <ClInclude Include="Sphere.h">
-      <Filter>Source Files\Math\Obj3D</Filter>
-    </ClInclude>
-    <ClInclude Include="Triangle.h">
-      <Filter>Source Files\Math\Obj3D</Filter>
-    </ClInclude>
-    <ClInclude Include="Capsule.h">
-      <Filter>Source Files\Math\Obj3D</Filter>
-    </ClInclude>
-    <ClInclude Include="Frustrum.h">
+    <ClInclude Include="Include\amBox.h">
       <Filter>Source Files\Math\Obj3D</Filter>
     </ClInclude>
   </ItemGroup>

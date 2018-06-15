@@ -2,217 +2,335 @@
 #pragma once
 #include "amPrerequisitesUtilities.h"
 
-#include "AABB.h"
-#include "Capsule.h"
-#include "Frustrum.h"
-#include "Matix3x3.h"
-#include "OOBB.h"
-#include "Plane.h"
-#include "Quaternion.h"
-#include "Ray.h"
-#include "Sphere.h"
-#include "Triangle.h"
-#include "Vector3.h"
+#include "amAABB.h"
+#include "amBox.h"
+#include "amCapsule.h"
+#include "amFrustrum.h"
+#include "amMatix4x4.h"
+#include "amOOBB.h"
+#include "amPlane.h"
+#include "amQuaternion.h"
+#include "amRay.h"
+#include "amSphere.h"
+#include "amTriangle.h"
 
 namespace amEngineSDK {
   namespace amMath {
-    /*Trigonometric functions*/
-    template <typename T>
-    const & Sin(const T&);
-    template <typename T>
-    const & Cos(const T&);
-    template <typename T>
-    const & Tan(const T&);
-    template <typename T>
-    const & aSin(const T&);
-    template <typename T>
-    const & aCos(const T&);
-    template <typename T>
-    const & aTan(const T&);
-
-    /*Fast Trigonometric functions*/
-    template <typename T>
-    const & FastSin(const T&);
-    template <typename T>
-    const & FastCos(const T&);
-    template <typename T>
-    const & FastTan(const T&);
-    template <typename T>
-    const & FastaSin(const T&);
-    template <typename T>
-    const & FastaCos(const T&);
-    template <typename T>
-    const & FastaTan(const T&);
-    template <typename T>
-
-    /*Other Math Functions*/
-    const & Sqr(const T&);
-    template <typename T>
-    const & Sqrt(const T&);
-    template <typename T>
-    const & Invsqrt(const T&);
-    template <typename T>
-
-    template <typename T>
-    const & LogN(const T&);
-    template <typename T>
-    const & Log2(const T&);
-    template <typename T>
-    const & Log10(const T&);
-
-    template <typename T>
-    const float& Lerp(const float& n, const float& n2);
-    template <typename T>
-    const float& sLerp(const float& n, const float& n2); // Spherical interpolation
-
-    template <typename T>
-    const & Abs(const T&); // Absolute
-    template <typename T>
-    const & Round(const T&);
-    template <typename T>
-    const & Floor(const T&);
-    template <typename T>
-    const & Ceil(const T&);
-    template <typename T>
-    const & Fractional(const T&);
-    template <typename T>
-    const & Exp(const T&);
-
-
-    /*Minimums, Maxes & Clamps Functions*/ 
-    const float& Min(const float& n1, const float& n2);
-    const float& Max(const float& n1, const float& n2);
-    const float& Clamp(const float& n1, const float& n2);
-
-    const float& Min3(const float& n1, const float& n2, const float& n3);
-    const float& Max3(const float& n1, const float& n2, const float& n3);
-    const float& Clamp3(const float& n1, const float& n2, const float& n3);
-
-    /*Collision Functions*/
+    /* Trigonometric functions */
+    template<typename T>
+    float
+    sin(T theta);
 
     template<typename T>
-    const & Sin(const T &) {
-      return T - T * T*T / 6 + T * T*T*T*T / 120 - T * T*T*T*T*T*T / 5040 + T * T*T*T*T*T*T*T*T / 362880
-        - T * T*T*T*T*T*T*T*T*T*T / 39916800 + T * T*T*T*T*T*T*T*T*T*T*T*T / 6227020800;
+    float
+    cos(T theta);
+
+    template<typename T>
+    float
+    tan(T theta);
+
+    template <typename T>
+    T aSin(T val);
+
+    template <typename T>
+    T aCos(T val);
+
+    template <typename T>
+    T aTan(T val);
+
+    /* Fast Trigonometric functions */
+    template <typename T>
+    T fastSin(T theta);
+
+    template <typename T>
+    T fastCos(T theta);
+
+    template <typename T>
+    T fastTan(T theta);
+
+    template <typename T>
+    T fastASin(T val);
+
+    template <typename T>
+    T fastACos(T val);
+
+    template <typename T>
+    T fastATan(T val);
+
+    /* Other Math Functions */
+    template <typename T>
+    T sqr(T val);
+
+    template <typename T>
+    T sqrt(T val);
+
+    template <typename T>
+    T invSqrt(T val);
+    
+    template <typename T>
+    T logX(T val, T base);
+
+    template<typename T>
+    T logN(T val);
+
+    template <typename T>
+    T log2(T val);
+
+    template <typename T>
+    T log10(T val);
+
+    template <typename T>
+    T lerp(T valIni, T valFin, float t);
+
+    template <typename T>
+    T sLerp(T valIni, T valFin, float t); // Spherical interpolation
+
+    template<typename T>
+    T abs(T value); // Absolute
+    
+    template <typename T>
+    int32 roundToInt(T val);
+
+    template <typename T>
+    T floor(T val);
+
+    template <typename T>
+    T ceil(T val);
+
+    template <typename T>
+    float fractional(T val); // Returns the fractional part of a float
+
+    template <typename T>
+    float exp(T val);
+
+    /* Minimums, Maxes & Clamps Functions */
+    template <typename T>
+    T min(T n1, T n2);
+    template <typename T>
+    T max(T n1, T n2);
+    template <typename T>
+    T clamp(T minVal, T maxVal, T val);
+
+    template <typename T>
+    T min3(T n1, T n2, T n3);
+    template <typename T>
+    T max3(T n1, T n2, T n3);
+
+    /* Collision Functions */
+
+    /* Implementations */
+
+    template<typename T>
+    T sin(T theta) {
+      return theta - (theta * pow(theta, 2) / 6) + (theta * pow(theta, 4) / 120) - (theta * pow(theta, 6) / 5040) 
+        + (theta * pow(theta, 8) / 362880) - (theta * pow(theta, 10) / 39916800) + (theta * pow(theta, 12) / 6227020800);
     }
 
     template<typename T>
-    const & Cos(const T &) {
-      return 1 - T * T / 2 + T * T*T*T / 24 - T * T*T*T*T*T / 720 + T * T*T*T*T*T*T*T / 40320 - T * T*T*T*T*T*T*T*T*T / 3628800
-        + T * T*T*T*T*T*T*T*T*T*T*T / 479001600;
+    T cos(T theta) {
+      return 1 - (theta * theta / 2) + (theta * pow(theta, 3) / 24) - (theta * pow(theta, 5) / 720) 
+        + (theta * pow(theta, 7) / 40320) - (theta * pow(theta, 9) / 3628800) + (theta * pow(theta, 11) / 479001600);
     }
 
     template<typename T>
-    const & Tan(const T &) {
-      return T + T * T*T * 2 / 6 + T * T*T*T*T * 16 / 120 + T * T*T*T*T*T*T * 272 / 5040 + +T * T*T*T*T*T*T*T*T * 7936 / 362880;
+    T tan(T theta) {
+      return theta + (theta * pow(theta, 2) * 2 / 6) + (theta * pow(theta, 4) * 16 / 120)
+        + (theta * pow(theta, 6) * 272 / 5040) + (theta * pow(theta, 8) * 7936 / 362880)
+        + (theta * pow(theta, 8) * 7936 / 362880)// 2 more iterations
+      
     }
 
     template<typename T>
-    const & aSin(const T &) {
-      // sigma: 0-> inf : ((2n)!/ 4n * (n!)^2 * (2n + 1)) * x^(2n + 1)
-      return T + T * T*T*(2 / (8 * 4 * 3)) + T * T*T*T*T * 720 / (12 * 36 * 5) + T * T*T*T*T*T*T * 40320 / (16 * 576 * 7);
+    T aSin(T val) {
+      // sigma: 0-> inf : x^(2n + 1) * ((2n)!    /    4n * (n!)^2 * (2n + 1))  
+      return val/* iter 0*/ + ((val * pow(val, 2)) * (2 / (4 * 1 * 3)))/* iter 1*/
+        + ((val * pow(val, 4)) * (24 / (8 * 4 * 5)))/* iter 2*/
+        + ((val * pow(val, 6)) * (720 / (12 * 36 * 7)))/* iter 3*/
+        + ((val * pow(val, 8)) * (40320 / (16 * 576 * 9)))/* iter 4*/
+        + ((val * pow(val, 10)) * (3628800 / (20 * 14400 * 11)))/* iter 5*/
+        + ((val * pow(val, 12)) * (479001600 / (24 * 518400 * 13)))/* iter 6*/
     }
 
     template<typename T>
-    const & aCos(const T &) {
+    T aCos(T val) {
       // TODO: insert return statement here
     }
 
     template<typename T>
-    const & aTan(const T &) {
+    T aTan(T val) {
       //sigma: 0-> inf : ((-1)^n / 2n + 1) * x ^(2n+1)
-      return T - T * T*T / 3 + T * T*T*T*T / 5 - T * T*T*T*T*T*T / 7 + T * T*T*T*T*T*T*T*T / 9 - T * T*T*T*T*T*T*T*T*T*T / 11
-        + T * T*T*T*T*T*T*T*T*T*T*T*T / 13 - T * T*T*T*T*T*T*T*T*T*T*T*T*T*T / 15;
+      return val - ((val * pow(theta, 2)) / 3) + ((val * pow(val, 4)) / 5) - ((val * pow(val, 6)) / 7)
+        + ((val * pow(val, 8)) / 9) - ((val * pow(val, 10)) / 11)
+        + ((val * pow(val, 12)) / 13) - ((val * pow(val, 14)) / 15);
     }
 
     template<typename T>
-    const & FastSin(const T &) {
-      return T - T * T*T / 6 + T * T*T*T*T / 120 - T * T*T*T*T*T*T / 5040 + T * T*T*T*T*T*T*T*T / 362880;
+    T fastSin(T theta) {
+      return theta - (theta * pow(theta, 2) / 6) + (theta * pow(theta, 4) / 120) - (theta * pow(theta, 6) / 5040)
+        + (theta * pow(theta, 8) / 362880);
     }
 
     template<typename T>
-    const & FastCos(const T &) {
-      return 1 - T * T / 2 + T * T*T*T / 34 - T * T*T*T*T*T / 720 + T * T*T*T*T*T*T*T / 40320
+    T fastCos(T theta) {
+      return 1 - (theta * theta / 2) + (theta * pow(theta, 3) / 24) - (theta * pow(theta, 5) / 720)
+        + (theta * pow(theta, 7) / 40320);
     }
 
     template<typename T>
-    const & FastTan(const T &) {
-      return T + T * T*T * 2 / 6 + T * T*T*T*T * 16 / 120 + T * T*T*T*T*T*T * 272 / 5040 + +T * T*T*T*T*T*T*T*T*7936 / 362880;
+    T fastTan(T theta) {
+      return theta + (theta * pow(theta, 2) * 2 / 6) + (theta * pow(theta, 4) * 16 / 120)
+        + (theta * pow(theta, 6) * 272 / 5040) + (theta * pow(theta, 8) * 7936 / 362880);
     }
 
     template<typename T>
-    const & FastaSin(const T &) {
+    T fastASin(T val) {
+      // sigma: 0-> inf : x^(2n + 1) * ((2n)!    /    4n * (n!)^2 * (2n + 1))  
+      return val/* iter 0*/ + ((val * pow(val, 2)) * (2 / (4 * 1 * 3)))/* iter 1*/
+        + ((val * pow(val, 4)) * (24 / (8 * 4 * 5)))/* iter 2*/
+        + ((val * pow(val, 6)) * (720 / (12 * 36 * 7)))/* iter 3*/
+        + ((val * pow(val, 8)) * (40320 / (16 * 576 * 9)))/* iter 4*/;
+    }
+
+    template<typename T>
+    T fastACos(T val) {
       // TODO: insert return statement here
     }
 
     template<typename T>
-    const & FastaCos(const T &) {
+    T fastATan(T val) {
+      return val - ((val * pow(val, 2)) / 3) + ((val * pow(val, 4)) / 5) - ((val * pow(val, 6)) / 7)
+        + ((val * pow(val, 8)) / 9);
+    }
+
+    template<typename T>
+    T sqr(T val) {
+      return (val * val);
+    }
+
+    template<typename T>
+    T sqrt(T val) {
+      T res = 1;
+      for (int i = 0; i < 20; ++i) {
+        res = res - ((res*res - val) / (2 * res));
+      }
+      return res;
+    }
+    
+    template<typename T>
+    T invSqrt(T val) {
+      return 1 / sqrt(val);
+    }
+
+    template<typename T>
+    T logX(T val, T base) {
       // TODO: insert return statement here
     }
 
     template<typename T>
-    const & FastaTan(const T &) {
-      return T - T * T*T / 3 + T * T*T*T*T / 5 - T * T*T*T*T*T*T / 7 + T * T*T*T*T*T*T*T*T / 9 - T * T*T*T*T*T*T*T*T*T*T / 11;
-    }
-
-    template<typename T>
-    const & Sqr(const T &) {
-      return T * T;
-    }
-
-    template<typename T>
-    const & Sqrt(const T &) {
+    T logN(T val) {
       // TODO: insert return statement here
     }
 
     template<typename T>
-    const & Invsqrt(const T &) {
+    T log2(T val) {
       // TODO: insert return statement here
     }
 
     template<typename T>
-    const & LogN(const T &) {
+    T log10(T val) {
       // TODO: insert return statement here
     }
 
     template<typename T>
-    const & Log2(const T &) {
-      // TODO: insert return statement here
+    T lerp(T valIni, T valFin, float t) {
+      return(valIni + ((valFin - valIni) * t));
     }
 
     template<typename T>
-    const & Log10(const T &) {
-      // TODO: insert return statement here
+    T sLerp(T valIni, T valFin, float t) {
+
     }
   
     template<typename T>
-    const & Abs(const T &) {
-      (T >= 0) ? return T : return -T;
+    T abs(T value) {
+      (value <= 0) ? return -value : return value;
     }
 
     template<typename T>
-    const & Round(const T &) {
-      return static_cast(int)T + 0.5f;
+    int32 roundToInt(T val)(T val) {
+      return static_cast(int32)val + 0.5f;
     }
 
     template<typename T>
-    const & Floor(const T &) {
-      return static_cast(int)T;
+    T floor(T val) {
+      return static_cast(int32)val;
     }
 
     template<typename T>
-    const & Ceil(const T &) {
-      return static_cast(int)T + 9.9999f;
+    T ceil(T val) {
+      return static_cast(int32)val + 9.9999f;
     }
 
     template<typename T>
-    const & Fractional(const T &) {
-      // TODO: insert return statement here
+    T fractional(T val) {
+      return val % 1;
     }
 
     template<typename T>
-    const & Exp(const T &) {
-      // TODO: insert return statement here
+    T exp(T val) { // Euler?
+      return pow(2.7182818, val);
+    }
+
+    template<typename T>
+    T min(T n1, T n2) {
+      (n1 < n2) ? return n1 : return n2;
+    }
+
+    template<typename T>
+    T max(T n1, T n2) {
+      (n1 > n2) ? return n1 : return n2;
+    }
+
+    template<typename T>
+    T clamp(T minVal, T maxVal, T val) {
+      if (val <= minVal)
+        return minVal;
+      else if (val >= maxVal)
+        return maxVal;
+      else
+        return val;
+    }
+
+    template<typename T>
+    T min3(T n1, T n2, T n3) {
+      if (n1 < n2) {
+        if (n1 < n3)
+          return n1;
+        else
+          return n3;
+      }
+      else {
+        if (n2 < n3)
+          return n2;
+        else
+          return n3;
+      }
+    }
+
+    template<typename T>
+    T max3(T n1, T n2, T n3) {
+      if (n1 > n2) {
+        if (n1 > n3)
+          return n1;
+        else
+          return n3;
+      }
+      else {
+        if (n2 > n3)
+          return n2;
+        else
+          return n3;
+      }
     }
 
   }
