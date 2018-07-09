@@ -18,6 +18,18 @@ namespace amEngineSDK {
     return *this;
   }
 
+  amVector2 & amVector2::operator-=(const amVector2 & other) {
+    x -= other.x;
+    y -= other.y;
+    return *this;
+  }
+
+  amVector2 & amVector2::operator*=(const amVector2 & other) {
+    x *= other.x;
+    y *= other.y;
+    return *this;
+  }
+
   amVector2 amVector2::operator*(const float & f) {
     amVector2 res = *this;
     res.x *= f;
@@ -50,6 +62,17 @@ namespace amEngineSDK {
     res.x += other.x;
     res.y += other.y;
     return res;
+  }
+
+  amVector2 amVector2::operator*(const amVector2 & other) {
+    amVector2 res = *this;
+    res.x *= other.x;
+    res.y *= other.y;
+    return res;
+  }
+
+  void amVector2::init() {
+    x = y = 0;
   }
 
   void amVector2::Normalize() {

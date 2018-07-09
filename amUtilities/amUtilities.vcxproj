@@ -190,7 +190,7 @@
     <ClCompile Include="Source\amTriangle.cpp" />
     <ClCompile Include="Source\amVector2.cpp" />
     <ClCompile Include="Source\amVector3.cpp" />
-    <ClCompile Include="Src\Source.cpp" />
+    <ClCompile Include="Source\amVector4.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\amAABB.h" />
@@ -216,6 +216,7 @@
     <ClInclude Include="Include\amTriangle.h" />
     <ClInclude Include="Include\amVector2.h" />
     <ClInclude Include="Include\amVector3.h" />
+    <ClInclude Include="Include\amVector4.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

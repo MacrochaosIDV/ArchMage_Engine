@@ -14,8 +14,16 @@
 #include "amSphere.h"
 #include "amTriangle.h"
 
+
+
 namespace amEngineSDK {
   namespace amMath {
+    static const float PI;// = tan(1) * 4;
+    static const float HALFPI;// tan(1) * 2;
+    static const float TWOPI;// 6.28318530;
+    static const float RAD2DEG;// 57.29577951;
+    static const float DEG2RAD;// 0.017453292519;
+
     /* Trigonometric functions */
     template<typename T>
     float
@@ -134,10 +142,11 @@ namespace amEngineSDK {
 
     template<typename T>
     T tan(T theta) {
-      return theta + (theta * pow(theta, 2) * 2 / 6) + (theta * pow(theta, 4) * 16 / 120)
-        + (theta * pow(theta, 6) * 272 / 5040) + (theta * pow(theta, 8) * 7936 / 362880)
-        + (theta * pow(theta, 8) * 7936 / 362880)// 2 more iterations
-      
+      //return theta + (theta * pow(theta, 2) * 2 / 6) + (theta * pow(theta, 4) * 16 / 120)
+      //  + (theta * pow(theta, 6) * 272 / 5040) + (theta * pow(theta, 8) * 7936 / 362880)
+      //  + (theta * pow(theta, 8) * 7936 / 362880)// 2 more iterations
+
+      return sin(theta) / cos(theta);
     }
 
     template<typename T>
@@ -248,7 +257,7 @@ namespace amEngineSDK {
 
     template<typename T>
     T sLerp(T valIni, T valFin, float t) {
-
+      return pow(valIni*(valFin / valIni), t);
     }
   
     template<typename T>

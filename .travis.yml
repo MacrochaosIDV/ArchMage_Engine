@@ -1,4 +1,5 @@
 language: cpp
-
+compiler: gcc
 script: 
-  return 0;
+  GCCBuild.yml
+  

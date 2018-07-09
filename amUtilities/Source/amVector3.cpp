@@ -8,10 +8,28 @@ namespace amEngineSDK {
 
   amVector3::~amVector3() {}
 
+  amVector3::amVector3(const float & xx, const float & yy, const float & zz) {
+    x = xx;
+    y = yy;
+    z = zz;
+  }
+
+  amVector3::amVector3(const amVector3 & other) {
+    x = other.x;
+    y = other.y;
+    z = other.z;
+  }
+
   amVector3 & amEngineSDK::amVector3::operator=(const amVector3 & other) {
     x = other.x;
     y = other.y;
     z = other.z;
+    return *this;
+  }
+  amVector3 & amVector3::operator-=(const amVector3 & other) {
+    x -= other.x;
+    y -= other.y;
+    z -= other.z;
     return *this;
   }
 
@@ -68,6 +86,10 @@ namespace amEngineSDK {
     x /= mag; y /= mag;
   }
 
+  void amVector3::init() {
+    x = y = z = 0;
+  }
+
   amVector3 amEngineSDK::amVector3::getNormalized() {
     float mag = 0;
     amVector3 res;
@@ -88,6 +110,18 @@ namespace amEngineSDK {
     float dot = (x*ProjectedOn.x + y * ProjectedOn.y);
     float magmag = Mag() * ProjectedOn.Mag();
     return dot / magmag;
+  }
+  amVector3 amVector3::cross3(const amVector3 & other) {
+    amVector3 res;
+    res.x = y * other.z;
+    res.y = x * other.z;
+    res.z = x * other.y;
+    return res;
+  }
+  bool amVector3::isZero() {
+    if (x == 0 && y == 0 && z == 0)
+      return true;
+    return false;
   }
 }
 
