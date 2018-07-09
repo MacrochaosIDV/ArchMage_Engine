@@ -1,5 +1,5 @@
 language: cpp
 compiler: gcc
 script: 
-  GCCBuild.yml
+  gcc ArchMageEngine.sln -o amEngine.out
   
