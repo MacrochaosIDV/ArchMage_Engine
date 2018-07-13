@@ -1,0 +1,3 @@
+C:/Users/Usuario/Documents/Visual Studio 2015/Projects/Git clones/Motores/ArchMage Engine/motor/build/CMakeFiles/UnitTesting.dir
+C:/Users/Usuario/Documents/Visual Studio 2015/Projects/Git clones/Motores/ArchMage Engine/motor/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/Usuario/Documents/Visual Studio 2015/Projects/Git clones/Motores/ArchMage Engine/motor/build/CMakeFiles/ZERO_CHECK.dir

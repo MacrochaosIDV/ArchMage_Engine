@@ -1,8 +1,38 @@
+/***********************
+*  @brief 
+***********************/
 #pragma once
-class amBox
-{
-public:
-  amBox();
-  ~amBox();
-};
+/***********************
+*
+*  Includes
+*
+***********************/
+#include "amPrerequisitesUtilities.h"
+#include "amVector3.h"
+
+namespace amEngineSDK {
+  class amBox
+  {
+  public:
+    amBox();
+    ~amBox();
+
+    amBox(const amBox& other);
+
+    amBox& operator=(const amBox& other);
+
+    amBox operator+(const amBox& other);
+    amBox operator-(const amBox& other);
+    amBox operator*(const amBox& other);
+    amBox operator/(const amBox& other);
+
+    amBox& operator+=(const amBox& other);
+    amBox& operator-=(const amBox& other);
+    amBox& operator*=(const amBox& other);
+    amBox& operator/=(const amBox& other);
+
+    void init();
+  };
+}
+
 

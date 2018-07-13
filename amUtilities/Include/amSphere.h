@@ -27,9 +27,17 @@ namespace amEngineSDK {
     ***********************/
     amSphere& operator=(const amSphere& other);
 
-    /***********************
-    *  @brief 
-    ***********************/
+    amSphere operator+(const amSphere& other);
+    amSphere operator-(const amSphere& other);
+    amSphere operator*(const amSphere& other);
+    amSphere operator/(const amSphere& other);
+
+    amSphere& operator+=(const amSphere& other);
+    amSphere& operator-=(const amSphere& other);
+    amSphere& operator*=(const amSphere& other);
+    amSphere& operator/=(const amSphere& other);
+
+    void init();
 
     float m_radius;
     amVector3 m_center;

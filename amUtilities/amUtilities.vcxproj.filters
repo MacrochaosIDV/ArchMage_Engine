@@ -28,9 +28,6 @@
     <ClCompile Include="Source\amLine2D.cpp">
       <Filter>Source Files\Math\Obj2D</Filter>
     </ClCompile>
-    <ClCompile Include="Source\amPoint2D.cpp">
-      <Filter>Source Files\Math\Obj2D</Filter>
-    </ClCompile>
     <ClCompile Include="Source\amVector2.cpp">
       <Filter>Source Files\Math\Obj2D</Filter>
     </ClCompile>
@@ -130,9 +127,6 @@
       <Filter>Source Files\Math\Obj2D</Filter>
     </ClInclude>
     <ClInclude Include="Include\amLine2D.h">
-      <Filter>Source Files\Math\Obj2D</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\amPoint2D.h">
       <Filter>Source Files\Math\Obj2D</Filter>
     </ClInclude>
     <ClInclude Include="Include\amVector2.h">

@@ -105,6 +105,21 @@ namespace amEngineSDK {
     ***********************/
     void rotateAroundAxis(const amVector3 &axis, const float& theta);
 
+    /***********************
+    *  @brief Normalizes this quat
+    ***********************/
+    void 
+    quatNormalize();
+
+    /***********************
+    *  @brief Returns the magnitude of this quat
+    ***********************/
+    float 
+    quatMag();
+
+    amVector3 
+    getQuatVector();
+
     float w;
     amVector3 m_vec;
   };

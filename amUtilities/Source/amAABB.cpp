@@ -7,7 +7,7 @@ namespace amEngineSDK {
 
   amAABB::~amAABB() {}
 
-  amEngineSDK::amAABB::amAABB(const amAABB & other) {
+    amAABB::amAABB(const amAABB & other) {
     m_pMax = other.m_pMax;
     m_pMin = other.m_pMin;
   }

@@ -1,8 +1,40 @@
+/***********************
+*  @brief 
+***********************/
 #pragma once
-class amTriangle
-{
-public:
-  amTriangle();
-  ~amTriangle();
-};
+/***********************
+*
+*  Includes
+*
+***********************/
+#include "amPrerequisitesUtilities.h"
+#include "amVector3.h"
+
+namespace amEngineSDK {
+  class amTriangle
+  {
+  public:
+    amTriangle();
+    ~amTriangle();
+
+    amTriangle(const amFrustrum& other);
+
+    amTriangle& operator=(const amTriangle& other);
+
+    amTriangle operator+(const amTriangle& other);
+    amTriangle operator-(const amTriangle& other);
+    amTriangle operator*(const amTriangle& other);
+    amTriangle operator/(const amTriangle& other);
+
+    amTriangle& operator+=(const amTriangle& other);
+    amTriangle& operator-=(const amTriangle& other);
+    amTriangle& operator*=(const amTriangle& other);
+    amTriangle& operator/=(const amTriangle& other);
+
+    void init();
+
+    amVector3 m_triVec[3];
+  };
+}
+
 

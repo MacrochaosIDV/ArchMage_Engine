@@ -1,4 +1,15 @@
 language: cpp
+os: linux
 compiler: gcc
+
+# addons:
+  # apt:
+   #  sources:
+     #  - ubuntu-toolchain-r-test
+
+# before_install:
+  # - pip install --user cpp-coveralls
+  
 script: 
- ./configure && make && make test
+    # gcc ./amUtilities_UnitTest/main.cpp -o -l ./amUtilities_UnitTest/gtest.h
+    cmake ArchMageEngine.sln

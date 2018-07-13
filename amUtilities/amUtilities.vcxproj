@@ -183,7 +183,6 @@
     <ClCompile Include="Source\amMatix4x4.cpp" />
     <ClCompile Include="Source\amOOBB.cpp" />
     <ClCompile Include="Source\amPlane.cpp" />
-    <ClCompile Include="Source\amPoint2D.cpp" />
     <ClCompile Include="Source\amQuaternion.cpp" />
     <ClCompile Include="Source\amRay.cpp" />
     <ClCompile Include="Source\amSphere.cpp" />
@@ -206,7 +205,6 @@
     <ClInclude Include="Include\amPlane.h" />
     <ClInclude Include="Include\amPlatformDefines.h" />
     <ClInclude Include="Include\amPlatformTypes.h" />
-    <ClInclude Include="Include\amPoint2D.h" />
     <ClInclude Include="Include\amPrerequisitesUtilities.h" />
     <ClInclude Include="Include\amQuaternion.h" />
     <ClInclude Include="Include\amRay.h" />
