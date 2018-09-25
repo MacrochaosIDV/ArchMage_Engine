@@ -179,27 +179,27 @@ namespace amEngineSDK {
 
     template<typename T>
     static T abs(T value) {
-      (value <= 0) ? return -value : return value;
+      return (value <= 0) ?  -value : value;
     }
 
     template<typename T>
     static int32 roundToInt(T val) {
-      return static_cast(int32)val + 0.5f * (abs(val) / val);
+      return static_cast<int32>(val) + 0.5f * (abs(val) / val);
     }
 
     template<typename T>
     static T floor(T val) {
-      return static_cast(int32)val;
+      return static_cast<int32>(val);
     }
 
     template<typename T>
     static T ceil(T val) {
-      return static_cast(int32)val + 9.99999999;
+      return static_cast<int32>(val) + 9.99999999;
     }
 
     template<typename T>
-    static T fractional(T val) {
-      return val % 1;
+    static T fractional(T frac, T* ptr_intpart) {
+      return std::modf(frac, ptr_intpart);
     }
 
     template<typename T>
@@ -211,12 +211,12 @@ namespace amEngineSDK {
 
     template<typename T>
     static T min(T n1, T n2) {
-      (n1 < n2) ? return n1 : return n2;
+      return(n1 < n2) ?  n1 : n2;
     }
 
     template<typename T>
     static T max(T n1, T n2) {
-      (n1 > n2) ? return n1 : return n2;
+      return(n1 > n2) ? n1 : n2;
     }
 
     template<typename T>

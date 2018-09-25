@@ -19,34 +19,54 @@ namespace amEngineSDK {
   }
 
   amAABB amAABB::operator+(const amAABB & other) {
-    return amAABB();
+    amAABB res = *this;
+    res.m_pMin += other.m_pMin;
+    res.m_pMax += other.m_pMax;
+    return res;
   }
 
   amAABB amAABB::operator-(const amAABB & other) {
-    return amAABB();
+    amAABB res = *this;
+    res.m_pMin -= other.m_pMin;
+    res.m_pMax -= other.m_pMax;
+    return res;
   }
 
   amAABB amAABB::operator*(const amAABB & other) {
-    return amAABB();
+    amAABB res = *this;
+    res.m_pMin *= other.m_pMin;
+    res.m_pMax *= other.m_pMax;
+    return res;
   }
 
   amAABB amAABB::operator/(const amAABB & other) {
-    return amAABB();
+    amAABB res = *this;
+    res.m_pMin /= other.m_pMin;
+    res.m_pMax /= other.m_pMax;
+    return res;
   }
 
   amAABB & amAABB::operator+=(const amAABB & other) {
+    m_pMin += other.m_pMin;
+    m_pMax += other.m_pMax;
     return *this;
   }
 
   amAABB & amAABB::operator-=(const amAABB & other) {
+    m_pMin -= other.m_pMin;
+    m_pMax -= other.m_pMax;
     return *this;
   }
 
   amAABB & amAABB::operator*=(const amAABB & other) {
+    m_pMin *= other.m_pMin;
+    m_pMax *= other.m_pMax;
     return *this;
   }
 
   amAABB & amAABB::operator/=(const amAABB & other) {
+    m_pMin /= other.m_pMin;
+    m_pMax /= other.m_pMax;
     return *this;
   }
 

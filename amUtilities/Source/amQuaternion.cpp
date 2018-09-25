@@ -1,4 +1,5 @@
 #include "amQuaternion.h"
+#include "amMath.h"
 
 namespace amEngineSDK {
   amQuaternion::amQuaternion() {}

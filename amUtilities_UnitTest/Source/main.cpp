@@ -2,7 +2,7 @@
 #include <amMath.h>
 
 #include <gtest\gtest.h>
-//using namespace amEngineSDK;
+using namespace amEngineSDK;
 //using amMath;
 
 
@@ -12,7 +12,15 @@ int main(int argc, char **argv) {
   return RUN_ALL_TESTS();
 }
 
-TEST(amMath_funcs, tesst) {
+TEST(Basic_Types, Types) {
+  EXPECT_EQ(sizeof(uint8), 1);
+  EXPECT_EQ(sizeof(uint16), 2);
+  EXPECT_EQ(sizeof(uint32), 4);
+  EXPECT_EQ(sizeof(uint64), 8);
+  EXPECT_EQ(sizeof(uint128), 16);
+}
+
+TEST(amMath_funcs, Funcs) {
   
   float a = amEngineSDK::amMath::cos(1);
 
@@ -53,10 +61,11 @@ TEST(amMath_funcs, tesst) {
   EXPECT_NE(amMath::ceil(-1.4), -2);
   EXPECT_NE(amMath::ceil(-2.6), -3);
 
-  EXPECT_EQ(amMath::fractional(1.4), 0.4);
-  EXPECT_EQ(amMath::fractional(2.6), 0.6);
-  EXPECT_NE(amMath::fractional(-1.4), -2);
-  EXPECT_NE(amMath::fractional(-2.6), -3);
+  float f = 0;
+  EXPECT_EQ(amMath::fractional(1.4f, &f), 0.4);
+  EXPECT_EQ(amMath::fractional(2.6f, &f), 0.6);
+  EXPECT_NE(amMath::fractional(-1.4f, &f), -2);
+  EXPECT_NE(amMath::fractional(-2.6f, &f), -3);
 
   EXPECT_EQ(amMath::min(1, 2), 1);
   EXPECT_EQ(amMath::min(-2 ,-1), -2);
@@ -77,14 +86,11 @@ TEST(amMath_funcs, tesst) {
   
 }
 
-TEST(Shapes_3D, tesst) {
-
-  amSphere sph1;
-  amSphere sph2;
-  EXPECT_EQ(sph1, sph2);
-
-  
-}
+//TEST(Shapes_3D, tesst) {
+//  amMath::amSphere sph1;
+//  amMath::amSphere sph2;
+//  EXPECT_EQ(sph1, sph2);
+//}
 
 
 

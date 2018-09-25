@@ -1,4 +1,5 @@
 #include "amSphere.h"
+#include "amMath.h"
 
 
 namespace amEngineSDK {
