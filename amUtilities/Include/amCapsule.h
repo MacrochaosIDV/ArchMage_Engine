@@ -7,7 +7,6 @@
 *  Includes
 *
 ***********************/
-#include "amPrerequisitesUtilities.h"
 #include "amVector3.h"
 
 namespace amEngineSDK {
@@ -71,7 +70,7 @@ namespace amEngineSDK {
     /***********************
     *  @brief Initializes all components to 0s
     ***********************/
-    void init();
+
 
     amVector3 m_center;
     float m_radius;

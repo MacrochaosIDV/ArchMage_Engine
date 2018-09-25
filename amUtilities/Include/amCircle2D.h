@@ -82,7 +82,7 @@ namespace amEngineSDK {
       init();
 
     /***********************
-    *  @brief Calculates if a vector is inside the box
+    *  @brief Calculates if a vector is inside the circle
     ***********************/
     bool
       isInside(const amVector2 & vec);

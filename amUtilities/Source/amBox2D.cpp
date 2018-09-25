@@ -10,6 +10,7 @@ namespace amEngineSDK {
     m_center = other.m_center;
     w = other.w;
     h = other.h;
+    return *this;
   }
 
   amBox2D & amEngineSDK::amBox2D::operator+(const amVector2 & vec) {

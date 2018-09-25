@@ -9,6 +9,8 @@
 ***********************/
 #include "amPrerequisitesUtilities.h"
 #include "amVector3.h"
+#include "amMath.h"
+
 namespace amEngineSDK {
   class amAABB
   {
@@ -28,17 +30,57 @@ namespace amEngineSDK {
     amAABB& 
     operator=(const amAABB& other);
 
-    /***********************
-    *  @brief Initializes the box
-    ***********************/
-    void 
-    init();
+    amAABB
+    operator+(const amAABB& other);
+    amAABB
+    operator-(const amAABB& other);
+    amAABB
+    operator*(const amAABB& other);
+    amAABB
+    operator/(const amAABB& other);
+
+    amAABB&
+    operator+=(const amAABB& other);
+    amAABB&
+    operator-=(const amAABB& other);
+    amAABB&
+    operator*=(const amAABB& other);
+    amAABB&
+    operator/=(const amAABB& other);
+
+    
 
     /***********************
-    *  @brief Adds a point/vector to the box´s volume
+    *  @brief Adds a point/vector to the box volume
     ***********************/
     void
     add(const amVector3& vec);
+
+
+    /******************************************
+    *
+    * @brief Checks for intersects with another AABB
+    *
+    * @param the other AABB
+    *
+    * @returns true if is intersecting with the other AABB
+    *
+    ******************************************/
+    bool
+    intersects(const amAABB& other);
+
+    /******************************************
+    *
+    * @brief Checks for intersects with a vector
+    *
+    * @param the vector
+    *
+    * @returns true if is intersecting with the vector
+    *
+    ******************************************/
+    bool
+    intersects(const amVector3& vec) const;
+
 
     /***********************
     *  @brief 

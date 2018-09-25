@@ -1,6 +1,7 @@
 #include "amPlane.h"
 
 namespace amEngineSDK {
+  // ax + by + cz + d = 0
   amPlane::amPlane() {}
 
   amPlane::~amPlane() {}
@@ -12,10 +13,21 @@ namespace amEngineSDK {
     d = other.d;
   }
 
-  amPlane::amPlane(const amVector3 & vertex0, const amVector3 & vertex1, const amVector3 & vertex2) {}
+  amPlane::amPlane(const amVector3 & a, const amVector3 & b, const amVector3 & c) {
+    (amVector3)(*this)= ((a - b) ^ (a - c)).getNormalized();
+    d = a | (amVector3)(*this);
+  }
+
+  amPlane::amPlane(const amTriangle& t) {
+    (*this) = *new amPlane(t.m_v0, t.m_v1, t.m_v2);
+  }
 
   amPlane & amPlane::operator=(const amPlane & other) {
-    // TODO: insert return statement here
+    x = other.x;
+    y = other.y;
+    z = other.z;
+    d = other.d;
+    return *this;
   }
 
   amPlane amPlane::operator+(const amPlane & other) {
@@ -93,6 +105,16 @@ namespace amEngineSDK {
   float amPlane::distanceTo(const amVector3 & vec) {
     amVector3 point;
     return (point - vec).Mag();
+  }
+
+  bool amPlane::intersects(const amPlane & other) const {
+    if (*this == other) {
+      if (d == other.d) {
+        return true;
+      }
+      return false;
+    }
+    return true;
   }
 
 }

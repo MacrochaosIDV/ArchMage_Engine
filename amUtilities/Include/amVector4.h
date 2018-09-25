@@ -128,19 +128,11 @@ namespace amEngineSDK {
     ***********************/
     amVector4
     cross3(const amVector4& vec);
-    /*
+    
     float x;
     float y;
     float z;
-    float w;*/
-    union 
-    {
-      struct { float x; float y; float z; float w; };// _vec;
-      struct { float r; float g; float b; float a; };// _color;
-      struct { float _w; float i; float j; float k; };// _quat;
-      float v[4];
-    };
-    
+    float w;
   };
 }
 

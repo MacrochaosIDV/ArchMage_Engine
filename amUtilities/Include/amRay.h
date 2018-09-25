@@ -16,21 +16,40 @@ namespace amEngineSDK {
     amRay();
     ~amRay();
 
-    amRay(const amRay& other);
+    amRay
+    (const amRay& other);
 
-    amRay& operator=(const amRay& other);
+    amRay
+    (const amVector3& dir, const amVector3& pos);
 
-    amRay operator+(const amRay& other);
-    amRay operator-(const amRay& other);
-    amRay operator*(const amRay& other);
-    amRay operator/(const amRay& other);
+    amRay
+    operator=(const amRay& other);
 
-    amRay& operator+=(const amRay& other);
-    amRay& operator-=(const amRay& other);
-    amRay& operator*=(const amRay& other);
-    amRay& operator/=(const amRay& other);
+    
 
-    void init();
+    amRay 
+    operator+(const amRay& other) const;
+    amRay 
+    operator-(const amRay& other) const;
+    amRay 
+    operator*(const amRay& other) const;
+    amRay 
+    operator/(const amRay& other) const;
+
+    amRay& 
+    operator+=(const amRay& other);
+    amRay& 
+    operator-=(const amRay& other);
+    amRay& 
+    operator*=(const amRay& other);
+    amRay& 
+    operator/=(const amRay& other);
+
+    bool
+    intersects(const amRay& other) const;
+
+    amVector3 m_pos;
+    amVector3 m_dir;
   };
 }
 

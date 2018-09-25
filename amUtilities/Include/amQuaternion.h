@@ -48,7 +48,7 @@ namespace amEngineSDK {
     *  @brief Constructor from vector and w value
     ***********************/
     amQuaternion
-    (const amVector3& vec, const float _w);
+    (const float& _x, const float _y, const float _z, const float _w);
 
    
     /***********************
@@ -120,8 +120,12 @@ namespace amEngineSDK {
     amVector3 
     getQuatVector();
 
+    
+    float x;
+    float y;
+    float z;
     float w;
-    amVector3 m_vec;
+
   };
 }
 

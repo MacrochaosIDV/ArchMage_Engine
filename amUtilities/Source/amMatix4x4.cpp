@@ -1,4 +1,5 @@
 #include "amMatix4x4.h"
+#include "amVector3.h"
 
 namespace amEngineSDK {
   amMatix4x4::amMatix4x4() {}
@@ -28,8 +29,10 @@ namespace amEngineSDK {
   }
 
   amMatix4x4 amMatix4x4::operator*(const float & f) {
+    amMatix4x4 res = *this;
     for (int i = 0; i < 16; ++i)
       fvec[i] *= f;
+    return res;
   }
 
   amMatix4x4& amMatix4x4::operator=(const amMatix4x4 & other) {
@@ -444,21 +447,6 @@ namespace amEngineSDK {
       Persp._m.m23 = 1;
       Persp._m.m32 = -zNear * zFar / (zFar - zNear);
       return Persp;
-  }
-
-  amVector4 amMatix4x4::buildPlane(amVector4& vertex0, amVector4& vertex1) {
-      amVector4 A, B, C, result;
-      A = vertex0 + vertex1;
-      A.x = (float)A.x / 2.0f;
-      A.y = (float)A.y / 2.0f;
-      A.z = 1; A.w = 1;
-      B = A - vertex0;
-      C = vertex1 - vertex0;
-      //A = cross3(C, B);
-      A = C.cross3(B);
-      result = A;
-      result.w = -A.DotNormalized(vertex0);
-      return result;
   }
 }
 

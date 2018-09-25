@@ -64,11 +64,11 @@
     <ClCompile Include="Source\amMatix4x4.cpp">
       <Filter>Source Files\Math\Obj3D</Filter>
     </ClCompile>
-    <ClCompile Include="Source\amBox.cpp">
-      <Filter>Source Files\Math\Obj3D</Filter>
-    </ClCompile>
     <ClCompile Include="Source\amVector4.cpp">
       <Filter>Source Files\Math\Obj3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amPlatformMath.cpp">
+      <Filter>Source Files\Math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -135,11 +135,14 @@
     <ClInclude Include="Include\amMatix4x4.h">
       <Filter>Source Files\Math\Obj3D</Filter>
     </ClInclude>
-    <ClInclude Include="Include\amBox.h">
-      <Filter>Source Files\Math\Obj3D</Filter>
-    </ClInclude>
     <ClInclude Include="Include\amVector4.h">
       <Filter>Source Files\Math\Obj3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amPlatformMath.h">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amWinMath.h">
+      <Filter>Source Files\Math</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -137,7 +137,6 @@ namespace amEngineSDK {
     }
 
     
-    amMatix4x4 buildPlane(amVector4& vertex0, amVector4& vertex1);
     amMatix4x4 lookAt_RH(amVector4& EyePos, amVector4& Target, amVector4& Up);
     amMatix4x4 lookAt_LH(amVector4& EyePos, amVector4& Target, amVector4& Up);
 

@@ -17,23 +17,31 @@ namespace amEngineSDK {
     amTriangle();
     ~amTriangle();
 
-    amTriangle(const amFrustrum& other);
+    amTriangle(const amTriangle& other);
 
     amTriangle& operator=(const amTriangle& other);
 
-    amTriangle operator+(const amTriangle& other);
-    amTriangle operator-(const amTriangle& other);
-    amTriangle operator*(const amTriangle& other);
-    amTriangle operator/(const amTriangle& other);
+    amTriangle 
+    operator+(const amTriangle& other) const;
+    amTriangle 
+    operator-(const amTriangle& other) const;
+    amTriangle 
+    operator*(const amTriangle& other) const;
+    amTriangle 
+    operator/(const amTriangle& other) const;
 
-    amTriangle& operator+=(const amTriangle& other);
-    amTriangle& operator-=(const amTriangle& other);
-    amTriangle& operator*=(const amTriangle& other);
-    amTriangle& operator/=(const amTriangle& other);
+    amTriangle& 
+    operator+=(const amTriangle& other);
+    amTriangle& 
+    operator-=(const amTriangle& other);
+    amTriangle& 
+    operator*=(const amTriangle& other);
+    amTriangle& 
+    operator/=(const amTriangle& other);
 
-    void init();
-
-    amVector3 m_triVec[3];
+    amVector3 m_v0;
+    amVector3 m_v1;
+    amVector3 m_v2;
   };
 }
 

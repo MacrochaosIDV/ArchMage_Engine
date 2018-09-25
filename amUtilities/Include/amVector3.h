@@ -17,7 +17,7 @@
 *
 ***********************/
 #include "amPrerequisitesUtilities.h"
-#include "amMath.h"
+
 
 namespace amEngineSDK {
   class amVector3
@@ -37,89 +37,136 @@ namespace amEngineSDK {
     amVector3(const amVector3& other);
 
     /***********************
+    *  @brief Operator * multiplies the vector components
+    ***********************/
+    amVector3 
+    operator*(const amVector3& other) const;
+
+    /***********************
+    *  @brief Operator * multiplies the vector components
+    ***********************/
+    amVector3 
+    operator/(const amVector3& other) const;
+
+    /***********************
+    *  @brief Operator == checks for vectors being the same
+    ***********************/
+    bool 
+    operator ==(const amVector3 & other) const;
+
+    /***********************
+    *  @brief Does the cross product & returns it
+    ***********************/
+    amVector3 
+    operator ^(const amVector3 & other) const;
+
+    /***********************
+    *  @brief Operator for Dot product
+    ***********************/
+    float
+    operator |(const amVector3 & other) const;
+    /***********************
     *  @brief 
     ***********************/
-    amVector3& operator -=(const amVector3 & other);
+    amVector3& 
+    operator -=(const amVector3 & other);
 
     /***********************
     *  @brief 
     ***********************/
-    amVector3& operator +=(const amVector3 & other);
+    amVector3& 
+    operator +=(const amVector3 & other);
 
     /***********************
     *  @brief 
     ***********************/
-    amVector3& operator *=(const float & f);
+    amVector3&
+    operator *=(const amVector3 & other);
 
     /***********************
     *  @brief 
     ***********************/
-    amVector3& operator = (const amVector3 & other);
+    amVector3&
+    operator /=(const amVector3 & other);
 
     /***********************
     *  @brief 
     ***********************/
-    amVector3 operator *(const float & f);
+    amVector3& 
+    operator *=(const float & f);
 
     /***********************
     *  @brief 
     ***********************/
-    amVector3 operator /(const float & f);
+    amVector3& 
+    operator = (const amVector3 & other);
 
     /***********************
     *  @brief 
     ***********************/
-    amVector3 operator -(const amVector3 & other);
+    amVector3 
+    operator *(const float & f) const;
 
     /***********************
     *  @brief 
     ***********************/
-    amVector3 operator +(const amVector3 & other);
+    amVector3 
+    operator /(const float & f) const;
+
+    /***********************
+    *  @brief 
+    ***********************/
+    amVector3 
+    operator -(const amVector3 & other) const;
+
+    /***********************
+    *  @brief 
+    ***********************/
+    amVector3 
+    operator +(const amVector3 & other) const;
 
     /***********************
     *  @brief Normalizes this vector to be of unit length
     ***********************/
-    void Normalize();
-
-    /***********************
-    *  @brief Initializes the vector on 0s
-    ***********************/
     void 
-    init();
+    Normalize();
 
     /***********************
     *  @brief Return the normalizes version of this vector without modifying it
     ***********************/
-    amVector3 getNormalized();
+    amVector3 
+    getNormalized() const;
 
     /***********************
     *  @brief Returns the Magnitude of this vector
     ***********************/
-    float Mag();
+    float 
+    Mag() const;
 
     /***********************
-    *  @brief Returns the value od the Dot product of this vector projected on the other
+    *  @brief Returns the value of the Dot product of this vector projected on the other
     ***********************/
-    float DotNormalized(amVector3 & ProjectedOn);
+    float 
+    DotNormalized(const amVector3 & ProjectedOn) const;
 
     /***********************
     *  @brief Return a vector perpendicular to this and the other vector
     ***********************/
-    amVector3 cross3(const amVector3 & other);
+    amVector3 
+    cross3(const amVector3 & other) const;
 
     /***********************
     *  @brief Checks if all the components in this vector are exactly 0
     ***********************/
-    bool isZero();
+    bool 
+    isZero() const;
 
-    /*float x; 
+    float
+    getDeterminant(const amVector3 & other) const;
+
+    float x; 
     float y; 
-    float z;*/
-    union {
-      struct { float x; float y; float z; };
-      struct { float r; float g; float b; };
-      struct { float i; float j; float k; };
-    };// _m;
+    float z;
   };
 }
 

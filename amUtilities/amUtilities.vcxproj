@@ -95,13 +95,15 @@
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>false</SDLCheck>
-      <AdditionalIncludeDirectories>$(DEVLIBS)/EASTL/include/;./Include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(DEVLIBS)EASTL/include/;./Include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PreprocessorDefinitions>AM_UTILITIES_EXPORTS</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <OpenMPSupport>true</OpenMPSupport>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <UseFullPaths>false</UseFullPaths>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)Lib/$(PlatformTarget)/</AdditionalLibraryDirectories>
@@ -114,13 +116,15 @@
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>false</SDLCheck>
-      <AdditionalIncludeDirectories>$(DEVLIBS)/EASTL/include/;./Include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(DEVLIBS)EASTL/include/;./Include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PreprocessorDefinitions>AM_UTILITIES_EXPORTS</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <OpenMPSupport>true</OpenMPSupport>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <UseFullPaths>false</UseFullPaths>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)Lib/$(PlatformTarget)/</AdditionalLibraryDirectories>
@@ -135,12 +139,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>false</SDLCheck>
-      <AdditionalIncludeDirectories>$(DEVLIBS)/EASTL/include/;./Include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(DEVLIBS)EASTL/include/;./Include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PreprocessorDefinitions>AM_UTILITIES_EXPORTS</PreprocessorDefinitions>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <OpenMPSupport>true</OpenMPSupport>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <UseFullPaths>false</UseFullPaths>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -157,12 +163,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>false</SDLCheck>
-      <AdditionalIncludeDirectories>$(DEVLIBS)/EASTL/include/;./Include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(DEVLIBS)EASTL/include/;./Include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PreprocessorDefinitions>AM_UTILITIES_EXPORTS</PreprocessorDefinitions>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <OpenMPSupport>true</OpenMPSupport>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <UseFullPaths>false</UseFullPaths>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -174,12 +182,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\amAABB.cpp" />
-    <ClCompile Include="Source\amBox.cpp" />
     <ClCompile Include="Source\amBox2D.cpp" />
     <ClCompile Include="Source\amCapsule.cpp" />
     <ClCompile Include="Source\amCircle2D.cpp" />
     <ClCompile Include="Source\amFrustrum.cpp" />
     <ClCompile Include="Source\amLine2D.cpp" />
+    <ClCompile Include="Source\amPlatformMath.cpp" />
     <ClCompile Include="Source\amMatix4x4.cpp" />
     <ClCompile Include="Source\amOOBB.cpp" />
     <ClCompile Include="Source\amPlane.cpp" />
@@ -193,7 +201,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\amAABB.h" />
-    <ClInclude Include="Include\amBox.h" />
     <ClInclude Include="Include\amBox2D.h" />
     <ClInclude Include="Include\amCapsule.h" />
     <ClInclude Include="Include\amCircle2D.h" />
@@ -204,6 +211,7 @@
     <ClInclude Include="Include\amOOBB.h" />
     <ClInclude Include="Include\amPlane.h" />
     <ClInclude Include="Include\amPlatformDefines.h" />
+    <ClInclude Include="Include\amPlatformMath.h" />
     <ClInclude Include="Include\amPlatformTypes.h" />
     <ClInclude Include="Include\amPrerequisitesUtilities.h" />
     <ClInclude Include="Include\amQuaternion.h" />
@@ -215,6 +223,7 @@
     <ClInclude Include="Include\amVector2.h" />
     <ClInclude Include="Include\amVector3.h" />
     <ClInclude Include="Include\amVector4.h" />
+    <ClInclude Include="Include\amWinMath.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -10,7 +10,7 @@ namespace amEngineSDK {
 
 
   amOOBB & amOOBB::operator=(const amOOBB & other) {
-    // TODO: insert return statement here
+    return *this;
   }
 
   amOOBB amOOBB::operator+(const amOOBB & other) {
@@ -30,22 +30,19 @@ namespace amEngineSDK {
   }
 
   amOOBB & amOOBB::operator+=(const amOOBB & other) {
-    // TODO: insert return statement here
+    return *this;
   }
 
   amOOBB & amOOBB::operator-=(const amOOBB & other) {
-    // TODO: insert return statement here
+    return *this;
   }
 
   amOOBB & amOOBB::operator*=(const amOOBB & other) {
-    // TODO: insert return statement here
+    return *this;
   }
 
   amOOBB & amOOBB::operator/=(const amOOBB & other) {
-    // TODO: insert return statement here
+    return *this;
   }
-
-  void amOOBB::init() {}
-
 }
 

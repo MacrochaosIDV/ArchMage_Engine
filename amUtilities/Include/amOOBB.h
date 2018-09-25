@@ -30,8 +30,6 @@ namespace amEngineSDK {
     amOOBB& operator-=(const amOOBB& other);
     amOOBB& operator*=(const amOOBB& other);
     amOOBB& operator/=(const amOOBB& other);
-
-    void init();
   };
 }
 

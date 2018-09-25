@@ -1,3 +1,4 @@
+#include "amPrerequisitesUtilities.h"
 #include "amCapsule.h"
 
 
@@ -74,12 +75,6 @@ namespace amEngineSDK {
     m_radius /= other.m_radius;
     return *this;
   }
-
-  void amCapsule::init() {
-    m_center.init();
-    m_height = m_radius = 0;
-  }
-
 
 }
 

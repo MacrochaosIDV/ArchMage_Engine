@@ -1,0 +1,5 @@
+-Enviroment vars
+%DEVLIBS% - Root of all external libraries
+
+-Dependencies
+*GoogleTest

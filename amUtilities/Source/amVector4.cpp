@@ -1,4 +1,5 @@
 #include "amVector3.h"
+#include "amVector4.h"
 
 namespace amEngineSDK {
 

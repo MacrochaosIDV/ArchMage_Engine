@@ -1,10 +1,17 @@
 #pragma once
+
 namespace amEngineSDK {
-	class Vector2D;
-	class Vector3D;
-	class Vector4D;
-	class Matrix4x4;
-	class Plane;
-	class AABB;
-	class Sphere;
+	class amVector2;
+	class amVector3;
+	class amVector4;
+	class amMatrix4x4;
+	class amPlane;
+	class amSphere;
+  class amCapsule;
+  class amFrustrum;
+  class amAABB;
+  class amOOBB;
+  class amQuaternion;
+  class amRay;
+  class amTriangle;
 }
