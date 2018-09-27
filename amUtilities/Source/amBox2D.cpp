@@ -61,7 +61,7 @@ namespace amEngineSDK {
     w = h = 0;
   }
   bool amBox2D::isInside(const amVector2 & vec) {
-    //TODO
+    vec;
     return false;
   }
   void amBox2D::shrink(const float & f) {

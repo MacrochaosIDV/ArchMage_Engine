@@ -1,3 +1,15 @@
+/******************************************
+ * @file amRay.cpp
+ * @date 2018/09/27
+ *
+ * @author Andrés Sumano
+ * Contact: andressumano@hotmail.com
+ *
+ * @brief cpp of the ray
+ *
+ *
+ * @note
+******************************************/
 #include "amRay.h"
 
 namespace amEngineSDK {
@@ -74,6 +86,7 @@ namespace amEngineSDK {
   }
 
   bool amRay::intersects(const amRay & other) const {
+    other;
     return false;
   }
 

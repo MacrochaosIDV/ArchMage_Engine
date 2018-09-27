@@ -1,15 +1,16 @@
-/******************************************************************************
-**
-* @file    amMatrix4x4.h
-* @author  Andrés Sumano (andressumano@hotmail.com)
-* @date    2018/6/28
-* @brief   Implements a 4 by 4 Matrix.
-*
-* Implements a 4 by 4 Matrix.
-*
-* @bug     No known bugs.
-*
-******************************************************************************/
+/******************************************
+ * @file amMatix4x4.h
+ * @date 2018/09/27
+ *
+ * @author Andrés Sumano
+ * Contact: andressumano@hotmail.com
+ *
+ * @brief Implements a 4x4 matrix
+ *
+ *
+ * @note
+******************************************/
+
 #pragma once
 /***********************
 *
@@ -18,19 +19,35 @@
 ***********************/
 #include "amPrerequisitesUtilities.h"
 #include "amVector4.h"
+#include "amMath.h"
 
 namespace amEngineSDK {
+  namespace FORCE_INIT {
+    enum E
+    {
+      ZERO,
+      ONE
+    };
+  }
+
   class amMatix4x4
   {
   public:
     amMatix4x4();
     ~amMatix4x4();
 
+    static const amMatix4x4 IDENTITY;
+    static const amMatix4x4 ZERO;
+
     /***********************
     *  @brief Copy constructor
     ***********************/
     amMatix4x4(amMatix4x4& other);
 
+    /***********************
+    *  @brief Constructs the matrix with all values = val
+    ***********************/
+    amMatix4x4(int32 val);
 
     /***********************
     *  @brief Returns a multiplied matrix by the gives scalar
@@ -52,10 +69,6 @@ namespace amEngineSDK {
     ***********************/
     amVector4 operator*(amVector4& V);
 
-    /***********************
-    *  @brief Initializes the matrix on all 0s
-    ***********************/
-    void init();
 
     /***********************
     *  @brief Initializes the matrix as the identity matrix

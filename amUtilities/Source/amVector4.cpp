@@ -1,3 +1,14 @@
+/******************************************
+ * @file amVector4.cpp
+ * @date 2018/09/27
+ *
+ * @author Andrés Sumano
+ * Contact: andressumano@hotmail.com
+ *
+ * @brief cpp of the vector4
+ *
+ * @note
+******************************************/
 #include "amVector3.h"
 #include "amVector4.h"
 

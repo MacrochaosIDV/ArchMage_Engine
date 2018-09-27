@@ -1,15 +1,14 @@
-/******************************************************************************
-**
-* @file    amVector4.h
-* @author  Andrés Sumano (andressumano@hotmail.com)
-* @date    2018/6/28
-* @brief   Implements a 4D vector.
-*
-* Implements a 4D vector.
-*
-* @bug     No known bugs.
-*
-******************************************************************************/
+/******************************************
+ * @file amVector4.h
+ * @date 2018/09/27
+ *
+ * @author Andrés Sumano
+ * Contact: andressumano@hotmail.com
+ *
+ * @brief Implements a 4D vector
+ *
+ * @note
+******************************************/
 #pragma once
 /***********************
 **

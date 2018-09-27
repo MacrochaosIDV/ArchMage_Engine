@@ -1,15 +1,14 @@
-/******************************************************************************
-**
-* @file    amVector3.h
-* @author  Andrés Sumano (andressumano@hotmail.com)
-* @date    2018/6/28
-* @brief   Implements a 3D vector.
-*
-* Implements a 3D vector.
-*
-* @bug     No known bugs.
-*
-******************************************************************************/
+/******************************************
+ * @file amVector3.h
+ * @date 2018/09/27
+ *
+ * @author Andrés Sumano
+ * Contact: andressumano@hotmail.com
+ *
+ * @brief Implements a 3D vector
+ *
+ * @note
+******************************************/
 #pragma once
 /***********************
 **
@@ -29,12 +28,20 @@ namespace amEngineSDK {
     /***********************
     *  @brief Constructor from 3 float values
     ***********************/
-    amVector3(const float& xx, const float& yy, const float& zz);
+    amVector3
+    (const float& xx, const float& yy, const float& zz);
 
     /***********************
     *  @brief Copy constructor from another Vector3
     ***********************/
-    amVector3(const amVector3& other);
+    amVector3
+    (const amVector3& other);
+
+    /***********************
+    *  @brief Operator % obtains angle between this & the other vector
+    ***********************/
+    float 
+    operator%(const amVector3& other) const;
 
     /***********************
     *  @brief Operator * multiplies the vector components
@@ -43,7 +50,7 @@ namespace amEngineSDK {
     operator*(const amVector3& other) const;
 
     /***********************
-    *  @brief Operator * multiplies the vector components
+    *  @brief Operator / divides the vector components
     ***********************/
     amVector3 
     operator/(const amVector3& other) const;

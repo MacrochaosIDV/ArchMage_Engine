@@ -1,3 +1,15 @@
+/******************************************
+ * @file amQuaternion.cpp
+ * @date 2018/09/27
+ *
+ * @author Andrés Sumano
+ * Contact: andressumano@hotmail.com
+ *
+ * @brief cpp of the quaternion
+ *
+ *
+ * @note
+******************************************/
 #include "amQuaternion.h"
 #include "amMath.h"
 
@@ -101,6 +113,7 @@ namespace amEngineSDK {
     x *= mult;
     y *= mult;
     z *= mult;
+    return *this;
   }
   
   void amQuaternion::rotateAroundX(const float & theta) {

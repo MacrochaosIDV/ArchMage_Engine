@@ -1,15 +1,15 @@
-/******************************************************************************
-**
-* @file    amQuaternion.h
-* @author  Andrés Sumano (andressumano@hotmail.com)
-* @date    2018/6/28
-* @brief   Implements a Quaternion.
-*
-* Implements a Quaternion.
-*
-* @bug     No known bugs.
-*
-******************************************************************************/
+/******************************************
+ * @file amQuaternion.h
+ * @date 2018/09/27
+ *
+ * @author Andrés Sumano
+ * Contact: andressumano@hotmail.com
+ *
+ * @brief Implements a Quaternion
+ *
+ *
+ * @note
+******************************************/
 #pragma once
 /***********************
 **

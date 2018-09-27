@@ -1,3 +1,14 @@
+/******************************************
+ * @file amVector3.cpp
+ * @date 2018/09/27
+ *
+ * @author Andrés Sumano
+ * Contact: andressumano@hotmail.com
+ *
+ * @brief cpp of the vector3
+ *
+ * @note
+******************************************/
 #include "amVector3.h"
 #include "amMath.h"
 
@@ -19,6 +30,10 @@ namespace amEngineSDK {
     x = other.x;
     y = other.y;
     z = other.z;
+  }
+
+  float amVector3::operator%(const amVector3 & other) const{
+    return amMath::aCos(((*this) | other) / ((*this).Mag() * other.Mag()));
   }
 
   amVector3 amVector3::operator*(const amVector3 & other) const {

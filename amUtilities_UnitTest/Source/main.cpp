@@ -1,6 +1,17 @@
+/******************************************
+ * @file main.cpp
+ * @date 2018/09/27
+ *
+  * @author Andrés Sumano
+ * Contact: andressumano@hotmail.com
+ *
+ * @brief cpp for google testing all the everything from the math library
+ *
+ * @note
+******************************************/
 #include <amPrerequisitesUtilities.h>
 #include <amMath.h>
-
+#include <conio.h>
 #include <gtest\gtest.h>
 using namespace amEngineSDK;
 //using amMath;
@@ -9,7 +20,9 @@ using namespace amEngineSDK;
 
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
+  RUN_ALL_TESTS();
+  getch();
+  return 0;
 }
 
 TEST(Basic_Types, Types) {
@@ -27,8 +40,8 @@ TEST(amMath_funcs, Funcs) {
   EXPECT_EQ(amMath::pow(2, 3), 8);
   EXPECT_NE(amMath::pow(2, 3), 16);
 
-  EXPECT_EQ(amMath::logX(2, 3), 8);// needs values set for testing
-  EXPECT_NE(amMath::logX(2, 3), 16);// needs values set for testing
+  EXPECT_EQ(amMath::logX(9, 3), 2);
+  EXPECT_NE(amMath::logX(27, 3), 2);
 
   EXPECT_EQ(amMath::logN(2), 8);// needs values set for testing
   EXPECT_NE(amMath::logN(2), 16);// needs values set for testing
@@ -83,7 +96,11 @@ TEST(amMath_funcs, Funcs) {
   EXPECT_NE(amMath::clamp(1, 2, 3), 3);
   EXPECT_NE(amMath::clamp(1, 2, 0), 0);
 
-  
+  EXPECT_FLOAT_EQ(amMath::HALFPI, amMath::tan(1) * 2);
+  EXPECT_FLOAT_EQ(amMath::PI, amMath::tan(1) * 4);
+  EXPECT_FLOAT_EQ(amMath::TWOPI, amMath::tan(1) * 8);
+  EXPECT_FLOAT_EQ(amMath::DEG2RAD, amMath::PI / 180.0f);
+  EXPECT_FLOAT_EQ(amMath::RAD2DEG, 180.0f / amMath::PI);
 }
 
 //TEST(Shapes_3D, tesst) {

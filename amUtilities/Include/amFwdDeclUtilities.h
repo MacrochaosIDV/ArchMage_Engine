@@ -1,5 +1,15 @@
+/******************************************
+ * @file amFwdDeclUtilities.h
+ * @date 2018/09/27
+ *
+ * @author Andrés Sumano
+ * Contact: andressumano@hotmail.com
+ *
+ * @brief Forward declares the math classes
+ *
+ * @note
+******************************************/
 #pragma once
-
 namespace amEngineSDK {
 	class amVector2;
 	class amVector3;

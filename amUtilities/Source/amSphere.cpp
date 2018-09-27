@@ -1,3 +1,14 @@
+/******************************************
+ * @file amSphere.cpp
+ * @date 2018/09/27
+ *
+ * @author Andrés Sumano
+ * Contact: andressumano@hotmail.com
+ *
+ * @brief cpp of the sphere
+ *
+ * @note
+******************************************/
 #include "amSphere.h"
 #include "amMath.h"
 

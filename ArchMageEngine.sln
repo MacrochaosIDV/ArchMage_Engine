@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "amUtilities", "amUtilities\amUtilities.vcxproj", "{6C371892-A904-4B38-A5CF-D700D1541CF0}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "amUtilities_UnitTest", "amUtilities_UnitTest\amUtilities_UnitTest.vcxproj", "{8C955701-378C-4700-BF12-72008F3AB239}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6C371892-A904-4B38-A5CF-D700D1541CF0} = {6C371892-A904-4B38-A5CF-D700D1541CF0}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

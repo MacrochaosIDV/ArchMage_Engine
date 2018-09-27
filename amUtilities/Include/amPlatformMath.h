@@ -1,6 +1,14 @@
-/***********************
-*  
-***********************/
+/******************************************
+ * @file amPlatformMath.h
+ * @date 2018/09/27
+ *
+ * @author Andrés Sumano
+ * Contact: andressumano@hotmail.com
+ *
+ * @brief Template functions of the math library
+ *
+ * @note
+******************************************/
 #pragma once
 /***********************
 *
@@ -15,7 +23,7 @@
 
 
 namespace amEngineSDK {
-  struct amPLatformMath {
+  struct AM_UTILITIES_EXPORT amPLatformMath {
     static const float PI;      // = std::tan(1) * 4;
     static const float HALFPI;  // = std::tan(1) * 2;
     static const float TWOPI;   // = std::tan(1) * 8;

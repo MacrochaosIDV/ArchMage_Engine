@@ -1,3 +1,15 @@
+/******************************************
+ * @file amFrustrum.cpp
+ * @date 2018/09/27
+ *
+ * @author Andrés Sumano
+ * Contact: andressumano@hotmail.com
+ *
+ * @brief cpp of the frustrum
+ *
+ *
+ * @note Currently out-of-date operators
+******************************************/
 #include "amFrustrum.h"
 
 namespace amEngineSDK {
@@ -34,7 +46,7 @@ namespace amEngineSDK {
   }*/
 
   amFrustrum::amFrustrum(const amMatrix4x4 & VP) {
-  
+    VP;
   }
 
   amFrustrum & amFrustrum::operator=(const amFrustrum & other) {
@@ -123,6 +135,7 @@ namespace amEngineSDK {
     return *this;
   }
   bool amFrustrum::intersects(const amFrustrum & other) {
+    other;
     return false;
   }
   /*void amFrustrum::init() {

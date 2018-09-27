@@ -1,3 +1,14 @@
+/******************************************
+ * @file amStdHeaders.h
+ * @date 2018/09/27
+ *
+ * @author Andrés Sumano
+ * Contact: andressumano@hotmail.com
+ *
+ * @brief Encapsulates the std type under the engine types
+ *
+ * @note
+******************************************/
 #pragma once
 
 //#define EASTL

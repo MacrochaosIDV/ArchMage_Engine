@@ -1,4 +1,14 @@
-/*doxygen comment here*/
+/******************************************
+ * @file amMath.h
+ * @date 2018/09/27
+ *
+ * @author Andrés Sumano
+ * Contact: andressumano@hotmail.com
+ *
+ * @brief Checks & includes platform specific optimizations
+ *
+ * @note
+******************************************/
 #pragma once
 /***********************
 *

@@ -1,8 +1,15 @@
+/******************************************
+ * @file amSphere.h
+ * @date 2018/09/27
+ *
+ * @author Andrés Sumano
+ * Contact: andressumano@hotmail.com
+ *
+ * @brief Implements a 3D sphere
+ *
+ * @note
+******************************************/
 #pragma once
-/***********************
-*  @brief 
-***********************/
-
 /***********************
 *
 *  Includes

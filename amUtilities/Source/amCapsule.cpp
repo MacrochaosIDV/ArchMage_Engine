@@ -1,3 +1,15 @@
+/******************************************
+ * @file amCapsule.cpp
+ * @date 2018/09/27
+ *
+ * @author Usuario
+ * Contact: user@company.com
+ *
+ * @brief CPP of the Capsule
+ *
+ *
+ * @note
+******************************************/
 #include "amPrerequisitesUtilities.h"
 #include "amCapsule.h"
 

@@ -1,3 +1,15 @@
+/******************************************
+ * @file amAABB.cpp
+ * @date 2018/09/27
+ *
+ * @author Andrés Sumano
+ * Contact: andressumano@hotmail.com
+ *
+ * @brief CPP of the AABB
+ *
+ *
+ * @note
+******************************************/
 #include "amAABB.h"
 
 

@@ -104,8 +104,8 @@
       <UseFullPaths>false</UseFullPaths>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)Lib/$(PlatformTarget)/;$(DEVLIBS)googletest/lib/$(PlatformTarget)/</AdditionalLibraryDirectories>
-      <AdditionalDependencies>gtestd.lib;gtest_maind.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Lib/$(PlatformTarget)/;$(DEVLIBS)googletest/lib/$(PlatformTarget)/;$(SolutionDir)Bin/$(PlatformTarget)/;$(SolutionDir)Bin/$(PlatformTarget)/</AdditionalLibraryDirectories>
+      <AdditionalDependencies>gtestd.lib;gtest_maind.lib;amUtilitiesd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -122,8 +122,8 @@
       <UseFullPaths>false</UseFullPaths>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)Lib/$(PlatformTarget)/;$(DEVLIBS)googletest/lib/$(PlatformTarget)/</AdditionalLibraryDirectories>
-      <AdditionalDependencies>gtestd.lib;gtest_maind.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Lib/$(PlatformTarget)/;$(DEVLIBS)googletest/lib/$(PlatformTarget)/;$(SolutionDir)Bin/$(PlatformTarget)/;$(SolutionDir)Bin/$(PlatformTarget)/</AdditionalLibraryDirectories>
+      <AdditionalDependencies>gtestd.lib;gtest_maind.lib;amUtilitiesd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -144,8 +144,8 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)Lib/$(PlatformTarget)/;$(DEVLIBS)googletest/lib/$(PlatformTarget)/</AdditionalLibraryDirectories>
-      <AdditionalDependencies>gtest.lib;gtest_main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Lib/$(PlatformTarget)/;$(DEVLIBS)googletest/lib/$(PlatformTarget)/;;$(SolutionDir)Bin/$(PlatformTarget)/</AdditionalLibraryDirectories>
+      <AdditionalDependencies>gtest.lib;gtest_main.lib;amUtilities.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -166,8 +166,8 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)Lib/$(PlatformTarget)/;$(DEVLIBS)googletest/lib/$(PlatformTarget)/</AdditionalLibraryDirectories>
-      <AdditionalDependencies>gtest.lib;gtest_main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Lib/$(PlatformTarget)/;$(DEVLIBS)googletest/lib/$(PlatformTarget)/;;$(SolutionDir)Bin/$(PlatformTarget)/</AdditionalLibraryDirectories>
+      <AdditionalDependencies>gtest.lib;gtest_main.lib;amUtilities.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

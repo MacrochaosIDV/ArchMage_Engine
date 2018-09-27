@@ -1,32 +1,44 @@
+/******************************************
+ * @file amMatix4x4.cpp
+ * @date 2018/09/27
+ *
+ * @author Andrés Sumano
+ * Contact: andressumano@hotmail.com
+ *
+ * @brief cpp of the 4x4 matrix
+ *
+ *
+ * @note
+******************************************/
 #include "amMatix4x4.h"
 #include "amVector3.h"
 
 namespace amEngineSDK {
+  
   amMatix4x4::amMatix4x4() {}
 
 
   amMatix4x4::~amMatix4x4() {}
 
-  amMatix4x4::amMatix4x4(amMatix4x4 & other) {
+  const amMatix4x4 amMatix4x4::IDENTITY = amMatix4x4(FORCE_INIT::ONE);
+  const amMatix4x4 amMatix4x4::ZERO = amMatix4x4(FORCE_INIT::ZERO);
+
+  amMatix4x4::amMatix4x4(amMatix4x4& other) {
     _m = other._m;
   }
 
-  void amMatix4x4::init() {
-    /*for (int j = 0; j < 4; j++) {
-      for (int i = 0; i < 4; i++) {
-        m[j][i] = 0;
-      }
-    }*/
-    memset(&_m, 0, sizeof(_m));
+  void amMatix4x4::initIdentity() {
+    *this = IDENTITY;
   }
 
-  void amMatix4x4::initIdentity() {
-    init();
-    _m.m00 = _m.m11 = _m.m22 = _m.m33 = 1;
-    /*for (int i = 0; i < 4; i++)
-      for (int j = 0; j < 4; j++)
-        m[j][i] = (j == i) ? 1.0f : 0.0f;*/
+  amMatix4x4::amMatix4x4(int32 val) {
+    memset(this, 0, sizeof(amMatix4x4));
+    if (val == FORCE_INIT::ONE)
+      _m.m00 = _m.m11 = _m.m22 = _m.m33 = 1.0f;
   }
+
+
+  
 
   amMatix4x4 amMatix4x4::operator*(const float & f) {
     amMatix4x4 res = *this;
@@ -51,7 +63,6 @@ namespace amEngineSDK {
   }*/
   amMatix4x4 amMatix4x4::operator*(const amMatix4x4& other) {
     amMatix4x4 res = *this;
-    res.init();
     for (int j = 0; j < 4; j++)
       for (int i = 0; i < 4; i++)
         for (int k = 0; k < 4; k++)
@@ -73,7 +84,6 @@ namespace amEngineSDK {
 
   amVector4 amMatix4x4::operator*(amVector4& V) {
       amVector4 res;
-      res.init();
       res.x = (_m.m00 * V.x) + (_m.m01 * V.y) + (_m.m02 * V.z) + (_m.m03 * V.w);
       res.y = (_m.m10 * V.x) + (_m.m11 * V.y) + (_m.m12 * V.z) + (_m.m13 * V.w);
       res.z = (_m.m20 * V.x) + (_m.m21 * V.y) + (_m.m22 * V.z) + (_m.m23 * V.w);
@@ -159,6 +169,7 @@ namespace amEngineSDK {
   }
 
   amMatix4x4 amMatix4x4::Fast_Inverse(amMatix4x4 & M) {
+    M;
       amMatix4x4 res;
       amVector4 InvPos;
       res = res.Transposed();
@@ -333,7 +344,6 @@ namespace amEngineSDK {
       //yDir = Cross3(zDir, xDir);
       yDir = zDir.cross3(xDir);
       amMatix4x4 View;
-      View.init();
       /*
       Cmatrix4D View = ( 
       xDir.x,				      yDir.x,				      zDir.x,		         0,
@@ -368,7 +378,6 @@ namespace amEngineSDK {
       //yDir = Cross3(zDir, xDir);
       yDir = zDir.cross3(xDir);
       amMatix4x4 View;
-      View.init();
       /*Cmatrix4D View = ( xDir.x,			yDir.x,				zDir.x,		   0,
       xDir.y,			yDir.y,				zDir.y,		   0,
       xDir.z,			yDir.z,				zDir.z,		   0,
@@ -404,7 +413,6 @@ namespace amEngineSDK {
       float w = h / ratio;
 
       amMatix4x4 Persp;
-      Persp.init();
 
       /*
       Cmatrix4D P = { 
@@ -432,7 +440,6 @@ namespace amEngineSDK {
       float w = h / ratio;
 
       amMatix4x4 Persp;
-      Persp.init();
       /*
       Cmatrix4D P = {
       w,	0,	           0,	                0,

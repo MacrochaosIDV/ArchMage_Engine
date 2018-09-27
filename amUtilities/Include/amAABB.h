@@ -1,6 +1,15 @@
-/***********************
-*  @brief 
-***********************/
+/******************************************
+ * @file amAABB.h
+ * @date 2018/09/27
+ *
+ * @author Andrés Sumano
+ * Contact: andressumano@hotmail.com
+ *
+ * @brief Implements a 3D Axis Aligned Bounding Box
+ *
+ *
+ * @note
+******************************************/
 #pragma once
 /***********************
 *
@@ -87,6 +96,10 @@ namespace amEngineSDK {
     ***********************/
     amAABB
     setToTransformedBox();
+
+    /*property MxMymz {
+      return amVector3(m_pMax.x, m_pMax.y, m_pMin.z);
+    }*/
 
     amVector3 m_pMin;
     amVector3 m_pMax;

@@ -1,6 +1,15 @@
-/***********************
-*  @brief 
-***********************/
+/******************************************
+ * @file amRay.h
+ * @date 2018/09/27
+ *
+ * @author Andrés Sumano
+ * Contact: andressumano@hotmail.com
+ *
+ * @brief Implements a ray in 3D space
+ *
+ *
+ * @note
+******************************************/
 #pragma once
 /***********************
 *
