@@ -23,7 +23,7 @@ namespace amEngineSDK {
   const amMatix4x4 amMatix4x4::IDENTITY = amMatix4x4(FORCE_INIT::ONE);
   const amMatix4x4 amMatix4x4::ZERO = amMatix4x4(FORCE_INIT::ZERO);
 
-  amMatix4x4::amMatix4x4(amMatix4x4& other) {
+  amMatix4x4::amMatix4x4(const amMatix4x4& other) {
     _m = other._m;
   }
 

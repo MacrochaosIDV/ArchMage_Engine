@@ -31,11 +31,11 @@ namespace amEngineSDK {
 #if AM_PLATFORM == AM_PLATFORM_WIN32
   using amMath = amWinMath;
 #elif AM_PLATFORM == AM_PLATFORM_PS4
-  using amMath = amPLatformMath;
+  using amMath = amPlatformMath;
 #elif AM_PLATFORM == AM_PLATFORM_OSX
-  using amMath = amPLatformMath;
+  using amMath = amPlatformMath;
 #else
-  using amMath = amPLatformMath;
+  using amMath = amPlatformMath;
 #endif
 }
 

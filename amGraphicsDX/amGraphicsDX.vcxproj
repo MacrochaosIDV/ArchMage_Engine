@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\amDXComputeShader.cpp" />
+    <ClCompile Include="Source\amDXConstantBuffer.cpp" />
+    <ClCompile Include="Source\amDXDepthStencilState.cpp" />
+    <ClCompile Include="Source\amDXDepthStencilView.cpp" />
+    <ClCompile Include="Source\amDXDevice.cpp" />
+    <ClCompile Include="Source\amDXDeviceContext.cpp" />
+    <ClCompile Include="Source\amDXGeomShader.cpp" />
+    <ClCompile Include="Source\amDXGraphicsAPI.cpp" />
+    <ClCompile Include="Source\amDXGraphicsBuffer.cpp" />
+    <ClCompile Include="Source\amDXIndexBuffer.cpp" />
+    <ClCompile Include="Source\amDXInputLayout.cpp" />
+    <ClCompile Include="Source\amDXPixelShader.cpp" />
+    <ClCompile Include="Source\amDXRasterizerState.cpp" />
+    <ClCompile Include="Source\amDXRenderTargetView.cpp" />
+    <ClCompile Include="Source\amDXSamplerState.cpp" />
+    <ClCompile Include="Source\amDXShader.cpp" />
+    <ClCompile Include="Source\amDXShaderResourceView.cpp" />
+    <ClCompile Include="Source\amDXSwapChain.cpp" />
+    <ClCompile Include="Source\amDXTexture.cpp" />
+    <ClCompile Include="Source\amDXTextureShader.cpp" />
+    <ClCompile Include="Source\amDXVertexBuffer.cpp" />
+    <ClCompile Include="Source\amDXVertexShader.cpp" />
+    <ClCompile Include="Source\amDXViewPort.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Include\amDXComputeShader.h" />
+    <ClInclude Include="Include\amDXConstantBuffer.h" />
+    <ClInclude Include="Include\amDXDepthStencilState.h" />
+    <ClInclude Include="Include\amDXDepthStencilView.h" />
+    <ClInclude Include="Include\amDXDevice.h" />
+    <ClInclude Include="Include\amDXDeviceContext.h" />
+    <ClInclude Include="Include\amDXGeomShader.h" />
+    <ClInclude Include="Include\amDXGraphicsAPI.h" />
+    <ClInclude Include="Include\amDXGraphicsBuffer.h" />
+    <ClInclude Include="Include\amDXIndexBuffer.h" />
+    <ClInclude Include="Include\amDXInputLayout.h" />
+    <ClInclude Include="Include\amDXPixelShader.h" />
+    <ClInclude Include="Include\amDXPreReqs.h" />
+    <ClInclude Include="Include\amDXRasterizerState.h" />
+    <ClInclude Include="Include\amDXRenderTargetView.h" />
+    <ClInclude Include="Include\amDXSamplerState.h" />
+    <ClInclude Include="Include\amDXShader.h" />
+    <ClInclude Include="Include\amDXShaderResourceView.h" />
+    <ClInclude Include="Include\amDXSwapChain.h" />
+    <ClInclude Include="Include\amDXTexture.h" />
+    <ClInclude Include="Include\amDXTextureShader.h" />
+    <ClInclude Include="Include\amDXVertexBuffer.h" />
+    <ClInclude Include="Include\amDXVertexShader.h" />
+    <ClInclude Include="Include\amDXViewPort.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{BBB77A57-17A4-4C4E-BF83-EB12C303641C}</ProjectGuid>
+    <RootNamespace>amGraphicsDX</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)Bin\$(PlatformShortName)\</OutDir>
+    <IntDir>$(SolutionDir)Intermediate\$(ProjectName)\$(PlatformShortName)\$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)d</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)Bin\$(PlatformShortName)\</OutDir>
+    <IntDir>$(SolutionDir)Intermediate\$(ProjectName)\$(PlatformShortName)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)Bin\$(PlatformShortName)\</OutDir>
+    <IntDir>$(SolutionDir)Intermediate\$(ProjectName)\$(PlatformShortName)\$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)d</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)Bin\$(PlatformShortName)\</OutDir>
+    <IntDir>$(SolutionDir)Intermediate\$(ProjectName)\$(PlatformShortName)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>false</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <PreprocessorDefinitions>AM_GRAPHICSDX_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(DXSDK_DIR)Include\;$(DEVLIBS)EASTL/include/;$(DEVLIBS)EASTL\test\packages\EABase\include\Common\;$(ProjectDir)Include\;$(SolutionDir)amCore\Include\;$(SolutionDir)amUtilities\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>false</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <PreprocessorDefinitions>AM_GRAPHICSDX_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(DXSDK_DIR)Include\;$(DEVLIBS)EASTL/include/;$(DEVLIBS)EASTL\test\packages\EABase\include\Common\;$(ProjectDir)Include\;$(SolutionDir)amCore\Include\;$(SolutionDir)amUtilities\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>false</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <PreprocessorDefinitions>AM_GRAPHICSDX_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(DXSDK_DIR)Include\;$(DEVLIBS)EASTL/include/;$(DEVLIBS)EASTL\test\packages\EABase\include\Common\;$(ProjectDir)Include\;$(SolutionDir)amCore\Include\;$(SolutionDir)amUtilities\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>false</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <PreprocessorDefinitions>AM_GRAPHICSDX_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(DXSDK_DIR)Include\;$(DEVLIBS)EASTL/include/;$(DEVLIBS)EASTL\test\packages\EABase\include\Common\;$(ProjectDir)Include\;$(SolutionDir)amCore\Include\;$(SolutionDir)amUtilities\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

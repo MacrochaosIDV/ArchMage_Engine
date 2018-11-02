@@ -10,13 +10,13 @@
  * @note
 ******************************************/
 #pragma once
+
 /***********************
 **
 *  Includes
 *
 ***********************/
 #include "amPrerequisitesUtilities.h"
-
 
 namespace amEngineSDK {
   class amVector3

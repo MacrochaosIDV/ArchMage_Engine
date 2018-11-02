@@ -16,10 +16,10 @@
 *
 ***********************/
 #include "amPrerequisitesUtilities.h"
-#include "amPLatformMath.h"
+#include "amPlatformMath.h"
 
 namespace amEngineSDK {
-  struct amWinMath : public amPLatformMath {
+  class amWinMath : public amPlatformMath {
     //using  = amMath::sqrt;
   };
 }

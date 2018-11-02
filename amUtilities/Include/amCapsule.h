@@ -11,17 +11,16 @@
  * @note Not yet implemented
 ******************************************/
 #pragma once
-/***********************
-*
-*  Includes
-*
-***********************/
+
+/*
+ *  Includes
+ */
 #include "amVector3.h"
 
 namespace amEngineSDK {
   class amCapsule
   {
-  public:
+   public:
     amCapsule();
     ~amCapsule();
     
@@ -34,27 +33,32 @@ namespace amEngineSDK {
     /***********************
     *  @brief Makes this capsule a copy of the other capsule
     ***********************/
-    amCapsule& operator=(const amCapsule& other);
+    amCapsule&
+    operator=(const amCapsule& other);
 
     /***********************
     *  @brief Returns a capsule with its height & radius added
     ***********************/
-    amCapsule operator+(const amCapsule& other);
+    amCapsule
+    operator+(const amCapsule& other);
 
     /***********************
     *  @brief Returns a capsule with its height & radius subtracted
     ***********************/
-    amCapsule operator-(const amCapsule& other);
+    amCapsule
+    operator-(const amCapsule& other);
 
     /***********************
     *  @brief Returns a capsule with its height & radius multiplied
     ***********************/
-    amCapsule operator*(const amCapsule& other);
+    amCapsule
+    operator*(const amCapsule& other);
 
     /***********************
     *  @brief Returns a capsule with its height & radius divided
     ***********************/
-    amCapsule operator/(const amCapsule& other);
+    amCapsule
+    operator/(const amCapsule& other);
     
     /***********************
     *  @brief Adds the height & radius of the other capsule to this capsule

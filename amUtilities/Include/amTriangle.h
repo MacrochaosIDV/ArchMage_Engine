@@ -27,7 +27,8 @@ namespace amEngineSDK {
 
     amTriangle(const amTriangle& other);
 
-    amTriangle& operator=(const amTriangle& other);
+    amTriangle& 
+    operator=(const amTriangle& other);
 
     amTriangle 
     operator+(const amTriangle& other) const;

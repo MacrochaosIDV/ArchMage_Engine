@@ -1,2 +1,0 @@
-21/Junio/18
-	Added gcc as compiler

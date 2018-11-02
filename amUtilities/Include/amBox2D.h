@@ -1,21 +1,21 @@
 /*****************************************************************************/
 /**
-* @file    amBox2D.h
-* @author  Andrés Sumano (andressumano@hotmail.com)
-* @date    2018/6/22
-* @brief   Implements a rectangular 2D Box.
-*
-* Implements a rectangular 2D Box.
-*
-* @bug     No known bugs.
-*/
+ * @file    amBox2D.h
+ * @author  Andrés Sumano (andressumano@hotmail.com)
+ * @date    2018/6/22
+ * @brief   Implements a rectangular 2D Box.
+ *
+ * Implements a rectangular 2D Box.
+ *
+ * @bug     No known bugs.
+ */
 /*****************************************************************************/
 #pragma once
 
 /*****************************************************************************/
 /**
-* Includes
-*/
+ * Includes
+ */
 /*****************************************************************************/
 #include "amPrerequisitesUtilities.h"
 #include "amVector2.h"
@@ -23,39 +23,40 @@
 namespace amEngineSDK {
   class amBox2D
   {
-  public:
+   public:
     amBox2D();
     ~amBox2D();
 
-    /***********************
-    *  @brief Make box be the same as the given box
-    ***********************/
+
+    /**
+     *  @brief Make box be the same as the given box
+     */
     amBox2D& 
-    operator = (const amBox2D & other);
+    operator =(const amBox2D& other);
 
     /***********************
     *  @brief Moves the center point by the given vector
     ***********************/
     amBox2D& 
-    operator + (const amVector2& vec);
+    operator +(const amVector2& vec);
 
     /***********************
     *  @brief Returns the sums all components of both boxes
     ***********************/
     amBox2D 
-    operator + (const amBox2D& box);
+    operator +(const amBox2D& box);
 
     /***********************
     *  @brief Returns a box with the difference of all components of both boxes
     ***********************/
     amBox2D 
-    operator - (const amBox2D& box);
+    operator -(const amBox2D& box);
 
     /***********************
     *  @brief Returns product of all components of both boxes
     ***********************/
     amBox2D 
-    operator * (const amBox2D& box);
+    operator *(const amBox2D& box);
 
     /***********************
     *  @brief Division not implemented because of danger of /0
@@ -66,17 +67,17 @@ namespace amEngineSDK {
     *  @brief Returns a modified box with the sum of the boxes
     ***********************/
     amBox2D& 
-    operator += (const amBox2D& box);
+    operator +=(const amBox2D& box);
     /***********************
     *  @brief Returns a modified box with the difference of the boxes
     ***********************/
     amBox2D& 
-    operator -= (const amBox2D& box);
+    operator -=(const amBox2D& box);
     /***********************
     *  @brief Returns a modified box with the product of the boxes
     ***********************/
     amBox2D& 
-    operator *= (const amBox2D& box);
+    operator *=(const amBox2D& box);
 
     /***********************
     *  @brief Division not implemented because of danger of /0
@@ -85,34 +86,16 @@ namespace amEngineSDK {
     //operator/=(const amBox2D& box);
 
     /***********************
-    *  @brief Initializes values to 0s
-    ***********************/
-    void
-    init();
-
-    /***********************
     *  @brief Calculates if a vector is inside the box
     ***********************/
     bool 
     isInside(const amVector2 & vec);
 
     /***********************
-    *  @brief Shrinks the box's h & w by f
-    ***********************/
-    void 
-    shrink(const float& f);
-
-    /***********************
-    *  @brief Expands the box's h & w by f
-    ***********************/
-    void 
-    expand(const float& f);
-
-    /***********************
     *  @brief Scales h & w by a scalar, keeps aspect ratio
     ***********************/
     void 
-    expandShrinkRatio(const float& scale);
+    scale(const float& scale);
 
     /***********************
     *  @brief Move the box's center to the position given by the vector

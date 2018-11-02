@@ -37,19 +37,19 @@ namespace amEngineSDK {
     *  @brief Returns the difference between this and the given vector
     ***********************/
     amVector2 
-    operator -(const amVector2 & other);
+    operator-(const amVector2& other) const;
 
     /***********************
     *  @brief Returns the sum of this and the given vector
     ***********************/
     amVector2 
-    operator +(const amVector2 & other);
+    operator +(const amVector2 & other) const;
 
     /***********************
     *  @brief Returns the product of this and the given vector
     ***********************/
     amVector2 
-    operator *(const amVector2 & other);
+    operator *(const amVector2 & other) const;
 
     /***********************
     *  @brief Sums the vectors
@@ -85,20 +85,13 @@ namespace amEngineSDK {
     *  @brief Returns a vector divided by f
     ***********************/
     amVector2 
-    operator /(const float & f);
-
-
-    /***********************
-    *  @brief Initializes the values of x & y to 0s
-    ***********************/
-    void 
-    init();
+    operator /(const float & f)const;
 
     /***********************
     *  @brief Makes the vector unit length
     ***********************/
     void 
-    Normalize();
+    normalize();
 
     /***********************
     *  @brief Returns the would be unit length vector of this vector
@@ -116,7 +109,7 @@ namespace amEngineSDK {
     *  @brief Returns the projection of this vector onto the given vector
     ***********************/
     float 
-    DotNormalized(amVector2 & ProjectedOn);
+      dotNormalized(amVector2 & ProjectedOn);
 
     float x;
     float y;

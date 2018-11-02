@@ -96,12 +96,13 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>false</SDLCheck>
       <ConformanceMode>false</ConformanceMode>
-      <AdditionalIncludeDirectories>./Include;$(DEVLIBS)googletest\include\;$(SolutionDir)amUtilities/Include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(DEVLIBS)EASTL/include/;$(DEVLIBS)EASTL\test\packages\EABase\include\Common\;./Include;$(DEVLIBS)googletest\include\;$(SolutionDir)amUtilities/Include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp14</LanguageStandard>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <OpenMPSupport>true</OpenMPSupport>
       <UseFullPaths>false</UseFullPaths>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)Lib/$(PlatformTarget)/;$(DEVLIBS)googletest/lib/$(PlatformTarget)/;$(SolutionDir)Bin/$(PlatformTarget)/;$(SolutionDir)Bin/$(PlatformTarget)/</AdditionalLibraryDirectories>
@@ -114,12 +115,13 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>false</SDLCheck>
       <ConformanceMode>false</ConformanceMode>
-      <AdditionalIncludeDirectories>./Include;$(DEVLIBS)googletest\include\;$(SolutionDir)amUtilities/Include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(DEVLIBS)EASTL/include/;$(DEVLIBS)EASTL\test\packages\EABase\include\Common\;./Include;$(DEVLIBS)googletest\include\;$(SolutionDir)amUtilities/Include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp14</LanguageStandard>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <OpenMPSupport>true</OpenMPSupport>
       <UseFullPaths>false</UseFullPaths>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)Lib/$(PlatformTarget)/;$(DEVLIBS)googletest/lib/$(PlatformTarget)/;$(SolutionDir)Bin/$(PlatformTarget)/;$(SolutionDir)Bin/$(PlatformTarget)/</AdditionalLibraryDirectories>
@@ -134,12 +136,13 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>false</SDLCheck>
       <ConformanceMode>false</ConformanceMode>
-      <AdditionalIncludeDirectories>./Include;$(DEVLIBS)googletest\include\;$(SolutionDir)amUtilities/Include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(DEVLIBS)EASTL/include/;$(DEVLIBS)EASTL\test\packages\EABase\include\Common\;./Include;$(DEVLIBS)googletest\include\;$(SolutionDir)amUtilities/Include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp14</LanguageStandard>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <OpenMPSupport>true</OpenMPSupport>
       <UseFullPaths>false</UseFullPaths>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -156,12 +159,13 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>false</SDLCheck>
       <ConformanceMode>false</ConformanceMode>
-      <AdditionalIncludeDirectories>./Include;$(DEVLIBS)googletest\include\;$(SolutionDir)amUtilities/Include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(DEVLIBS)EASTL/include/;$(DEVLIBS)EASTL\test\packages\EABase\include\Common\;./Include;$(DEVLIBS)googletest\include\;$(SolutionDir)amUtilities/Include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp14</LanguageStandard>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <OpenMPSupport>true</OpenMPSupport>
       <UseFullPaths>false</UseFullPaths>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>

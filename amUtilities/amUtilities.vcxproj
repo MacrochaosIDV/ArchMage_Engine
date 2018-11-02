@@ -95,7 +95,7 @@
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>false</SDLCheck>
-      <AdditionalIncludeDirectories>$(DEVLIBS)EASTL/include/;./Include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./Include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PreprocessorDefinitions>AM_UTILITIES_EXPORTS</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
@@ -116,7 +116,7 @@
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>false</SDLCheck>
-      <AdditionalIncludeDirectories>$(DEVLIBS)EASTL/include/;./Include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./Include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PreprocessorDefinitions>AM_UTILITIES_EXPORTS</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
@@ -139,7 +139,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>false</SDLCheck>
-      <AdditionalIncludeDirectories>$(DEVLIBS)EASTL/include/;./Include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./Include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PreprocessorDefinitions>AM_UTILITIES_EXPORTS</PreprocessorDefinitions>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
@@ -163,7 +163,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>false</SDLCheck>
-      <AdditionalIncludeDirectories>$(DEVLIBS)EASTL/include/;./Include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./Include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PreprocessorDefinitions>AM_UTILITIES_EXPORTS</PreprocessorDefinitions>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
@@ -181,18 +181,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="amAllocator.cpp" />
     <ClCompile Include="Source\amAABB.cpp" />
     <ClCompile Include="Source\amBox2D.cpp" />
     <ClCompile Include="Source\amCapsule.cpp" />
     <ClCompile Include="Source\amCircle2D.cpp" />
     <ClCompile Include="Source\amFrustrum.cpp" />
     <ClCompile Include="Source\amLine2D.cpp" />
+    <ClCompile Include="Source\amPerformanceCounter.cpp" />
     <ClCompile Include="Source\amPlatformMath.cpp" />
     <ClCompile Include="Source\amMatix4x4.cpp" />
     <ClCompile Include="Source\amOOBB.cpp" />
     <ClCompile Include="Source\amPlane.cpp" />
     <ClCompile Include="Source\amQuaternion.cpp" />
     <ClCompile Include="Source\amRay.cpp" />
+    <ClCompile Include="Source\amRNG.cpp" />
     <ClCompile Include="Source\amSphere.cpp" />
     <ClCompile Include="Source\amTriangle.cpp" />
     <ClCompile Include="Source\amVector2.cpp" />
@@ -200,6 +203,7 @@
     <ClCompile Include="Source\amVector4.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="amAllocator.h" />
     <ClInclude Include="Include\amAABB.h" />
     <ClInclude Include="Include\amBox2D.h" />
     <ClInclude Include="Include\amCapsule.h" />
@@ -209,6 +213,7 @@
     <ClInclude Include="Include\amMath.h" />
     <ClInclude Include="Include\amMatix4x4.h" />
     <ClInclude Include="Include\amOOBB.h" />
+    <ClInclude Include="Include\amPerformanceCounter.h" />
     <ClInclude Include="Include\amPlane.h" />
     <ClInclude Include="Include\amPlatformDefines.h" />
     <ClInclude Include="Include\amPlatformMath.h" />
@@ -216,6 +221,7 @@
     <ClInclude Include="Include\amPrerequisitesUtilities.h" />
     <ClInclude Include="Include\amQuaternion.h" />
     <ClInclude Include="Include\amRay.h" />
+    <ClInclude Include="Include\amRNG.h" />
     <ClInclude Include="Include\amSphere.h" />
     <ClInclude Include="Include\amStdHeaders.h" />
     <ClInclude Include="Include\amFwdDeclUtilities.h" />

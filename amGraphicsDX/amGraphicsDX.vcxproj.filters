@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Shaders">
+      <UniqueIdentifier>{0f5b53c4-ac11-4748-8c6b-2a00224c380b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Buffers">
+      <UniqueIdentifier>{6a91d64b-4771-4236-9f7f-4395e7d9c853}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Devices">
+      <UniqueIdentifier>{07f68674-9a59-46f2-b619-90a53d7d823e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Views">
+      <UniqueIdentifier>{ad5c0153-4626-4f13-b14c-e30bafc2adbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\States">
+      <UniqueIdentifier>{2d55886c-c1a4-4b06-8d8b-3f15acbce618}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\amDXGraphicsAPI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amDXInputLayout.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amDXSwapChain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amDXTexture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amDXComputeShader.cpp">
+      <Filter>Source Files\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amDXGeomShader.cpp">
+      <Filter>Source Files\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amDXPixelShader.cpp">
+      <Filter>Source Files\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amDXTextureShader.cpp">
+      <Filter>Source Files\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amDXVertexShader.cpp">
+      <Filter>Source Files\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amDXDepthStencilState.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amDXRasterizerState.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amDXSamplerState.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amDXDevice.cpp">
+      <Filter>Source Files\Devices</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amDXDeviceContext.cpp">
+      <Filter>Source Files\Devices</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amDXDepthStencilView.cpp">
+      <Filter>Source Files\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amDXRenderTargetView.cpp">
+      <Filter>Source Files\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amDXShaderResourceView.cpp">
+      <Filter>Source Files\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amDXViewPort.cpp">
+      <Filter>Source Files\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amDXShader.cpp">
+      <Filter>Source Files\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amDXConstantBuffer.cpp">
+      <Filter>Source Files\Buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amDXGraphicsBuffer.cpp">
+      <Filter>Source Files\Buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amDXIndexBuffer.cpp">
+      <Filter>Source Files\Buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amDXVertexBuffer.cpp">
+      <Filter>Source Files\Buffers</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Include\amDXGraphicsAPI.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amDXInputLayout.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amDXSwapChain.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amDXTexture.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amDXComputeShader.h">
+      <Filter>Source Files\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amDXGeomShader.h">
+      <Filter>Source Files\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amDXPixelShader.h">
+      <Filter>Source Files\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amDXTextureShader.h">
+      <Filter>Source Files\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amDXVertexShader.h">
+      <Filter>Source Files\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amDXDepthStencilState.h">
+      <Filter>Source Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amDXRasterizerState.h">
+      <Filter>Source Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amDXSamplerState.h">
+      <Filter>Source Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amDXDevice.h">
+      <Filter>Source Files\Devices</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amDXDeviceContext.h">
+      <Filter>Source Files\Devices</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amDXDepthStencilView.h">
+      <Filter>Source Files\Views</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amDXRenderTargetView.h">
+      <Filter>Source Files\Views</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amDXShaderResourceView.h">
+      <Filter>Source Files\Views</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amDXViewPort.h">
+      <Filter>Source Files\Views</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amDXShader.h">
+      <Filter>Source Files\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amDXConstantBuffer.h">
+      <Filter>Source Files\Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amDXGraphicsBuffer.h">
+      <Filter>Source Files\Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amDXIndexBuffer.h">
+      <Filter>Source Files\Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amDXVertexBuffer.h">
+      <Filter>Source Files\Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amDXPreReqs.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

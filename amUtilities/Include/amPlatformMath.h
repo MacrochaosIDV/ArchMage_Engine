@@ -15,22 +15,19 @@
 *  Includes
 *
 ***********************/
-#include "amPrerequisitesUtilities.h"
-
-#include <math.h>
 #include <cmath>
 
-
+#include "amPrerequisitesUtilities.h"
 
 namespace amEngineSDK {
-  struct AM_UTILITIES_EXPORT amPLatformMath {
+  class AM_UTILITIES_EXPORT amPlatformMath {
+   public:
+
     static const float PI;      // = std::tan(1) * 4;
     static const float HALFPI;  // = std::tan(1) * 2;
     static const float TWOPI;   // = std::tan(1) * 8;
     static const float RAD2DEG; // = 57.29577951;
     static const float DEG2RAD; // = 0.017453292519;
-
-    
 
     ////* Implementations *////
 
@@ -43,57 +40,37 @@ namespace amEngineSDK {
     ***********************/
     template<typename T>
     static T sin(T theta) {
-      /*return theta - (theta * pow(theta, 2) / 6) + (theta * pow(theta, 4) / 120) - (theta * pow(theta, 6) / 5040)
-      + (theta * pow(theta, 8) / 362880) - (theta * pow(theta, 10) / 39916800) + (theta * pow(theta, 12) / 6227020800);*/
       return std::sin(theta);
     }
 
     template<typename T>
     static T cos(T theta) {
-      /*return 1 - (theta * theta / 2) + (theta * pow(theta, 3) / 24) - (theta * pow(theta, 5) / 720)
-      + (theta * pow(theta, 7) / 40320) - (theta * pow(theta, 9) / 3628800) + (theta * pow(theta, 11) / 479001600);*/
-      return std::cos(theta);
+      return static_cast<T>(std::cos(theta));
     }
 
     template<typename T>
     static T tan(T theta) {
-      //return theta + (theta * pow(theta, 2) * 2 / 6) + (theta * pow(theta, 4) * 16 / 120)
-      //  + (theta * pow(theta, 6) * 272 / 5040) + (theta * pow(theta, 8) * 7936 / 362880)
-      //  + (theta * pow(theta, 8) * 7936 / 362880)// 2 more iterations
-
-      return std::tan(theta);
+      return static_cast<T>(std::tan(theta));
     }
 
     template<typename T>
     static T aSin(T val) {
-      // sigma: 0-> inf : x^(2n + 1) * ((2n)!    /    4n * (n!)^2 * (2n + 1))  
-      //return val/* iter 0*/ + ((val * pow(val, 2)) * (2 / (4 * 1 * 3)))/* iter 1*/
-      //  + ((val * pow(val, 4)) * (24 / (8 * 4 * 5)))/* iter 2*/
-      //  + ((val * pow(val, 6)) * (720 / (12 * 36 * 7)))/* iter 3*/
-      //  + ((val * pow(val, 8)) * (40320 / (16 * 576 * 9)))/* iter 4*/
-      //  + ((val * pow(val, 10)) * (3628800 / (20 * 14400 * 11)))/* iter 5*/
-      //  + ((val * pow(val, 12)) * (479001600 / (24 * 518400 * 13)));/* iter 6*/
-      return std::asin(val);
+      return static_cast<T>(std::asin(val));
     }
 
     template<typename T>
     static T aCos(T val) {
-      return std::acos(val);
+      return static_cast<T>(std::acos(val));
     }
 
     template<typename T>
     static T aTan(T val) {
-      /*sigma: 0-> inf : ((-1)^n / 2n + 1) * x ^(2n+1)
-      return val - ((val * pow(theta, 2)) / 3) + ((val * pow(val, 4)) / 5) - ((val * pow(val, 6)) / 7)
-      + ((val * pow(val, 8)) / 9) - ((val * pow(val, 10)) / 11)
-      + ((val * pow(val, 12)) / 13) - ((val * pow(val, 14)) / 15);*/
-      return std::atan(val);
+      return static_cast<T>(std::atan(val));
     }
 
     template<typename T>
     static T fastSin(T theta) {
-      return theta - (theta * pow(theta, 2) / 6) + (theta * pow(theta, 4) / 120) - (theta * pow(theta, 6) / 5040)
-        + (theta * pow(theta, 8) / 362880);
+      return theta - (theta * pow(theta, 2) / 6) + (theta * pow(theta, 4) / 120) - (theta * pow(theta, 6) / 5040) + (theta * pow(theta, 8) / 362880);
     }
 
     template<typename T>
@@ -110,11 +87,10 @@ namespace amEngineSDK {
 
     template<typename T>
     static T fastASin(T val) {
-      // sigma: 0-> inf : x^(2n + 1) * ((2n)!    /    4n * (n!)^2 * (2n + 1))  
-      return val/* iter 0*/ + ((val * pow(val, 2)) * (2 / (4 * 1 * 3)))/* iter 1*/
-        + ((val * pow(val, 4)) * (24 / (8 * 4 * 5)))/* iter 2*/
-        + ((val * pow(val, 6)) * (720 / (12 * 36 * 7)))/* iter 3*/
-        + ((val * pow(val, 8)) * (40320 / (16 * 576 * 9)))/* iter 4*/;
+      return val + ((val * pow(val, 2)) * (2 / (4 * 1 * 3)))
+        + ((val * pow(val, 4)) * (24 / (8 * 4 * 5)))
+        + ((val * pow(val, 6)) * (720 / (12 * 36 * 7)))
+        + ((val * pow(val, 8)) * (40320 / (16 * 576 * 9)));
     }
 
     template<typename T>
@@ -137,7 +113,7 @@ namespace amEngineSDK {
 
     template<typename T>
     static T pow(T val, T exp) {
-      return std::pow(val, exp);
+      return static_cast<T>(std::pow(val, exp));
     }
 
     template<typename T>
@@ -147,32 +123,32 @@ namespace amEngineSDK {
 
     template<typename T>
     static T sqrt(T val) {
-      return std::sqrt(val);
+      return static_cast<T>(std::sqrt(val));
     }
 
     template<typename T>
-    static T invSqrt(T val) {
-      return 1 / sqrt(val);
+    static float invSqrt(T val) {
+      return 1.0f / static_cast<float>(sqrt(val));
     }
 
     template<typename T>
     static T logX(T val, T base) {
-      return (std::log(val) / std::log(base));
+      return static_cast<T>(std::log(val) / std::log(base));
     }
 
     template<typename T>
     static T logN(T val) {
-      return std::log(val);
+      return static_cast<T>(std::log(val));
     }
 
     template<typename T>
     static T log2(T val) {
-      return std::log2(val);
+      return static_cast<T>(std::log2(val));
     }
 
     template<typename T>
     static T log10(T val) {
-      return std::log10(val);
+      return static_cast<T>(std::log10(val));
     }
 
     template<typename T>
@@ -192,7 +168,7 @@ namespace amEngineSDK {
 
     template<typename T>
     static int32 roundToInt(T val) {
-      return static_cast<int32>(val) + 0.5f * (abs(val) / val);
+      return static_cast<int32>(val + 0.5f * (abs(val) / val));
     }
 
     template<typename T>
@@ -202,7 +178,7 @@ namespace amEngineSDK {
 
     template<typename T>
     static T ceil(T val) {
-      return static_cast<int32>(val) + 9.99999999;
+      return static_cast<int32>(val + 9.99999999);
     }
 
     template<typename T>
@@ -212,9 +188,7 @@ namespace amEngineSDK {
 
     template<typename T>
     static T exp(T val) {
-      // Euler
-      //return std::powf(2.7182818, val);
-      std::exp(val);
+      return std::exp(val);
     }
 
     template<typename T>
@@ -274,20 +248,16 @@ namespace amEngineSDK {
       return (n == 0) ? return 1 : return n * factorial(n - 1);
     }
 
-    /***********************
-    *
-    *  Collisions
-    *
-    ***********************/
+    /**
+     *  Collisions
+     */
 
-    /***********************
-    *
-    *  Vector3 collisions
-    *
-    ***********************/
+    /**
+     *  Vector3 collisions
+     */
 
     static bool
-    intersects(const amVector3 &vec, const amFrustrum &f);
+    intersects(const amVector3& vec, const amFrustrum &f);
 
     static bool
     intersects(const amVector3 &vec, const amCapsule &c);

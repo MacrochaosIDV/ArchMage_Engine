@@ -17,6 +17,9 @@
     <Filter Include="Source Files\Math\Obj3D">
       <UniqueIdentifier>{0e48f38e-0971-404a-8f60-6d607027ef7c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Graphics">
+      <UniqueIdentifier>{a9c904bb-564d-4c21-895b-fe2bacaea1bb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\amBox2D.cpp">
@@ -69,6 +72,15 @@
     </ClCompile>
     <ClCompile Include="Source\amPlatformMath.cpp">
       <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amPerformanceCounter.cpp">
+      <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amRNG.cpp">
+      <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="amAllocator.cpp">
+      <Filter>Source Files\Prerequisites</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -143,6 +155,15 @@
     </ClInclude>
     <ClInclude Include="Include\amWinMath.h">
       <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amPerformanceCounter.h">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amRNG.h">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="amAllocator.h">
+      <Filter>Source Files\Prerequisites</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

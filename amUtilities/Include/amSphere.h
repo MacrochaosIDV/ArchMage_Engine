@@ -37,12 +37,20 @@ namespace amEngineSDK {
     /***********************
     *  @brief Makes this sphere a copy of the given sphere
     ***********************/
-    amSphere& operator=(const amSphere& other);
+    amSphere& 
+    operator=(const amSphere& other);
 
-    amSphere operator+(const amSphere& other) const;
-    amSphere operator-(const amSphere& other) const;
-    amSphere operator*(const amSphere& other) const;
-    amSphere operator/(const amSphere& other) const;
+    amSphere 
+    operator+(const amSphere& other) const;
+
+    amSphere 
+    operator-(const amSphere& other) const;
+
+    amSphere 
+    operator*(const amSphere& other) const;
+
+    amSphere 
+    operator/(const amSphere& other) const;
 
     amSphere& operator+=(const amSphere& other);
     amSphere& operator-=(const amSphere& other);

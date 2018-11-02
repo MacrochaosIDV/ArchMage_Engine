@@ -23,15 +23,14 @@
 namespace amEngineSDK {
   class amAABB
   {
-  public:
+   public:
     amAABB();
     ~amAABB();
 
     /***********************
     *  @brief Copy constructor
     ***********************/
-    amAABB
-    (const amAABB& other);
+    amAABB(const amAABB& other);
 
     /***********************
     *  @brief Make this box a copy of the given box
@@ -40,24 +39,28 @@ namespace amEngineSDK {
     operator=(const amAABB& other);
 
     amAABB
-    operator+(const amAABB& other);
+    operator+(const amAABB& other) const;
+
     amAABB
-    operator-(const amAABB& other);
+    operator-(const amAABB& other) const;
+    
     amAABB
-    operator*(const amAABB& other);
+    operator*(const amAABB& other) const;
+    
     amAABB
-    operator/(const amAABB& other);
+    operator/(const amAABB& other) const;
 
     amAABB&
     operator+=(const amAABB& other);
+    
     amAABB&
     operator-=(const amAABB& other);
+    
     amAABB&
     operator*=(const amAABB& other);
+    
     amAABB&
     operator/=(const amAABB& other);
-
-    
 
     /***********************
     *  @brief Adds a point/vector to the box volume
@@ -101,6 +104,7 @@ namespace amEngineSDK {
       return amVector3(m_pMax.x, m_pMax.y, m_pMin.z);
     }*/
 
+   public:
     amVector3 m_pMin;
     amVector3 m_pMax;
   };

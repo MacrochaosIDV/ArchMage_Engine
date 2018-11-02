@@ -1,2 +1,0 @@
-https://github.com/MacrochaosIDV/motor/
-https://travis-ci.org/MacrochaosIDV/motor/

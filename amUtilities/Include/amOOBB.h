@@ -22,7 +22,7 @@
 namespace amEngineSDK {
   class amOOBB
   {
-  public:
+   public:
     amOOBB();
     ~amOOBB();
 

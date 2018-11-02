@@ -16,6 +16,8 @@
 */
 /******************************************************************************/
 #include <cstdint>
+#include <cstddef>
+
 #include "amPlatformDefines.h"
 
 #if AM_PLATFORM == AM_PLATFORM_PS4

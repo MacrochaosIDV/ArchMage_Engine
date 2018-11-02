@@ -42,7 +42,7 @@ namespace amEngineSDK {
     /***********************
     *  @brief Copy constructor
     ***********************/
-    amMatix4x4(amMatix4x4& other);
+    amMatix4x4(const amMatix4x4& other);
 
     /***********************
     *  @brief Constructs the matrix with all values = val
@@ -168,5 +168,3 @@ namespace amEngineSDK {
     };
   };
 }
-
-

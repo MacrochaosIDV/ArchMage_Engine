@@ -306,6 +306,7 @@
 */
 //Secure version aren't multi platform, so we won't be using them
 #  define _CRT_SECURE_NO_WARNINGS
+//#  define _SILENCE_STDEXT_ALLOCATORS_DEPRECATION_WARNING
 /*
 *  Disable: "<type> needs to have DLL interface to be used
 */
@@ -320,8 +321,10 @@
 
 #endif
 
+
 /******************************************************************************/
 /**
 *   Standard Libraries defines
 */
 /******************************************************************************/
+

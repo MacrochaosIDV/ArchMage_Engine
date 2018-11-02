@@ -1,0 +1,26 @@
+var classam_engine_s_d_k_1_1am_quaternion =
+[
+    [ "amQuaternion", "classam_engine_s_d_k_1_1am_quaternion.html#abdfd93b0cdb5ea4a3f8c383e0c66f976", null ],
+    [ "~amQuaternion", "classam_engine_s_d_k_1_1am_quaternion.html#a007e63968ab25887d7d03419f155b07d", null ],
+    [ "amQuaternion", "classam_engine_s_d_k_1_1am_quaternion.html#a47b816611ffe8c025c7740c0597f97e2", null ],
+    [ "amQuaternion", "classam_engine_s_d_k_1_1am_quaternion.html#a0fab528de6fed46dbeb4b28904654621", null ],
+    [ "getQuatVector", "classam_engine_s_d_k_1_1am_quaternion.html#a38f9dccf3d89189ea0406df6aef99391", null ],
+    [ "init", "classam_engine_s_d_k_1_1am_quaternion.html#ad8bac072facd9d1720f38f8c957165c8", null ],
+    [ "initIdentity", "classam_engine_s_d_k_1_1am_quaternion.html#a5e4cf5d536a6f6015e49f4be74b0bc18", null ],
+    [ "operator*", "classam_engine_s_d_k_1_1am_quaternion.html#a5bc7ddcb3e77c48d8d8459dd50356895", null ],
+    [ "operator*", "classam_engine_s_d_k_1_1am_quaternion.html#acb4b010514e11c00421b4f295f1e2505", null ],
+    [ "operator*=", "classam_engine_s_d_k_1_1am_quaternion.html#aec738a7a728855a1f3fff861aaa5d82b", null ],
+    [ "quatDot", "classam_engine_s_d_k_1_1am_quaternion.html#a1ea9bbe94927313b75d44d6cf7293187", null ],
+    [ "quatMag", "classam_engine_s_d_k_1_1am_quaternion.html#a6252da9f3e74a9bf0e945a183517c4a5", null ],
+    [ "quatNormalize", "classam_engine_s_d_k_1_1am_quaternion.html#ad165536fb8a6a27568b3fb663c047644", null ],
+    [ "quatPow", "classam_engine_s_d_k_1_1am_quaternion.html#a5594e9bb8f36266fd18627177d717b20", null ],
+    [ "rotateAroundAxis", "classam_engine_s_d_k_1_1am_quaternion.html#a79e26b064ab7fc80614ea90f8cfda976", null ],
+    [ "rotateAroundX", "classam_engine_s_d_k_1_1am_quaternion.html#a084c367043440d8c73b4c60fe80f08a7", null ],
+    [ "rotateAroundY", "classam_engine_s_d_k_1_1am_quaternion.html#ac8ae5dd914bfaf976b31f335daa087a8", null ],
+    [ "rotateAroundZ", "classam_engine_s_d_k_1_1am_quaternion.html#a756f30df7585f649e1170b29417d2578", null ],
+    [ "sLerp", "classam_engine_s_d_k_1_1am_quaternion.html#acf01eee38be4ca85de64636cc53f8287", null ],
+    [ "w", "classam_engine_s_d_k_1_1am_quaternion.html#a1286bd15d823161cd8a112f1f5aadebd", null ],
+    [ "x", "classam_engine_s_d_k_1_1am_quaternion.html#ad67449c631046925e0fdb1c282e1caee", null ],
+    [ "y", "classam_engine_s_d_k_1_1am_quaternion.html#a561ac86c2c3534b0c180ad762c8d1d18", null ],
+    [ "z", "classam_engine_s_d_k_1_1am_quaternion.html#a18bbfa4918ab9d919968a5daa72e83a3", null ]
+];

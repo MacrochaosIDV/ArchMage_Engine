@@ -21,8 +21,16 @@
 #include "amTriangle.h"
 
 namespace amEngineSDK{
+  namespace PLANE_TEST {
+    enum E {
+      FRONT,
+      BEHIND,
+      ON_PLANE
+    };
+  }
+
   class amPlane : public amVector3 {
-  public:
+   public:
     amPlane();
     ~amPlane();
 
@@ -55,25 +63,25 @@ namespace amEngineSDK{
     *  @brief 
     ***********************/
     amPlane
-    operator+(const amPlane& other);
+    operator+(const amPlane& other)const;
 
     /***********************
     *  @brief 
     ***********************/
     amPlane
-    operator-(const amPlane& other);
+    operator-(const amPlane& other)const;
 
     /***********************
     *  @brief 
     ***********************/
     amPlane
-    operator*(const amPlane& other);
+    operator*(const amPlane& other)const;
 
     /***********************
     *  @brief 
     ***********************/
     amPlane
-    operator/(const amPlane& other);
+    operator/(const amPlane& other)const;
 
 
     /***********************
@@ -103,12 +111,14 @@ namespace amEngineSDK{
     /***********************
     *  @brief  Returns <0 if point in under the plane, >0 if above or 0 if on the plane
     ***********************/
-    int8 whichSide(const amVector3& vec);
+    PLANE_TEST::E
+    whichSide(const amVector3& vec);
 
     /***********************
     *  @brief Returns distance to plane from given point
     ***********************/
-    float distanceTo(const amVector3& vec);
+    float
+    distanceTo(const amVector3& vec);
 
     /******************************************
      * 

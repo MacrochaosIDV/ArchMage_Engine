@@ -10,6 +10,7 @@
  * @note
 ******************************************/
 #pragma once
+
 namespace amEngineSDK {
 	class amVector2;
 	class amVector3;

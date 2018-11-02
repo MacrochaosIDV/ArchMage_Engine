@@ -26,7 +26,7 @@ int main(int argc, char **argv) {
 }
 
 TEST(Basic_Types, Types) {
-  EXPECT_EQ(sizeof(uint8), 1);
+  EXPECT_EQ(sizeof(uint8), 1U);
   EXPECT_EQ(sizeof(uint16), 2);
   EXPECT_EQ(sizeof(uint32), 4);
   EXPECT_EQ(sizeof(uint64), 8);
@@ -35,10 +35,11 @@ TEST(Basic_Types, Types) {
 
 TEST(amMath_funcs, Funcs) {
   
-  float a = amEngineSDK::amMath::cos(1);
+  float a = amMath::cos(1.0f);
+  (void)(a);
 
-  EXPECT_EQ(amMath::pow(2, 3), 8);
-  EXPECT_NE(amMath::pow(2, 3), 16);
+  EXPECT_EQ(amMath::pow(2.f, 3.f), 8.f);
+  EXPECT_NE(amMath::pow(2.f, 3.f), 16.f);
 
   EXPECT_EQ(amMath::logX(9, 3), 2);
   EXPECT_NE(amMath::logX(27, 3), 2);
@@ -96,9 +97,9 @@ TEST(amMath_funcs, Funcs) {
   EXPECT_NE(amMath::clamp(1, 2, 3), 3);
   EXPECT_NE(amMath::clamp(1, 2, 0), 0);
 
-  EXPECT_FLOAT_EQ(amMath::HALFPI, amMath::tan(1) * 2);
-  EXPECT_FLOAT_EQ(amMath::PI, amMath::tan(1) * 4);
-  EXPECT_FLOAT_EQ(amMath::TWOPI, amMath::tan(1) * 8);
+  EXPECT_FLOAT_EQ(amMath::HALFPI, amMath::tan(1.0f) * 2.0f);
+  EXPECT_FLOAT_EQ(amMath::PI, amMath::tan(1.0f) * 4.0f);
+  EXPECT_FLOAT_EQ(amMath::TWOPI, amMath::tan(1.0f) * 8.0f);
   EXPECT_FLOAT_EQ(amMath::DEG2RAD, amMath::PI / 180.0f);
   EXPECT_FLOAT_EQ(amMath::RAD2DEG, 180.0f / amMath::PI);
 }

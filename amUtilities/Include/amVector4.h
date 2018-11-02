@@ -42,61 +42,55 @@ namespace amEngineSDK {
     *  @brief 
     ***********************/
     amVector4&
-    operator -=(const amVector4 & other);
+    operator -=(const amVector4& other);
 
     /***********************
     *  @brief 
     ***********************/
     amVector4&
-    operator +=(const amVector4 & other);
+    operator +=(const amVector4& other);
 
     /***********************
     *  @brief 
     ***********************/
     amVector4&
-    operator *=(const float & f);
+    operator *=(const float& f);
 
     /***********************
     *  @brief 
     ***********************/
     amVector4&
-    operator = (const amVector4 & other);
+    operator = (const amVector4& other);
 
     /***********************
     *  @brief 
     ***********************/
     amVector4
-    operator *(const float & f);
+    operator *(const float& f) const;
 
     /***********************
     *  @brief 
     ***********************/
     amVector4
-    operator /(const float & f);
+    operator /(const float& f) const;
 
     /***********************
     *  @brief 
     ***********************/
     amVector4
-    operator -(const amVector4 & other);
+    operator -(const amVector4& other) const;
 
     /***********************
     *  @brief 
     ***********************/
     amVector4
-    operator +(const amVector4 & other);
+    operator +(const amVector4& other) const;
 
     /***********************
     *  @brief Normalizes this vector to be of unit length
     ***********************/
     void 
     Normalize();
-
-    /***********************
-    *  @brief Initializes the vector on 0s
-    ***********************/
-    void
-    init();
 
     /***********************
     *  @brief Return the normalizes version of this vector without modifying it
@@ -114,7 +108,7 @@ namespace amEngineSDK {
     *  @brief Returns the value of the Dot product of this vector projected on the other
     ***********************/
     float 
-    DotNormalized(amVector4 & ProjectedOn);
+    DotNormalized(amVector4& ProjectedOn);
 
     /***********************
     *  @brief Checks if all the components in this vector are exactly 0

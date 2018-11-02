@@ -1,11 +1,11 @@
 #pragma once
-class amLine2D
-{
-public:
-  amLine2D();
-  ~amLine2D();
 
-  
-  
-};
+namespace amEngineSDK {
 
+  class amLine2D final
+  {
+   public:
+    amLine2D() = default;
+    ~amLine2D() = default;
+  };
+}

@@ -21,12 +21,9 @@ namespace amEngineSDK {
   
   }
   amFrustrum::amFrustrum(const amFrustrum & other) {
-    m_far    = other.m_far;
-    m_near   = other.m_near;
-    m_right  = other.m_right;
-    m_left   = other.m_left;
-    m_top    = other.m_top;
-    m_bottom = other.m_bottom;
+    for (int32 i = 0; i < FRUSTRUM_PLANES::COUNT; ++i) {
+      m_planes[i] = other.m_planes[i];
+    }
   }
 
   /*amFrustrum::amFrustrum(const amVector3 & topRightBack,
@@ -50,88 +47,85 @@ namespace amEngineSDK {
   }
 
   amFrustrum & amFrustrum::operator=(const amFrustrum & other) {
-    m_far    = other.m_far;
-    m_near   = other.m_near;
-    m_right  = other.m_right;
-    m_left   = other.m_left;
-    m_top    = other.m_top;
-    m_bottom = other.m_bottom;
+    for (int32 i = 0; i < FRUSTRUM_PLANES::COUNT; ++i) {
+      m_planes[i] = other.m_planes[i];
+    }
     return *this;
   }
-  amFrustrum amFrustrum::operator+(const amFrustrum & other) {
+  amFrustrum amFrustrum::operator+(const amFrustrum & other) const {
     amFrustrum res;
-    res.m_far    += other.m_far;
-    res.m_near   += other.m_near;
-    res.m_right  += other.m_right;
-    res.m_left   += other.m_left;
-    res.m_top    += other.m_top;
-    res.m_bottom += other.m_bottom;
+    res.m_planes[FRUSTRUM_PLANES::FAR] = m_planes[FRUSTRUM_PLANES::FAR]       + other.m_planes[FRUSTRUM_PLANES::FAR];
+    res.m_planes[FRUSTRUM_PLANES::NEAR] = m_planes[FRUSTRUM_PLANES::NEAR]     + other.m_planes[FRUSTRUM_PLANES::NEAR];
+    res.m_planes[FRUSTRUM_PLANES::RIGHT] = m_planes[FRUSTRUM_PLANES::RIGHT]   + other.m_planes[FRUSTRUM_PLANES::RIGHT];
+    res.m_planes[FRUSTRUM_PLANES::LEFT] = m_planes[FRUSTRUM_PLANES::LEFT]     + other.m_planes[FRUSTRUM_PLANES::LEFT];
+    res.m_planes[FRUSTRUM_PLANES::TOP] = m_planes[FRUSTRUM_PLANES::TOP]       + other.m_planes[FRUSTRUM_PLANES::TOP];
+    res.m_planes[FRUSTRUM_PLANES::BOTTOM] = m_planes[FRUSTRUM_PLANES::BOTTOM] + other.m_planes[FRUSTRUM_PLANES::BOTTOM];
     return res;
   }
-  amFrustrum amFrustrum::operator-(const amFrustrum & other) {
+  amFrustrum amFrustrum::operator-(const amFrustrum & other) const {
     amFrustrum res;
-    res.m_far    -= other.m_far;
-    res.m_near   -= other.m_near;
-    res.m_right  -= other.m_right;
-    res.m_left   -= other.m_left;
-    res.m_top    -= other.m_top;
-    res.m_bottom -= other.m_bottom;
+    res.m_planes[FRUSTRUM_PLANES::FAR] = m_planes[FRUSTRUM_PLANES::FAR]       - other.m_planes[FRUSTRUM_PLANES::FAR];
+    res.m_planes[FRUSTRUM_PLANES::NEAR] = m_planes[FRUSTRUM_PLANES::NEAR]     - other.m_planes[FRUSTRUM_PLANES::NEAR];
+    res.m_planes[FRUSTRUM_PLANES::RIGHT] = m_planes[FRUSTRUM_PLANES::RIGHT]   - other.m_planes[FRUSTRUM_PLANES::RIGHT];
+    res.m_planes[FRUSTRUM_PLANES::LEFT] = m_planes[FRUSTRUM_PLANES::LEFT]     - other.m_planes[FRUSTRUM_PLANES::LEFT];
+    res.m_planes[FRUSTRUM_PLANES::TOP] = m_planes[FRUSTRUM_PLANES::TOP]       - other.m_planes[FRUSTRUM_PLANES::TOP];
+    res.m_planes[FRUSTRUM_PLANES::BOTTOM] = m_planes[FRUSTRUM_PLANES::BOTTOM] - other.m_planes[FRUSTRUM_PLANES::BOTTOM];
     return res;
   }
-  amFrustrum amFrustrum::operator*(const amFrustrum & other) {
+  amFrustrum amFrustrum::operator*(const amFrustrum & other) const {
     amFrustrum res;
-    res.m_far    *= other.m_far;
-    res.m_near   *= other.m_near;
-    res.m_right  *= other.m_right;
-    res.m_left   *= other.m_left;
-    res.m_top    *= other.m_top;
-    res.m_bottom *= other.m_bottom;
+    res.m_planes[FRUSTRUM_PLANES::FAR]    *= other.m_planes[FRUSTRUM_PLANES::FAR];
+    res.m_planes[FRUSTRUM_PLANES::NEAR]   *= other.m_planes[FRUSTRUM_PLANES::NEAR];
+    res.m_planes[FRUSTRUM_PLANES::RIGHT]  *= other.m_planes[FRUSTRUM_PLANES::RIGHT];
+    res.m_planes[FRUSTRUM_PLANES::LEFT]   *= other.m_planes[FRUSTRUM_PLANES::LEFT];
+    res.m_planes[FRUSTRUM_PLANES::TOP]    *= other.m_planes[FRUSTRUM_PLANES::TOP];
+    res.m_planes[FRUSTRUM_PLANES::BOTTOM] *= other.m_planes[FRUSTRUM_PLANES::BOTTOM];
     return res;
   }
-  amFrustrum amFrustrum::operator/(const amFrustrum & other) {
+  amFrustrum amFrustrum::operator/(const amFrustrum & other) const {
     amFrustrum res;
-    res.m_far    /= other.m_far;
-    res.m_near   /= other.m_near;
-    res.m_right  /= other.m_right;
-    res.m_left   /= other.m_left;
-    res.m_top    /= other.m_top;
-    res.m_bottom /= other.m_bottom;
+    res.m_planes[FRUSTRUM_PLANES::FAR]    /= other.m_planes[FRUSTRUM_PLANES::FAR];
+    res.m_planes[FRUSTRUM_PLANES::NEAR]   /= other.m_planes[FRUSTRUM_PLANES::NEAR];
+    res.m_planes[FRUSTRUM_PLANES::RIGHT]  /= other.m_planes[FRUSTRUM_PLANES::RIGHT];
+    res.m_planes[FRUSTRUM_PLANES::LEFT]   /= other.m_planes[FRUSTRUM_PLANES::LEFT];
+    res.m_planes[FRUSTRUM_PLANES::TOP]    /= other.m_planes[FRUSTRUM_PLANES::TOP];
+    res.m_planes[FRUSTRUM_PLANES::BOTTOM] /= other.m_planes[FRUSTRUM_PLANES::BOTTOM];
     return res;
   }
   amFrustrum & amFrustrum::operator+=(const amFrustrum & other) {
-    m_far    += other.m_far;
-    m_near   += other.m_near;
-    m_right  += other.m_right;
-    m_left   += other.m_left;
-    m_top    += other.m_top;
-    m_bottom += other.m_bottom;
+    m_planes[FRUSTRUM_PLANES::FAR]    += other.m_planes[FRUSTRUM_PLANES::FAR];
+    m_planes[FRUSTRUM_PLANES::NEAR]   += other.m_planes[FRUSTRUM_PLANES::NEAR];
+    m_planes[FRUSTRUM_PLANES::RIGHT]  += other.m_planes[FRUSTRUM_PLANES::RIGHT];
+    m_planes[FRUSTRUM_PLANES::LEFT]   += other.m_planes[FRUSTRUM_PLANES::LEFT];
+    m_planes[FRUSTRUM_PLANES::TOP]    += other.m_planes[FRUSTRUM_PLANES::TOP];
+    m_planes[FRUSTRUM_PLANES::BOTTOM] += other.m_planes[FRUSTRUM_PLANES::BOTTOM];
     return *this;
   }
   amFrustrum & amFrustrum::operator-=(const amFrustrum & other) {
-    m_far    -= other.m_far;
-    m_near   -= other.m_near;
-    m_right  -= other.m_right;
-    m_left   -= other.m_left;
-    m_top    -= other.m_top;
-    m_bottom -= other.m_bottom;
+    m_planes[FRUSTRUM_PLANES::FAR]    -= other.m_planes[FRUSTRUM_PLANES::FAR];
+    m_planes[FRUSTRUM_PLANES::NEAR]   -= other.m_planes[FRUSTRUM_PLANES::NEAR];
+    m_planes[FRUSTRUM_PLANES::RIGHT]  -= other.m_planes[FRUSTRUM_PLANES::RIGHT];
+    m_planes[FRUSTRUM_PLANES::LEFT]   -= other.m_planes[FRUSTRUM_PLANES::LEFT];
+    m_planes[FRUSTRUM_PLANES::TOP]    -= other.m_planes[FRUSTRUM_PLANES::TOP];
+    m_planes[FRUSTRUM_PLANES::BOTTOM] -= other.m_planes[FRUSTRUM_PLANES::BOTTOM];
     return *this;
   }
   amFrustrum & amFrustrum::operator*=(const amFrustrum & other) {
-    m_far    *= other.m_far;
-    m_near   *= other.m_near;
-    m_right  *= other.m_right;
-    m_left   *= other.m_left;
-    m_top    *= other.m_top;
-    m_bottom *= other.m_bottom;
+    m_planes[FRUSTRUM_PLANES::FAR]    *= other.m_planes[FRUSTRUM_PLANES::FAR];
+    m_planes[FRUSTRUM_PLANES::NEAR]   *= other.m_planes[FRUSTRUM_PLANES::NEAR];
+    m_planes[FRUSTRUM_PLANES::RIGHT]  *= other.m_planes[FRUSTRUM_PLANES::RIGHT];
+    m_planes[FRUSTRUM_PLANES::LEFT]   *= other.m_planes[FRUSTRUM_PLANES::LEFT];
+    m_planes[FRUSTRUM_PLANES::TOP]    *= other.m_planes[FRUSTRUM_PLANES::TOP];
+    m_planes[FRUSTRUM_PLANES::BOTTOM] *= other.m_planes[FRUSTRUM_PLANES::BOTTOM];
     return *this;
   }
   amFrustrum & amFrustrum::operator/=(const amFrustrum & other) {
-    m_far    /= other.m_far;
-    m_near   /= other.m_near;
-    m_right  /= other.m_right;
-    m_left   /= other.m_left;
-    m_top    /= other.m_top;
-    m_bottom /= other.m_bottom;
+    m_planes[FRUSTRUM_PLANES::FAR]    /= other.m_planes[FRUSTRUM_PLANES::FAR];
+    m_planes[FRUSTRUM_PLANES::NEAR]   /= other.m_planes[FRUSTRUM_PLANES::NEAR];
+    m_planes[FRUSTRUM_PLANES::RIGHT]  /= other.m_planes[FRUSTRUM_PLANES::RIGHT];
+    m_planes[FRUSTRUM_PLANES::LEFT]   /= other.m_planes[FRUSTRUM_PLANES::LEFT];
+    m_planes[FRUSTRUM_PLANES::TOP]    /= other.m_planes[FRUSTRUM_PLANES::TOP];
+    m_planes[FRUSTRUM_PLANES::BOTTOM] /= other.m_planes[FRUSTRUM_PLANES::BOTTOM];
     return *this;
   }
   bool amFrustrum::intersects(const amFrustrum & other) {
