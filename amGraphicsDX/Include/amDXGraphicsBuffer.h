@@ -1,8 +1,12 @@
 #pragma once
-class amDXGraphicsBuffer
-{
-public:
-  amDXGraphicsBuffer();
-  ~amDXGraphicsBuffer();
-};
+
+namespace amEngineSDK {
+  class amDXGraphicsBuffer
+  {
+  public:
+    amDXGraphicsBuffer();
+    ~amDXGraphicsBuffer();
+  };
+}
+
 

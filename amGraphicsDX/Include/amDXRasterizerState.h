@@ -1,8 +1,12 @@
 #pragma once
-class amDXRasterizerState
-{
-public:
-  amDXRasterizerState();
-  ~amDXRasterizerState();
-};
+
+namespace amEngineSDK {
+  class amDXRasterizerState
+  {
+  public:
+    amDXRasterizerState();
+    ~amDXRasterizerState();
+  };
+}
+
 

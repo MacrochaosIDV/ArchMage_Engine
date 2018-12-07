@@ -20,6 +20,9 @@
     <Filter Include="Source Files\Graphics">
       <UniqueIdentifier>{a9c904bb-564d-4c21-895b-fe2bacaea1bb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Systems">
+      <UniqueIdentifier>{0ab6e987-9971-429f-a2a5-8a9e7203393d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\amBox2D.cpp">
@@ -81,6 +84,9 @@
     </ClCompile>
     <ClCompile Include="amAllocator.cpp">
       <Filter>Source Files\Prerequisites</Filter>
+    </ClCompile>
+    <ClCompile Include="amModule.cpp">
+      <Filter>Source Files\Systems</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -164,6 +170,9 @@
     </ClInclude>
     <ClInclude Include="amAllocator.h">
       <Filter>Source Files\Prerequisites</Filter>
+    </ClInclude>
+    <ClInclude Include="amModule.h">
+      <Filter>Source Files\Systems</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

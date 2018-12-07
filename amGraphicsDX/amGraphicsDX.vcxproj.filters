@@ -49,9 +49,6 @@
     <ClCompile Include="Source\amDXVertexShader.cpp">
       <Filter>Source Files\Shaders</Filter>
     </ClCompile>
-    <ClCompile Include="Source\amDXDepthStencilState.cpp">
-      <Filter>Source Files\States</Filter>
-    </ClCompile>
     <ClCompile Include="Source\amDXRasterizerState.cpp">
       <Filter>Source Files\States</Filter>
     </ClCompile>
@@ -91,6 +88,9 @@
     <ClCompile Include="Source\amDXVertexBuffer.cpp">
       <Filter>Source Files\Buffers</Filter>
     </ClCompile>
+    <ClCompile Include="Source\amDXDepthStencil.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\amDXGraphicsAPI.h">
@@ -119,9 +119,6 @@
     </ClInclude>
     <ClInclude Include="Include\amDXVertexShader.h">
       <Filter>Source Files\Shaders</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\amDXDepthStencilState.h">
-      <Filter>Source Files\States</Filter>
     </ClInclude>
     <ClInclude Include="Include\amDXRasterizerState.h">
       <Filter>Source Files\States</Filter>
@@ -163,6 +160,9 @@
       <Filter>Source Files\Buffers</Filter>
     </ClInclude>
     <ClInclude Include="Include\amDXPreReqs.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amDXDepthStencil.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

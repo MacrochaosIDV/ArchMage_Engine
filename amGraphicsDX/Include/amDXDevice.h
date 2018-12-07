@@ -15,6 +15,7 @@
 */
 #pragma once
 #include "amDXPreReqs.h"
+#include "amDXVertexBuffer.h"
 
 namespace amEngineSDK {
   class amDXDevice
@@ -23,7 +24,9 @@ namespace amEngineSDK {
     amDXDevice();
     ~amDXDevice();
 
-    ID3D10Device* mp_d3dDevice;
+    ID3D11Device* m_pDV;
+    amDXVertexBuffer m_VB;
+    int32 CreateVertexBuffer();
   };
 }
 

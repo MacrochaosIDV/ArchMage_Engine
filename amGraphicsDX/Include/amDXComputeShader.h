@@ -1,8 +1,12 @@
 #pragma once
-class amDXComputeShader
-{
-public:
-  amDXComputeShader();
-  ~amDXComputeShader();
-};
+
+namespace amEngineSDK {
+  class amDXComputeShader
+  {
+  public:
+    amDXComputeShader();
+    ~amDXComputeShader();
+  };
+}
+
 

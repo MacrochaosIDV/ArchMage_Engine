@@ -13,11 +13,12 @@
 */
 #pragma once
 #include <amPrerequisitesUtilities.h>
+#include "amPrerequisitesCore.h"
 #include "amDevice.h"
 #include "amDeviceContext.h"
 
 namespace amEngineSDK {
-  class amGraphicsAPI
+  class AM_CORE_EXPORT amGraphicsAPI
   {
   public:
     amGraphicsAPI();

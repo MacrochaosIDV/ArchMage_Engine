@@ -1,8 +1,12 @@
 #pragma once
-class amDXConstantBuffer
-{
-public:
-  amDXConstantBuffer();
-  ~amDXConstantBuffer();
-};
+
+namespace amEngineSDK {
+  class amDXConstantBuffer
+  {
+  public:
+    amDXConstantBuffer();
+    ~amDXConstantBuffer();
+  };
+}
+
 

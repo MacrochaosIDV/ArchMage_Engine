@@ -1,8 +1,12 @@
 #pragma once
-class amDXSamplerState
-{
-public:
-  amDXSamplerState();
-  ~amDXSamplerState();
-};
+
+namespace amEngineSDK {
+  class amDXSamplerState
+  {
+  public:
+    amDXSamplerState();
+    ~amDXSamplerState();
+  };
+}
+
 

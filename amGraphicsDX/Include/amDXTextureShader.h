@@ -1,8 +1,12 @@
 #pragma once
-class amDXTextureShader
-{
-public:
-  amDXTextureShader();
-  ~amDXTextureShader();
-};
+
+namespace amEngineSDK {
+  class amDXTextureShader
+  {
+  public:
+    amDXTextureShader();
+    ~amDXTextureShader();
+  };
+}
+
 

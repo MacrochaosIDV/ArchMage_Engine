@@ -1,8 +1,12 @@
 #pragma once
-class amDXGeomShader
-{
-public:
-  amDXGeomShader();
-  ~amDXGeomShader();
-};
+
+namespace amEngineSDK {
+  class amDXGeomShader
+  {
+  public:
+    amDXGeomShader();
+    ~amDXGeomShader();
+  };
+}
+
 

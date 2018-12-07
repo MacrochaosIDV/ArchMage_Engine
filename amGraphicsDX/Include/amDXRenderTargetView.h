@@ -7,7 +7,7 @@ namespace amEngineSDK {
     amDXRenderTargetView();
     ~amDXRenderTargetView();
 
-    ID3D10RenderTargetView* mp_RenderTargetView;
+    ID3D11RenderTargetView* m_pRTV;
   };
 }
 

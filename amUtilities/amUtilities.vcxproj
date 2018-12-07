@@ -182,6 +182,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="amAllocator.cpp" />
+    <ClCompile Include="amModule.cpp" />
     <ClCompile Include="Source\amAABB.cpp" />
     <ClCompile Include="Source\amBox2D.cpp" />
     <ClCompile Include="Source\amCapsule.cpp" />
@@ -204,6 +205,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="amAllocator.h" />
+    <ClInclude Include="amModule.h" />
     <ClInclude Include="Include\amAABB.h" />
     <ClInclude Include="Include\amBox2D.h" />
     <ClInclude Include="Include\amCapsule.h" />

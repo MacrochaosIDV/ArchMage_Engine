@@ -2,7 +2,10 @@
 
 
 
-amDXTextureShader::amDXTextureShader() {}
+namespace amEngineSDK {
+  amDXTextureShader::amDXTextureShader() {}
 
 
-amDXTextureShader::~amDXTextureShader() {}
+  amDXTextureShader::~amDXTextureShader() {}
+}
+

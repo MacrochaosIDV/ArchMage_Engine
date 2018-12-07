@@ -2,7 +2,10 @@
 
 
 
-amDXVertexShader::amDXVertexShader() {}
+namespace amEngineSDK {
+  amDXVertexShader::amDXVertexShader() {}
 
 
-amDXVertexShader::~amDXVertexShader() {}
+  amDXVertexShader::~amDXVertexShader() {}
+}
+

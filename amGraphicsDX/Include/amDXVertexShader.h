@@ -1,8 +1,11 @@
 #pragma once
-class amDXVertexShader
-{
-public:
-  amDXVertexShader();
-  ~amDXVertexShader();
-};
+namespace amEngineSDK {
+  class amDXVertexShader
+  {
+  public:
+    amDXVertexShader();
+    ~amDXVertexShader();
+  };
+}
+
 

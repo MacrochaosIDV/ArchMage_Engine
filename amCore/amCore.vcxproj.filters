@@ -19,9 +19,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\amBaseApp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\amGraphicsAPI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -85,11 +82,14 @@
     <ClCompile Include="Source\amViewPort.cpp">
       <Filter>Source Files\Views</Filter>
     </ClCompile>
+    <ClCompile Include="..\amGraphicsDX\amWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amVertex.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Include\amBaseApp.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="Include\amGraphicsAPI.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -152,6 +152,15 @@
     </ClInclude>
     <ClInclude Include="Include\amViewPort.h">
       <Filter>Source Files\Views</Filter>
+    </ClInclude>
+    <ClInclude Include="..\amGraphicsDX\amWindow.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amVertex.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amPrerequisitesCore.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

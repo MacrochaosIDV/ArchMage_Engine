@@ -1,8 +1,12 @@
 #pragma once
-class amDXPixelShader
-{
-public:
-  amDXPixelShader();
-  ~amDXPixelShader();
-};
+
+namespace amEngineSDK {
+  class amDXPixelShader
+  {
+  public:
+    amDXPixelShader();
+    ~amDXPixelShader();
+  };
+}
+
 
