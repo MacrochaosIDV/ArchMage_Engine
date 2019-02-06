@@ -19,7 +19,7 @@
 #include "amPrerequisitesUtilities.h"
 #include "amVector2.h"
 namespace amEngineSDK {
-  class amCircle2D final
+  class AM_UTILITIES_EXPORT amCircle2D final
   {
    public:
     amCircle2D() = default;

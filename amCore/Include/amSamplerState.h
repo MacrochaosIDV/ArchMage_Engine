@@ -1,8 +1,12 @@
 #pragma once
-class amSamplerState
-{
-public:
-  amSamplerState();
-  ~amSamplerState();
-};
+#include "amPrerequisitesCore.h"
 
+namespace amEngineSDK {
+  class AM_CORE_EXPORT amSamplerState
+  {
+  public:
+    amSamplerState();
+    ~amSamplerState();
+
+  };
+}

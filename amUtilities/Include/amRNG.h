@@ -11,8 +11,9 @@
  * @note
 ***********************************************
 */
+#include "amPrerequisitesUtilities.h"
 namespace amEngineSDK {
-  class amRNG
+  class AM_UTILITIES_EXPORT amRNG
   {
   public:
     amRNG() = default;

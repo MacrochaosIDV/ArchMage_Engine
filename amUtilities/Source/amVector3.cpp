@@ -159,24 +159,20 @@ namespace amEngineSDK {
   void 
   amVector3::Normalize() {
     float mag = 0;
-    mag = (x * x) + (y * y) + (z * z);
-    mag = sqrt(mag);
-    x /= mag; y /= mag;
+    mag = Mag();
+    x /= mag; y /= mag; z /= mag;
   }
 
   amVector3 
   amVector3::getNormalized()  const {
-    float mag = 0;
-    amVector3 res;
-    mag = (res.x * res.x) + (res.y * res.y) + (res.z * res.z);
-    mag = sqrt(mag);
-    res *= mag;
+    amVector3 res= *this;
+    res.Normalize();
     return res;
   }
 
   float 
   amVector3::Mag() const {
-    return sqrt((x * x) + (y * y) + (z * z));
+    return amMath::sqrt((x * x) + (y * y) + (z * z));
   }
 
   float 
@@ -197,9 +193,7 @@ namespace amEngineSDK {
 
   bool 
   amVector3::isZero()  const {
-    if (x == 0 && y == 0 && z == 0)
-      return true;
-    return false;
+    return (x == 0 && y == 0 && z == 0);
   }
 
   float 
@@ -209,5 +203,3 @@ namespace amEngineSDK {
 
   }
 }
-
-

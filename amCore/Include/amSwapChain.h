@@ -1,8 +1,11 @@
 #pragma once
-class amSwapChain
-{
-public:
-  amSwapChain();
-  ~amSwapChain();
-};
+#include "amPrerequisitesCore.h"
 
+namespace amEngineSDK {
+  class AM_CORE_EXPORT amSwapChain
+  {
+  public:
+    amSwapChain();
+    ~amSwapChain();
+  };
+}

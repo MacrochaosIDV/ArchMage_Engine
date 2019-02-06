@@ -1,9 +1,8 @@
 #pragma once
-#include <amVertex.h>
-#include <vector>
+#include "amPrerequisitesCore.h"
 
 namespace amEngineSDK {
-  class AM_UTILITIES_EXPORT amVertexBuffer
+  class AM_CORE_EXPORT amVertexBuffer
   {
   public:
     amVertexBuffer();

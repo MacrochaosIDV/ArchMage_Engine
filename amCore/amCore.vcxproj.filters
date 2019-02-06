@@ -82,10 +82,22 @@
     <ClCompile Include="Source\amViewPort.cpp">
       <Filter>Source Files\Views</Filter>
     </ClCompile>
-    <ClCompile Include="..\amGraphicsDX\amWindow.cpp">
+    <ClCompile Include="Source\amVertex.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\amVertex.cpp">
+    <ClCompile Include="Source\amBaseApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="amModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="amCamera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="amCameraManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -153,13 +165,25 @@
     <ClInclude Include="Include\amViewPort.h">
       <Filter>Source Files\Views</Filter>
     </ClInclude>
-    <ClInclude Include="..\amGraphicsDX\amWindow.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="Include\amVertex.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Include\amPrerequisitesCore.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amBaseApp.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="amModel.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amWindow.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="amCamera.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="amCameraManager.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

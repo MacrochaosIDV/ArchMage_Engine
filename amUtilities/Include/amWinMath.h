@@ -19,7 +19,7 @@
 #include "amPlatformMath.h"
 
 namespace amEngineSDK {
-  class amWinMath : public amPlatformMath {
+  class AM_UTILITIES_EXPORT amWinMath : public amPlatformMath {
     //using  = amMath::sqrt;
   };
 }

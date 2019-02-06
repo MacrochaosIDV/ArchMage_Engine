@@ -19,7 +19,7 @@
 #include "amVector3.h"
 
 namespace amEngineSDK {
-  class amTriangle
+  class AM_UTILITIES_EXPORT amTriangle
   {
   public:
     amTriangle();

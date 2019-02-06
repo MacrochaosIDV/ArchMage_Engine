@@ -11,10 +11,21 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "amUtilities_UnitTest", "amU
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "amGraphicsDX", "amGraphicsDX\amGraphicsDX.vcxproj", "{BBB77A57-17A4-4C4E-BF83-EB12C303641C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{42CCE801-0641-4EC5-945A-80515C462C79} = {42CCE801-0641-4EC5-945A-80515C462C79}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "amGraphicsDX_UnitTest", "amGraphicsDX_UnitTest\amGraphicsDX_UnitTest.vcxproj", "{52E0E1AC-4B4C-4457-8AF6-454BCD79446A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BBB77A57-17A4-4C4E-BF83-EB12C303641C} = {BBB77A57-17A4-4C4E-BF83-EB12C303641C}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "amCore", "amCore\amCore.vcxproj", "{42CCE801-0641-4EC5-945A-80515C462C79}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6C371892-A904-4B38-A5CF-D700D1541CF0} = {6C371892-A904-4B38-A5CF-D700D1541CF0}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "amInputManager", "amInputManager\amInputManager.vcxproj", "{8646285A-C1D5-43CB-910A-AA3B81D5229B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -64,6 +75,14 @@ Global
 		{42CCE801-0641-4EC5-945A-80515C462C79}.Release|x64.Build.0 = Release|x64
 		{42CCE801-0641-4EC5-945A-80515C462C79}.Release|x86.ActiveCfg = Release|Win32
 		{42CCE801-0641-4EC5-945A-80515C462C79}.Release|x86.Build.0 = Release|Win32
+		{8646285A-C1D5-43CB-910A-AA3B81D5229B}.Debug|x64.ActiveCfg = Debug|x64
+		{8646285A-C1D5-43CB-910A-AA3B81D5229B}.Debug|x64.Build.0 = Debug|x64
+		{8646285A-C1D5-43CB-910A-AA3B81D5229B}.Debug|x86.ActiveCfg = Debug|Win32
+		{8646285A-C1D5-43CB-910A-AA3B81D5229B}.Debug|x86.Build.0 = Debug|Win32
+		{8646285A-C1D5-43CB-910A-AA3B81D5229B}.Release|x64.ActiveCfg = Release|x64
+		{8646285A-C1D5-43CB-910A-AA3B81D5229B}.Release|x64.Build.0 = Release|x64
+		{8646285A-C1D5-43CB-910A-AA3B81D5229B}.Release|x86.ActiveCfg = Release|Win32
+		{8646285A-C1D5-43CB-910A-AA3B81D5229B}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

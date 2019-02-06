@@ -1,21 +1,12 @@
 #pragma once
 #include <amPrerequisitesUtilities.h>
-// Windows Header Files:
-#include <windows.h>
 
-// C RunTime Header Files
-#include <stdlib.h>
-#include <malloc.h>
-#include <memory.h>
-#include <tchar.h>
-#include <string>
 
 #include "amGraphicsAPI.h"
-#include <amDXGraphicsAPI.h>
 
 namespace amEngineSDK {
-  //class AM_CORE_EXPORT amBaseApp
-  class amBaseApp
+  //class amBaseApp
+  class AM_CORE_EXPORT amBaseApp
   {
    public:
     amBaseApp();
@@ -24,9 +15,13 @@ namespace amEngineSDK {
     int32
     run();
 
+    virtual void 
+    setGraphicsAPI(amGraphicsAPI& _API);
+
    private:
-    void
+    virtual void
     Init();
+
     void
     Update(float deltaTime);
      
@@ -55,11 +50,13 @@ namespace amEngineSDK {
     virtual void
     onMouseMove(float x, float y/*, btns*/);
 
-    virtual void
+    void
     initSystems();
 
     virtual void
     initContent();
+
+    
 
     
     ATOM MyRegisterClass(HINSTANCE hInstance);
@@ -69,10 +66,12 @@ namespace amEngineSDK {
     WNDCLASSEXW m_wcex;
     HINSTANCE m_hInst;                                // current instance
     HWND m_hWnd;
-    WCHAR m_szTitle[100];                  // The title bar text
-    WCHAR m_szWindowClass[100];            // the main window class name
+    std::wstring m_szTitle;// [100];                  // The title bar text
+    std::wstring m_szWindowClass;// [100];            // the main window class name
+    uint32 m_wndWidth;
+    uint32 m_wndHeight;
 
-    amDXGraphicsAPI m_DXGAPI;
+    amGraphicsAPI* m_GAPI;
   };
 }
 

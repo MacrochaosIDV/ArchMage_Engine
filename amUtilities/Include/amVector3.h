@@ -19,7 +19,7 @@
 #include "amPrerequisitesUtilities.h"
 
 namespace amEngineSDK {
-  class amVector3
+  class AM_UTILITIES_EXPORT amVector3
   {
   public:
     amVector3();
@@ -170,6 +170,10 @@ namespace amEngineSDK {
 
     float
     getDeterminant(const amVector3 & other) const;
+
+    static const amVector3 Forward;
+    static const amVector3 Right;
+    static const amVector3 Up;
 
     float x; 
     float y; 

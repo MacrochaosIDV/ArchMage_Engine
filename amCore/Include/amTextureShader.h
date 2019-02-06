@@ -1,8 +1,11 @@
 #pragma once
-class amTextureShader
-{
-public:
-  amTextureShader();
-  ~amTextureShader();
-};
+#include "amPrerequisitesCore.h"
 
+namespace amEngineSDK {
+  class AM_CORE_EXPORT amTextureShader
+  {
+  public:
+    amTextureShader();
+    ~amTextureShader();
+  };
+}

@@ -1,8 +1,12 @@
 #pragma once
-class amComputeShader
-{
-public:
-  amComputeShader();
-  ~amComputeShader();
-};
+#include "amPrerequisitesCore.h"
+
+namespace amEngineSDK {
+  class AM_CORE_EXPORT amComputeShader
+  {
+  public:
+    amComputeShader();
+    ~amComputeShader();
+  };
+}
 

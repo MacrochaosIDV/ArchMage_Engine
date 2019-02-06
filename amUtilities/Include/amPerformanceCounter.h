@@ -1,6 +1,6 @@
 #pragma once
 namespace amEngineSDK {
-  class amPerformanceCounter
+  class AM_UTILITIES_EXPORT amPerformanceCounter
   {
   public:
     amPerformanceCounter() = default;

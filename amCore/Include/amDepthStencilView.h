@@ -1,8 +1,11 @@
 #pragma once
-class amDepthStencilView
-{
-public:
-  amDepthStencilView();
-  ~amDepthStencilView();
-};
+#include "amPrerequisitesCore.h"
 
+namespace amEngineSDK {
+  class AM_CORE_EXPORT amDepthStencilView
+  {
+  public:
+    amDepthStencilView();
+    ~amDepthStencilView();
+  };
+}

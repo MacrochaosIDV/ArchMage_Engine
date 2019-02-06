@@ -97,13 +97,13 @@
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <LanguageStandard>stdcpp14</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <PreprocessorDefinitions>AM_UTILITIES_EXPORTS;AM_CORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>AM_CORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(DEVLIBS)EASTL/include/;$(DEVLIBS)EASTL\test\packages\EABase\include\Common\;$(ProjectDir)Include\;$(SolutionDir)amGraphicsDX\Include\;$(SolutionDir)amUtilities\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)Lib\$(PlatformTarget);$(SolutionDir)amCore\Include\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)Lib\$(PlatformTarget)\$(TargetName).lib</ImportLibrary>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>amUtilitiesd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -116,13 +116,13 @@
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <LanguageStandard>stdcpp14</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <PreprocessorDefinitions>AM_UTILITIES_EXPORTS;AM_CORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>AM_CORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(DEVLIBS)EASTL/include/;$(DEVLIBS)EASTL\test\packages\EABase\include\Common\;$(ProjectDir)Include\;$(SolutionDir)amGraphicsDX\Include\;$(SolutionDir)amUtilities\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)Lib\$(PlatformTarget);$(SolutionDir)amCore\Include\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)Lib\$(PlatformTarget)\$(TargetName).lib</ImportLibrary>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>amUtilitiesd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -137,7 +137,7 @@
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <LanguageStandard>stdcpp14</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <PreprocessorDefinitions>AM_UTILITIES_EXPORTS;AM_CORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>AM_CORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(DEVLIBS)EASTL/include/;$(DEVLIBS)EASTL\test\packages\EABase\include\Common\;$(ProjectDir)Include\;$(SolutionDir)amGraphicsDX\Include\;$(SolutionDir)amUtilities\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -145,7 +145,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(SolutionDir)Lib\$(PlatformTarget);$(SolutionDir)amCore\Include\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)Lib\$(PlatformTarget)\$(TargetName).lib</ImportLibrary>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>amUtilities.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -160,7 +160,7 @@
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <LanguageStandard>stdcpp14</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <PreprocessorDefinitions>AM_UTILITIES_EXPORTS;AM_CORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>AM_CORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(DEVLIBS)EASTL/include/;$(DEVLIBS)EASTL\test\packages\EABase\include\Common\;$(ProjectDir)Include\;$(SolutionDir)amGraphicsDX\Include\;$(SolutionDir)amUtilities\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -168,11 +168,14 @@
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(SolutionDir)Lib\$(PlatformTarget);$(SolutionDir)amCore\Include\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)Lib\$(PlatformTarget)\$(TargetName).lib</ImportLibrary>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>amUtilities.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\amGraphicsDX\amWindow.cpp" />
+    <ClCompile Include="amCamera.cpp" />
+    <ClCompile Include="amCameraManager.cpp" />
+    <ClCompile Include="amModel.cpp" />
+    <ClCompile Include="Source\amBaseApp.cpp" />
     <ClCompile Include="Source\amComputeShader.cpp" />
     <ClCompile Include="Source\amConstantBuffer.cpp" />
     <ClCompile Include="Source\amDepthStencilState.cpp" />
@@ -195,9 +198,13 @@
     <ClCompile Include="Source\amVertexBuffer.cpp" />
     <ClCompile Include="Source\amVertexShader.cpp" />
     <ClCompile Include="Source\amViewPort.cpp" />
+    <ClCompile Include="Source\amWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\amGraphicsDX\amWindow.h" />
+    <ClInclude Include="amCamera.h" />
+    <ClInclude Include="amCameraManager.h" />
+    <ClInclude Include="amModel.h" />
+    <ClInclude Include="Include\amBaseApp.h" />
     <ClInclude Include="Include\amComputeShader.h" />
     <ClInclude Include="Include\amConstantBuffer.h" />
     <ClInclude Include="Include\amDepthStencilState.h" />
@@ -221,6 +228,7 @@
     <ClInclude Include="Include\amVertexBuffer.h" />
     <ClInclude Include="Include\amVertexShader.h" />
     <ClInclude Include="Include\amViewPort.h" />
+    <ClInclude Include="Include\amWindow.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -29,7 +29,7 @@ namespace amEngineSDK{
     };
   }
 
-  class amPlane : public amVector3 {
+  class AM_UTILITIES_EXPORT amPlane : public amVector3 {
    public:
     amPlane();
     ~amPlane();

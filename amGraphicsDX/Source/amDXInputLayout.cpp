@@ -1,5 +1,7 @@
 #include "amDXInputLayout.h"
 
+#include "amDXDeviceContext.h"
+
 namespace amEngineSDK {
   amDXInputLayout::amDXInputLayout() {}
   
@@ -10,7 +12,9 @@ namespace amEngineSDK {
                                    _pShaderBlob->GetBufferSize(), &m_pVertexLayout);
     return 0;
   }
+
+  void
+  amDXInputLayout::setLayout(amDXDeviceContext * pDC) {
+    pDC->m_pDC->IASetInputLayout(m_pVertexLayout);
+  }
 }
-
-
-

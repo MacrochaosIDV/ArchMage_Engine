@@ -18,7 +18,7 @@
 #include "amPrerequisitesUtilities.h"
 #include "amVector3.h"
 namespace amEngineSDK {
-  class amSphere
+  class AM_UTILITIES_EXPORT amSphere
   {
   public:
     amSphere();

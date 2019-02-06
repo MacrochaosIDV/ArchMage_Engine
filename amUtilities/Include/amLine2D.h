@@ -1,8 +1,8 @@
 #pragma once
-
+#include "amPrerequisitesUtilities.h"
 namespace amEngineSDK {
 
-  class amLine2D final
+  class AM_UTILITIES_EXPORT amLine2D final
   {
    public:
     amLine2D() = default;

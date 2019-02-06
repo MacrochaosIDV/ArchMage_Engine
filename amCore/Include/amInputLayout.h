@@ -1,8 +1,11 @@
 #pragma once
-class amInputLayout
-{
-public:
-  amInputLayout();
-  ~amInputLayout();
-};
+#include "amPrerequisitesCore.h"
 
+namespace amEngineSDK {
+  class AM_CORE_EXPORT amInputLayout
+  {
+  public:
+    amInputLayout();
+    ~amInputLayout();
+  };
+}

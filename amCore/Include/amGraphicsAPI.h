@@ -24,9 +24,22 @@ namespace amEngineSDK {
     amGraphicsAPI();
     ~amGraphicsAPI();
 
-    void createVertexBuffer(int64 nVertex, int64 vertexSize);
-    void init();
-    void destroy();
+    virtual void createVertexBuffer(int64 nVertex, int64 vertexSize);
+
+    virtual void 
+    init(void* _wnd);
+
+    virtual void 
+    Render();
+
+    virtual void 
+    destroy();
+
+    virtual void
+    initContent();
+
+    virtual void
+    initSystems();
 
   };
 }

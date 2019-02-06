@@ -18,7 +18,7 @@
 #include "amVector3.h"
 
 namespace amEngineSDK {
-  class amCapsule
+  class AM_UTILITIES_EXPORT amCapsule
   {
    public:
     amCapsule();

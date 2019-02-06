@@ -20,7 +20,7 @@
 #include "amVector3.h"
 
 namespace amEngineSDK {
-  class amVector4
+  class AM_UTILITIES_EXPORT amVector4
   {
   public:
     amVector4();

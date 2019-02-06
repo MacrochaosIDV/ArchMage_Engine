@@ -1,8 +1,11 @@
 #include "amTexture.h"
 
 
+#include "amPrerequisitesCore.h"
 
-amTexture::amTexture() {}
+namespace amEngineSDK {
+  amTexture::amTexture() {}
 
 
-amTexture::~amTexture() {}
+  amTexture::~amTexture() {}
+}

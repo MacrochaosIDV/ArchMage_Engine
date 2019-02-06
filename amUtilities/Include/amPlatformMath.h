@@ -19,6 +19,9 @@
 
 #include "amPrerequisitesUtilities.h"
 
+#undef min
+#undef max
+
 namespace amEngineSDK {
   class AM_UTILITIES_EXPORT amPlatformMath {
    public:
@@ -168,7 +171,7 @@ namespace amEngineSDK {
 
     template<typename T>
     static int32 roundToInt(T val) {
-      return static_cast<int32>(val + 0.5f * (abs(val) / val));
+      return static_cast<int32>(val + 0.5f);
     }
 
     template<typename T>
@@ -187,74 +190,61 @@ namespace amEngineSDK {
     }
 
     template<typename T>
-    static T exp(T val) {
+    static T
+    exp(T val) {
       return std::exp(val);
     }
 
     template<typename T>
-    static T min(T n1, T n2) {
-      return(n1 < n2) ?  n1 : n2;
+    static T
+    min(T n1, T n2) {
+      return (n1 < n2) ?  n1 : n2;
     }
 
     template<typename T>
-    static T max(T n1, T n2) {
-      return(n1 > n2) ? n1 : n2;
+    static T
+    max(T n1, T n2) {
+      return (n1 > n2) ? n1 : n2;
     }
 
     template<typename T>
-    static T clamp(T minVal, T maxVal, T val) {
-      if (val <= minVal)
-        return minVal;
-      else if (val >= maxVal)
-        return maxVal;
-      else
-        return val;
+    static T
+    clamp(T minVal, T maxVal, T val) {
+      return min(max(minVal, val), maxVal);
     }
 
     template<typename T>
     static T min3(T n1, T n2, T n3) {
-      if (n1 < n2) {
-        if (n1 < n3)
-          return n1;
-        else
-          return n3;
-      }
-      else {
-        if (n2 < n3)
-          return n2;
-        else
-          return n3;
-      }
+      return min(min(n1, n2), n3);
     }
 
     template<typename T>
-    static T max3(T n1, T n2, T n3) {
-      if (n1 > n2) {
-        if (n1 > n3)
-          return n1;
-        else
-          return n3;
-      }
-      else {
-        if (n2 > n3)
-          return n2;
-        else
-          return n3;
-      }
+    static T
+    max3(T n1, T n2, T n3) {
+      return max(max(n1, n2), n3);
     }
 
-    template<typename T>
-    static T factorial(T n) {
-      return (n == 0) ? return 1 : return n * factorial(n - 1);
-    }
+    //template<typename T>
+    //static T
+    //factorial(T n) {
+    //  return ((n == 0) ? return (T)1 : return n * factorial<T>(n - 1));
+    //}
 
     /**
-     *  Collisions
-     */
+    ************************
+    *
+    *  Collisions    
+    *
+    ************************
+    */
 
     /**
-     *  Vector3 collisions
-     */
+    ************************
+    *
+    *  Vector3 Collisions
+    *
+    ************************
+    */
 
     static bool
     intersects(const amVector3& vec, const amFrustrum &f);
@@ -280,11 +270,13 @@ namespace amEngineSDK {
     static bool
     intersects(const amVector3 &vec, const amRay &r);
 
-    /***********************
+    /**
+    *********************
     *
     *  Frustrum collisions
     *
-    ***********************/
+    *********************
+    */
 
     static bool
     intersects(const amFrustrum &f, const amCapsule &c);
@@ -307,11 +299,13 @@ namespace amEngineSDK {
     static bool
     intersects(const amFrustrum &f, const amRay &r);
 
-    /***********************
+    /**
+    ********************
     *
     *  Capsule collisions
     *
-    ***********************/
+    ********************
+    */
     static bool
     intersects(const amCapsule &c, const amTriangle &t);
 
@@ -330,11 +324,13 @@ namespace amEngineSDK {
     static bool
     intersects(const amCapsule &c, const amRay &r);
 
-    /***********************
+    /**
+    *********************
     *
     *  Triangle collisions
     *
-    ***********************/
+    *********************
+    */
 
     static bool
     intersects(const amTriangle &t, const amSphere &s);
@@ -351,11 +347,13 @@ namespace amEngineSDK {
     static bool
     intersects(const amTriangle &t, const amRay &r);
 
-    /***********************
+    /**
+    *********************
     *
     *  Sphere collisions
     *
-    ***********************/
+    *********************
+    */
 
     static bool
     intersects(const amSphere &s, const amOOBB &o);
@@ -369,11 +367,13 @@ namespace amEngineSDK {
     static bool
     intersects(const amSphere &s, const amRay &r);
 
-    /***********************
+    /**
+    *********************
     *
     *  OOBB collisions
     *
-    ***********************/
+    *********************
+    */
 
     static bool
     intersects(const amOOBB &o, const amAABB &a);
@@ -384,11 +384,13 @@ namespace amEngineSDK {
     static bool
     intersects(const amOOBB &o, const amRay &r);
 
-    /***********************
+    /**
+    *********************
     *
     *  AABB collisions
     *
-    ***********************/
+    *********************
+    */
 
     static bool
     intersects(const amAABB &a, const amPlane &p);
@@ -396,11 +398,13 @@ namespace amEngineSDK {
     static bool
     intersects(const amAABB &a, const amRay &r);
 
-    /***********************
+    /**
+    *********************
     *
     *  Plane <---> Ray collision
     *
-    ***********************/
+    *********************
+    */
 
     static bool
     intersects(const amPlane &p, const amRay &r, float dist);

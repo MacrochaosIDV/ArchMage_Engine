@@ -35,7 +35,7 @@ namespace amEngineSDK {
     };
   }
 
-  class amFrustrum
+  class AM_UTILITIES_EXPORT amFrustrum
   {
   public:
     amFrustrum();

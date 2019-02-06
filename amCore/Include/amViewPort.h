@@ -1,8 +1,11 @@
 #pragma once
-class amViewPort
-{
-public:
-  amViewPort();
-  ~amViewPort();
-};
+#include "amPrerequisitesCore.h"
 
+namespace amEngineSDK {
+  class AM_CORE_EXPORT amViewPort
+  {
+  public:
+    amViewPort();
+    ~amViewPort();
+  };
+}

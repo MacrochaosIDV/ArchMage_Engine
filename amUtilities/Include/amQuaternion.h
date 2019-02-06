@@ -20,7 +20,7 @@
 #include "amVector3.h"
 
 namespace amEngineSDK {
-  class amQuaternion
+  class AM_UTILITIES_EXPORT amQuaternion
   {
   public:
     amQuaternion();

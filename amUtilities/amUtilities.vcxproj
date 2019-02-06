@@ -191,7 +191,7 @@
     <ClCompile Include="Source\amLine2D.cpp" />
     <ClCompile Include="Source\amPerformanceCounter.cpp" />
     <ClCompile Include="Source\amPlatformMath.cpp" />
-    <ClCompile Include="Source\amMatix4x4.cpp" />
+    <ClCompile Include="Source\amMatrix4x4.cpp" />
     <ClCompile Include="Source\amOOBB.cpp" />
     <ClCompile Include="Source\amPlane.cpp" />
     <ClCompile Include="Source\amQuaternion.cpp" />
@@ -213,7 +213,7 @@
     <ClInclude Include="Include\amFrustrum.h" />
     <ClInclude Include="Include\amLine2D.h" />
     <ClInclude Include="Include\amMath.h" />
-    <ClInclude Include="Include\amMatix4x4.h" />
+    <ClInclude Include="Include\amMatrix4x4.h" />
     <ClInclude Include="Include\amOOBB.h" />
     <ClInclude Include="Include\amPerformanceCounter.h" />
     <ClInclude Include="Include\amPlane.h" />

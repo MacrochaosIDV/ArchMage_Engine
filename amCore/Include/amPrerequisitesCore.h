@@ -40,7 +40,7 @@
 #      endif
 #    endif
 #  endif
-#  define AM_UTILITIES_HIDDEN
+#  define AM_CORE_HIDDEN
 #else //Linux / Mac settings
 #  define AM_CORE_EXPORT __attribute__ ((visibility("default")))
 #  define AM_CORE_HIDDEN __attribute__ ((visibility("hidden")))

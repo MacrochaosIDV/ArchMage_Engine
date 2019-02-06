@@ -30,6 +30,8 @@ namespace amEngineSDK {
       return -1;
     }
     SIZE_T fileSize = shdr.tellg();
+    shdr.seekg(std::ios::beg);
+
     std::vector<char> fileBuffer;
     fileBuffer.resize(fileSize);
     shdr.read(&fileBuffer[0], fileSize);

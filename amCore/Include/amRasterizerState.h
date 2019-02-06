@@ -1,8 +1,11 @@
 #pragma once
-class amRasterizerState
-{
-public:
-  amRasterizerState();
-  ~amRasterizerState();
-};
+#include "amPrerequisitesCore.h"
 
+namespace amEngineSDK {
+  class AM_CORE_EXPORT amRasterizerState
+  {
+  public:
+    amRasterizerState();
+    ~amRasterizerState();
+  };
+}

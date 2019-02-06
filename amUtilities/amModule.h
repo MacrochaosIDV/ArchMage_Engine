@@ -3,7 +3,7 @@
 
 namespace amEngineSDK {
   template<class T>
-  class amModule
+  class AM_UTILITIES_EXPORT amModule
   {
   public:
 

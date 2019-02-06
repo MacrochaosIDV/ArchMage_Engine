@@ -8,21 +8,84 @@ namespace amEngineSDK {
   amDXGraphicsAPI::~amDXGraphicsAPI() {}
 
   void amDXGraphicsAPI::createVertexBuffer(int32 nVertex, int32 vertexSize) {
-  
+    nVertex;
+    vertexSize;
   }
 
   void amDXGraphicsAPI::CleanupDevice() {
 
   }
 
-  bool amDXGraphicsAPI::init(HWND _hWnd) {
-    bool hr = S_OK;
+  void amDXGraphicsAPI::init(void* _hWnd) {
     
+    initSystems(_hWnd);
+    initContent();
+  }
+
+  void amDXGraphicsAPI::Render() {
+    float color[4] = {0.0f, 0.0f, 1.0f, 1.0f};
+    m_pImmediateContext->m_pDC->ClearRenderTargetView(m_pRenderTargetView->m_pRTV, color);
+    
+    UINT stride = sizeof(amVertex);
+    UINT offset = 0;
+
+    m_pVertexShader->setShader(m_pImmediateContext);
+    m_pVertexShader->setShader(m_pImmediateContext);
+    m_pVertexLayout->setLayout(m_pImmediateContext);
+    m_pImmediateContext->m_pDC->IASetVertexBuffers(0, 1, &m_pDevice->m_VB.m_pVB, &stride, &offset);
+
+    m_pImmediateContext->m_pDC->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+    m_pImmediateContext->m_pDC->Draw(3, 0);
+
+    m_pSwapChain->m_pSC->Present(0, 0);
+  }
+
+  void amDXGraphicsAPI::initContent() {
+
+    m_pVertexShader->CompileShaderFromFile("Resources/BasicShader.fx", "VS", "vs_5_0", &m_pVertexShader->m_pblob);
+    m_pPixelShader->CompileShaderFromFile("Resources/BasicShader.fx", "PS", "ps_5_0", &m_pPixelShader->m_pblob);
+
+    m_pVertexShader->createVertexShader(m_pDevice);
+    m_pPixelShader->createPixelShader(m_pDevice);
+
+    m_pVertexLayout->Create(m_pDevice, m_pVertexShader->m_pblob);
+    
+    m_pDevice->m_VB.m_vVertex = {amVertex(-0.5f,0.0f,0.0f,1.0f,1.0f,0.0f,0.0f,1.0f,0.0f,0.0f,0.0f,0.0f,0.0f),
+                                 amVertex(0.0f,0.5f,0.0f,1.0f,0.0f,1.0f,0.0f,1.0f,0.0f,0.0f,0.0f,0.0f,0.0f),
+                                 amVertex(0.5f,0.0f,0.0f,1.0f,0.0f,0.0f,1.0f,1.0f,0.0f,0.0f,0.0f,0.0f,0.0f)};
+
+    m_pDevice->m_VB.setBufferData(D3D11_USAGE_DEFAULT, sizeof(m_pDevice->m_VB.m_vVertex.size()*sizeof(amVertex)), &m_pDevice->m_VB.m_vVertex);
+    
+    m_pDevice->m_pDV->CreateBuffer(&m_pDevice->m_VB.m_bd, &m_pDevice->m_VB.m_initData, &m_pDevice->m_VB.m_pVB);
+  }
+
+  void amDXGraphicsAPI::initSystems(void* _hWnd) {
+
+    m_pDevice = new amDXDevice();
+    m_pSwapChain = new amDXSwapChain();
+    m_pDepthStencil = new amDXTexture();
+    m_pPixelShader = new amDXPixelShader();
+    m_pVertexShader = new amDXVertexShader();
+    m_pVertexLayout = new  amDXInputLayout();
+    m_pImmediateContext = new amDXDeviceContext();
+    m_pDepthStencilView = new amDXDepthStencilView();
+    m_pRenderTargetView = new amDXRenderTargetView();
+    
+    
+    
+
+
+
+    HRESULT hr = S_OK;
+
+    HWND hwnd = reinterpret_cast<HWND>(_hWnd);
+
     RECT rc;
-    GetClientRect(m_hWnd, &rc);
+    GetClientRect(hwnd, &rc);
     uint32 width = rc.right - rc.left;
     uint32 height = rc.bottom - rc.top;
-    
+
     uint32 createDeviceFlags = 0;
 
     DXGI_SWAP_CHAIN_DESC sd;
@@ -34,11 +97,10 @@ namespace amEngineSDK {
     sd.BufferDesc.RefreshRate.Numerator = 60;
     sd.BufferDesc.RefreshRate.Denominator = 1;
     sd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
-    sd.OutputWindow = m_hWnd;
+    sd.OutputWindow = hwnd;
     sd.SampleDesc.Count = 1;
     sd.SampleDesc.Quality = 0;
     sd.Windowed = TRUE;
-    return true;
 
     D3D_DRIVER_TYPE driverTypes[] =
     {
@@ -56,27 +118,33 @@ namespace amEngineSDK {
     };
     uint32 numFeatureLevels = _ARRAYSIZE(featureLevels);
 
-    
+
+
     for (uint32 driverTypeIndex = 0; driverTypeIndex < numDriverTypes; driverTypeIndex++) {
       g_driverType = driverTypes[driverTypeIndex];
-      hr = D3D11CreateDeviceAndSwapChain(NULL, g_driverType, NULL, createDeviceFlags, featureLevels, numFeatureLevels,
-                                         D3D11_SDK_VERSION, &sd, &m_pSwapChain->m_pSC, &m_pDevice->m_pDV,
-                                         &g_featureLevel, &m_pImmediateContext->m_pDC);
+      hr = D3D11CreateDeviceAndSwapChain(NULL, g_driverType,
+                                         NULL, createDeviceFlags,
+                                         featureLevels, numFeatureLevels,
+                                         D3D11_SDK_VERSION,
+                                         &sd, &m_pSwapChain->m_pSC,
+                                         &m_pDevice->m_pDV,
+                                         &g_featureLevel,
+                                         &m_pImmediateContext->m_pDC);
     }
 
-    if (FAILED(hr))
-      return hr;
+    AM_ASSERT(m_pImmediateContext && m_pImmediateContext->m_pDC);
+
 
     // Create a render target view
     ID3D11Texture2D* pBackBuffer;
     hr = m_pSwapChain->m_pSC->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&pBackBuffer);
-    //if (FAILED(hr))
-      //return hr;
+    AM_ASSERT(pBackBuffer);
 
-    hr = m_pSwapChain->getRTVFromBuffer(m_pDevice, NULL);
+    //m_pSwapChain->getRTVFromBuffer(m_pDevice, NULL);
+    m_pDevice->m_pDV->CreateRenderTargetView(pBackBuffer, nullptr, &m_pRenderTargetView->m_pRTV);
     pBackBuffer->Release();
-    //if (FAILED(hr))
-      //return hr;
+
+    AM_ASSERT(m_pRenderTargetView->m_pRTV);
 
     // Create depth stencil texture
     D3D11_TEXTURE2D_DESC descDepth;
@@ -93,8 +161,7 @@ namespace amEngineSDK {
     descDepth.CPUAccessFlags = 0;
     descDepth.MiscFlags = 0;
     hr = m_pDevice->m_pDV->CreateTexture2D(&descDepth, NULL, &m_pDepthStencil->m_tex);
-    if (FAILED(hr))
-      return hr;
+    AM_ASSERT(&m_pDepthStencil->m_tex);
 
     // Create the depth stencil view
     D3D11_DEPTH_STENCIL_VIEW_DESC descDSV;
@@ -103,45 +170,21 @@ namespace amEngineSDK {
     descDSV.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
     descDSV.Texture2D.MipSlice = 0;
     hr = m_pDevice->m_pDV->CreateDepthStencilView(m_pDepthStencil->m_tex, &descDSV, &m_pDepthStencilView->m_pDSV);
-    if (FAILED(hr))
-      return hr;
+    AM_ASSERT(&m_pDepthStencilView->m_pDSV);
 
     m_pImmediateContext->m_pDC->OMSetRenderTargets(1, &m_pRenderTargetView->m_pRTV, m_pDepthStencilView->m_pDSV);
 
     // Setup the viewport
     D3D11_VIEWPORT vp;
-    vp.Width = 400;
-    vp.Height = 400;
-    //vp.Height = (FLOAT)height;
+    vp.Width = 1.0;
+    vp.Height = 1.0;
     vp.MinDepth = 0.0f;
     vp.MaxDepth = 1.0f;
     vp.TopLeftX = 0;
     vp.TopLeftY = 0;
     m_pImmediateContext->m_pDC->RSSetViewports(1, &vp);
 
-    return true;
-  }
-
-  void amDXGraphicsAPI::Render() {
-    float color[4] = {1.0f, 0.0f, 1.0f, 1.0f};
-    m_pImmediateContext->m_pDC->ClearRenderTargetView(m_pRenderTargetView->m_pRTV, color);
-
-    amDXVertexBuffer vb;
-    m_pDevice->m_VB.setBufferDesc(D3D11_USAGE_DEFAULT, 0, 0, 0);
-    m_pDevice->m_VB.setVertexSize(sizeof(m_pDevice->m_VB.m_vVertex));
-    m_pDevice->m_VB.m_vVertex = {amVertex(-0.5f,0.0f,0.0f,1.0f,1.0f,0.0f,0.0f,1.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f),
-                                 amVertex( 0.0f,0.5f,0.0f,1.0f,0.0f,1.0f,0.0f,1.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f),
-                                 amVertex( 0.5f,0.0f,0.0f,1.0f,0.0f,0.0f,1.0f,1.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f)};
-    m_pDevice->m_VB.setSubResourceData(&m_pDevice->m_VB.m_vVertex[0], 0, 0);
-
     
-    D3D11_MAPPED_SUBRESOURCE msr;
-    m_pImmediateContext->m_pDC->Map(m_pDevice->m_VB.m_pVB, 0, D3D11_MAP_WRITE_DISCARD, 0, &msr);
-    m_pDevice->CreateVertexBuffer();
-
-    //m_pDevice->m_pDV->CreateBuffer(&m_pDevice->m_VB.m_bd, &m_pDevice->m_VB.m_initData, &m_pDevice->m_VB.m_pVB);
-
-    m_pSwapChain->m_pSC->Present(0, 0);
   }
 
   void amDXGraphicsAPI::destroy() {

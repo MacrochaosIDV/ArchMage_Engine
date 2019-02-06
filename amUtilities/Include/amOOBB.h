@@ -20,7 +20,7 @@
 #include "amVector3.h"
 
 namespace amEngineSDK {
-  class amOOBB
+  class AM_UTILITIES_EXPORT amOOBB
   {
    public:
     amOOBB();

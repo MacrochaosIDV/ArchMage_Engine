@@ -149,7 +149,7 @@
       <LanguageStandard>stdcpp14</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PreprocessorDefinitions>AM_GRAPHICSDX_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(DXSDK_DIR)Include\;$(DEVLIBS)EASTL/include/;$(DEVLIBS)EASTL\test\packages\EABase\include\Common\;$(ProjectDir)Include\;$(SolutionDir)amCore\Include\;$(SolutionDir)amUtilities\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(DEVLIBS)EASTL/include/;$(DEVLIBS)EASTL\test\packages\EABase\include\Common\;$(ProjectDir)Include\;$(SolutionDir)amCore\Include\;$(SolutionDir)amUtilities\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>amUtilitiesd.lib;amCored.lib;d3d11.lib;dxguid.lib;D3DCompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -168,7 +168,7 @@
       <LanguageStandard>stdcpp14</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PreprocessorDefinitions>AM_GRAPHICSDX_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(DXSDK_DIR)Include\;$(DEVLIBS)EASTL/include/;$(DEVLIBS)EASTL\test\packages\EABase\include\Common\;$(ProjectDir)Include\;$(SolutionDir)amCore\Include\;$(SolutionDir)amUtilities\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(DEVLIBS)EASTL/include/;$(DEVLIBS)EASTL\test\packages\EABase\include\Common\;$(ProjectDir)Include\;$(SolutionDir)amCore\Include\;$(SolutionDir)amUtilities\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>amUtilitiesd.lib;amCored.lib;d3d11.lib;dxguid.lib;D3DCompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -189,7 +189,7 @@
       <LanguageStandard>stdcpp14</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PreprocessorDefinitions>AM_GRAPHICSDX_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(DXSDK_DIR)Include\;$(DEVLIBS)EASTL/include/;$(DEVLIBS)EASTL\test\packages\EABase\include\Common\;$(ProjectDir)Include\;$(SolutionDir)amCore\Include\;$(SolutionDir)amUtilities\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(DEVLIBS)EASTL/include/;$(DEVLIBS)EASTL\test\packages\EABase\include\Common\;$(ProjectDir)Include\;$(SolutionDir)amCore\Include\;$(SolutionDir)amUtilities\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -212,7 +212,7 @@
       <LanguageStandard>stdcpp14</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PreprocessorDefinitions>AM_GRAPHICSDX_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(DXSDK_DIR)Include\;$(DEVLIBS)EASTL/include/;$(DEVLIBS)EASTL\test\packages\EABase\include\Common\;$(ProjectDir)Include\;$(SolutionDir)amCore\Include\;$(SolutionDir)amUtilities\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(DEVLIBS)EASTL/include/;$(DEVLIBS)EASTL\test\packages\EABase\include\Common\;$(ProjectDir)Include\;$(SolutionDir)amCore\Include\;$(SolutionDir)amUtilities\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>

@@ -21,7 +21,7 @@
 #include "amVector2.h"
 
 namespace amEngineSDK {
-  class amBox2D
+  class AM_UTILITIES_EXPORT amBox2D
   {
    public:
     amBox2D();

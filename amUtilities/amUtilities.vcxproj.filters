@@ -17,9 +17,6 @@
     <Filter Include="Source Files\Math\Obj3D">
       <UniqueIdentifier>{0e48f38e-0971-404a-8f60-6d607027ef7c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Graphics">
-      <UniqueIdentifier>{a9c904bb-564d-4c21-895b-fe2bacaea1bb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Systems">
       <UniqueIdentifier>{0ab6e987-9971-429f-a2a5-8a9e7203393d}</UniqueIdentifier>
     </Filter>
@@ -67,9 +64,6 @@
     <ClCompile Include="Source\amVector3.cpp">
       <Filter>Source Files\Math\Obj3D</Filter>
     </ClCompile>
-    <ClCompile Include="Source\amMatix4x4.cpp">
-      <Filter>Source Files\Math\Obj3D</Filter>
-    </ClCompile>
     <ClCompile Include="Source\amVector4.cpp">
       <Filter>Source Files\Math\Obj3D</Filter>
     </ClCompile>
@@ -87,6 +81,9 @@
     </ClCompile>
     <ClCompile Include="amModule.cpp">
       <Filter>Source Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amMatrix4x4.cpp">
+      <Filter>Source Files\Math\Obj3D</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -150,9 +147,6 @@
     <ClInclude Include="Include\amVector2.h">
       <Filter>Source Files\Math\Obj2D</Filter>
     </ClInclude>
-    <ClInclude Include="Include\amMatix4x4.h">
-      <Filter>Source Files\Math\Obj3D</Filter>
-    </ClInclude>
     <ClInclude Include="Include\amVector4.h">
       <Filter>Source Files\Math\Obj3D</Filter>
     </ClInclude>
@@ -173,6 +167,9 @@
     </ClInclude>
     <ClInclude Include="amModule.h">
       <Filter>Source Files\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amMatrix4x4.h">
+      <Filter>Source Files\Math\Obj3D</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

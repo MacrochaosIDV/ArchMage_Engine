@@ -1,8 +1,12 @@
 #pragma once
-class amConstantBuffer
-{
-public:
-  amConstantBuffer();
-  ~amConstantBuffer();
-};
+#include "amPrerequisitesCore.h"
+namespace amEngineSDK {
+  class AM_CORE_EXPORT amConstantBuffer
+  {
+  public:
+    amConstantBuffer();
+    ~amConstantBuffer();
+  };
+}
+
 

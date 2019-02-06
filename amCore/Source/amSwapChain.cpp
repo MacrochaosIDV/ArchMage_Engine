@@ -1,8 +1,11 @@
 #include "amSwapChain.h"
 
 
+#include "amPrerequisitesCore.h"
 
-amSwapChain::amSwapChain() {}
+namespace amEngineSDK {
+  amSwapChain::amSwapChain() {}
 
 
-amSwapChain::~amSwapChain() {}
+  amSwapChain::~amSwapChain() {}
+}

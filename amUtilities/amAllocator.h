@@ -1,9 +1,11 @@
 #pragma once
-
-class amAllocator
-{
-public:
-  amAllocator();
-  ~amAllocator();
-};
+#include "amPrerequisitesUtilities.h"
+namespace amEngineSDK {
+  class AM_UTILITIES_EXPORT amAllocator
+  {
+  public:
+    amAllocator();
+    ~amAllocator();
+  };
+}
 

@@ -1,5 +1,7 @@
 #include "amBaseApp.h"
-#include <WinUser.h>
+// Windows Header Files:
+#include <windows.h>
+
 
 #define MAX_LOADSTRING 100
 #define IDS_APP_TITLE			103
@@ -40,11 +42,6 @@ namespace amEngineSDK {
   int32 amBaseApp::run() {
     Init();
     
-    
-
-    // TODO: Place code here.
-
-    
     // Main message loop:
     HINSTANCE hInstance = GetModuleHandle(nullptr);
 
@@ -58,15 +55,13 @@ namespace amEngineSDK {
 
       //Update Game Logic
       
-      m_DXGAPI.Render();
+      Render();
 
       //Render Game Frame
       //Render();
     }
-
     //Destroy DirectX
     //DestroyGraphicsContent();
-
     //g_GraphicsAPI.Destroy()
 
     return (int)msg.wParam;
@@ -84,7 +79,7 @@ namespace amEngineSDK {
 
   void amBaseApp::Render() {
     //Begin();
-    m_DXGAPI.Render();
+    m_GAPI->Render();
     postRender();
     //end();
     //swap();
@@ -93,15 +88,16 @@ namespace amEngineSDK {
   void amBaseApp::Destroy() {}
 
   void amBaseApp::preInit() {
-    mbstowcs(m_szTitle, "ArchMage Engine", 100);
-    mbstowcs(m_szWindowClass, "MainWindow", 100);
+    // Initialize global strings
+
+    m_szTitle = L"ArchMage Engine";
+    m_szWindowClass = L"MainWindow";
+    m_wndHeight = 600;
+    m_wndWidth = 800;
 
     HINSTANCE hInstance = GetModuleHandle(nullptr);
 
     int32 nCmdShow = SW_SHOW;
-    // Initialize global strings
-    LoadStringW(hInstance, IDS_APP_TITLE, m_szTitle, MAX_LOADSTRING);
-    LoadStringW(hInstance, IDC_TSTPROJ, m_szWindowClass, MAX_LOADSTRING);
     MyRegisterClass(hInstance);
 
     // Perform application initialization:
@@ -111,11 +107,8 @@ namespace amEngineSDK {
 
     //Init DirectX
     //g_GraphicsAPI.Init(m_hWnd);
-
     //Load graphics data (shaders, meshes, models, textures, buffers, etc...)
     //InitGraphicsContent();
-
-    
     
     ShowWindow(m_hWnd, nCmdShow);
   }
@@ -131,39 +124,43 @@ namespace amEngineSDK {
   void amBaseApp::onMouseMove(float x, float y) {}
 
   void amBaseApp::initSystems() {
-    m_DXGAPI.init(m_hWnd);
+    m_GAPI->init(m_hWnd);
   }
 
   void amBaseApp::initContent() {}
 
+  void amBaseApp::setGraphicsAPI(amGraphicsAPI & _API) {
+    m_GAPI = &_API;
+  }
+
   ATOM amBaseApp::MyRegisterClass(HINSTANCE hInstance) {
-    
-
-    m_wcex.cbSize = sizeof(WNDCLASSEX);
-
+    m_wcex.cbSize = sizeof(WNDCLASSEXW);
     m_wcex.style = CS_HREDRAW | CS_VREDRAW;
     m_wcex.lpfnWndProc = WndProc;
     m_wcex.cbClsExtra = 0;
     m_wcex.cbWndExtra = 0;
     m_wcex.hInstance = hInstance;
-    m_wcex.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_TSTPROJ));
-    m_wcex.hCursor = LoadCursor(nullptr, IDC_ARROW);
+    m_wcex.hIcon = LoadIconW(hInstance, MAKEINTRESOURCEW(IDI_TSTPROJ));
+    m_wcex.hCursor = LoadCursorW(nullptr, MAKEINTRESOURCEW(IDC_ARROW));
     m_wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
     m_wcex.lpszMenuName = MAKEINTRESOURCEW(IDC_TSTPROJ);
-    m_wcex.lpszClassName = m_szWindowClass;
+    m_wcex.lpszClassName = m_szWindowClass.c_str();
     m_wcex.cbWndExtra = sizeof(void*); // 
-    m_wcex.hIconSm = LoadIcon(m_wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
-
-    return RegisterClassExW(&m_wcex);
+    m_wcex.hIconSm = LoadIconW(m_wcex.hInstance, MAKEINTRESOURCEW(IDI_SMALL));
+    
+    if (!RegisterClassExW(&m_wcex)) {
+      //Error
+      return 1;
+    }
+    return 0;
   }
 
   int32 amBaseApp::InitInstance(HINSTANCE hInstance, int32 nCmdShow) {
     m_hInst = hInstance; // Store instance handle in our global variable
 
-    tagCREATESTRUCTA tCS;
-    m_hWnd = CreateWindowExW(0, m_szWindowClass, m_szTitle, 
-                             0, 0, CW_USEDEFAULT, CW_USEDEFAULT, WS_MAXIMIZE,
-                             nullptr, nullptr, hInstance, &tCS.lpCreateParams);
+    m_hWnd = CreateWindowExW(0, m_szWindowClass.c_str(), m_szTitle.c_str(),
+                             WS_OVERLAPPEDWINDOW, 0, 0, m_wndWidth, m_wndHeight,
+                             nullptr, nullptr, hInstance, nullptr);
 
     if (!m_hWnd) {
       return FALSE;
@@ -209,8 +206,6 @@ namespace amEngineSDK {
     }
     return 0;
   }
-
-  
 }
 
 

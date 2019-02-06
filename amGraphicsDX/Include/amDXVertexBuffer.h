@@ -1,13 +1,13 @@
 #pragma once
-#include <amVertexBuffer.h>
 #include "amDXPreReqs.h"
-
+#include <amVertexBuffer.h>
+#include <amVertex.h>
 #include <vector>
 
 namespace amEngineSDK {
   class amDXVertexBuffer : public amVertexBuffer
   {
-  public:
+   public:
     amDXVertexBuffer() = default;
     ~amDXVertexBuffer() = default;
 
@@ -16,19 +16,15 @@ namespace amEngineSDK {
     D3D11_SUBRESOURCE_DATA m_initData;
 
     void 
-    setBufferDesc(D3D11_USAGE _usageF, uint32 _bindF, uint32 _cpuF, uint32 _miscF);
+    setBufferData(D3D11_USAGE _usageF, uint32 _size, const void* _data);
 
     void
     setSubResourceData(const void* _data, uint32 SysMemPitch, uint32 SysMemSlicePitch);
 
     void 
-    setVertexSize(uint32 _size);
-
-    void 
     setVBSize(uint32 _size);
 
     std::vector<amVertex> m_vVertex;
-    uint32 m_vertexSize;
     uint32 m_numVertex;
   };
 

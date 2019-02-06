@@ -19,7 +19,7 @@
 #include "amPrerequisitesUtilities.h"
 #include "amVector3.h"
 namespace amEngineSDK {
-  class amRay
+  class AM_UTILITIES_EXPORT amRay
   {
   public:
     amRay();

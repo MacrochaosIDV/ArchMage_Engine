@@ -21,7 +21,7 @@
 #include "amMath.h"
 
 namespace amEngineSDK {
-  class amAABB
+  class AM_UTILITIES_EXPORT amAABB
   {
    public:
     amAABB();

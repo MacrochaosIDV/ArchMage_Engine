@@ -37,7 +37,7 @@
 #include "amDXConstantBuffer.h"
 
 namespace amEngineSDK {
-  class AM_GRAPHICSDX_EXPORT amDXGraphicsAPI
+  class AM_GRAPHICSDX_EXPORT amDXGraphicsAPI : public amGraphicsAPI
   {
    public:
     amDXGraphicsAPI() = default;
@@ -46,18 +46,23 @@ namespace amEngineSDK {
     void 
     createVertexBuffer(int32 nVertex, int32 vertexSize);
 
-    bool 
-    init(HWND _hWnd);
+    void
+    init(void* _hWnd);
 
-    void 
-    destroy();
+    virtual void
+    destroy() override;
 
     void 
     CleanupDevice();
 
-    void 
-    Render();
+    virtual void 
+    Render() override;
 
+    virtual void
+    initContent() override;
+
+    virtual void
+    initSystems(void* _hWnd);
 
 
     HWND m_hWnd = NULL;
@@ -68,6 +73,8 @@ namespace amEngineSDK {
     amDXSamplerState*                   m_pSamplerLinear = NULL;
     amDXInputLayout*                    m_pVertexLayout = NULL;
     amDXTexture*                        m_pDepthStencil = NULL;
+    amDXVertexShader*                   m_pVertexShader = NULL;
+    amDXPixelShader*                    m_pPixelShader = NULL;
     amDXShaderResourceView*             m_pTextureRV = NULL;
     amDXSwapChain*                      m_pSwapChain = NULL;
     amDXDevice*                         m_pDevice = NULL;
@@ -77,7 +84,6 @@ namespace amEngineSDK {
     //amDXConstantBuffer*                 m_pCBNeverChanges = NULL;
     //amDXConstantBuffer*                 m_pCBChangeOnResize = NULL;
     //amDXConstantBuffer*                 m_pCBChangesEveryFrame = NULL;
-    //amDXVertexShader*                   m_pVertexShader = NULL;
-    //amDXPixelShader*                    m_pPixelShader = NULL;
+    
   };
 }

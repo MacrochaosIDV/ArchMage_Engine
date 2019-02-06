@@ -1,8 +1,11 @@
 #include "amInputLayout.h"
 
 
+#include "amPrerequisitesCore.h"
 
-amInputLayout::amInputLayout() {}
+namespace amEngineSDK {
+  amInputLayout::amInputLayout() {}
 
 
-amInputLayout::~amInputLayout() {}
+  amInputLayout::~amInputLayout() {}
+}

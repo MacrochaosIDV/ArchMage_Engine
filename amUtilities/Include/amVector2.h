@@ -21,7 +21,7 @@
 #include "amMath.h"
 
 namespace amEngineSDK {
-  class amVector2
+  class AM_UTILITIES_EXPORT amVector2
   {
   public:
     amVector2();

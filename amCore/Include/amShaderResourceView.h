@@ -1,8 +1,11 @@
 #pragma once
-class amShaderResourceView
-{
-public:
-  amShaderResourceView();
-  ~amShaderResourceView();
-};
+#include "amPrerequisitesCore.h"
 
+namespace amEngineSDK {
+  class AM_CORE_EXPORT amShaderResourceView
+  {
+  public:
+    amShaderResourceView();
+    ~amShaderResourceView();
+  };
+}
