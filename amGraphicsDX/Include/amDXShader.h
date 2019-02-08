@@ -19,6 +19,7 @@ namespace amEngineSDK {
     setShader(amDXDeviceContext* pDC) = 0;
 
     ID3DBlob* m_pblob;
+    std::string m_shaderName;
   };
 }
 

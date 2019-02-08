@@ -47,9 +47,6 @@ namespace amEngineSDK {
     _m.m30 = _m30; _m.m31 = _m31; _m.m32 = _m32; _m.m33 = _m33;
   }
 
-
-  
-
   amMatrix4x4 amMatrix4x4::operator*(const float & f) {
     amMatrix4x4 res = *this;
     for (int i = 0; i < 16; ++i)
@@ -62,15 +59,6 @@ namespace amEngineSDK {
     return *this;
   }
 
-  /*amMatix4x4 operator*(amMatix4x4& A, amMatix4x4& B) {
-    amMatix4x4 R;
-    memset(&R, 0, sizeof(R));
-    for (int j = 0; j < 4; j++)
-      for (int i = 0; i < 4; i++)
-        for (int k = 0; k < 4; k++)
-          R.m[j][i] += A.m[j][k] * B.m[k][i];
-    return R;
-  }*/
   amMatrix4x4 amMatrix4x4::operator*(const amMatrix4x4& other) {
     amMatrix4x4 res = *this;
     for (int j = 0; j < 4; j++)
@@ -80,18 +68,6 @@ namespace amEngineSDK {
     return res;
   }
 
-  /*
-  amVector4 amMatix4x4::operator*(amVector4& V) {
-    amVector4 res;
-    res.init();
-      for (int j = 0; j < 4; j++)
-        for (int i = 0; i < 4; i++)
-          for (int k = 0; k < 4; k++)
-            res.v[j] += m[i][j] * V.v[i];
-      return res;
-  }
-  */
-
   amVector4 amMatrix4x4::operator*(amVector4& V) {
       amVector4 res;
       res.x = (_m.m00 * V.x) + (_m.m01 * V.y) + (_m.m02 * V.z) + (_m.m03 * V.w);
@@ -100,75 +76,62 @@ namespace amEngineSDK {
       res.w = (_m.m30 * V.x) + (_m.m31 * V.y) + (_m.m32 * V.z) + (_m.m33 * V.w);
       return res;
   }
-  /*
-    amVector4 operator*(amVector4 & A, amVector4 & B) {
-        amVector4 aux = { A.x*B.x,A.y*B.y, A.z*B.z, 1 };
-        return aux;
-    }
-  */
 
   amMatrix4x4 amMatrix4x4::RotationY_RH(const float& theta) {
-      //theta = theta * 0.01745;
-      amMatrix4x4 res;
-      res.initIdentity();
+      amMatrix4x4 res(IDENTITY);
 
-      res._m.m00 = res._m.m22 = cos(theta);
-      res._m.m20 = sin(theta);
+      res._m.m00 = res._m.m22 = amMath::cos(theta);
+      res._m.m20 = amMath::sin(theta);
       res._m.m02 = -res._m.m20;
       return res;
   }
 
   amMatrix4x4 amMatrix4x4::RotationX_RH(const float& theta) {
       //theta = theta * 0.01745;
-    amMatrix4x4 res;
-    res.initIdentity();
-    res._m.m11 = res._m.m22 = cos(theta);
-    res._m.m21 = sin(theta);
+    amMatrix4x4 res(IDENTITY);
+    res._m.m11 = res._m.m22 = amMath::cos(theta);
+    res._m.m21 = amMath::sin(theta);
     res._m.m12 = -res._m.m21;
       return res;
   }
 
   amMatrix4x4 amMatrix4x4::RotationZ_RH(const float& theta) {
       //theta = theta * 0.01745;
-      amMatrix4x4 res;
-      res.initIdentity();
-      res._m.m00 = res._m.m11 = cos(theta);
-      res._m.m10 = sin(theta);
+      amMatrix4x4 res(IDENTITY);
+      res._m.m00 = res._m.m11 = amMath::cos(theta);
+      res._m.m10 = amMath::sin(theta);
       res._m.m01 = -res._m.m10;
       return res;
   }
 
   amMatrix4x4 amMatrix4x4::RotationX_LH(const float& theta) {
       //theta = theta * 0.01745;
-      amMatrix4x4 res;
-      res.initIdentity();
-      res._m.m11 = res._m.m22 = cos(theta);
-      res._m.m21 = -sin(theta);
+      amMatrix4x4 res(IDENTITY);
+      res._m.m11 = res._m.m22 = amMath::cos(theta);
+      res._m.m21 = -amMath::sin(theta);
       res._m.m12 = -res._m.m21;
       return res;
   }
 
   amMatrix4x4 amMatrix4x4::RotationY_LH(const float& theta) {
       //theta = theta * 0.01745;
-    amMatrix4x4 res;
-    res.initIdentity();
-    res._m.m00 = res._m.m22 = cos(theta);
-    res._m.m20 = -sin(theta);
+    amMatrix4x4 res(IDENTITY);
+    res._m.m00 = res._m.m22 = amMath::cos(theta);
+    res._m.m20 = -amMath::sin(theta);
     res._m.m02 = -res._m.m20;
       return res;
   }
 
   amMatrix4x4 amMatrix4x4::RotationZ_LH(const float& theta) {
       //theta = theta * 0.01745;
-      amMatrix4x4 res;
-      res.initIdentity();
-      res._m.m00 = res._m.m11 = cos(theta);
-      res._m.m10 = -sin(theta);
+      amMatrix4x4 res(IDENTITY);
+      res._m.m00 = res._m.m11 = amMath::cos(theta);
+      res._m.m10 = -amMath::sin(theta);
       res._m.m01 = -res._m.m10;
       return res;
   }
 
-  amMatrix4x4 amMatrix4x4::Transposed() {
+  amMatrix4x4 amMatrix4x4::transposed() {
     amMatrix4x4 T;
     for (int j = 0; j < 4; j++) {
       for (int i = 0; i < 4; i++) {
@@ -182,7 +145,7 @@ namespace amEngineSDK {
     M;
       amMatrix4x4 res;
       amVector4 InvPos;
-      res = res.Transposed();
+      res = res.transposed();
       InvPos = res.vec[3];
       res._m.m03 = -res.vec[0].DotNormalized(InvPos);
       res._m.m13 = -res.vec[1].DotNormalized(InvPos);
@@ -193,153 +156,147 @@ namespace amEngineSDK {
       return res;
   }
 
-  //float amMatix4x4::Inverse(amMatix4x4 & M, amMatix4x4 & R) {
-  //    amMatix4x4 I;
-  //    double inv[16], det;
-  //    int i;
+  amMatrix4x4 amMatrix4x4::inverse() {
+    amMatrix4x4 inv;
 
-  //    inv[0] = M.v[5] * M.v[10] * M.v[15] -
-  //      M.v[5] * M.v[11] * M.v[14] -
-  //      M.v[9] * M.v[6] * M.v[15] +
-  //      M.v[9] * M.v[7] * M.v[14] +
-  //      M.v[13] * M.v[6] * M.v[11] -
-  //      M.v[13] * M.v[7] * M.v[10];
+      inv.fvec[0] = fvec[5] * fvec[10] * fvec[15] -
+        fvec[5] * fvec[11] * fvec[14] -
+        fvec[9] * fvec[6] * fvec[15] +
+        fvec[9] * fvec[7] * fvec[14] +
+        fvec[13] * fvec[6] * fvec[11] -
+        fvec[13] * fvec[7] * fvec[10];
 
-  //    inv[4] = -M.v[4] * M.v[10] * M.v[15] +
-  //      M.v[4] * M.v[11] * M.v[14] +
-  //      M.v[8] * M.v[6] * M.v[15] -
-  //      M.v[8] * M.v[7] * M.v[14] -
-  //      M.v[12] * M.v[6] * M.v[11] +
-  //      M.v[12] * M.v[7] * M.v[10];
+      inv.fvec[4] = -fvec[4] * fvec[10] * fvec[15] +
+        fvec[4] * fvec[11] * fvec[14] +
+        fvec[8] * fvec[6] * fvec[15] -
+        fvec[8] * fvec[7] * fvec[14] -
+        fvec[12] * fvec[6] * fvec[11] +
+        fvec[12] * fvec[7] * fvec[10];
 
-  //    inv[8] = M.v[4] * M.v[9] * M.v[15] -
-  //      M.v[4] * M.v[11] * M.v[13] -
-  //      M.v[8] * M.v[5] * M.v[15] +
-  //      M.v[8] * M.v[7] * M.v[13] +
-  //      M.v[12] * M.v[5] * M.v[11] -
-  //      M.v[12] * M.v[7] * M.v[9];
+      inv.fvec[8] = fvec[4] * fvec[9] * fvec[15] -
+        fvec[4] * fvec[11] * fvec[13] -
+        fvec[8] * fvec[5] * fvec[15] +
+        fvec[8] * fvec[7] * fvec[13] +
+        fvec[12] * fvec[5] * fvec[11] -
+        fvec[12] * fvec[7] * fvec[9];
 
-  //    inv[12] = -M.v[4] * M.v[9] * M.v[14] +
-  //      M.v[4] * M.v[10] * M.v[13] +
-  //      M.v[8] * M.v[5] * M.v[14] -
-  //      M.v[8] * M.v[6] * M.v[13] -
-  //      M.v[12] * M.v[5] * M.v[10] +
-  //      M.v[12] * M.v[6] * M.v[9];
+      inv.fvec[12] = -fvec[4] * fvec[9] * fvec[14] +
+        fvec[4] * fvec[10] * fvec[13] +
+        fvec[8] * fvec[5] * fvec[14] -
+        fvec[8] * fvec[6] * fvec[13] -
+        fvec[12] * fvec[5] * fvec[10] +
+        fvec[12] * fvec[6] * fvec[9];
 
-  //    inv[1] = -M.v[1] * M.v[10] * M.v[15] +
-  //      M.v[1] * M.v[11] * M.v[14] +
-  //      M.v[9] * M.v[2] * M.v[15] -
-  //      M.v[9] * M.v[3] * M.v[14] -
-  //      M.v[13] * M.v[2] * M.v[11] +
-  //      M.v[13] * M.v[3] * M.v[10];
+      inv.fvec[1] = -fvec[1] * fvec[10] * fvec[15] +
+        fvec[1] * fvec[11] * fvec[14] +
+        fvec[9] * fvec[2] * fvec[15] -
+        fvec[9] * fvec[3] * fvec[14] -
+        fvec[13] * fvec[2] * fvec[11] +
+        fvec[13] * fvec[3] * fvec[10];
 
-  //    inv[5] = M.v[0] * M.v[10] * M.v[15] -
-  //      M.v[0] * M.v[11] * M.v[14] -
-  //      M.v[8] * M.v[2] * M.v[15] +
-  //      M.v[8] * M.v[3] * M.v[14] +
-  //      M.v[12] * M.v[2] * M.v[11] -
-  //      M.v[12] * M.v[3] * M.v[10];
+      inv.fvec[5] = fvec[0] * fvec[10] * fvec[15] -
+        fvec[0] * fvec[11] * fvec[14] -
+        fvec[8] * fvec[2] * fvec[15] +
+        fvec[8] * fvec[3] * fvec[14] +
+        fvec[12] * fvec[2] * fvec[11] -
+        fvec[12] * fvec[3] * fvec[10];
 
-  //    inv[9] = -M.v[0] * M.v[9] * M.v[15] +
-  //      M.v[0] * M.v[11] * M.v[13] +
-  //      M.v[8] * M.v[1] * M.v[15] -
-  //      M.v[8] * M.v[3] * M.v[13] -
-  //      M.v[12] * M.v[1] * M.v[11] +
-  //      M.v[12] * M.v[3] * M.v[9];
+      inv.fvec[9] = -fvec[0] * fvec[9] * fvec[15] +
+        fvec[0] * fvec[11] * fvec[13] +
+        fvec[8] * fvec[1] * fvec[15] -
+        fvec[8] * fvec[3] * fvec[13] -
+        fvec[12] * fvec[1] * fvec[11] +
+        fvec[12] * fvec[3] * fvec[9];
 
-  //    inv[13] = M.v[0] * M.v[9] * M.v[14] -
-  //      M.v[0] * M.v[10] * M.v[13] -
-  //      M.v[8] * M.v[1] * M.v[14] +
-  //      M.v[8] * M.v[2] * M.v[13] +
-  //      M.v[12] * M.v[1] * M.v[10] -
-  //      M.v[12] * M.v[2] * M.v[9];
+      inv.fvec[13] = fvec[0] * fvec[9] * fvec[14] -
+        fvec[0] * fvec[10] * fvec[13] -
+        fvec[8] * fvec[1] * fvec[14] +
+        fvec[8] * fvec[2] * fvec[13] +
+        fvec[12] * fvec[1] * fvec[10] -
+        fvec[12] * fvec[2] * fvec[9];
 
-  //    inv[2] = M.v[1] * M.v[6] * M.v[15] -
-  //      M.v[1] * M.v[7] * M.v[14] -
-  //      M.v[5] * M.v[2] * M.v[15] +
-  //      M.v[5] * M.v[3] * M.v[14] +
-  //      M.v[13] * M.v[2] * M.v[7] -
-  //      M.v[13] * M.v[3] * M.v[6];
+      inv.fvec[2] = fvec[1] * fvec[6] * fvec[15] -
+        fvec[1] * fvec[7] * fvec[14] -
+        fvec[5] * fvec[2] * fvec[15] +
+        fvec[5] * fvec[3] * fvec[14] +
+        fvec[13] * fvec[2] * fvec[7] -
+        fvec[13] * fvec[3] * fvec[6];
 
-  //    inv[6] = -M.v[0] * M.v[6] * M.v[15] +
-  //      M.v[0] * M.v[7] * M.v[14] +
-  //      M.v[4] * M.v[2] * M.v[15] -
-  //      M.v[4] * M.v[3] * M.v[14] -
-  //      M.v[12] * M.v[2] * M.v[7] +
-  //      M.v[12] * M.v[3] * M.v[6];
+      inv.fvec[6] = -fvec[0] * fvec[6] * fvec[15] +
+        fvec[0] * fvec[7] * fvec[14] +
+        fvec[4] * fvec[2] * fvec[15] -
+        fvec[4] * fvec[3] * fvec[14] -
+        fvec[12] * fvec[2] * fvec[7] +
+        fvec[12] * fvec[3] * fvec[6];
 
-  //    inv[10] = M.v[0] * M.v[5] * M.v[15] -
-  //      M.v[0] * M.v[7] * M.v[13] -
-  //      M.v[4] * M.v[1] * M.v[15] +
-  //      M.v[4] * M.v[3] * M.v[13] +
-  //      M.v[12] * M.v[1] * M.v[7] -
-  //      M.v[12] * M.v[3] * M.v[5];
+      inv.fvec[10] = fvec[0] * fvec[5] * fvec[15] -
+        fvec[0] * fvec[7] * fvec[13] -
+        fvec[4] * fvec[1] * fvec[15] +
+        fvec[4] * fvec[3] * fvec[13] +
+        fvec[12] * fvec[1] * fvec[7] -
+        fvec[12] * fvec[3] * fvec[5];
 
-  //    inv[14] = -M.v[0] * M.v[5] * M.v[14] +
-  //      M.v[0] * M.v[6] * M.v[13] +
-  //      M.v[4] * M.v[1] * M.v[14] -
-  //      M.v[4] * M.v[2] * M.v[13] -
-  //      M.v[12] * M.v[1] * M.v[6] +
-  //      M.v[12] * M.v[2] * M.v[5];
+      inv.fvec[14] = -fvec[0] * fvec[5] * fvec[14] +
+        fvec[0] * fvec[6] * fvec[13] +
+        fvec[4] * fvec[1] * fvec[14] -
+        fvec[4] * fvec[2] * fvec[13] -
+        fvec[12] * fvec[1] * fvec[6] +
+        fvec[12] * fvec[2] * fvec[5];
 
-  //    inv[3] = -M.v[1] * M.v[6] * M.v[11] +
-  //      M.v[1] * M.v[7] * M.v[10] +
-  //      M.v[5] * M.v[2] * M.v[11] -
-  //      M.v[5] * M.v[3] * M.v[10] -
-  //      M.v[9] * M.v[2] * M.v[7] +
-  //      M.v[9] * M.v[3] * M.v[6];
+      inv.fvec[3] = -fvec[1] * fvec[6] * fvec[11] +
+        fvec[1] * fvec[7] * fvec[10] +
+        fvec[5] * fvec[2] * fvec[11] -
+        fvec[5] * fvec[3] * fvec[10] -
+        fvec[9] * fvec[2] * fvec[7] +
+        fvec[9] * fvec[3] * fvec[6];
 
-  //    inv[7] = M.v[0] * M.v[6] * M.v[11] -
-  //      M.v[0] * M.v[7] * M.v[10] -
-  //      M.v[4] * M.v[2] * M.v[11] +
-  //      M.v[4] * M.v[3] * M.v[10] +
-  //      M.v[8] * M.v[2] * M.v[7] -
-  //      M.v[8] * M.v[3] * M.v[6];
+      inv.fvec[7] = fvec[0] * fvec[6] * fvec[11] -
+        fvec[0] * fvec[7] * fvec[10] -
+        fvec[4] * fvec[2] * fvec[11] +
+        fvec[4] * fvec[3] * fvec[10] +
+        fvec[8] * fvec[2] * fvec[7] -
+        fvec[8] * fvec[3] * fvec[6];
 
-  //    inv[11] = -M.v[0] * M.v[5] * M.v[11] +
-  //      M.v[0] * M.v[7] * M.v[9] +
-  //      M.v[4] * M.v[1] * M.v[11] -
-  //      M.v[4] * M.v[3] * M.v[9] -
-  //      M.v[8] * M.v[1] * M.v[7] +
-  //      M.v[8] * M.v[3] * M.v[5];
+      inv.fvec[11] = -fvec[0] * fvec[5] * fvec[11] +
+        fvec[0] * fvec[7] * fvec[9] +
+        fvec[4] * fvec[1] * fvec[11] -
+        fvec[4] * fvec[3] * fvec[9] -
+        fvec[8] * fvec[1] * fvec[7] +
+        fvec[8] * fvec[3] * fvec[5];
 
-  //    inv[15] = M.v[0] * M.v[5] * M.v[10] -
-  //      M.v[0] * M.v[6] * M.v[9] -
-  //      M.v[4] * M.v[1] * M.v[10] +
-  //      M.v[4] * M.v[2] * M.v[9] +
-  //      M.v[8] * M.v[1] * M.v[6] -
-  //      M.v[8] * M.v[2] * M.v[5];
+      inv.fvec[15] = fvec[0] * fvec[5] * fvec[10] -
+        fvec[0] * fvec[6] * fvec[9] -
+        fvec[4] * fvec[1] * fvec[10] +
+        fvec[4] * fvec[2] * fvec[9] +
+        fvec[8] * fvec[1] * fvec[6] -
+        fvec[8] * fvec[2] * fvec[5];
 
-  //    det = M.v[0] * inv[0] + M.v[1] * inv[4] + M.v[2] * inv[8] + M.v[3] * inv[12];
+      float det = fvec[0] * inv[0] + fvec[1] * inv[4] + fvec[2] * inv[8] + fvec[3] * inv[12];
 
-  //    if (fabs(det) < 0.0001)
-  //      return 0.0f;
+      if (amMath::abs(det) < 0.0001)
+        return *this;
+      return inv * (1.0f / det);
+      float invdet = 1.0 / det;
+  }
 
-  //    double invdet = 1.0 / det;
-
-  //    for (i = 0; i < 16; i++) {
-  //      R.v[i] = (float)(inv[i] * invdet);
-  //    }
-  //    return (float)det;
-  //}
+  void amMatrix4x4::invert() {
+    *this = this->inverse();
+  }
 
   amMatrix4x4 amMatrix4x4::Scaling(float sx, float sy, float sz) {
-    amMatrix4x4 res;
-    res.initIdentity();
+    amMatrix4x4 res(IDENTITY);
     res._m.m00 = sx; res._m.m11 = sy; res._m.m22 = sz;
       return res;
   }
 
   amMatrix4x4 amMatrix4x4::Translation_RH(float dx, float dy, float dz) {
-    amMatrix4x4 res;
-    res.initIdentity();
+    amMatrix4x4 res(IDENTITY);
       res._m.m03 = dx; res._m.m13 = dy; res._m.m23 = dz;
       return res;
   }
 
   amMatrix4x4 amMatrix4x4::Translation_LH(float dx, float dy, float dz) {
-    amMatrix4x4 res; 
-    res.initIdentity();
+    amMatrix4x4 res(IDENTITY);
     res._m.m30 = dx;
     res._m.m31 = dy;
     res._m.m32 = dz;
@@ -383,9 +340,7 @@ namespace amEngineSDK {
   amMatrix4x4 amMatrix4x4::lookAt_LH(amVector4 & EyePos, amVector4 & Target, amVector4 & Up) {
       amVector4 xDir, yDir, zDir;
       zDir = (Target - EyePos).getNormalized();
-      //xDir = Normalize(Cross3(Up, zDir));
       xDir = Up.cross3(zDir).getNormalized();
-      //yDir = Cross3(zDir, xDir);
       yDir = zDir.cross3(xDir);
       amMatrix4x4 View;
       /*Cmatrix4D View = ( xDir.x,			yDir.x,				zDir.x,		   0,
@@ -415,13 +370,8 @@ namespace amEngineSDK {
 
   amMatrix4x4 amMatrix4x4::perspectiveFOVRH(const float& FOVY, const float& ratio, const float& zNear, const float& zFar) {
       float ang = FOVY / 2;
-
-      //float h = 1 / tan(ang);
-      //float w = h*ratio;
-
-      float h = cos(ang) / sin(ang);
+      float h = amMath::tan(ang);
       float w = h / ratio;
-
       amMatrix4x4 Persp;
 
       /*
@@ -443,12 +393,8 @@ namespace amEngineSDK {
 
   amMatrix4x4 amMatrix4x4::perspectiveFOVLH(const float& FOVY, const float& ratio, const float& zNear, const float& zFar) {
       float ang = FOVY / 2;
-      //float h = 1 / tan(ang);
-      //float w = h*ratio;
-
-      float h = cos(ang) / sin(ang);
+      float h = amMath::tan(ang);
       float w = h / ratio;
-
       amMatrix4x4 Persp;
       /*
       Cmatrix4D P = {
