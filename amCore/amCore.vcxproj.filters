@@ -17,6 +17,9 @@
     <Filter Include="Source Files\Views">
       <UniqueIdentifier>{f99ca075-b5eb-4b97-9be3-9592a7abeccc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Resources">
+      <UniqueIdentifier>{0038e947-316f-4389-bc24-8ebcce69d93f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\amGraphicsAPI.cpp">
@@ -26,9 +29,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\amSwapChain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\amTexture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\amComputeShader.cpp">
@@ -92,12 +92,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="amModel.cpp">
+      <Filter>Source Files\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amTexture.cpp">
+      <Filter>Source Files\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="amMaterial.cpp">
+      <Filter>Source Files\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amCamera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="amCamera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="amCameraManager.cpp">
+    <ClCompile Include="Source\amCameraManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -109,9 +115,6 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Include\amSwapChain.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\amTexture.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Include\amComputeShader.h">
@@ -174,16 +177,22 @@
     <ClInclude Include="Include\amBaseApp.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="amModel.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="Include\amWindow.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="amCamera.h">
+    <ClInclude Include="amModel.h">
+      <Filter>Source Files\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amTexture.h">
+      <Filter>Source Files\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="amMaterial.h">
+      <Filter>Source Files\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amCamera.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="amCameraManager.h">
+    <ClInclude Include="Include\amCameraManager.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

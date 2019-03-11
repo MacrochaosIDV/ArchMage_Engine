@@ -21,6 +21,7 @@
 ************************
 */
 #include <amGraphicsAPI.h>
+#include <amCamera.h>
 #include "amDXDevice.h"
 #include "amDXDeviceContext.h"
 #include "amDXSwapChain.h"
@@ -35,6 +36,8 @@
 #include "amDXTexture.h"
 #include "amDXSamplerState.h"
 #include "amDXConstantBuffer.h"
+
+
 
 namespace amEngineSDK {
   class AM_GRAPHICSDX_EXPORT amDXGraphicsAPI : public amGraphicsAPI
@@ -66,6 +69,8 @@ namespace amEngineSDK {
 
 
     HWND m_hWnd = NULL;
+    amCamera cam;
+    amMatrix4x4 matProjecton;
     
     amDXDeviceContext*                  m_pImmediateContext = NULL;
     amDXDepthStencilView*               m_pDepthStencilView = NULL;
@@ -79,11 +84,7 @@ namespace amEngineSDK {
     amDXSwapChain*                      m_pSwapChain = NULL;
     amDXDevice*                         m_pDevice = NULL;
 
-    //amDXVertexBuffer*                   m_pVertexBuffer = NULL;
-    //amDXIndexBuffer*                    m_pIndexBuffer = NULL;
-    //amDXConstantBuffer*                 m_pCBNeverChanges = NULL;
-    //amDXConstantBuffer*                 m_pCBChangeOnResize = NULL;
-    //amDXConstantBuffer*                 m_pCBChangesEveryFrame = NULL;
-    
+    amDXConstantBuffer*                 m_pCB_VP = NULL;
+
   };
 }

@@ -15,11 +15,16 @@ namespace amEngineSDK {
     amDXPixelShader();
     ~amDXPixelShader();
 
+  
     void
     createPixelShader(amDXDevice* pDevice);
 
     virtual void
     setShader(amDXDeviceContext* pDC) override;
+
+  
+
+    void createPS(const char* pathFileName, amDXDevice* pDevice);
 
     ID3D11PixelShader* m_ps;
   };

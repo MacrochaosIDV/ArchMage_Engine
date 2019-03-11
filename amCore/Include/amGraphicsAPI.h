@@ -41,7 +41,7 @@ namespace amEngineSDK {
     virtual void
     initSystems();
 
+    float m_fov;
+
   };
 }
-
-

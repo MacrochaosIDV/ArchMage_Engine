@@ -82,6 +82,9 @@ namespace amEngineSDK {
     operator*(amVector4& V);
 
 
+    amMatrix4x4&
+    operator*=(const amMatrix4x4& other);
+
     /***********************
     *  @brief Initializes the matrix as the identity matrix
     ***********************/
@@ -89,86 +92,57 @@ namespace amEngineSDK {
     initIdentity();
 
     /***********************
-    *  @brief Translates this matrix by the given amount in RADIANS (Right handed rotations)
-    ***********************/
-    amMatrix4x4 
-    Translation_RH(float dx, float dy, float dz);
-
-    /***********************
     *  @brief Translates this matrix by the given amount in RADIANS (Left handed rotations)
     ***********************/
-    amMatrix4x4 
-    Translation_LH(float dx, float dy, float dz);
+    amMatrix4x4& 
+    translate(const float dx, const  float dy, const  float dz);
 
-    amMatrix4x4 
-    Scaling(float sx, float sy, float sz);
-
-    /*********************************************************************
-    *
-    *
-    *  Matrix Rotations 
-    *
-    *
-    *********************************************************************/
-
-    /***********************
-    *  @brief Rotates this matrix by the given amount in RADIANS on the X axis (Right handed rotations)
-    ***********************/
-    amMatrix4x4 
-    RotationX_RH(const float& theta);
-
-    /***********************
-    *  @brief Rotates this matrix by the given amount in RADIANS on the Y axis (Right handed rotations)
-    ***********************/
-    amMatrix4x4 
-    RotationY_RH(const float& theta);
-
-    /***********************
-    *  @brief Rotates this matrix by the given amount in RADIANS on the Z axis (Right handed rotations)
-    ***********************/
-    amMatrix4x4 
-    RotationZ_RH(const float& theta);
-
+    /**
+    ************************
+    *  @brief Returns the matrix scaled by sx, sy, sz
+    ************************
+    */
+    amMatrix4x4& 
+    scale(const float sx, const  float sy, const  float sz);
 
     /***********************
     *  @brief Rotates this matrix by the given amount in RADIANS on the X axis (Left handed rotations)
     ***********************/
-    amMatrix4x4 
-    RotationX_LH(const float& theta);
+    amMatrix4x4&
+    rotateX(const float& theta);
 
     /***********************
     *  @brief Rotates this matrix by the given amount in RADIANS on the Y axis (Left handed rotations)
     ***********************/
-    amMatrix4x4 
-    RotationY_LH(const float& theta);
+    amMatrix4x4&
+    rotateY(const float& theta);
 
     /***********************
     *  @brief Rotates this matrix by the given amount in RADIANS on the Z axis (Left handed rotations)
     ***********************/
-    amMatrix4x4 
-    RotationZ_LH(const float& theta);
+    amMatrix4x4& 
+    rotateZ(const float& theta);
 
-    amMatrix4x4 
-    perspectiveFOVLH(const float& FOVY, const float& ratio, const float& zNear, const float& zFar);
+    /**
+    ************************
+    *  @brief 
+    ************************
+    */
+    amMatrix4x4&
+    rotateAxis(const amVector3& axis, const  float ang);
 
-    amMatrix4x4 
-    perspectiveFOVRH(const float& FOVY, const float& ratio, const float& zNear, const float& zFar);
+    amMatrix4x4&
+    setViewProjection(const float& FOV, const float& ratio, const float& zNear, const float& zFar);
 
     /***********************
     *  @brief Return the transposed of this matrix
     ***********************/
-    amMatrix4x4 
-    transposed();
-
-    /***********************
-    *  @brief Transposes this matrix
-    ***********************/
-    //void 
-    //Transpose();
+    amMatrix4x4& 
+    transpose();
 
 
-    amMatrix4x4 
-    Fast_Inverse(amMatrix4x4& M);
+    amMatrix4x4&
+    lookAt(const amVector3& EyePos, const  amVector3& Target, const  amVector3& Up);
 
     /**
     ************************
@@ -178,19 +152,21 @@ namespace amEngineSDK {
     amMatrix4x4 
     inverse();
 
+
+    amMatrix4x4&
+    fastInverse();
+
     /**
     ************************
     *  @brief Inverts this matrix
     ************************
     */
-    void invert();
+    amMatrix4x4& 
+    invert();
 
     
-    amMatrix4x4 
-    lookAt_RH(amVector4& EyePos, amVector4& Target, amVector4& Up);
 
-    amMatrix4x4
-    lookAt_LH(amVector4& EyePos, amVector4& Target, amVector4& Up);
+    
 
     union {
       struct

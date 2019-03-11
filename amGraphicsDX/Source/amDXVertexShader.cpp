@@ -28,5 +28,10 @@ namespace amEngineSDK {
     amDXVertexShader::setShader(amDXDeviceContext * pDC) {
     pDC->m_pDC->VSSetShader(m_vs, nullptr, 0);
   }
+
+  void amDXVertexShader::createVS(const char* pathFileName, amDXDevice* pDevice) {
+    CompileShaderFromFile(pathFileName, "VS", "vs_5_0", &m_pblob);
+    createVertexShader(pDevice);
+  }
 }
 

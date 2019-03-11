@@ -12,11 +12,17 @@ namespace amEngineSDK {
     amDXVertexShader();
     ~amDXVertexShader();
 
+  protected:
     void
     createVertexShader(amDXDevice* pDevice);
 
+  public:
+
     virtual void
     setShader(amDXDeviceContext* pDC) override;
+
+    void 
+    createVS(const char* pathFileName, amDXDevice* pDevice);
 
     ID3D11VertexShader* m_vs;
   };

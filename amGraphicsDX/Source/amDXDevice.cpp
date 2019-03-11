@@ -4,13 +4,20 @@ namespace amEngineSDK {
 
   amDXDevice::~amDXDevice() {}
 
-  int32 amDXDevice::CreateVertexBuffer() {
-    m_pDV->CreateBuffer(&m_VB.m_bd, &m_VB.m_initData, &m_VB.m_pVB);
-    void* pVoid;
-    memcpy(pVoid, &m_VB.m_vVertex, m_VB.m_vVertex.size() * sizeof(m_VB.m_vVertex));
-    return 0;
+  int32 amDXDevice::CreateIndexBufferDefault(amDXIndexBuffer * pIB) {
+    pIB->setBufferData(D3D11_USAGE_DEFAULT);
+    return m_pDV->CreateBuffer(&pIB->m_bd, &pIB->m_initData, &pIB->m_pIndexBuffer);
   }
 
+  int32 amDXDevice::CreateConstantBuffer(amDXConstantBuffer * pCB) {
+    pCB->createConstBufferDefault();
+    return  m_pDV->CreateBuffer(&pCB->m_bd, &pCB->m_subResData, &pCB->m_pCB);
+  }
+
+  int32 amDXDevice::CreateVertexBufferDefault(amDXVertexBuffer* pVB) {
+    pVB->setBufferData(D3D11_USAGE_DEFAULT);
+    return m_pDV->CreateBuffer(&pVB->m_bd, &pVB->m_initData, &pVB->m_pVB);
+  }
 }
 
 

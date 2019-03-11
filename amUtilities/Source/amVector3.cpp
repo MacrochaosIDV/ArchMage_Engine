@@ -63,9 +63,12 @@ namespace amEngineSDK {
   amVector3 
   amVector3::operator^(const amVector3 & other)  const {
     amVector3 res;
-    res.x = y * other.z;
+    //res.x = y * other.z;
+    //res.y = z * other.x;
+    //res.z = x * other.y;
+    res.x = z * other.y;
     res.y = x * other.z;
-    res.z = x * other.y;
+    res.z = y * other.x;
     return res;
   }
 

@@ -27,5 +27,9 @@ namespace amEngineSDK {
   amDXPixelShader::setShader(amDXDeviceContext * pDC) {
     pDC->m_pDC->PSSetShader(m_ps, nullptr, 0);
   }
+  void amDXPixelShader::createPS(const char* pathFileName, amDXDevice * pDevice) {
+    CompileShaderFromFile(pathFileName, "PS", "ps_5_0", &m_pblob);
+    createPixelShader(pDevice);
+  }
 }
 

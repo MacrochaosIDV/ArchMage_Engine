@@ -7,7 +7,7 @@ namespace amEngineSDK {
     amIndexBuffer();
     ~amIndexBuffer();
 
-    virtual void setData(Vector<int32>) = 0;
+    virtual void setData(Vector<uint32>&) = 0;
     virtual void clear() = 0;
   };
 }

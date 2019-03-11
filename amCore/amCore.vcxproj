@@ -70,21 +70,21 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)Bin\$(PlatformTarget)</OutDir>
+    <OutDir>$(SolutionDir)Bin\$(PlatformTarget)\</OutDir>
     <IntDir>$(SolutionDir)Intermediate\$(ProjectName)\$(PlatformShortName)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)d</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)Bin\$(PlatformTarget)</OutDir>
+    <OutDir>$(SolutionDir)Bin\$(PlatformTarget)\</OutDir>
     <IntDir>$(SolutionDir)Intermediate\$(ProjectName)\$(PlatformShortName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)Bin\$(PlatformTarget)</OutDir>
+    <OutDir>$(SolutionDir)Bin\$(PlatformTarget)\</OutDir>
     <IntDir>$(SolutionDir)Intermediate\$(ProjectName)\$(PlatformShortName)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)d</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)Bin\$(PlatformTarget)</OutDir>
+    <OutDir>$(SolutionDir)Bin\$(PlatformTarget)\</OutDir>
     <IntDir>$(SolutionDir)Intermediate\$(ProjectName)\$(PlatformShortName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -172,10 +172,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="amCamera.cpp" />
-    <ClCompile Include="amCameraManager.cpp" />
+    <ClCompile Include="amMaterial.cpp" />
     <ClCompile Include="amModel.cpp" />
     <ClCompile Include="Source\amBaseApp.cpp" />
+    <ClCompile Include="Source\amCamera.cpp" />
+    <ClCompile Include="Source\amCameraManager.cpp" />
     <ClCompile Include="Source\amComputeShader.cpp" />
     <ClCompile Include="Source\amConstantBuffer.cpp" />
     <ClCompile Include="Source\amDepthStencilState.cpp" />
@@ -201,10 +202,11 @@
     <ClCompile Include="Source\amWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="amCamera.h" />
-    <ClInclude Include="amCameraManager.h" />
+    <ClInclude Include="amMaterial.h" />
     <ClInclude Include="amModel.h" />
     <ClInclude Include="Include\amBaseApp.h" />
+    <ClInclude Include="Include\amCamera.h" />
+    <ClInclude Include="Include\amCameraManager.h" />
     <ClInclude Include="Include\amComputeShader.h" />
     <ClInclude Include="Include\amConstantBuffer.h" />
     <ClInclude Include="Include\amDepthStencilState.h" />

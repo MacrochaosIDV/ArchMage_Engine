@@ -1,23 +1,24 @@
 #pragma once
 #include "amPrerequisitesCore.h"
 
+class amVertex;
+class amVertexBuffer;
+class amIndexBuffer;
+class amShader;
+class amMaterial;
+
 namespace amEngineSDK {
   class AM_CORE_EXPORT amModel
   {
   public:
     amModel();
     ~amModel();
-    /*
-    void load(const string& pathname); {
-      vector<vertex> tmpVrtx;
-      vector<int32> tmpIndex;
-      m_vb = GraphicsAPI->createVB(desc...);
-      m_vb->SetData(tmpVrtx);
-      m_vb->createGraphicsObj();
-    }
+    
+    void load(const String& pathname);
 
-    indexbuffer m_ib;
-    VertexBuffer m_vb;
-    */
+    amIndexBuffer* m_ib;
+    amVertexBuffer* m_vb;
+    amShader* m_shader;
+    amMaterial* m_mat;
   };
 }

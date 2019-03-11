@@ -10,34 +10,26 @@
 Texture2D txDiffuse : register( t0 );
 SamplerState samLinear : register( s0 );
 
-cbuffer cbNeverChanges : register( b0 )
+cbuffer cbVP : register( b0 )
 {
-    matrix View;
-};
-
-cbuffer cbChangeOnResize : register( b1 )
-{
-    matrix Projection;
-};
-
-cbuffer cbChangesEveryFrame : register( b2 )
-{
-    matrix World;
-    float4 vMeshColor;
+    float4x4 matViewProjection;
 };
 
 
 //--------------------------------------------------------------------------------------
 struct VS_INPUT
 {
-    float4 Pos : POSITION;
-    float2 Tex : TEXCOORD0;
+    float4 Pos   : POSITION0;
+	float4 Color : COLOR0;
+	float3 Normal: NORMAL0;
+    float2 Tex   : TEXCOORD0;
 };
 
 struct PS_INPUT
 {
-    float4 Pos : SV_POSITION;
-    float2 Tex : TEXCOORD0;
+    float4 Pos   : SV_Position;
+	float4 Color : COLOR0;
+    float2 Tex   : TEXCOORD0;
 };
 
 
@@ -47,10 +39,10 @@ struct PS_INPUT
 PS_INPUT VS( VS_INPUT input )
 {
     PS_INPUT output = (PS_INPUT)0;
-    output.Pos = mul( input.Pos, World );
-    output.Pos = mul( output.Pos, View );
-    output.Pos = mul( output.Pos, Projection );
+    //output.Pos = mul( input.Pos, matViewProjection );
+	output.Pos = input.Pos;
     output.Tex = input.Tex;
+	output.Color = input.Color;
     
     return output;
 }
@@ -59,7 +51,9 @@ PS_INPUT VS( VS_INPUT input )
 //--------------------------------------------------------------------------------------
 // Pixel Shader
 //--------------------------------------------------------------------------------------
-float4 PS( PS_INPUT input) : SV_Target
+float4 PS( PS_INPUT input) : SV_Target0
 {
-    return txDiffuse.Sample( samLinear, input.Tex ) * vMeshColor;
+	return float4(input.Color.xyz, 1.0f);
+    //return float4(0.3f, 0.6f, 0.03f, 1.0f);
+    //return txDiffuse.Sample( samLinear, input.Tex ) * input.Color;
 }

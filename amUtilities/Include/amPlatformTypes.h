@@ -17,7 +17,7 @@
 /******************************************************************************/
 #include <cstdint>
 #include <cstddef>
-
+#include <string>
 #include "amPlatformDefines.h"
 
 #if AM_PLATFORM == AM_PLATFORM_PS4
@@ -111,6 +111,15 @@ namespace amEngineSDK {
 #endif
   using ANSICHAR = char;  // Ansi character type
   using UNICHAR = WCHAR;  // Unicode character Type
+
+  /**
+  ************************
+  *
+  *  String type
+  *
+  ************************
+  */
+  using String = std::string;
 
   /******************************************************************************
   **
