@@ -1,8 +1,25 @@
 #include "amCamera.h"
+//#include "amFrustrum.h"
 
 namespace amEngineSDK {
 
   amCamera::~amCamera() {}
+
+  amCamera & amCamera::operator=(const amCamera & other) {
+    // m_dirty = true;
+    m_front = other.m_front;
+    m_right = other.m_right;
+    m_up = other.m_up;
+    m_position = other.m_position;
+
+    m_fov = other.m_fov;
+    m_near = other.m_near;
+    m_far = other.m_far;
+
+    //m_clipSpace = other.m_clipSpace;
+    m_matView = other.m_matView;
+    return *this;
+  }
 
   amCamera::amCamera() {}
 
@@ -11,6 +28,21 @@ namespace amEngineSDK {
     m_front = Dir;
     m_up = Up;
     m_right = m_front ^ m_up;
+  }
+
+  amCamera::amCamera(const amCamera & other) {
+    m_dirty = true;
+    m_front = other.m_front;
+    m_right = other.m_right;
+    m_up = other.m_up;
+    m_position = other.m_position;
+
+    m_fov = other.m_fov;
+    m_near = other.m_near;
+    m_far = other.m_far;
+
+    //m_clipSpace = other.m_clipSpace;
+    m_matView = other.m_matView;
   }
 
   void amCamera::movePoint(const amVector3& newPos, const amVector3& front, const amVector3& up) {
@@ -36,10 +68,12 @@ namespace amEngineSDK {
 
   void amCamera::rotate(amVector3 axis, float angle) {
     m_dirty = true;
+    angle;
   }
 
   void amCamera::orbit(amVector3 target, amVector3 angles) {
     m_dirty = true;
+    angles;
   }
 
   void amCamera::yaw(float angle) {

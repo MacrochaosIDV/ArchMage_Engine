@@ -16,7 +16,6 @@ namespace amEngineSDK {
     D3D11_BUFFER_DESC m_bd;
     D3D11_SUBRESOURCE_DATA m_initData;
     ID3D11Buffer* m_pIndexBuffer;
-    Vector<uint32> m_vecIB;
   };
 }
 

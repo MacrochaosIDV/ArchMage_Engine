@@ -7,7 +7,7 @@ namespace amEngineSDK {
     memset(&m_bd, 0, sizeof(m_bd));
     m_bd.Usage = _usageF;
     m_numVertex = m_vVertex.size();
-    m_bd.ByteWidth = sizeof(amVertex) * m_numVertex; // total byte size of all vertexes
+    m_bd.ByteWidth = static_cast<uint32>(sizeof(amVertex)) * m_numVertex; // total byte size of all vertexes
     m_bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
     m_bd.CPUAccessFlags = 0;
     m_bd.MiscFlags = 0;

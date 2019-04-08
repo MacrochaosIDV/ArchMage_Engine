@@ -1,15 +1,23 @@
 #pragma once
+
 #include "amPrerequisitesCore.h"
-#include <amVector3.h>
-#include <amMatrix4x4.h>
+#include "amMatrix4x4.h"
+#include "amFrustrum.h"
+
 
 namespace amEngineSDK {
+  //class amFrustrum;
+
   class AM_CORE_EXPORT amCamera
   {
   public:
     amCamera();
     amCamera(const amVector3& Pos, const amVector3& Target, const amVector3& Up);
+    amCamera(const amCamera& other);
     ~amCamera();
+
+    amCamera&
+    operator=(const amCamera& other);
 
     void 
     movePoint(const amVector3& newPos, const amVector3& front, const amVector3& up);
@@ -48,10 +56,14 @@ namespace amEngineSDK {
     getViewMatrix();
 
     bool m_dirty;
+    float m_fov;
+    float m_near;
+    float m_far;
     amVector3 m_position;
     amVector3 m_up;
     amVector3 m_front;
     amVector3 m_right;
+    amFrustrum m_clipSpace;
     amMatrix4x4 m_matView;
   };
 }

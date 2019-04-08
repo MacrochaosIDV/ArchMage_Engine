@@ -17,7 +17,6 @@
 *
 ***********************/
 #include "amPrerequisitesUtilities.h"
-#include "amVector3.h"
 #include "amTriangle.h"
 
 namespace amEngineSDK{

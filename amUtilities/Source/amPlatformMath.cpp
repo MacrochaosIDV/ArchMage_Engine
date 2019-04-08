@@ -46,12 +46,12 @@ namespace amEngineSDK {
 
     bool
     amPlatformMath::intersects(const amVector3 &vec, const amFrustrum &f) {
-      if ((vec | f.m_planes[FRUSTRUM_PLANES::NEAR]) < 0)
-        if ((vec | f.m_planes[FRUSTRUM_PLANES::FAR]) < 0)
-          if ((vec | f.m_planes[FRUSTRUM_PLANES::RIGHT]) < 0)
-            if ((vec | f.m_planes[FRUSTRUM_PLANES::LEFT]) < 0)
-              if ((vec | f.m_planes[FRUSTRUM_PLANES::TOP]) < 0)
-                if ((vec | f.m_planes[FRUSTRUM_PLANES::BOTTOM]) < 0)
+      if ((vec | f.m_planes[FRUSTRUM::kNEAR]) < 0)
+        if ((vec | f.m_planes[FRUSTRUM::kFAR]) < 0)
+          if ((vec | f.m_planes[FRUSTRUM::kRIGHT]) < 0)
+            if ((vec | f.m_planes[FRUSTRUM::kLEFT]) < 0)
+              if ((vec | f.m_planes[FRUSTRUM::kTOP]) < 0)
+                if ((vec | f.m_planes[FRUSTRUM::kBOTTOM]) < 0)
                   return true;
       return false;
     }

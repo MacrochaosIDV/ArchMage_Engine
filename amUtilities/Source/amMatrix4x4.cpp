@@ -20,8 +20,8 @@ namespace amEngineSDK {
 
   amMatrix4x4::~amMatrix4x4() {}
 
-  const amMatrix4x4 amMatrix4x4::IDENTITY = amMatrix4x4(FORCE_INIT::ONE);
-  const amMatrix4x4 amMatrix4x4::ZERO = amMatrix4x4(FORCE_INIT::ZERO);
+  const amMatrix4x4 amMatrix4x4::IDENTITY = amMatrix4x4(FORCE_INIT::kONE);
+  const amMatrix4x4 amMatrix4x4::ZERO = amMatrix4x4(FORCE_INIT::kZERO);
 
   amMatrix4x4::amMatrix4x4(const amMatrix4x4& other) {
     //_m = other._m;
@@ -35,7 +35,7 @@ namespace amEngineSDK {
 
   amMatrix4x4::amMatrix4x4(int32 val) {
     memset(this, 0, sizeof(amMatrix4x4));
-    if (val == FORCE_INIT::ONE)
+    if (val == FORCE_INIT::kONE)
       _m.m00 = _m.m11 = _m.m22 = _m.m33 = 1.0f;
   }
 
@@ -64,7 +64,8 @@ namespace amEngineSDK {
   }
 
   amMatrix4x4& amMatrix4x4::operator*=(const amMatrix4x4 & other) {
-    return *this * other;
+    *this = *this * other;
+    return *this;
   }
 
   amMatrix4x4 amMatrix4x4::operator*(const amMatrix4x4& other) {
@@ -77,6 +78,13 @@ namespace amEngineSDK {
   }
 
   amVector4 amMatrix4x4::operator*(amVector4& V) {
+    /**
+    ************************
+    *
+    *  @TODO convert to Col major 
+    *
+    ************************
+    */
       amVector4 res;
       res.x = (_m.m00 * V.x) + (_m.m10 * V.y) + (_m.m20 * V.z) + (_m.m30 * V.w);
       res.y = (_m.m01 * V.x) + (_m.m11 * V.y) + (_m.m21 * V.z) + (_m.m31 * V.w);
@@ -165,6 +173,11 @@ namespace amEngineSDK {
     }
     *this = T;
     return *this;
+  }
+
+  amMatrix4x4 amMatrix4x4::transposed() {
+    amMatrix4x4 __m = *this;
+    return __m.transpose();
   }
 
   /*amMatrix4x4 amMatrix4x4::Fast_Inverse(amMatrix4x4 & M) {
@@ -311,13 +324,20 @@ namespace amEngineSDK {
   }
 
   amMatrix4x4& amMatrix4x4::invert() {
-    return this->inverse();
+    this->inverse();
+    return *this;
   }
 
-  amMatrix4x4& amMatrix4x4::scale(const float sx, const float sy, const float sz) {
+  amVector3
+  amMatrix4x4::getPosition() {
+    return amVector3(_m.m30, _m.m31, _m.m32);
+  }
+
+  amMatrix4x4
+  amMatrix4x4::scale(const float sx, const float sy, const float sz) {
     amMatrix4x4 res(IDENTITY);
     res._m.m00 = sx; res._m.m11 = sy; res._m.m22 = sz;
-      return res;
+    return res;
   }
 
   /*amMatrix4x4 amMatrix4x4::Translation_LH(float dx, float dy, float dz) {
@@ -370,7 +390,8 @@ namespace amEngineSDK {
       return View;
   }*/
 
-  amMatrix4x4& amMatrix4x4::lookAt(const amVector3 & EyePos, const amVector3 & Target, const amVector3 & Up) {
+  amMatrix4x4
+  amMatrix4x4::lookAt(const amVector3 & EyePos, const amVector3 & Target, const amVector3 & Up) {
       amVector3 xDir, yDir, zDir;
       zDir = (Target - EyePos).getNormalized();
       xDir = Up.cross3(zDir).getNormalized();

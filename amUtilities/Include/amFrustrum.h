@@ -19,19 +19,20 @@
 ***********************/
 #include "amPrerequisitesUtilities.h"
 #include "amPlane.h"
-#include "amMath.h"
+#include "amMatrix4x4.h"
 
 
 namespace amEngineSDK {
-  namespace FRUSTRUM_PLANES {
+
+  namespace FRUSTRUM {
     enum E {
-      NEAR,
-      FAR,
-      LEFT,
-      RIGHT,
-      TOP,
-      BOTTOM,
-      COUNT
+      kNEAR = 0,
+      kFAR,
+      kLEFT,
+      kRIGHT,
+      kTOP,
+      kBOTTOM,
+      kCOUNT
     };
   }
 
@@ -85,7 +86,7 @@ namespace amEngineSDK {
     bool
     intersects(const amFrustrum& other);
     
-    amPlane m_planes[FRUSTRUM_PLANES::COUNT];
+    amPlane m_planes[FRUSTRUM::kCOUNT];
   };
 }
 

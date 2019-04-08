@@ -96,7 +96,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>false</SDLCheck>
       <AdditionalIncludeDirectories>./Include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <PreprocessorDefinitions>AM_UTILITIES_EXPORTS</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
@@ -117,7 +117,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>false</SDLCheck>
       <AdditionalIncludeDirectories>./Include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <PreprocessorDefinitions>AM_UTILITIES_EXPORTS</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
@@ -140,7 +140,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>false</SDLCheck>
       <AdditionalIncludeDirectories>./Include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <PreprocessorDefinitions>AM_UTILITIES_EXPORTS</PreprocessorDefinitions>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
@@ -164,7 +164,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>false</SDLCheck>
       <AdditionalIncludeDirectories>./Include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <PreprocessorDefinitions>AM_UTILITIES_EXPORTS</PreprocessorDefinitions>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
@@ -181,14 +181,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="amAllocator.cpp" />
-    <ClCompile Include="amModule.cpp" />
     <ClCompile Include="Source\amAABB.cpp" />
+    <ClCompile Include="Source\amAllocator.cpp" />
     <ClCompile Include="Source\amBox2D.cpp" />
     <ClCompile Include="Source\amCapsule.cpp" />
     <ClCompile Include="Source\amCircle2D.cpp" />
     <ClCompile Include="Source\amFrustrum.cpp" />
     <ClCompile Include="Source\amLine2D.cpp" />
+    <ClCompile Include="Source\amModule.cpp" />
     <ClCompile Include="Source\amPerformanceCounter.cpp" />
     <ClCompile Include="Source\amPlatformMath.cpp" />
     <ClCompile Include="Source\amMatrix4x4.cpp" />
@@ -204,9 +204,8 @@
     <ClCompile Include="Source\amVector4.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="amAllocator.h" />
-    <ClInclude Include="amModule.h" />
     <ClInclude Include="Include\amAABB.h" />
+    <ClInclude Include="Include\amAllocator.h" />
     <ClInclude Include="Include\amBox2D.h" />
     <ClInclude Include="Include\amCapsule.h" />
     <ClInclude Include="Include\amCircle2D.h" />
@@ -214,6 +213,7 @@
     <ClInclude Include="Include\amLine2D.h" />
     <ClInclude Include="Include\amMath.h" />
     <ClInclude Include="Include\amMatrix4x4.h" />
+    <ClInclude Include="Include\amModule.h" />
     <ClInclude Include="Include\amOOBB.h" />
     <ClInclude Include="Include\amPerformanceCounter.h" />
     <ClInclude Include="Include\amPlane.h" />

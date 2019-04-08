@@ -62,10 +62,10 @@
   #include <windows.h>
 
 // C RunTime Header Files
-  #include <stdlib.h>
-  #include <malloc.h>
-  #include <memory.h>
-  #include <tchar.h>
+  //#include <stdlib.h>
+  //#include <malloc.h>
+  //#include <memory.h>
+  //#include <tchar.h>
 #elif AM_PLATFORM == AM_PLATFORM_LINUX
 
 #elif AM_PLATFORM == AM_PLATFORM_PS4

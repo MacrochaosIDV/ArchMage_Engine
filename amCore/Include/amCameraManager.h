@@ -1,8 +1,9 @@
 #pragma once
 #include "amPrerequisitesCore.h"
-#include "amCamera.h"
 
 namespace amEngineSDK {
+  class amCamera;
+
   class AM_CORE_EXPORT amCameraManager
   {
   public:

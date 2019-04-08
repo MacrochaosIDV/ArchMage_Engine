@@ -29,8 +29,7 @@ namespace amEngineSDK {
     ID3D11Buffer* m_pVB;
     D3D11_BUFFER_DESC m_bd;
     D3D11_SUBRESOURCE_DATA m_initData;
-    Vector<amVertex> m_vVertex;
-    uint32 m_numVertex;
+    
   };
 
 }

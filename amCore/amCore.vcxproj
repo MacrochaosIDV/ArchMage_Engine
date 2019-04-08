@@ -92,18 +92,18 @@
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>false</SDLCheck>
-      <ConformanceMode>true</ConformanceMode>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <LanguageStandard>stdcpp14</LanguageStandard>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <PreprocessorDefinitions>AM_CORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(DEVLIBS)EASTL/include/;$(DEVLIBS)EASTL\test\packages\EABase\include\Common\;$(ProjectDir)Include\;$(SolutionDir)amGraphicsDX\Include\;$(SolutionDir)amUtilities\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <PreprocessorDefinitions>AM_CORE_EXPORTS;NOMINMAX;</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>./Include/;$(SolutionDir)amUtilities\Include\;$(DEVLIBS)assimp-master\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)Lib\$(PlatformTarget);$(SolutionDir)amCore\Include\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Lib\$(PlatformTarget);$(SolutionDir)amCore\Include\;$(DEVLIBS)assimp-master\lib\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)Lib\$(PlatformTarget)\$(TargetName).lib</ImportLibrary>
-      <AdditionalDependencies>amUtilitiesd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>amUtilitiesd.lib;assimp-vc140-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -111,18 +111,18 @@
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>false</SDLCheck>
-      <ConformanceMode>true</ConformanceMode>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <LanguageStandard>stdcpp14</LanguageStandard>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <PreprocessorDefinitions>AM_CORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(DEVLIBS)EASTL/include/;$(DEVLIBS)EASTL\test\packages\EABase\include\Common\;$(ProjectDir)Include\;$(SolutionDir)amGraphicsDX\Include\;$(SolutionDir)amUtilities\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <PreprocessorDefinitions>AM_CORE_EXPORTS;NOMINMAX;</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>./Include/;$(SolutionDir)amUtilities\Include\;$(DEVLIBS)assimp-master\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)Lib\$(PlatformTarget);$(SolutionDir)amCore\Include\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Lib\$(PlatformTarget);$(SolutionDir)amCore\Include\;$(DEVLIBS)assimp-master\lib\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)Lib\$(PlatformTarget)\$(TargetName).lib</ImportLibrary>
-      <AdditionalDependencies>amUtilitiesd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>amUtilitiesd.lib;assimp-vc140-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -132,20 +132,20 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>false</SDLCheck>
-      <ConformanceMode>true</ConformanceMode>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <LanguageStandard>stdcpp14</LanguageStandard>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <PreprocessorDefinitions>AM_CORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(DEVLIBS)EASTL/include/;$(DEVLIBS)EASTL\test\packages\EABase\include\Common\;$(ProjectDir)Include\;$(SolutionDir)amGraphicsDX\Include\;$(SolutionDir)amUtilities\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <PreprocessorDefinitions>AM_CORE_EXPORTS;NOMINMAX;</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>./Include/;$(SolutionDir)amUtilities\Include\;$(DEVLIBS)assimp-master\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)Lib\$(PlatformTarget);$(SolutionDir)amCore\Include\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Lib\$(PlatformTarget);$(SolutionDir)amCore\Include\;$(DEVLIBS)assimp-master\lib\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)Lib\$(PlatformTarget)\$(TargetName).lib</ImportLibrary>
-      <AdditionalDependencies>amUtilities.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>amUtilities.lib;assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -155,25 +155,23 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>false</SDLCheck>
-      <ConformanceMode>true</ConformanceMode>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <LanguageStandard>stdcpp14</LanguageStandard>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <PreprocessorDefinitions>AM_CORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(DEVLIBS)EASTL/include/;$(DEVLIBS)EASTL\test\packages\EABase\include\Common\;$(ProjectDir)Include\;$(SolutionDir)amGraphicsDX\Include\;$(SolutionDir)amUtilities\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <PreprocessorDefinitions>AM_CORE_EXPORTS;NOMINMAX;</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>./Include/;$(SolutionDir)amUtilities\Include\;$(DEVLIBS)assimp-master\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)Lib\$(PlatformTarget);$(SolutionDir)amCore\Include\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Lib\$(PlatformTarget);$(SolutionDir)amCore\Include\;$(DEVLIBS)assimp-master\lib\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)Lib\$(PlatformTarget)\$(TargetName).lib</ImportLibrary>
-      <AdditionalDependencies>amUtilities.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>amUtilities.lib;assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="amMaterial.cpp" />
-    <ClCompile Include="amModel.cpp" />
     <ClCompile Include="Source\amBaseApp.cpp" />
     <ClCompile Include="Source\amCamera.cpp" />
     <ClCompile Include="Source\amCameraManager.cpp" />
@@ -181,29 +179,40 @@
     <ClCompile Include="Source\amConstantBuffer.cpp" />
     <ClCompile Include="Source\amDepthStencilState.cpp" />
     <ClCompile Include="Source\amDepthStencilView.cpp" />
+    <ClCompile Include="Source\amGameObject.cpp" />
     <ClCompile Include="Source\amGeomShader.cpp" />
     <ClCompile Include="Source\amGraphicsAPI.cpp" />
     <ClCompile Include="Source\amGraphicsBuffer.cpp" />
     <ClCompile Include="Source\amIndexBuffer.cpp" />
     <ClCompile Include="Source\amInputLayout.cpp" />
+    <ClCompile Include="Source\amMaterial.cpp" />
+    <ClCompile Include="Source\amMesh.cpp" />
+    <ClCompile Include="Source\amModel.cpp" />
     <ClCompile Include="Source\amPixelShader.cpp" />
     <ClCompile Include="Source\amRasterizerState.cpp" />
+    <ClCompile Include="Source\amRenderManager.cpp" />
+    <ClCompile Include="Source\amRenderPass.cpp" />
+    <ClCompile Include="Source\amRenderTarget.cpp" />
     <ClCompile Include="Source\amRenderTargetView.cpp" />
+    <ClCompile Include="Source\amResource.cpp" />
+    <ClCompile Include="Source\amResourceManager.cpp" />
     <ClCompile Include="Source\amSamplerState.cpp" />
+    <ClCompile Include="Source\amSceneGraph.cpp" />
+    <ClCompile Include="Source\amSceneNode.cpp" />
     <ClCompile Include="Source\amShader.cpp" />
     <ClCompile Include="Source\amShaderResourceView.cpp" />
     <ClCompile Include="Source\amSwapChain.cpp" />
     <ClCompile Include="Source\amTexture.cpp" />
     <ClCompile Include="Source\amTextureShader.cpp" />
+    <ClCompile Include="Source\amTransform.cpp" />
     <ClCompile Include="Source\amVertex.cpp" />
     <ClCompile Include="Source\amVertexBuffer.cpp" />
     <ClCompile Include="Source\amVertexShader.cpp" />
+    <ClCompile Include="Source\amVertexType.cpp" />
     <ClCompile Include="Source\amViewPort.cpp" />
     <ClCompile Include="Source\amWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="amMaterial.h" />
-    <ClInclude Include="amModel.h" />
     <ClInclude Include="Include\amBaseApp.h" />
     <ClInclude Include="Include\amCamera.h" />
     <ClInclude Include="Include\amCameraManager.h" />
@@ -211,24 +220,37 @@
     <ClInclude Include="Include\amConstantBuffer.h" />
     <ClInclude Include="Include\amDepthStencilState.h" />
     <ClInclude Include="Include\amDepthStencilView.h" />
+    <ClInclude Include="Include\amGameObject.h" />
     <ClInclude Include="Include\amGeomShader.h" />
     <ClInclude Include="Include\amGraphicsAPI.h" />
     <ClInclude Include="Include\amGraphicsBuffer.h" />
     <ClInclude Include="Include\amIndexBuffer.h" />
     <ClInclude Include="Include\amInputLayout.h" />
+    <ClInclude Include="Include\amMaterial.h" />
+    <ClInclude Include="Include\amMesh.h" />
+    <ClInclude Include="Include\amModel.h" />
     <ClInclude Include="Include\amPixelShader.h" />
     <ClInclude Include="Include\amPrerequisitesCore.h" />
     <ClInclude Include="Include\amRasterizerState.h" />
+    <ClInclude Include="Include\amRenderManager.h" />
+    <ClInclude Include="Include\amRenderPass.h" />
+    <ClInclude Include="Include\amRenderTarget.h" />
     <ClInclude Include="Include\amRenderTargetView.h" />
+    <ClInclude Include="Include\amResource.h" />
+    <ClInclude Include="Include\amResourceManager.h" />
     <ClInclude Include="Include\amSamplerState.h" />
+    <ClInclude Include="Include\amSceneGraph.h" />
+    <ClInclude Include="Include\amSceneNode.h" />
     <ClInclude Include="Include\amShader.h" />
     <ClInclude Include="Include\amShaderResourceView.h" />
     <ClInclude Include="Include\amSwapChain.h" />
     <ClInclude Include="Include\amTexture.h" />
     <ClInclude Include="Include\amTextureShader.h" />
+    <ClInclude Include="Include\amTransform.h" />
     <ClInclude Include="Include\amVertex.h" />
     <ClInclude Include="Include\amVertexBuffer.h" />
     <ClInclude Include="Include\amVertexShader.h" />
+    <ClInclude Include="Include\amVertexType.h" />
     <ClInclude Include="Include\amViewPort.h" />
     <ClInclude Include="Include\amWindow.h" />
   </ItemGroup>

@@ -25,8 +25,8 @@ namespace amEngineSDK {
   namespace FORCE_INIT {
     enum E
     {
-      ZERO,
-      ONE
+      kZERO,
+      kONE
     };
   }
 
@@ -102,7 +102,7 @@ namespace amEngineSDK {
     *  @brief Returns the matrix scaled by sx, sy, sz
     ************************
     */
-    amMatrix4x4& 
+    amMatrix4x4 
     scale(const float sx, const  float sy, const  float sz);
 
     /***********************
@@ -140,8 +140,11 @@ namespace amEngineSDK {
     amMatrix4x4& 
     transpose();
 
+    amMatrix4x4
+      transposed();
 
-    amMatrix4x4&
+
+    amMatrix4x4
     lookAt(const amVector3& EyePos, const  amVector3& Target, const  amVector3& Up);
 
     /**
@@ -152,7 +155,7 @@ namespace amEngineSDK {
     amMatrix4x4 
     inverse();
 
-
+    
     amMatrix4x4&
     fastInverse();
 
@@ -164,9 +167,13 @@ namespace amEngineSDK {
     amMatrix4x4& 
     invert();
 
-    
-
-    
+    /**
+    ************************
+    *  @brief Extracts & returns the position of this matrix
+    ************************
+    */
+    amVector3 
+    getPosition();
 
     union {
       struct

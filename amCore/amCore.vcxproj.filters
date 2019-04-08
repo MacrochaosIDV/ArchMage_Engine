@@ -11,26 +11,26 @@
     <Filter Include="Source Files\Shaders">
       <UniqueIdentifier>{f5c9e29b-d48c-468b-a175-1e9a34b3af6c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\States">
+    <Filter Include="Source Files\Core">
+      <UniqueIdentifier>{24f44b95-ac71-4389-b23b-7f96dded5e91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Resource classes">
+      <UniqueIdentifier>{0038e947-316f-4389-bc24-8ebcce69d93f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\API classes">
+      <UniqueIdentifier>{f10bd961-c7c2-40f7-a0aa-5f3d5a436b42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core management">
+      <UniqueIdentifier>{f1fa8724-c1e7-4b70-94d1-095f9d8c3f54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Renderer classes">
       <UniqueIdentifier>{dc1ffbfc-a582-40d8-9db9-700406f2a01f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Views">
-      <UniqueIdentifier>{f99ca075-b5eb-4b97-9be3-9592a7abeccc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Resources">
-      <UniqueIdentifier>{0038e947-316f-4389-bc24-8ebcce69d93f}</UniqueIdentifier>
+    <Filter Include="Source Files\Core\Components">
+      <UniqueIdentifier>{f3323f50-7194-48ca-ab5e-698b037a4ae8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\amGraphicsAPI.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\amInputLayout.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\amSwapChain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\amComputeShader.cpp">
       <Filter>Source Files\Shaders</Filter>
     </ClCompile>
@@ -62,61 +62,94 @@
       <Filter>Source Files\Buffers</Filter>
     </ClCompile>
     <ClCompile Include="Source\amDepthStencilState.cpp">
-      <Filter>Source Files\States</Filter>
+      <Filter>Source Files\Renderer classes</Filter>
     </ClCompile>
     <ClCompile Include="Source\amRasterizerState.cpp">
-      <Filter>Source Files\States</Filter>
+      <Filter>Source Files\Renderer classes</Filter>
     </ClCompile>
     <ClCompile Include="Source\amSamplerState.cpp">
-      <Filter>Source Files\States</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\amDepthStencilView.cpp">
-      <Filter>Source Files\Views</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\amRenderTargetView.cpp">
-      <Filter>Source Files\Views</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\amShaderResourceView.cpp">
-      <Filter>Source Files\Views</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\amViewPort.cpp">
-      <Filter>Source Files\Views</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\amVertex.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\amBaseApp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\amWindow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="amModel.cpp">
-      <Filter>Source Files\Resources</Filter>
+      <Filter>Source Files\Renderer classes</Filter>
     </ClCompile>
     <ClCompile Include="Source\amTexture.cpp">
-      <Filter>Source Files\Resources</Filter>
+      <Filter>Source Files\Resource classes</Filter>
     </ClCompile>
-    <ClCompile Include="amMaterial.cpp">
-      <Filter>Source Files\Resources</Filter>
+    <ClCompile Include="Source\amMaterial.cpp">
+      <Filter>Source Files\Resource classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amModel.cpp">
+      <Filter>Source Files\Resource classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amResource.cpp">
+      <Filter>Source Files\Resource classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amResourceManager.cpp">
+      <Filter>Source Files\Resource classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amMesh.cpp">
+      <Filter>Source Files\Resource classes</Filter>
     </ClCompile>
     <ClCompile Include="Source\amCamera.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amGraphicsAPI.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amVertex.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amWindow.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amInputLayout.cpp">
+      <Filter>Source Files\API classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amSwapChain.cpp">
+      <Filter>Source Files\API classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amDepthStencilView.cpp">
+      <Filter>Source Files\Renderer classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amRenderTargetView.cpp">
+      <Filter>Source Files\Renderer classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amShaderResourceView.cpp">
+      <Filter>Source Files\Renderer classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amViewPort.cpp">
+      <Filter>Source Files\API classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amBaseApp.cpp">
+      <Filter>Source Files\API classes</Filter>
     </ClCompile>
     <ClCompile Include="Source\amCameraManager.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Core management</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amSceneGraph.cpp">
+      <Filter>Source Files\Core management</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amSceneNode.cpp">
+      <Filter>Source Files\Core management</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amRenderManager.cpp">
+      <Filter>Source Files\Core management</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amTransform.cpp">
+      <Filter>Source Files\Core\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amGameObject.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amVertexType.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amRenderPass.cpp">
+      <Filter>Source Files\Renderer classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amRenderTarget.cpp">
+      <Filter>Source Files\Renderer classes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Include\amGraphicsAPI.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\amInputLayout.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\amSwapChain.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="Include\amComputeShader.h">
       <Filter>Source Files\Shaders</Filter>
     </ClInclude>
@@ -148,52 +181,94 @@
       <Filter>Source Files\Buffers</Filter>
     </ClInclude>
     <ClInclude Include="Include\amDepthStencilState.h">
-      <Filter>Source Files\States</Filter>
+      <Filter>Source Files\Renderer classes</Filter>
     </ClInclude>
     <ClInclude Include="Include\amRasterizerState.h">
-      <Filter>Source Files\States</Filter>
+      <Filter>Source Files\Renderer classes</Filter>
     </ClInclude>
     <ClInclude Include="Include\amSamplerState.h">
-      <Filter>Source Files\States</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\amDepthStencilView.h">
-      <Filter>Source Files\Views</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\amRenderTargetView.h">
-      <Filter>Source Files\Views</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\amShaderResourceView.h">
-      <Filter>Source Files\Views</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\amViewPort.h">
-      <Filter>Source Files\Views</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\amVertex.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Renderer classes</Filter>
     </ClInclude>
     <ClInclude Include="Include\amPrerequisitesCore.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Include\amBaseApp.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\amWindow.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="amModel.h">
-      <Filter>Source Files\Resources</Filter>
-    </ClInclude>
     <ClInclude Include="Include\amTexture.h">
-      <Filter>Source Files\Resources</Filter>
+      <Filter>Source Files\Resource classes</Filter>
     </ClInclude>
-    <ClInclude Include="amMaterial.h">
-      <Filter>Source Files\Resources</Filter>
+    <ClInclude Include="Include\amMaterial.h">
+      <Filter>Source Files\Resource classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amModel.h">
+      <Filter>Source Files\Resource classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amResource.h">
+      <Filter>Source Files\Resource classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amResourceManager.h">
+      <Filter>Source Files\Resource classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amMesh.h">
+      <Filter>Source Files\Resource classes</Filter>
     </ClInclude>
     <ClInclude Include="Include\amCamera.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amGraphicsAPI.h">
+      <Filter>Source Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amWindow.h">
+      <Filter>Source Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amVertex.h">
+      <Filter>Source Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amSwapChain.h">
+      <Filter>Source Files\API classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amInputLayout.h">
+      <Filter>Source Files\API classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amDepthStencilView.h">
+      <Filter>Source Files\Renderer classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amRenderTargetView.h">
+      <Filter>Source Files\Renderer classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amShaderResourceView.h">
+      <Filter>Source Files\Renderer classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amViewPort.h">
+      <Filter>Source Files\API classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amBaseApp.h">
+      <Filter>Source Files\API classes</Filter>
     </ClInclude>
     <ClInclude Include="Include\amCameraManager.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Core management</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amSceneNode.h">
+      <Filter>Source Files\Core management</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amSceneGraph.h">
+      <Filter>Source Files\Core management</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amRenderManager.h">
+      <Filter>Source Files\Core management</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amTransform.h">
+      <Filter>Source Files\Core\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amGameObject.h">
+      <Filter>Source Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amVertexType.h">
+      <Filter>Source Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amRenderPass.h">
+      <Filter>Source Files\Renderer classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amRenderTarget.h">
+      <Filter>Source Files\Renderer classes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

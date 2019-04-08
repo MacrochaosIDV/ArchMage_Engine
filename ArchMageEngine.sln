@@ -29,6 +29,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "amCore", "amCore\amCore.vcx
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "amInputManager", "amInputManager\amInputManager.vcxproj", "{8646285A-C1D5-43CB-910A-AA3B81D5229B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{42CCE801-0641-4EC5-945A-80515C462C79} = {42CCE801-0641-4EC5-945A-80515C462C79}
+		{6C371892-A904-4B38-A5CF-D700D1541CF0} = {6C371892-A904-4B38-A5CF-D700D1541CF0}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

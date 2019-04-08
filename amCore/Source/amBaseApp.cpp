@@ -115,13 +115,18 @@ namespace amEngineSDK {
 
   void amBaseApp::postInit() {}
 
-  void amBaseApp::postUpdate(float deltaTime) {}
+  void amBaseApp::postUpdate(float deltaTime) {
+    deltaTime;
+  }
 
   void amBaseApp::postRender() {}
 
   void amBaseApp::preDestroy() {}
 
-  void amBaseApp::onMouseMove(float x, float y) {}
+  void amBaseApp::onMouseMove(float x, float y) {
+    x;
+    y;
+  }
 
   void amBaseApp::initSystems() {
     m_GAPI->init(m_hWnd);
@@ -141,7 +146,7 @@ namespace amEngineSDK {
     m_wcex.cbWndExtra = 0;
     m_wcex.hInstance = hInstance;
     m_wcex.hIcon = LoadIconW(hInstance, MAKEINTRESOURCEW(IDI_TSTPROJ));
-    m_wcex.hCursor = LoadCursorW(nullptr, MAKEINTRESOURCEW(IDC_ARROW));
+    m_wcex.hCursor = LoadCursorW(nullptr, MAKEINTRESOURCEW(IDC_ARROW));//TODO change to Wstr.cstring()
     m_wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
     m_wcex.lpszMenuName = MAKEINTRESOURCEW(IDC_TSTPROJ);
     m_wcex.lpszClassName = m_szWindowClass.c_str();
@@ -194,6 +199,7 @@ namespace amEngineSDK {
       {
         PAINTSTRUCT ps;
         HDC hdc = BeginPaint(hWnd, &ps);
+        hdc;
         // TODO: Add any drawing code that uses hdc here...
         EndPaint(hWnd, &ps);
       }
