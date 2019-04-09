@@ -25,7 +25,7 @@ namespace amEngineSDK {
   }
 
   void amDXGraphicsAPI::Render() {
-    float color[4] = {1.0f, 0.0f, 1.0f, 1.0f};
+    float color[4] = {0.3f, 0.3f, 0.3f, 1.0f};
     m_pImmediateContext->m_pDC->ClearRenderTargetView(m_pRenderTargetView->m_pRTV, color);
     m_pImmediateContext->m_pDC->ClearDepthStencilView(m_pDepthStencilView->m_pDSV, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
     
@@ -44,12 +44,31 @@ namespace amEngineSDK {
 
     m_pImmediateContext->m_pDC->VSSetConstantBuffers(0, 1, &m_pCB_VP->m_pCB);
 
+    // Draw as many vertexes as in first param in Draw()
     m_pImmediateContext->m_pDC->Draw(3, 0);
+
+    // Draw with index buffers
+    //m_pImmediateContext->m_pDC->DrawIndexed(3,0,0);
+
+    /**
+    ************************
+    * TODO: Mod renderer to use DrawIndxInst to repeat one model in many instances all in one go
+    * m_pImmediateContext->m_pDC->DrawIndexedInstanced();
+    *
+    ************************
+    */
 
     m_pSwapChain->m_pSC->Present(0, 0);
   }
 
   void amDXGraphicsAPI::initContent() {
+    /**
+    ************************
+    *
+    *  @TODO: set up render passes with models and shaders
+    *
+    ************************
+    */
 
     m_pVertexShader->createVS("Resources/BasicShader.fx", m_pDevice);
     m_pPixelShader->createPS("Resources/BasicShader.fx", m_pDevice);
@@ -69,18 +88,27 @@ namespace amEngineSDK {
 
   }
 
+  void amDXGraphicsAPI::setManagers() {
+    m_pRenderManager->setpManagers(m_pResourceManager, m_pCamManager);
+  }
+
   void amDXGraphicsAPI::initSystems(void* _hWnd) {
 
     m_pDevice = new amDXDevice();
     m_pSwapChain = new amDXSwapChain();
     m_pCB_VP = new amDXConstantBuffer();
     m_pDepthStencil = new amDXTexture();
+    m_pCamManager = new amCameraManager();
     m_pPixelShader = new amDXPixelShader();
     m_pVertexShader = new amDXVertexShader();
     m_pVertexLayout = new  amDXInputLayout();
+    m_pRenderManager = new amRenderManager();
+    m_pResourceManager = new amResourceManager();
     m_pImmediateContext = new amDXDeviceContext();
     m_pDepthStencilView = new amDXDepthStencilView();
     m_pRenderTargetView = new amDXRenderTargetView();
+
+    setManagers();
 
     HRESULT hr = S_OK;
 
@@ -200,7 +228,7 @@ namespace amEngineSDK {
     m_pImmediateContext->m_pDC->RSSetViewports(1, &vp);
 
     //////////////////////////////////////////////////////////////////////////
-    // Build View Projection
+    // Build View Projection Matrix
     //////////////////////////////////////////////////////////////////////////
     m_fov = amMath::DEG2RAD * 75.0f;
     cam.m_matView = amMatrix4x4::IDENTITY;

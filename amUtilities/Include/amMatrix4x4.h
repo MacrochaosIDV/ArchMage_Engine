@@ -125,11 +125,12 @@ namespace amEngineSDK {
 
     /**
     ************************
-    *  @brief 
+    *  @ brief Rotates this matrix by the given amount in RADIANS on the axis (Left handed rotations)
     ************************
     */
     amMatrix4x4&
     rotateAxis(const amVector3& axis, const  float ang);
+
 
     amMatrix4x4&
     setViewProjection(const float& FOV, const float& ratio, const float& zNear, const float& zFar);
@@ -141,7 +142,7 @@ namespace amEngineSDK {
     transpose();
 
     amMatrix4x4
-      transposed();
+    transposed();
 
 
     amMatrix4x4

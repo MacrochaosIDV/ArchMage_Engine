@@ -146,7 +146,8 @@ namespace amEngineSDK {
     m_wcex.cbWndExtra = 0;
     m_wcex.hInstance = hInstance;
     m_wcex.hIcon = LoadIconW(hInstance, MAKEINTRESOURCEW(IDI_TSTPROJ));
-    m_wcex.hCursor = LoadCursorW(nullptr, MAKEINTRESOURCEW(IDC_ARROW));//TODO change to Wstr.cstring()
+    m_arrowName = L"IDC_ARROW";
+    m_wcex.hCursor = LoadCursorW(nullptr, m_arrowName.c_str());
     m_wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
     m_wcex.lpszMenuName = MAKEINTRESOURCEW(IDC_TSTPROJ);
     m_wcex.lpszClassName = m_szWindowClass.c_str();

@@ -12,10 +12,20 @@
 ***********************************************
 */
 #pragma once
+/**
+************************
+*
+*  Includes
+*
+************************
+*/
 #include <amPrerequisitesUtilities.h>
 #include "amPrerequisitesCore.h"
 #include "amDevice.h"
 #include "amDeviceContext.h"
+#include "amRenderManager.h"
+#include "amCameraManager.h"
+#include "amResourceManager.h"
 
 namespace amEngineSDK {
   class AM_CORE_EXPORT amGraphicsAPI
@@ -41,7 +51,12 @@ namespace amEngineSDK {
     virtual void
     initSystems();
 
-    float m_fov;
+    virtual void 
+    setManagers();
 
+    float m_fov;
+    amRenderManager* m_pRenderManager;
+    amCameraManager* m_pCamManager;
+    amResourceManager* m_pResourceManager;
   };
 }

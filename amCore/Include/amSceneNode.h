@@ -15,7 +15,7 @@ namespace amEngineSDK {
     };
   }
 
-  class amSceneNode
+  class AM_CORE_EXPORT amSceneNode
   {
   public:
     amSceneNode(amSceneNode* _parent, amNodeType::E _type = amNodeType::E::NORMAL, bool _isVisible = false);

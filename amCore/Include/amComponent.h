@@ -2,11 +2,11 @@
 #include "amPrerequisitesCore.h"
 
 namespace amEngineSDK {
-  /*template<T> */class AM_CORE_EXPORT amVertexType
+  class AM_CORE_EXPORT amComponent
   {
   public:
-    amVertexType();
-    ~amVertexType();
+    amComponent();
+    ~amComponent();
   };
 }
 

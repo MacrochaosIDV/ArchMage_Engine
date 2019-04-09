@@ -14,7 +14,7 @@ namespace amEngineSDK {
 
     void camTransition(amCamera* A, amCamera* B, float time);
 
-    Vector<amCamera> m_camVec;
+    Vector<amCamera*> m_camVec;
     amCamera* m_activeCam;
     amCamera* m_initialCam;
     amCamera* m_targetCam;

@@ -172,9 +172,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="amDeviceContext.cpp" />
     <ClCompile Include="Source\amBaseApp.cpp" />
     <ClCompile Include="Source\amCamera.cpp" />
     <ClCompile Include="Source\amCameraManager.cpp" />
+    <ClCompile Include="Source\amComponent.cpp" />
     <ClCompile Include="Source\amComputeShader.cpp" />
     <ClCompile Include="Source\amConstantBuffer.cpp" />
     <ClCompile Include="Source\amDepthStencilState.cpp" />
@@ -201,6 +203,7 @@
     <ClCompile Include="Source\amSceneNode.cpp" />
     <ClCompile Include="Source\amShader.cpp" />
     <ClCompile Include="Source\amShaderResourceView.cpp" />
+    <ClCompile Include="Source\amStaticMesh.cpp" />
     <ClCompile Include="Source\amSwapChain.cpp" />
     <ClCompile Include="Source\amTexture.cpp" />
     <ClCompile Include="Source\amTextureShader.cpp" />
@@ -213,9 +216,11 @@
     <ClCompile Include="Source\amWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="amDeviceContext.h" />
     <ClInclude Include="Include\amBaseApp.h" />
     <ClInclude Include="Include\amCamera.h" />
     <ClInclude Include="Include\amCameraManager.h" />
+    <ClInclude Include="Include\amComponent.h" />
     <ClInclude Include="Include\amComputeShader.h" />
     <ClInclude Include="Include\amConstantBuffer.h" />
     <ClInclude Include="Include\amDepthStencilState.h" />
@@ -243,6 +248,7 @@
     <ClInclude Include="Include\amSceneNode.h" />
     <ClInclude Include="Include\amShader.h" />
     <ClInclude Include="Include\amShaderResourceView.h" />
+    <ClInclude Include="Include\amStaticMesh.h" />
     <ClInclude Include="Include\amSwapChain.h" />
     <ClInclude Include="Include\amTexture.h" />
     <ClInclude Include="Include\amTextureShader.h" />

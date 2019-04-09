@@ -10,7 +10,7 @@ namespace amEngineSDK {
   class amRenderTarget;
   class amResource;
 
-  class amRenderPass
+  class AM_CORE_EXPORT amRenderPass
   {
   public:
     amRenderPass();

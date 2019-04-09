@@ -68,6 +68,7 @@ namespace amEngineSDK {
     HWND m_hWnd;
     std::wstring m_szTitle;// [100];                  // The title bar text
     std::wstring m_szWindowClass;// [100];            // the main window class name
+    std::wstring m_arrowName;
     uint32 m_wndWidth;
     uint32 m_wndHeight;
 

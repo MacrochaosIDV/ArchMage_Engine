@@ -23,5 +23,7 @@ namespace amEngineSDK {
 
   void amGraphicsAPI::initSystems() {}
 
+  void amGraphicsAPI::setManagers() {}
+
 }
 

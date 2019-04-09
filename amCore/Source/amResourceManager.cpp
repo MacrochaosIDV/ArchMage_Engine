@@ -102,21 +102,21 @@ namespace amEngineSDK {
       ************************
       */
       uint32 nvertx = scene->mMeshes[i]->mNumVertices;
-      mesh->m_vb->m_vVertex.resize(nvertx);
+      mesh->m_vb.m_vVertex.resize(nvertx);
       for (uint32 j = 0; j < nvertx; ++j) {
-        mesh->m_vb->m_vVertex[j].setVertexCoord(getPos(scene->mMeshes[i]->mVertices[j]));
-        mesh->m_vb->m_vVertex[j].setVertexNormal(getPos(scene->mMeshes[i]->mNormals[j]));
+        mesh->m_vb.m_vVertex[j].setVertexCoord(getPos(scene->mMeshes[i]->mVertices[j]));
+        mesh->m_vb.m_vVertex[j].setVertexNormal(getPos(scene->mMeshes[i]->mNormals[j]));
 
         //mesh->m_vb->m_vVertex[j].setVertexUV(getUV(scene->mMeshes[i]->mTextureCoords[j]));
         if (scene->mMeshes[j]->HasTextureCoords(0)) {
-          mesh->m_vb->m_vVertex[j].u = scene->mMeshes[i]->mTextureCoords[j]->x;
-          mesh->m_vb->m_vVertex[j].v = scene->mMeshes[i]->mTextureCoords[j]->y;
+          mesh->m_vb.m_vVertex[j].u = scene->mMeshes[i]->mTextureCoords[j]->x;
+          mesh->m_vb.m_vVertex[j].v = scene->mMeshes[i]->mTextureCoords[j]->y;
         }
         //mesh->m_vb->m_vVertex[j].setVertexColor(getColorRGBA(scene->mMeshes[i]->mColors[j]));
-        mesh->m_vb->m_vVertex[j].r = scene->mMeshes[i]->mColors[j]->r;
-        mesh->m_vb->m_vVertex[j].g = scene->mMeshes[i]->mColors[j]->g;
-        mesh->m_vb->m_vVertex[j].b = scene->mMeshes[i]->mColors[j]->b;
-        mesh->m_vb->m_vVertex[j].a = scene->mMeshes[i]->mColors[j]->a;
+        mesh->m_vb.m_vVertex[j].r = scene->mMeshes[i]->mColors[j]->r;
+        mesh->m_vb.m_vVertex[j].g = scene->mMeshes[i]->mColors[j]->g;
+        mesh->m_vb.m_vVertex[j].b = scene->mMeshes[i]->mColors[j]->b;
+        mesh->m_vb.m_vVertex[j].a = scene->mMeshes[i]->mColors[j]->a;
       }
 
       /**
@@ -125,8 +125,8 @@ namespace amEngineSDK {
       ************************
       */
       uint32 nIndex = scene->mMeshes[i]->mFaces->mNumIndices;
-      mesh->m_ib->m_vecIB.resize(nIndex);
-      memcpy(&mesh->m_ib->m_vecIB, &scene->mMeshes[i]->mFaces->mIndices, nIndex * 4);
+      mesh->m_ib.m_vecIB.resize(nIndex);
+      memcpy(&mesh->m_ib.m_vecIB, &scene->mMeshes[i]->mFaces->mIndices, nIndex * 4);
       //for (uint32 j = 0; j < nIndex; ++j) {
       //  //mesh->m_ib->m_vecIB[j] = scene->mMeshes[i]->mFaces->mIndices[j];
       //}

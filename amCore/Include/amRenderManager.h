@@ -17,6 +17,9 @@ namespace amEngineSDK {
     void 
     render();
 
+    void 
+    setpManagers(amResourceManager* _rm, amCameraManager* _cm);
+
     Vector<amResource*> 
     getResourcesOnCam(amCamera* _cam);
 

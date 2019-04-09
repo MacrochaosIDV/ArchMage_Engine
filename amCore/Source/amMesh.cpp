@@ -6,10 +6,15 @@
 
 namespace amEngineSDK {
   amMesh::amMesh() {
-    m_ib = new amIndexBuffer();
-    m_vb = new amVertexBuffer();
+
   }
 
   amMesh::~amMesh() {}
+  amMeshBufferSizes amMesh::getVertexIndexSize() {
+    amMeshBufferSizes res;
+    res.nIndex = m_ib.m_vecIB.size();
+    res.nVertex = m_vb.m_vVertex.size();
+    return res;
+  }
 }
 

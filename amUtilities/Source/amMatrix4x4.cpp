@@ -33,6 +33,12 @@ namespace amEngineSDK {
     *this = IDENTITY;
   }
 
+  amMatrix4x4 & amMatrix4x4::translate(const float dx, const float dy, const float dz) {
+    // TODO: insert return statement here
+    dx; dy; dz;
+    return *this;
+  }
+
   amMatrix4x4::amMatrix4x4(int32 val) {
     memset(this, 0, sizeof(amMatrix4x4));
     if (val == FORCE_INIT::kONE)

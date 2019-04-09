@@ -2,32 +2,46 @@
 //#include "amFrustrum.h"
 
 namespace amEngineSDK {
-
-  amCamera::~amCamera() {}
-
-  amCamera & amCamera::operator=(const amCamera & other) {
-    // m_dirty = true;
-    m_front = other.m_front;
-    m_right = other.m_right;
-    m_up = other.m_up;
-    m_position = other.m_position;
-
-    m_fov = other.m_fov;
-    m_near = other.m_near;
-    m_far = other.m_far;
-
-    //m_clipSpace = other.m_clipSpace;
-    m_matView = other.m_matView;
-    return *this;
+  amCamera::amCamera() {
+    m_front = VECTOR_INIT::kVECTOR_FRONT;
+    m_right = VECTOR_INIT::kVECTOR_RIGHT;
+    m_up = VECTOR_INIT::kVECTOR_UP;
+    m_position = VECTOR_INIT::kVECTOR_ZERO;
+    m_far = 100.0f;
+    m_near = 1.0f;
+    m_fov = 60.0f;
+    m_dirty = true;
   }
-
-  amCamera::amCamera() {}
 
   amCamera::amCamera(const amVector3& Pos, const amVector3& Dir, const amVector3& Up) {
     m_position = Pos;
     m_front = Dir;
     m_up = Up;
     m_right = m_front ^ m_up;
+    m_far = 100.0f;
+    m_near = 1.0f;
+    m_fov = 60.0f;
+    m_dirty = true;
+  }
+
+  amCamera::amCamera(const amVector3 & Pos, 
+                     const amVector3 & Dir,
+                     const amVector3 & Up, 
+                     const float _near, 
+                     const float _far, 
+                     const float _fov) {
+    m_position = Pos;
+    m_front = Dir;
+    m_up = Up;
+    m_right = m_front ^ m_up;
+    m_far = _far;
+    m_near = _near;
+    m_fov = _fov;
+    m_dirty = true;
+  }
+
+  amCamera::~amCamera() {
+
   }
 
   amCamera::amCamera(const amCamera & other) {
@@ -36,13 +50,25 @@ namespace amEngineSDK {
     m_right = other.m_right;
     m_up = other.m_up;
     m_position = other.m_position;
-
     m_fov = other.m_fov;
     m_near = other.m_near;
     m_far = other.m_far;
-
-    //m_clipSpace = other.m_clipSpace;
+    m_clipSpace = other.m_clipSpace;
     m_matView = other.m_matView;
+  }
+
+  amCamera & amCamera::operator=(const amCamera & other) {
+    // m_dirty = true;
+    m_front = other.m_front;
+    m_right = other.m_right;
+    m_up = other.m_up;
+    m_position = other.m_position;
+    m_fov = other.m_fov;
+    m_near = other.m_near;
+    m_far = other.m_far;
+    m_clipSpace = other.m_clipSpace;
+    m_matView = other.m_matView;
+    return *this;
   }
 
   void amCamera::movePoint(const amVector3& newPos, const amVector3& front, const amVector3& up) {

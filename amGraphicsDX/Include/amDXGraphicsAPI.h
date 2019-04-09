@@ -65,6 +65,9 @@ namespace amEngineSDK {
     initContent() override;
 
     virtual void
+    setManagers() override;
+
+    virtual void
     initSystems(void* _hWnd);
 
 

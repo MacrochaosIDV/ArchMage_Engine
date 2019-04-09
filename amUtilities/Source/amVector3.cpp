@@ -20,6 +20,34 @@ namespace amEngineSDK {
 
   amVector3::~amVector3() {}
 
+  const amVector3 amVector3::Front = amVector3(VECTOR_INIT::kVECTOR_FRONT);
+  const amVector3 amVector3::Right = amVector3(VECTOR_INIT::kVECTOR_RIGHT);
+  const amVector3 amVector3::Up = amVector3(VECTOR_INIT::kVECTOR_UP);
+  const amVector3 amVector3::Zero = amVector3(VECTOR_INIT::kVECTOR_ZERO);
+  const amVector3 amVector3::One = amVector3(VECTOR_INIT::kVECTOR_ONE);
+
+  amVector3::amVector3(int32 val) {
+    if (val == VECTOR_INIT::kVECTOR_FRONT) {
+      x = 0.0f; y = 0.0f; z = 1.0f;
+    }
+
+    else if (val == VECTOR_INIT::kVECTOR_RIGHT) {
+      x = 1.0f; y = 0.0f; z = 0.0f;
+    }
+
+    else if (val == VECTOR_INIT::kVECTOR_UP) {
+      x = 0.0f; y = 1.0f; z = 0.0f;
+    }
+
+    else if (val == VECTOR_INIT::kVECTOR_ZERO) {
+      x = 0.0f; y = 0.0f; z = 0.0f;
+    }
+
+    else if (val == VECTOR_INIT::kVECTOR_ONE) {
+      x = 1.0f; y = 1.0f; z = 1.0f;
+    }
+  }
+
   amVector3::amVector3(const float & xx, const float & yy, const float & zz) {
     x = xx;
     y = yy;

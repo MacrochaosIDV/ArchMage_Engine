@@ -13,8 +13,8 @@ namespace amEngineSDK {
     amResource*
     CreateModel(const String& pathName);
 
-    //Map<amResource*, String> m_mapResource;
     Vector<amResource*> m_vecResources;
+    //Map<amResource*, uint32> m_mapResourcesInstanceCount;
   };
 }
 

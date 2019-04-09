@@ -1,9 +1,10 @@
 #pragma once
 #include "amPrerequisitesCore.h"
+#include "amComponent.h"
 #include <amMatrix4x4.h>
 
 namespace amEngineSDK {
-  class amTransform
+  class AM_CORE_EXPORT amTransform : public amComponent
   {
   public:
     amTransform();

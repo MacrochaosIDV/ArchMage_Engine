@@ -2,7 +2,9 @@
 #include "amCamera.h"
 
 namespace amEngineSDK {
-  amCameraManager::amCameraManager() {}
+  amCameraManager::amCameraManager() {
+    m_camVec.push_back(new amCamera());
+  }
 
   amCameraManager::~amCameraManager() {}
   amMatrix4x4 amCameraManager::getViewMatrix() {

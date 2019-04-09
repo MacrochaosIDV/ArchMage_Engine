@@ -82,9 +82,6 @@
     <ClCompile Include="Source\amResource.cpp">
       <Filter>Source Files\Resource classes</Filter>
     </ClCompile>
-    <ClCompile Include="Source\amResourceManager.cpp">
-      <Filter>Source Files\Resource classes</Filter>
-    </ClCompile>
     <ClCompile Include="Source\amMesh.cpp">
       <Filter>Source Files\Resource classes</Filter>
     </ClCompile>
@@ -148,6 +145,18 @@
     <ClCompile Include="Source\amRenderTarget.cpp">
       <Filter>Source Files\Renderer classes</Filter>
     </ClCompile>
+    <ClCompile Include="Source\amComponent.cpp">
+      <Filter>Source Files\Core\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amStaticMesh.cpp">
+      <Filter>Source Files\Core\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amResourceManager.cpp">
+      <Filter>Source Files\Core management</Filter>
+    </ClCompile>
+    <ClCompile Include="amDeviceContext.cpp">
+      <Filter>Source Files\API classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\amComputeShader.h">
@@ -202,9 +211,6 @@
       <Filter>Source Files\Resource classes</Filter>
     </ClInclude>
     <ClInclude Include="Include\amResource.h">
-      <Filter>Source Files\Resource classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\amResourceManager.h">
       <Filter>Source Files\Resource classes</Filter>
     </ClInclude>
     <ClInclude Include="Include\amMesh.h">
@@ -269,6 +275,18 @@
     </ClInclude>
     <ClInclude Include="Include\amRenderTarget.h">
       <Filter>Source Files\Renderer classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amComponent.h">
+      <Filter>Source Files\Core\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amStaticMesh.h">
+      <Filter>Source Files\Core\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amResourceManager.h">
+      <Filter>Source Files\Core management</Filter>
+    </ClInclude>
+    <ClInclude Include="amDeviceContext.h">
+      <Filter>Source Files\API classes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -4,7 +4,6 @@
 namespace amEngineSDK {
   amDXDeviceContext::amDXDeviceContext() {}
 
-
   amDXDeviceContext::~amDXDeviceContext() {}
 }
 

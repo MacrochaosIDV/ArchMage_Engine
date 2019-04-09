@@ -3,7 +3,7 @@
 #include "amTexture.h"
 
 namespace amEngineSDK {
-  class amRenderTarget : public amTexture
+  class AM_CORE_EXPORT amRenderTarget : public amTexture
   {
   public:
     amRenderTarget();

@@ -13,6 +13,12 @@ namespace amEngineSDK {
   public:
     amCamera();
     amCamera(const amVector3& Pos, const amVector3& Target, const amVector3& Up);
+    amCamera(const amVector3& Pos, 
+             const amVector3& Target, 
+             const amVector3& Up, 
+             const float _near, 
+             const float _far, 
+             const float _fov);
     amCamera(const amCamera& other);
     ~amCamera();
 

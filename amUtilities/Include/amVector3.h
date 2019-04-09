@@ -19,11 +19,36 @@
 #include "amPrerequisitesUtilities.h"
 
 namespace amEngineSDK {
+  namespace VECTOR_INIT {
+    enum E
+    {
+      kVECTOR_FRONT = 0,
+      kVECTOR_RIGHT,
+      kVECTOR_UP,
+      kVECTOR_ZERO,
+      kVECTOR_ONE
+    };
+  }
+
   class AM_UTILITIES_EXPORT amVector3
   {
   public:
     amVector3();
     ~amVector3();
+
+    static const amVector3 Front;
+    static const amVector3 Right;
+    static const amVector3 Up;
+    static const amVector3 Zero;
+    static const amVector3 One;
+
+    /**
+    ************************
+    *  @brief Constructor for constant vectors like front, up & right
+    ************************
+    */
+    amVector3
+    (int32 val);
 
     /***********************
     *  @brief Constructor from 3 float values
@@ -170,10 +195,6 @@ namespace amEngineSDK {
 
     float
     getDeterminant(const amVector3 & other) const;
-
-    static const amVector3 Forward;
-    static const amVector3 Right;
-    static const amVector3 Up;
 
     float x; 
     float y; 
