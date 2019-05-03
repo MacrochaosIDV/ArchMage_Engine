@@ -25,5 +25,7 @@ namespace amEngineSDK {
 
   void amGraphicsAPI::setManagers() {}
 
+  void amGraphicsAPI::renderResourcesOnCam(amCamera * _cam, amRenderPass * _pass) {}
+
 }
 

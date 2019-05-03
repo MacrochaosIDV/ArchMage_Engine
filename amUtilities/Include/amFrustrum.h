@@ -5,9 +5,7 @@
  * @author Andrés Sumano
  * Contact: andressumano@hotmail.com
  *
- * @brief Implements a 3D Frustrum
- *
- * TODO: long description
+ * @brief Implements a 3D Frustrum for use with/as cameras
  *
  * @note
 ******************************************/

@@ -301,7 +301,7 @@
 #if AM_COMPILER == AM_COMPILER_MSVC
 
 /**
-*  TODO: This is not deactivated anywhere, therefore it applies to to any file
+*  To do: This is not deactivated anywhere, therefore it applies to to any file
 *  that includes this header...
 */
 //Secure version aren't multi platform, so we won't be using them

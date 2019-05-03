@@ -28,6 +28,8 @@
 #include "amResourceManager.h"
 
 namespace amEngineSDK {
+  class amRenderPass;
+
   class AM_CORE_EXPORT amGraphicsAPI
   {
   public:
@@ -53,6 +55,9 @@ namespace amEngineSDK {
 
     virtual void 
     setManagers();
+
+    virtual void 
+    renderResourcesOnCam(amCamera* _cam, amRenderPass* _pass);
 
     float m_fov;
     amRenderManager* m_pRenderManager;

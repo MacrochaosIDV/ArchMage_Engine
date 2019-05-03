@@ -25,7 +25,14 @@ namespace amEngineSDK {
   }
 
   void amDXGraphicsAPI::Render() {
-    float color[4] = {0.3f, 0.3f, 0.3f, 1.0f};
+    /**
+    ************************
+    *
+    *  @TODO make the different passes for differed rendering
+    *
+    ************************
+    */
+    float color[4] = {0.43f, 0.43f, 0.43f, 1.0f};
     m_pImmediateContext->m_pDC->ClearRenderTargetView(m_pRenderTargetView->m_pRTV, color);
     m_pImmediateContext->m_pDC->ClearDepthStencilView(m_pDepthStencilView->m_pDSV, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
     

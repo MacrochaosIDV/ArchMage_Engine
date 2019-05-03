@@ -91,6 +91,7 @@ namespace amEngineSDK {
     *
     ************************
     */
+
       amVector4 res;
       res.x = (_m.m00 * V.x) + (_m.m10 * V.y) + (_m.m20 * V.z) + (_m.m30 * V.w);
       res.y = (_m.m01 * V.x) + (_m.m11 * V.y) + (_m.m21 * V.z) + (_m.m31 * V.w);

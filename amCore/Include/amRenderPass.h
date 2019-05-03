@@ -10,6 +10,20 @@ namespace amEngineSDK {
   class amRenderTarget;
   class amResource;
 
+  namespace amRenderPassStage {
+    enum E
+    {
+      kG_BUFFER = 0,
+      kSSAO,
+      kDOWNSCALE_BLOOM,
+      kBLUR_H,
+      kBLUR_V,
+      kLUMINANCE,
+      kFINAL,
+      COUNT
+    };
+  }
+
   class AM_CORE_EXPORT amRenderPass
   {
   public:

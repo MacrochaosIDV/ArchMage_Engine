@@ -156,13 +156,13 @@ namespace amEngineSDK {
         uint32 nMat = scene->mNumMaterials;
         model->m_vecMats.resize(nMat);
         for (uint32 j = 0; j < nMat; ++j) {
-          if (scene->mMaterials[j]->GetTextureCount(aiTextureType_DIFFUSE) > 0) {
+          model->m_vecMats[j]->m_matName = scene->mMaterials[j]->GetName().C_Str();
+          //if (scene->mMaterials[j]->GetTextureCount(aiTextureType_DIFFUSE) > 0) {
             //getAllMaterialTexturesOfType(model, scene, j, aiTextureType_DIFFUSE, pathName);
-          }
+          //}
           //model->m_vecMats[j]->m_vecTex.resize(scene->mMaterials[j]->GetTextureCount(aiTextureType_DIFFUSE));
         }
       }
-
       model->m_vecMeshes.push_back(mesh);
     }
 
