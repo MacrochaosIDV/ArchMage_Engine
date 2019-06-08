@@ -3,6 +3,5 @@
 namespace amEngineSDK {
   amShaderResourceView::amShaderResourceView() {}
 
-
   amShaderResourceView::~amShaderResourceView() {}
 }

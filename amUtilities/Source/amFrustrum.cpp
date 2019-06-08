@@ -20,6 +20,7 @@ namespace amEngineSDK {
   amFrustrum::~amFrustrum() {
   
   }
+
   amFrustrum::amFrustrum(const amFrustrum & other) {
     for (int32 i = 0; i < FRUSTRUM::kCOUNT; ++i) {
       m_planes[i] = other.m_planes[i];
@@ -46,13 +47,16 @@ namespace amEngineSDK {
     VP;
   }
 
-  amFrustrum & amFrustrum::operator=(const amFrustrum & other) {
+  amFrustrum & 
+  amFrustrum::operator=(const amFrustrum & other) {
     for (int32 i = 0; i < FRUSTRUM::kCOUNT; ++i) {
       m_planes[i] = other.m_planes[i];
     }
     return *this;
   }
-  amFrustrum amFrustrum::operator+(const amFrustrum & other) const {
+
+  amFrustrum 
+  amFrustrum::operator+(const amFrustrum & other) const {
     amFrustrum res;
     res.m_planes[FRUSTRUM::kFAR] = m_planes[FRUSTRUM::kFAR]       + other.m_planes[FRUSTRUM::kFAR];
     res.m_planes[FRUSTRUM::kNEAR] = m_planes[FRUSTRUM::kNEAR]     + other.m_planes[FRUSTRUM::kNEAR];
@@ -62,7 +66,9 @@ namespace amEngineSDK {
     res.m_planes[FRUSTRUM::kBOTTOM] = m_planes[FRUSTRUM::kBOTTOM] + other.m_planes[FRUSTRUM::kBOTTOM];
     return res;
   }
-  amFrustrum amFrustrum::operator-(const amFrustrum & other) const {
+
+  amFrustrum 
+  amFrustrum::operator-(const amFrustrum & other) const {
     amFrustrum res;
     res.m_planes[FRUSTRUM::kFAR] = m_planes[FRUSTRUM::kFAR]       - other.m_planes[FRUSTRUM::kFAR];
     res.m_planes[FRUSTRUM::kNEAR] = m_planes[FRUSTRUM::kNEAR]     - other.m_planes[FRUSTRUM::kNEAR];
@@ -72,7 +78,9 @@ namespace amEngineSDK {
     res.m_planes[FRUSTRUM::kBOTTOM] = m_planes[FRUSTRUM::kBOTTOM] - other.m_planes[FRUSTRUM::kBOTTOM];
     return res;
   }
-  amFrustrum amFrustrum::operator*(const amFrustrum & other) const {
+
+  amFrustrum 
+  amFrustrum::operator*(const amFrustrum & other) const {
     amFrustrum res;
     res.m_planes[FRUSTRUM::kFAR]    *= other.m_planes[FRUSTRUM::kFAR];
     res.m_planes[FRUSTRUM::kNEAR]   *= other.m_planes[FRUSTRUM::kNEAR];
@@ -82,7 +90,9 @@ namespace amEngineSDK {
     res.m_planes[FRUSTRUM::kBOTTOM] *= other.m_planes[FRUSTRUM::kBOTTOM];
     return res;
   }
-  amFrustrum amFrustrum::operator/(const amFrustrum & other) const {
+
+  amFrustrum 
+  amFrustrum::operator/(const amFrustrum & other) const {
     amFrustrum res;
     res.m_planes[FRUSTRUM::kFAR]    /= other.m_planes[FRUSTRUM::kFAR];
     res.m_planes[FRUSTRUM::kNEAR]   /= other.m_planes[FRUSTRUM::kNEAR];
@@ -92,7 +102,9 @@ namespace amEngineSDK {
     res.m_planes[FRUSTRUM::kBOTTOM] /= other.m_planes[FRUSTRUM::kBOTTOM];
     return res;
   }
-  amFrustrum & amFrustrum::operator+=(const amFrustrum & other) {
+
+  amFrustrum & 
+  amFrustrum::operator+=(const amFrustrum & other) {
     m_planes[FRUSTRUM::kFAR]    += other.m_planes[FRUSTRUM::kFAR];
     m_planes[FRUSTRUM::kNEAR]   += other.m_planes[FRUSTRUM::kNEAR];
     m_planes[FRUSTRUM::kRIGHT]  += other.m_planes[FRUSTRUM::kRIGHT];
@@ -101,7 +113,9 @@ namespace amEngineSDK {
     m_planes[FRUSTRUM::kBOTTOM] += other.m_planes[FRUSTRUM::kBOTTOM];
     return *this;
   }
-  amFrustrum & amFrustrum::operator-=(const amFrustrum & other) {
+
+  amFrustrum & 
+  amFrustrum::operator-=(const amFrustrum & other) {
     m_planes[FRUSTRUM::kFAR]    -= other.m_planes[FRUSTRUM::kFAR];
     m_planes[FRUSTRUM::kNEAR]   -= other.m_planes[FRUSTRUM::kNEAR];
     m_planes[FRUSTRUM::kRIGHT]  -= other.m_planes[FRUSTRUM::kRIGHT];
@@ -110,7 +124,9 @@ namespace amEngineSDK {
     m_planes[FRUSTRUM::kBOTTOM] -= other.m_planes[FRUSTRUM::kBOTTOM];
     return *this;
   }
-  amFrustrum & amFrustrum::operator*=(const amFrustrum & other) {
+
+  amFrustrum & 
+  amFrustrum::operator*=(const amFrustrum & other) {
     m_planes[FRUSTRUM::kFAR]    *= other.m_planes[FRUSTRUM::kFAR];
     m_planes[FRUSTRUM::kNEAR]   *= other.m_planes[FRUSTRUM::kNEAR];
     m_planes[FRUSTRUM::kRIGHT]  *= other.m_planes[FRUSTRUM::kRIGHT];
@@ -119,7 +135,9 @@ namespace amEngineSDK {
     m_planes[FRUSTRUM::kBOTTOM] *= other.m_planes[FRUSTRUM::kBOTTOM];
     return *this;
   }
-  amFrustrum & amFrustrum::operator/=(const amFrustrum & other) {
+
+  amFrustrum & 
+  amFrustrum::operator/=(const amFrustrum & other) {
     m_planes[FRUSTRUM::kFAR]    /= other.m_planes[FRUSTRUM::kFAR];
     m_planes[FRUSTRUM::kNEAR]   /= other.m_planes[FRUSTRUM::kNEAR];
     m_planes[FRUSTRUM::kRIGHT]  /= other.m_planes[FRUSTRUM::kRIGHT];
@@ -128,10 +146,13 @@ namespace amEngineSDK {
     m_planes[FRUSTRUM::kBOTTOM] /= other.m_planes[FRUSTRUM::kBOTTOM];
     return *this;
   }
-  bool amFrustrum::intersects(const amFrustrum & other) {
+
+  bool 
+  amFrustrum::intersects(const amFrustrum & other) {
     other;
     return false;
   }
+
   /*void amFrustrum::init() {
     m_far.init();
     m_near.init();
@@ -141,5 +162,3 @@ namespace amEngineSDK {
     m_bottom.init();
   }*/
 }
-
-

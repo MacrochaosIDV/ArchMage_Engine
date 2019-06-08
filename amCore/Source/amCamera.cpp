@@ -57,7 +57,8 @@ namespace amEngineSDK {
     m_matView = other.m_matView;
   }
 
-  amCamera & amCamera::operator=(const amCamera & other) {
+  amCamera & 
+  amCamera::operator=(const amCamera & other) {
     // m_dirty = true;
     m_front = other.m_front;
     m_right = other.m_right;
@@ -71,7 +72,10 @@ namespace amEngineSDK {
     return *this;
   }
 
-  void amCamera::movePoint(const amVector3& newPos, const amVector3& front, const amVector3& up) {
+  void 
+  amCamera::movePoint(const amVector3& newPos, 
+                      const amVector3& front, 
+                      const amVector3& up) {
     m_position = newPos;
     m_front = front;
     m_up = up;
@@ -79,53 +83,66 @@ namespace amEngineSDK {
     m_dirty = true;
   }
 
-  void amCamera::moveFront(float defaz) {
+  void 
+  amCamera::moveFront(float defaz) {
     m_position += m_front * defaz;
     m_dirty = true;
   }
-  void amCamera::moveRight(float defaz) {
+
+  void 
+  amCamera::moveRight(float defaz) {
     m_position += m_right * defaz;
     m_dirty = true;
   }
-  void amCamera::moveUp(float defaz) {
+
+  void 
+  amCamera::moveUp(float defaz) {
     m_position += m_up * defaz;
     m_dirty = true;
   }
 
-  void amCamera::rotate(amVector3 axis, float angle) {
+  void 
+  amCamera::rotate(amVector3 axis, float angle) {
     m_dirty = true;
     angle;
   }
 
-  void amCamera::orbit(amVector3 target, amVector3 angles) {
+  void 
+  amCamera::orbit(amVector3 target, amVector3 angles) {
     m_dirty = true;
     angles;
   }
 
-  void amCamera::yaw(float angle) {
+  void 
+  amCamera::yaw(float angle) {
     rotate(m_up, angle);
   }
 
-  void amCamera::pitch(float angle) {
+  void 
+  amCamera::pitch(float angle) {
     rotate(m_right, angle);
   }
 
-  void amCamera::roll(float angle) {
+  void 
+  amCamera::roll(float angle) {
     rotate(m_front, angle);
   }
 
-  void amCamera::setPos(amVector3 newPos) {
+  void 
+  amCamera::setPos(amVector3 newPos) {
     m_position = newPos;
     m_dirty = true;
   }
 
-  void amCamera::update() {
+  void 
+  amCamera::update() {
     if (m_dirty)
       m_matView = getViewMatrix();
 
   }
 
-  amMatrix4x4 amCamera::getViewMatrix() {
+  amMatrix4x4 
+  amCamera::getViewMatrix() {
     if (m_dirty) {
       m_matView = {m_right.x,           m_up.x,            m_front.x,             0,
                    m_right.y,           m_up.y,            m_front.y,             0,
@@ -136,5 +153,3 @@ namespace amEngineSDK {
     return m_matView;
   }
 }
-
-

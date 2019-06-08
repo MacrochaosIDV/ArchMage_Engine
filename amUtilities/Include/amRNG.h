@@ -12,6 +12,7 @@
 ***********************************************
 */
 #include "amPrerequisitesUtilities.h"
+
 namespace amEngineSDK {
   class AM_UTILITIES_EXPORT amRNG
   {
@@ -24,7 +25,6 @@ namespace amEngineSDK {
 
     void 
     boxMuller(float u, float v);
-
 
   };
 }

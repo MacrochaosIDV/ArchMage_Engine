@@ -20,7 +20,7 @@ namespace amEngineSDK {
 
   amAABB::~amAABB() {}
 
-    amAABB::amAABB(const amAABB & other) {
+  amAABB::amAABB(const amAABB & other) {
     m_pMax = other.m_pMax;
     m_pMin = other.m_pMin;
   }
@@ -32,59 +32,68 @@ namespace amEngineSDK {
     return *this;
   }
 
-  amAABB amAABB::operator+(const amAABB & other) const {
+  amAABB 
+  amAABB::operator+(const amAABB & other) const {
     amAABB res = *this;
     res.m_pMin += other.m_pMin;
     res.m_pMax += other.m_pMax;
     return res;
   }
 
-  amAABB amAABB::operator-(const amAABB & other) const {
+  amAABB 
+  amAABB::operator-(const amAABB & other) const {
     amAABB res = *this;
     res.m_pMin -= other.m_pMin;
     res.m_pMax -= other.m_pMax;
     return res;
   }
 
-  amAABB amAABB::operator*(const amAABB & other) const {
+  amAABB 
+  amAABB::operator*(const amAABB & other) const {
     amAABB res = *this;
     res.m_pMin *= other.m_pMin;
     res.m_pMax *= other.m_pMax;
     return res;
   }
 
-  amAABB amAABB::operator/(const amAABB & other) const {
+  amAABB 
+  amAABB::operator/(const amAABB & other) const {
     amAABB res = *this;
     res.m_pMin /= other.m_pMin;
     res.m_pMax /= other.m_pMax;
     return res;
   }
 
-  amAABB & amAABB::operator+=(const amAABB & other) {
+  amAABB & 
+  amAABB::operator+=(const amAABB & other) {
     m_pMin += other.m_pMin;
     m_pMax += other.m_pMax;
     return *this;
   }
 
-  amAABB & amAABB::operator-=(const amAABB & other) {
+  amAABB & 
+  amAABB::operator-=(const amAABB & other) {
     m_pMin -= other.m_pMin;
     m_pMax -= other.m_pMax;
     return *this;
   }
 
-  amAABB & amAABB::operator*=(const amAABB & other) {
+  amAABB & 
+  amAABB::operator*=(const amAABB & other) {
     m_pMin *= other.m_pMin;
     m_pMax *= other.m_pMax;
     return *this;
   }
 
-  amAABB & amAABB::operator/=(const amAABB & other) {
+  amAABB & 
+  amAABB::operator/=(const amAABB & other) {
     m_pMin /= other.m_pMin;
     m_pMax /= other.m_pMax;
     return *this;
   }
 
-  void amEngineSDK::amAABB::add(const amVector3 & vec) {
+  void 
+  amEngineSDK::amAABB::add(const amVector3 & vec) {
     if (vec.x < m_pMin.x)
       m_pMin.x = vec.x;
 
@@ -104,11 +113,13 @@ namespace amEngineSDK {
       m_pMax.z = vec.z;
   }
 
-  bool amAABB::intersects(const amVector3 & vec) const {
+  bool 
+  amAABB::intersects(const amVector3 & vec) const {
     return amMath::intersects(vec, *this);
   }
 
-  bool amAABB::intersects(const amAABB & other) {
+  bool 
+  amAABB::intersects(const amAABB & other) {
     /***********************
     *  Calculate the other points o the other box the test them onto this box
     ***********************/

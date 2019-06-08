@@ -1,31 +1,36 @@
 #pragma once
 #include "amDXPreReqs.h"
-#include "amDXShader.h"
+#include "amVertexShader.h"
 
 namespace amEngineSDK {
-  class amDXDevice;
-  class amDXDeviceContext;
+  class amDevice;
+  class amDeviceContext;
 
-  class amDXVertexShader : public amDXShader
+  class amDXVertexShader : public amVertexShader
   {
   public:
     amDXVertexShader();
     ~amDXVertexShader();
 
-  protected:
+  private:
     void
-    createVertexShader(amDXDevice* pDevice);
+    createVertexShader(amDevice* pDevice);
 
   public:
 
+    virtual int32
+    CompileShaderFromFile(const String szFileName,
+                          const ANSICHAR* szEntryPoint,
+                          const ANSICHAR* szShaderModel,
+                          void** ppBlobOut) override;
+
     virtual void
-    setShader(amDXDeviceContext* pDC) override;
+    setShader(amDeviceContext* pDC) override;
 
     void 
-    createVS(const char* pathFileName, amDXDevice* pDevice);
+    createVS(const String pathFileName, amDevice* pDevice);
 
     ID3D11VertexShader* m_vs;
+    ID3DBlob* m_blob;
   };
 }
-
-

@@ -11,5 +11,3 @@ namespace amEngineSDK {
     amDXTexture m_tex;
   };
 }
-
-

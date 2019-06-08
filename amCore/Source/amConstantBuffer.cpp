@@ -1,6 +1,5 @@
 #include "amConstantBuffer.h"
 
-
 namespace amEngineSDK {
   amConstantBuffer::amConstantBuffer() {}
 

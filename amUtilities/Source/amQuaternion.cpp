@@ -16,7 +16,6 @@
 namespace amEngineSDK {
   amQuaternion::amQuaternion() {}
 
-
   amQuaternion::~amQuaternion() {}
 
   amQuaternion::amQuaternion(const float& _x, const float _y, const float _z, const float _w) {
@@ -33,7 +32,8 @@ namespace amEngineSDK {
     w = quat.w;
   }
 
-  amQuaternion amQuaternion::operator*(const amQuaternion& other) {
+  amQuaternion 
+  amQuaternion::operator*(const amQuaternion& other) {
     amQuaternion res;
     res.w = ((w * other.w) - (x * other.x) - (y  * other.y) - (z * other.z));
     res.x = ((w * other.x) + (x * other.w) + (z * other.y) - (y * other.z));
@@ -42,12 +42,14 @@ namespace amEngineSDK {
     return res;
   }
 
-  amQuaternion & amQuaternion::operator*=(const amQuaternion & other) {
+  amQuaternion & 
+  amQuaternion::operator*=(const amQuaternion & other) {
     *this = *this * other;
     return *this;
   }
 
-  amQuaternion amEngineSDK::amQuaternion::operator*(const float & f) {
+  amQuaternion 
+  amEngineSDK::amQuaternion::operator*(const float & f) {
     amQuaternion q = *this;;
     q.w *= f;
     q.x *= f;
@@ -56,11 +58,14 @@ namespace amEngineSDK {
     return q;
   }
 
-  float amEngineSDK::amQuaternion::quatDot(const amQuaternion& projectedOn) {
+  float 
+  amEngineSDK::amQuaternion::quatDot(const amQuaternion& projectedOn) {
     return (w*projectedOn.w + x * projectedOn.x + y * projectedOn.y
             + z * projectedOn.z);
   }
-  amQuaternion amQuaternion::sLerp(amQuaternion& other, float& t) {
+
+  amQuaternion 
+  amQuaternion::sLerp(amQuaternion& other, float& t) {
     /*amVector3 dif = other.m_vec - m_vec;
     if (dif.isZero())
       return *this;
@@ -102,7 +107,8 @@ namespace amEngineSDK {
     return res;
   }
 
-  amQuaternion & amQuaternion::quatPow(float & exp) {
+  amQuaternion & 
+  amQuaternion::quatPow(float & exp) {
     if (amMath::abs(w) > 0.9999f) {
       return *this;
     }
@@ -116,38 +122,50 @@ namespace amEngineSDK {
     return *this;
   }
   
-  void amQuaternion::rotateAroundX(const float & theta) {
+  void 
+  amQuaternion::rotateAroundX(const float & theta) {
     w = cos(theta*0.5f);
     x = sin(theta*0.5f);
     y = 0;
     z = 0;
   }
-  void amQuaternion::rotateAroundY(const float & theta) {
+
+  void 
+  amQuaternion::rotateAroundY(const float & theta) {
     w = cos(theta*0.5f);
     x = 0;
     y = sin(theta*0.5f);
     z = 0;
   }
-  void amQuaternion::rotateAroundZ(const float & theta) {
+
+  void 
+  amQuaternion::rotateAroundZ(const float & theta) {
     w = cos(theta*0.5f);
     x = 0;
     y = sin(theta*0.5f);
     z = 0;
   }
-  void amQuaternion::rotateAroundAxis(const amVector3 & axis, const float & theta) {
+
+  void 
+  amQuaternion::rotateAroundAxis(const amVector3 & axis, const float & theta) {
     w = cos(theta*0.5f);
     float sinHalfTheta = sin(theta*0.5f);
     x = axis.x * sinHalfTheta;
     y = axis.y * sinHalfTheta;
     z = axis.z * sinHalfTheta;
   }
-  void amQuaternion::quatNormalize() {}
-  float amQuaternion::quatMag() {
+
+  void 
+  amQuaternion::quatNormalize() {}
+
+  float 
+  amQuaternion::quatMag() {
     return 0.0f;
   }
-  amVector3 amQuaternion::getQuatVector() {
+
+  amVector3 
+  amQuaternion::getQuatVector() {
     return amVector3();
   }
+
 }
-
-

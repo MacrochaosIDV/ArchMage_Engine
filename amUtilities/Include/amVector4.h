@@ -128,4 +128,3 @@ namespace amEngineSDK {
     float w;
   };
 }
-

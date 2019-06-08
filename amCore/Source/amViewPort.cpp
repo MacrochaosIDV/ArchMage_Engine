@@ -3,6 +3,5 @@
 namespace amEngineSDK {
   amViewPort::amViewPort() {}
 
-
   amViewPort::~amViewPort() {}
 }

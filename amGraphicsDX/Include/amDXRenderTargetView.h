@@ -1,5 +1,6 @@
 #pragma once
 #include "amDXPreReqs.h"
+
 namespace amEngineSDK {
   class amDXRenderTargetView
   {
@@ -10,5 +11,3 @@ namespace amEngineSDK {
     ID3D11RenderTargetView* m_pRTV;
   };
 }
-
-

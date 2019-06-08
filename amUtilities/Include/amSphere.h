@@ -52,10 +52,17 @@ namespace amEngineSDK {
     amSphere 
     operator/(const amSphere& other) const;
 
-    amSphere& operator+=(const amSphere& other);
-    amSphere& operator-=(const amSphere& other);
-    amSphere& operator*=(const amSphere& other);
-    amSphere& operator/=(const amSphere& other);
+    amSphere& 
+    operator+=(const amSphere& other);
+
+    amSphere& 
+    operator-=(const amSphere& other);
+
+    amSphere& 
+    operator*=(const amSphere& other);
+
+    amSphere& 
+    operator/=(const amSphere& other);
 
     /******************************************
     *
@@ -85,5 +92,3 @@ namespace amEngineSDK {
     amVector3 m_center;
   };
 }
-
-

@@ -1,10 +1,12 @@
 #include "amRNG.h"
 
-float amEngineSDK::amRNG::ziggurat() {
-  return 0.0f;
-}
+namespace amEngineSDK {
+  float amRNG::ziggurat() {
+    return 0.0f;
+  }
 
-void amEngineSDK::amRNG::boxMuller(float u, float v) {
-  u;
-  v;
+  void amRNG::boxMuller(float u, float v) {
+    u;
+    v;
+  }
 }

@@ -123,8 +123,15 @@ namespace amEngineSDK {
            class _Alloc = std::allocator<_Ty>>
   using Deque = std::deque<_Ty, _Alloc>;
 
+  /**
+  ************************
+  *  @Assist types for std containers
+  ************************
+  */
+
+  //template<class T1, class T2>
+  //using Pair = std::pair<T1, T2, std::allocator<_Ty>>;
+
+  
 #endif
 }
-
-
-

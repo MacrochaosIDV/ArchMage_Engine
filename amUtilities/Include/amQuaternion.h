@@ -78,32 +78,38 @@ namespace amEngineSDK {
     /***********************
     *  @brief Initializes the quaternion on 0s
     ***********************/
-    void init();
+    void 
+    init();
 
     /***********************
     *  @brief Initializes the quaternion as identity
     ***********************/
-    void initIdentity();
+    void 
+    initIdentity();
 
     /***********************
     *  @brief Rotates the quaternion around the X axis
     ***********************/
-    void rotateAroundX(const float& theta);
+    void 
+    rotateAroundX(const float& theta);
 
     /***********************
     *  @brief Rotates the quaternion around the Y axis
     ***********************/
-    void rotateAroundY(const float& theta);
+    void 
+    rotateAroundY(const float& theta);
 
     /***********************
     *  @brief Rotates the quaternion around the Z axis
     ***********************/
-    void rotateAroundZ(const float& theta);
+    void 
+    rotateAroundZ(const float& theta);
 
     /***********************
     *  @brief Rotates the quaternion around the Given axis
     ***********************/
-    void rotateAroundAxis(const amVector3 &axis, const float& theta);
+    void 
+    rotateAroundAxis(const amVector3 &axis, const float& theta);
 
     /***********************
     *  @brief Normalizes this quat
@@ -119,14 +125,10 @@ namespace amEngineSDK {
 
     amVector3 
     getQuatVector();
-
     
     float x;
     float y;
     float z;
     float w;
-
   };
 }
-
-

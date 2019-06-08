@@ -110,6 +110,7 @@ namespace amEngineSDK {
   using WCHAR = unsigned short; // Wide char(used by any other compiler)
 #endif
   using ANSICHAR = char;  // Ansi character type
+  using UANSICHAR = unsigned char;  // Unsigned Ansi character type
   using UNICHAR = WCHAR;  // Unicode character Type
 
   /**

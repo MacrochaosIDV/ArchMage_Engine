@@ -8,7 +8,7 @@ namespace amEngineSDK {
   public:
 
     static T&
-      instance() {
+    instance() {
       if (!isStartedUp()) {
         // TODO: Should throw exception
       }
@@ -20,7 +20,7 @@ namespace amEngineSDK {
     }
 
     static T*
-      instance() {
+    instance() {
       if (!isStartedUp()) {
         // TODO: Should throw exception
       }
@@ -106,7 +106,7 @@ namespace amEngineSDK {
     ************************
     */
     static T*&
-      _instance() {
+    _instance() {
       static T* inst = nullptr;
       return inst;
     }
@@ -118,11 +118,10 @@ namespace amEngineSDK {
     }
 
     static bool&
-      isStartedUp() {
+    isStartedUp() {
       static bool inst = false;
       return inst;
     }
    public:
-
   };
 }

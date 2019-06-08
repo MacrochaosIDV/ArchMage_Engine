@@ -2,16 +2,22 @@
 #include "amPrerequisitesCore.h"
 
 namespace amEngineSDK {
-  amTexture::amTexture(Vector<char>* _tBuffer, amTexType::E _tType) {
+  amTexture::amTexture(Vector<UANSICHAR>* _tBuffer, amTexType::E _tType) {
     m_tBuffer = *_tBuffer;
-
+    m_tType = _tType;
+    m_resourceType = amResourceType::E::kIMG;
   }
-  amTexture::amTexture() {}
+
+  amTexture::amTexture() {
+    m_resourceType = amResourceType::E::kIMG;
+  }
 
   amTexture::~amTexture() {}
 
-  void amTexture::setTex(Vector<char>* _tBuffer, amTexType::E _tType) {
+  void 
+  amTexture::setTex(Vector<UANSICHAR>* _tBuffer, amTexType::E _tType) {
     m_tBuffer = *_tBuffer;
     m_tType = _tType;
   }
+
 }

@@ -20,11 +20,20 @@ namespace amEngineSDK {
 
   amVector3::~amVector3() {}
 
-  const amVector3 amVector3::Front = amVector3(VECTOR_INIT::kVECTOR_FRONT);
-  const amVector3 amVector3::Right = amVector3(VECTOR_INIT::kVECTOR_RIGHT);
-  const amVector3 amVector3::Up = amVector3(VECTOR_INIT::kVECTOR_UP);
-  const amVector3 amVector3::Zero = amVector3(VECTOR_INIT::kVECTOR_ZERO);
-  const amVector3 amVector3::One = amVector3(VECTOR_INIT::kVECTOR_ONE);
+  const amVector3 
+  amVector3::Front = amVector3(VECTOR_INIT::kVECTOR_FRONT);
+
+  const amVector3 
+  amVector3::Right = amVector3(VECTOR_INIT::kVECTOR_RIGHT);
+
+  const amVector3 
+  amVector3::Up = amVector3(VECTOR_INIT::kVECTOR_UP);
+
+  const amVector3 
+  amVector3::Zero = amVector3(VECTOR_INIT::kVECTOR_ZERO);
+
+  const amVector3 
+  amVector3::One = amVector3(VECTOR_INIT::kVECTOR_ONE);
 
   amVector3::amVector3(int32 val) {
     if (val == VECTOR_INIT::kVECTOR_FRONT) {
@@ -107,10 +116,12 @@ namespace amEngineSDK {
     z = other.z;
     return *this;
   }
+
   float 
   amVector3::operator|(const amVector3 & other) const {
     return (x * other.x + y * other.y, + z * other.z);
   }
+
   amVector3& 
   amVector3::operator-=(const amVector3 & other) {
     x -= other.x;
@@ -215,12 +226,12 @@ namespace amEngineSDK {
     float magmag = Mag() * ProjectedOn.Mag();
     return dot / magmag;
   }
+
   amVector3 
   amVector3::cross3(const amVector3 & other) const {
     amVector3 res = *this ^ other;
     return res;
   }
-
 
   bool 
   amVector3::isZero()  const {

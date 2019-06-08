@@ -2,10 +2,7 @@
 #include "amDXDevice.h"
 
 namespace amEngineSDK {
-  amDXSwapChain::amDXSwapChain()
-  : m_pSC(nullptr)
-  {}
-
+  amDXSwapChain::amDXSwapChain() : m_pSC(nullptr) {}
 
   amDXSwapChain::~amDXSwapChain() {}
   
@@ -44,8 +41,5 @@ namespace amEngineSDK {
 
     return pRTV;
   }
+
 }
-
-
-
-

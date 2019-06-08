@@ -22,5 +22,3 @@ namespace amEngineSDK {
     int64 m_counterVal = 0;
   };
 }
-
-

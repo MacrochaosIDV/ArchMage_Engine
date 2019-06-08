@@ -4,6 +4,6 @@ namespace amEngineSDK {
 
   amTextureShader::amTextureShader() {}
 
-
   amTextureShader::~amTextureShader() {}
+
 }

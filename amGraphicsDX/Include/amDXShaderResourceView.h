@@ -11,5 +11,3 @@ namespace amEngineSDK {
     ID3D10ShaderResourceView* g_pTextureRV;
   };
 }
-
-

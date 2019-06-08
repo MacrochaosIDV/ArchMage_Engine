@@ -5,6 +5,7 @@
 namespace amEngineSDK {
   class amSceneNode;
   class amVector3;
+  class amResource;
 
   class amGameObject
   {
@@ -15,9 +16,16 @@ namespace amEngineSDK {
     amVector3 
     getPosition();
 
+    amComponent*
+    addComponent(amComponent* _comp);
+
+    amResource* 
+    getResourceInComp();
+
+    bool m_hasResourceComponent;
+    amComponent* m_resourceComponent;
     amSceneNode* m_node;
     amTransform m_transform;
+    Vector<amComponent*> m_vecComponents;
   };
 }
-
-

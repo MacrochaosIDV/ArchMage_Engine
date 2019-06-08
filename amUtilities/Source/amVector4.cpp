@@ -40,6 +40,7 @@ namespace amEngineSDK {
     w = other.w;
     return *this;
   }
+
   amVector4& 
   amVector4::operator-=(const amVector4& other) {
     x -= other.x;
@@ -156,5 +157,3 @@ namespace amEngineSDK {
     return res;
   }
 }
-
-

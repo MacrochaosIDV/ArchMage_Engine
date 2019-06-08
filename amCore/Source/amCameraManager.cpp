@@ -7,13 +7,17 @@ namespace amEngineSDK {
   }
 
   amCameraManager::~amCameraManager() {}
-  amMatrix4x4 amCameraManager::getViewMatrix() {
+
+  amMatrix4x4 
+  amCameraManager::getViewMatrix() {
     return m_activeCam->getViewMatrix();
   }
-  void amCameraManager::camTransition(amCamera * A, amCamera * B, float time) {
+
+  void 
+  amCameraManager::camTransition(amCamera * A, amCamera * B, float time) {
     A;
     B;
     time;
   }
-}
 
+}

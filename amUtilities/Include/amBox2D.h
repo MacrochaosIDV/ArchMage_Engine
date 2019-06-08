@@ -27,7 +27,6 @@ namespace amEngineSDK {
     amBox2D();
     ~amBox2D();
 
-
     /**
      *  @brief Make box be the same as the given box
      */
@@ -114,5 +113,3 @@ namespace amEngineSDK {
     float w;
   };
 }
-
-

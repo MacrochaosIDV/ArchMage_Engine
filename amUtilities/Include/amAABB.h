@@ -109,5 +109,3 @@ namespace amEngineSDK {
     amVector3 m_pMax;
   };
 }
-
-

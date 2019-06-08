@@ -9,22 +9,26 @@ namespace amEngineSDK {
 
   amDXGraphicsAPI::~amDXGraphicsAPI() {}
 
-  void amDXGraphicsAPI::createVertexBuffer(int32 nVertex, int32 vertexSize) {
+  void 
+  amDXGraphicsAPI::createVertexBuffer(int32 nVertex, int32 vertexSize) {
     nVertex;
     vertexSize;
   }
 
-  void amDXGraphicsAPI::CleanupDevice() {
+  void 
+  amDXGraphicsAPI::CleanupDevice() {
 
   }
 
-  void amDXGraphicsAPI::init(void* _hWnd) {
+  void 
+  amDXGraphicsAPI::init(void* _hWnd) {
     
     initSystems(_hWnd);
     initContent();
   }
 
-  void amDXGraphicsAPI::Render() {
+  void 
+  amDXGraphicsAPI::Render() {
     /**
     ************************
     *
@@ -42,6 +46,7 @@ namespace amEngineSDK {
     m_pVertexLayout->setLayout(m_pImmediateContext);
 
     m_pImmediateContext->m_pDC->IASetVertexBuffers(0, 1, &m_pDevice->m_VB.m_pVB, &stride, &offset);
+
     //m_pImmediateContext->m_pDC->IASetIndexBuffer(m_pDevice->m_IB.m_pIndexBuffer, DXGI_FORMAT_R32_UINT, 0);
 
     m_pImmediateContext->m_pDC->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
@@ -68,7 +73,8 @@ namespace amEngineSDK {
     m_pSwapChain->m_pSC->Present(0, 0);
   }
 
-  void amDXGraphicsAPI::initContent() {
+  void 
+  amDXGraphicsAPI::initContent() {
     /**
     ************************
     *
@@ -80,7 +86,7 @@ namespace amEngineSDK {
     m_pVertexShader->createVS("Resources/BasicShader.fx", m_pDevice);
     m_pPixelShader->createPS("Resources/BasicShader.fx", m_pDevice);
 
-    m_pVertexLayout->Create(m_pDevice, m_pVertexShader->m_pblob);
+    m_pVertexLayout->Create(m_pDevice, m_pVertexShader);
     
     m_pDevice->m_VB.m_vVertex.push_back(amVertex(-0.5f, 0.0f, 0.0f, 1.0f,   1.0f, 0.0f, 0.0f, 1.0f,   0.0f, 0.0f, 0.0f,   0.0f, 0.0f));
     m_pDevice->m_VB.m_vVertex.push_back(amVertex(0.0f,  0.5f, 0.0f, 1.0f,   0.0f, 1.0f, 0.0f, 1.0f,   0.0f, 0.0f, 0.0f,   0.0f, 0.0f));
@@ -95,11 +101,13 @@ namespace amEngineSDK {
 
   }
 
-  void amDXGraphicsAPI::setManagers() {
+  void 
+  amDXGraphicsAPI::setManagers() {
     m_pRenderManager->setpManagers(m_pResourceManager, m_pCamManager);
   }
 
-  void amDXGraphicsAPI::initSystems(void* _hWnd) {
+  void 
+  amDXGraphicsAPI::initSystems(void* _hWnd) {
 
     m_pDevice = new amDXDevice();
     m_pSwapChain = new amDXSwapChain();
@@ -249,7 +257,8 @@ namespace amEngineSDK {
     m_pCB_VP->cbuffer.WVP = cam.getViewMatrix();
   }
 
-  void amDXGraphicsAPI::destroy() {
+  void 
+  amDXGraphicsAPI::destroy() {
 
   }
 
@@ -307,5 +316,3 @@ namespace amEngineSDK {
     return 0;
   }*/
 }
-
-

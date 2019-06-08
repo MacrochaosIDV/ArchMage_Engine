@@ -201,4 +201,3 @@ namespace amEngineSDK {
     float z;
   };
 }
-

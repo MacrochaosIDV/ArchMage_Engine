@@ -3,6 +3,5 @@
 namespace amEngineSDK {
   amRenderTargetView::amRenderTargetView() {}
 
-
   amRenderTargetView::~amRenderTargetView() {}
 }

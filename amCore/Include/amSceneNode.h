@@ -1,11 +1,10 @@
 #pragma once
-
 #include "amPrerequisitesCore.h"
-
 
 namespace amEngineSDK {
   class amGameObject;
   class amCamera;
+  class amResource;
 
   namespace amNodeType {
     enum E
@@ -24,6 +23,9 @@ namespace amEngineSDK {
 
     Vector<amSceneNode*>
     getAllChildrenInCam(amCamera* _cam);
+
+    Vector<amResource*>
+    getAllResourcesInCam(amCamera* _cam);
 
     void 
     setParent(amSceneNode* _parent);
@@ -53,5 +55,3 @@ namespace amEngineSDK {
     amGameObject* m_nodeObj;
   };
 }
-
-

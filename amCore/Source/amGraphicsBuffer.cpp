@@ -3,6 +3,5 @@
 namespace amEngineSDK {
   amGraphicsBuffer::amGraphicsBuffer() {}
 
-
   amGraphicsBuffer::~amGraphicsBuffer() {}
 }

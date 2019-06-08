@@ -28,18 +28,32 @@ namespace amEngineSDK {
 
     amOOBB(const amOOBB& other);
 
-    amOOBB& operator=(const amOOBB& other);
+    amOOBB& 
+    operator=(const amOOBB& other);
 
-    amOOBB operator+(const amOOBB& other);
-    amOOBB operator-(const amOOBB& other);
-    amOOBB operator*(const amOOBB& other);
-    amOOBB operator/(const amOOBB& other);
+    amOOBB 
+    operator+(const amOOBB& other);
 
-    amOOBB& operator+=(const amOOBB& other);
-    amOOBB& operator-=(const amOOBB& other);
-    amOOBB& operator*=(const amOOBB& other);
-    amOOBB& operator/=(const amOOBB& other);
+    amOOBB 
+    operator-(const amOOBB& other);
+
+    amOOBB 
+    operator*(const amOOBB& other);
+
+    amOOBB 
+    operator/(const amOOBB& other);
+
+    amOOBB& 
+    operator+=(const amOOBB& other);
+
+    amOOBB& 
+    operator-=(const amOOBB& other);
+
+    amOOBB& 
+    operator*=(const amOOBB& other);
+
+    amOOBB& 
+    operator/=(const amOOBB& other);
+
   };
 }
-
-

@@ -5,5 +5,3 @@ namespace amEngineSDK {
 
   amDXRenderTargetView::~amDXRenderTargetView() {}
 }
-
-

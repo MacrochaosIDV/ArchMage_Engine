@@ -3,9 +3,9 @@
 
 namespace amEngineSDK {
   amMaterial::amMaterial() {
-    m_vecTex.resize(5);
+    m_resourceType = amResourceType::E::kMATERIAL;
   }
 
   amMaterial::~amMaterial() {}
-}
 
+}

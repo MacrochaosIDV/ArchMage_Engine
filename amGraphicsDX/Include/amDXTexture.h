@@ -1,5 +1,6 @@
 #pragma once
 #include "amDXPreReqs.h"
+
 namespace amEngineSDK {
   class amDXTexture
   {
@@ -7,13 +8,13 @@ namespace amEngineSDK {
     amDXTexture();
     ~amDXTexture();
 
-    void loadFromFile(std::string filePathName);
-    void unload();
+    void 
+    loadFromFile(std::string filePathName);
+    void 
+    unload();
 
     ID3D11Texture2D* m_tex;
     uint32 m_height;
     uint32 m_width;
   };
 }
-
-

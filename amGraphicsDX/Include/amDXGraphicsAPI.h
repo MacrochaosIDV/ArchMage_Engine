@@ -37,8 +37,6 @@
 #include "amDXSamplerState.h"
 #include "amDXConstantBuffer.h"
 
-
-
 namespace amEngineSDK {
   class AM_GRAPHICSDX_EXPORT amDXGraphicsAPI : public amGraphicsAPI
   {
@@ -86,8 +84,6 @@ namespace amEngineSDK {
     amDXShaderResourceView*             m_pTextureRV = NULL;
     amDXSwapChain*                      m_pSwapChain = NULL;
     amDXDevice*                         m_pDevice = NULL;
-
     amDXConstantBuffer*                 m_pCB_VP = NULL;
-
   };
 }

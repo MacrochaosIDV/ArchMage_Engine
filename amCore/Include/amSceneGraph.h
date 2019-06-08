@@ -15,7 +15,7 @@ namespace amEngineSDK {
     ~amSceneGraph();
 
     Vector<amResource*>
-    getNodesOnCam(amCamera* _cam);
+    getAllResourcesInCam(amCamera* _cam);
 
     amSceneNode* m_pRoot;
     amResourceManager* m_pResourceManager;
@@ -23,5 +23,3 @@ namespace amEngineSDK {
     Vector<amResource*> m_pSceneResources;
   };
 }
-
-

@@ -34,7 +34,8 @@ namespace amEngineSDK {
     (*this) = *new amPlane(t.m_v0, t.m_v1, t.m_v2);
   }
 
-  amPlane & amPlane::operator=(const amPlane & other) {
+  amPlane & 
+  amPlane::operator=(const amPlane & other) {
     x = other.x;
     y = other.y;
     z = other.z;
@@ -42,7 +43,8 @@ namespace amEngineSDK {
     return *this;
   }
 
-  amPlane amPlane::operator+(const amPlane & other) const {
+  amPlane 
+  amPlane::operator+(const amPlane & other) const {
     amPlane pl = *this;
     pl.x += other.x;
     pl.y += other.y;
@@ -51,7 +53,8 @@ namespace amEngineSDK {
     return pl;
   }
 
-  amPlane amPlane::operator-(const amPlane & other) const {
+  amPlane 
+  amPlane::operator-(const amPlane & other) const {
     amPlane pl = *this;
     pl.x -= other.x;
     pl.y -= other.y;
@@ -60,7 +63,8 @@ namespace amEngineSDK {
     return pl;
   }
 
-  amPlane amPlane::operator*(const amPlane & other) const {
+  amPlane 
+  amPlane::operator*(const amPlane & other) const {
     amPlane pl = *this;
     pl.x *= other.x;
     pl.y *= other.y;
@@ -69,7 +73,8 @@ namespace amEngineSDK {
     return pl;
   }
 
-  amPlane amPlane::operator/(const amPlane & other) const {
+  amPlane 
+  amPlane::operator/(const amPlane & other) const {
     amPlane pl = *this;
     pl.x /= other.x;
     pl.y /= other.y;
@@ -78,7 +83,8 @@ namespace amEngineSDK {
     return pl;
   }
 
-  amPlane & amPlane::operator+=(const amPlane & other) {
+  amPlane & 
+  amPlane::operator+=(const amPlane & other) {
     x += other.x;
     y += other.y;
     z += other.z;
@@ -86,7 +92,8 @@ namespace amEngineSDK {
     return *this;
   }
 
-  amPlane & amPlane::operator-=(const amPlane & other) {
+  amPlane & 
+  amPlane::operator-=(const amPlane & other) {
     x -= other.x;
     y -= other.y;
     z -= other.z;
@@ -94,7 +101,8 @@ namespace amEngineSDK {
     return *this;
   }
 
-  amPlane & amPlane::operator*=(const amPlane & other) {
+  amPlane & 
+  amPlane::operator*=(const amPlane & other) {
     x *= other.x;
     y *= other.y;
     z *= other.z;
@@ -102,7 +110,8 @@ namespace amEngineSDK {
     return *this;
   }
 
-  amPlane & amPlane::operator/=(const amPlane & other) {
+  amPlane & 
+  amPlane::operator/=(const amPlane & other) {
     x /= other.x;
     y /= other.y;
     z /= other.z;
@@ -110,17 +119,20 @@ namespace amEngineSDK {
     return *this;
   }
 
-  PLANE_TEST::E amPlane::whichSide(const amVector3 & vec) {
+  PLANE_TEST::E 
+  amPlane::whichSide(const amVector3 & vec) {
     vec;
     return PLANE_TEST::ON_PLANE;
   }
 
-  float amPlane::distanceTo(const amVector3 & vec) {
+  float 
+  amPlane::distanceTo(const amVector3 & vec) {
     amVector3 point;
     return (point - vec).Mag();
   }
 
-  bool amPlane::intersects(const amPlane & other) const {
+  bool 
+  amPlane::intersects(const amPlane & other) const {
     if (*this == other) {
       if (d == other.d) {
         return true;
@@ -131,5 +143,3 @@ namespace amEngineSDK {
   }
 
 }
-
-

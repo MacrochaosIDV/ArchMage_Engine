@@ -1,13 +1,13 @@
 #include "amDXVertexBuffer.h"
-
 #include "amDXDevice.h"
 
 namespace amEngineSDK {
-  void amDXVertexBuffer::setBufferData(D3D11_USAGE _usageF) {
+  void 
+  amDXVertexBuffer::setBufferData(D3D11_USAGE _usageF) {
     memset(&m_bd, 0, sizeof(m_bd));
     m_bd.Usage = _usageF;
     m_numVertex = m_vVertex.size();
-    m_bd.ByteWidth = static_cast<uint32>(sizeof(amVertex)) * m_numVertex; // total byte size of all vertexes
+    m_bd.ByteWidth = static_cast<uint32>(sizeof(amVertex) * m_numVertex); // total byte size of all vertexes
     m_bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
     m_bd.CPUAccessFlags = 0;
     m_bd.MiscFlags = 0;
@@ -18,19 +18,18 @@ namespace amEngineSDK {
     m_vVertex.clear();
   }
 
-  void amDXVertexBuffer::setSubResourceData(const void* _data, uint32 _sysMemPitch, uint32 _sysMemSlicePitch) {
+  void 
+  amDXVertexBuffer::setSubResourceData(const void* _data, uint32 _sysMemPitch, uint32 _sysMemSlicePitch) {
     m_initData.pSysMem = _data; // the actual vertex data that goes into the GPU
     m_initData.SysMemPitch = _sysMemPitch;
     m_initData.SysMemSlicePitch = _sysMemSlicePitch;
 
   }
 
-  void amDXVertexBuffer::setVBSize(uint32 _size) {
+  void 
+  amDXVertexBuffer::setVBSize(uint32 _size) {
     m_numVertex = _size;
     m_vVertex.resize(m_numVertex);
   }
 
-  //void amDXVertexBuffer::createVertexBuffer(amDXDevice* pdevice) {
-    //pdevice->m_pDV->
-  //}
 }

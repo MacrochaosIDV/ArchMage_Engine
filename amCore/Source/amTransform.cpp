@@ -5,4 +5,3 @@ namespace amEngineSDK {
 
   amTransform::~amTransform() {}
 }
-

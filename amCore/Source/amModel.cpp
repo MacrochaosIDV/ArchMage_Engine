@@ -4,7 +4,9 @@
 #include "amTexture.h"
 
 namespace amEngineSDK {
-  amModel::amModel() {}
+  amModel::amModel() {
+    m_resourceType = amResourceType::E::kMODEL;
+  }
 
   amModel::~amModel() {}
 

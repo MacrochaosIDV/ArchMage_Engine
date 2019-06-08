@@ -89,4 +89,3 @@ namespace amEngineSDK {
   amVector3 v6;
   amVector3 v7;
 }
-

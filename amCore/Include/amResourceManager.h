@@ -13,9 +13,9 @@ namespace amEngineSDK {
     amResource*
     CreateModel(const String& pathName);
 
+    amResource*
+    CreateTexture(const String& pathName);
+
     Vector<amResource*> m_vecResources;
-    //Map<amResource*, uint32> m_mapResourcesInstanceCount;
   };
 }
-
-

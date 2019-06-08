@@ -3,6 +3,5 @@
 namespace amEngineSDK {
   amGeomShader::amGeomShader() {}
 
-
   amGeomShader::~amGeomShader() {}
 }

@@ -14,14 +14,15 @@
 #include "amVector3.h"
 
 namespace amEngineSDK {
-  
   amMatrix4x4::amMatrix4x4() {}
-
 
   amMatrix4x4::~amMatrix4x4() {}
 
-  const amMatrix4x4 amMatrix4x4::IDENTITY = amMatrix4x4(FORCE_INIT::kONE);
-  const amMatrix4x4 amMatrix4x4::ZERO = amMatrix4x4(FORCE_INIT::kZERO);
+  const amMatrix4x4 
+  amMatrix4x4::IDENTITY = amMatrix4x4(FORCE_INIT::kONE);
+
+  const amMatrix4x4 
+  amMatrix4x4::ZERO = amMatrix4x4(FORCE_INIT::kZERO);
 
   amMatrix4x4::amMatrix4x4(const amMatrix4x4& other) {
     //_m = other._m;
@@ -29,11 +30,13 @@ namespace amEngineSDK {
       fvec[i] = other.fvec[i];
   }
 
-  void amMatrix4x4::initIdentity() {
+  void 
+  amMatrix4x4::initIdentity() {
     *this = IDENTITY;
   }
 
-  amMatrix4x4 & amMatrix4x4::translate(const float dx, const float dy, const float dz) {
+  amMatrix4x4 & 
+  amMatrix4x4::translate(const float dx, const float dy, const float dz) {
     // TODO: insert return statement here
     dx; dy; dz;
     return *this;
@@ -55,26 +58,30 @@ namespace amEngineSDK {
     _m.m30 = _m30; _m.m31 = _m31; _m.m32 = _m32; _m.m33 = _m33;
   }
 
-  amMatrix4x4 amMatrix4x4::operator*(const float & f) {
+  amMatrix4x4 
+  amMatrix4x4::operator*(const float & f) {
     amMatrix4x4 res = *this;
     for (int i = 0; i < 16; ++i)
       res.fvec[i] *= f;
     return res;
   }
 
-  amMatrix4x4& amMatrix4x4::operator=(const amMatrix4x4 & other) {
+  amMatrix4x4& 
+  amMatrix4x4::operator=(const amMatrix4x4 & other) {
     //_m = other._m;
     for (int i = 0; i < 16; ++i)
       fvec[i] = other.fvec[i];
     return *this;
   }
 
-  amMatrix4x4& amMatrix4x4::operator*=(const amMatrix4x4 & other) {
+  amMatrix4x4& 
+  amMatrix4x4::operator*=(const amMatrix4x4 & other) {
     *this = *this * other;
     return *this;
   }
 
-  amMatrix4x4 amMatrix4x4::operator*(const amMatrix4x4& other) {
+  amMatrix4x4 
+  amMatrix4x4::operator*(const amMatrix4x4& other) {
     amMatrix4x4 res = *this;
     for (int j = 0; j < 4; j++)
       for (int i = 0; i < 4; i++)
@@ -83,7 +90,8 @@ namespace amEngineSDK {
     return res;
   }
 
-  amVector4 amMatrix4x4::operator*(amVector4& V) {
+  amVector4 
+  amMatrix4x4::operator*(amVector4& V) {
     /**
     ************************
     *
@@ -127,7 +135,8 @@ namespace amEngineSDK {
       return res;
   }*/
 
-  amMatrix4x4& amMatrix4x4::rotateX(const float& theta) {
+  amMatrix4x4& 
+  amMatrix4x4::rotateX(const float& theta) {
       //theta = theta * 0.01745;
       //amMatrix4x4 res(IDENTITY);
       _m.m11 = _m.m22 = amMath::cos(theta);
@@ -136,7 +145,8 @@ namespace amEngineSDK {
       return *this;
   }
 
-  amMatrix4x4& amMatrix4x4::rotateY(const float& theta) {
+  amMatrix4x4& 
+  amMatrix4x4::rotateY(const float& theta) {
       //theta = theta * 0.01745;
     //amMatrix4x4 res(IDENTITY);
     _m.m00 = _m.m22 = amMath::cos(theta);
@@ -145,7 +155,8 @@ namespace amEngineSDK {
       return *this;
   }
 
-  amMatrix4x4& amMatrix4x4::rotateZ(const float& theta) {
+  amMatrix4x4& 
+  amMatrix4x4::rotateZ(const float& theta) {
       //theta = theta * 0.01745;
       //amMatrix4x4 res(IDENTITY);
       _m.m00 = _m.m11 = amMath::cos(theta);
@@ -154,7 +165,8 @@ namespace amEngineSDK {
       return *this;
   }
 
-  amMatrix4x4& amMatrix4x4::rotateAxis(const amVector3 & axis, float ang) {
+  amMatrix4x4& 
+  amMatrix4x4::rotateAxis(const amVector3 & axis, float ang) {
     float cosAng = amMath::cos(ang);
     float sinAng = amMath::sin(ang);
     _m.m00 = cosAng + amMath::pow(axis.x, 2.0f) * (1 - cosAng); 
@@ -171,7 +183,8 @@ namespace amEngineSDK {
     return *this;
   }
 
-  amMatrix4x4& amMatrix4x4::transpose() {
+  amMatrix4x4& 
+  amMatrix4x4::transpose() {
     amMatrix4x4 T;
     for (int j = 0; j < 4; j++) {
       for (int i = 0; i < 4; i++) {
@@ -182,7 +195,8 @@ namespace amEngineSDK {
     return *this;
   }
 
-  amMatrix4x4 amMatrix4x4::transposed() {
+  amMatrix4x4 
+  amMatrix4x4::transposed() {
     amMatrix4x4 __m = *this;
     return __m.transpose();
   }
@@ -202,7 +216,8 @@ namespace amEngineSDK {
       return res;
   }*/
 
-  amMatrix4x4 amMatrix4x4::inverse() {
+  amMatrix4x4 
+  amMatrix4x4::inverse() {
     amMatrix4x4 inv;
 
       inv.fvec[0] = fvec[5] * fvec[10] * fvec[15] -
@@ -325,12 +340,14 @@ namespace amEngineSDK {
       //float invdet = 1.0 / det;
   }
 
-  amMatrix4x4 & amMatrix4x4::fastInverse() {
+  amMatrix4x4 & 
+  amMatrix4x4::fastInverse() {
 
     return *this;
   }
 
-  amMatrix4x4& amMatrix4x4::invert() {
+  amMatrix4x4& 
+  amMatrix4x4::invert() {
     this->inverse();
     return *this;
   }
@@ -452,7 +469,8 @@ namespace amEngineSDK {
       return Persp;
   }*/
 
-  amMatrix4x4& amMatrix4x4::setViewProjection(const float& FOV, const float& ratio, const float& zNear, const float& zFar) {
+  amMatrix4x4& 
+  amMatrix4x4::setViewProjection(const float& FOV, const float& ratio, const float& zNear, const float& zFar) {
       float ang = FOV / 2;
       float h = amMath::tan(ang);
       float w = h / ratio;
@@ -474,5 +492,3 @@ namespace amEngineSDK {
       return *this;
   }
 }
-
-

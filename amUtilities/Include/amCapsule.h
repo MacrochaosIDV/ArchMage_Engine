@@ -91,5 +91,3 @@ namespace amEngineSDK {
 
   };
 }
-
-

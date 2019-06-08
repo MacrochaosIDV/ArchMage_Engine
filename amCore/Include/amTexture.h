@@ -22,14 +22,14 @@ namespace amEngineSDK {
   class AM_CORE_EXPORT amTexture : public amResource
   {
   public:
-    amTexture(Vector<char>* _tBuffer, amTexType::E _tType);
+    amTexture(Vector<UANSICHAR>* _tBuffer, amTexType::E _tType = amTexType::E::kALBEDO);
     amTexture();
     ~amTexture();
 
     void 
-    setTex(Vector<char>* _tBuffer, amTexType::E _tType = amTexType::E::kDEF);
+    setTex(Vector<UANSICHAR>* _tBuffer, amTexType::E _tType = amTexType::E::kDEF);
 
-    Vector<char> m_tBuffer;
+    Vector<UANSICHAR> m_tBuffer;
     String m_fileName;
     amTexType::E m_tType;
   };

@@ -132,7 +132,5 @@ namespace amEngineSDK{
     intersects(const amPlane& other) const;
 
     float d;
-};
+  };
 }
-
-

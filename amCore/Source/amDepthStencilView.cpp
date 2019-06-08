@@ -3,6 +3,5 @@
 namespace amEngineSDK {
   amDepthStencilView::amDepthStencilView() {}
 
-
   amDepthStencilView::~amDepthStencilView() {}
 }

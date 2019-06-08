@@ -13,5 +13,3 @@ namespace amEngineSDK {
     amMatrix4x4 m_transform;
   };
 }
-
-

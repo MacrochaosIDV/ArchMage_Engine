@@ -3,6 +3,6 @@
 namespace amEngineSDK {
   amDepthStencilState::amDepthStencilState() {}
 
-
   amDepthStencilState::~amDepthStencilState() {}
+
 }

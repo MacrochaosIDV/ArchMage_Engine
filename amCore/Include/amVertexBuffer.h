@@ -13,5 +13,3 @@ namespace amEngineSDK {
     SIZE_T m_numVertex;
   };
 }
-
-

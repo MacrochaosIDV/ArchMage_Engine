@@ -34,23 +34,27 @@ namespace amEngineSDK {
     amRay
     operator=(const amRay& other);
 
-    
-
     amRay 
     operator+(const amRay& other) const;
+
     amRay 
     operator-(const amRay& other) const;
+
     amRay 
     operator*(const amRay& other) const;
+
     amRay 
     operator/(const amRay& other) const;
 
     amRay& 
     operator+=(const amRay& other);
+
     amRay& 
     operator-=(const amRay& other);
+
     amRay& 
     operator*=(const amRay& other);
+
     amRay& 
     operator/=(const amRay& other);
 
@@ -61,5 +65,3 @@ namespace amEngineSDK {
     amVector3 m_dir;
   };
 }
-
-

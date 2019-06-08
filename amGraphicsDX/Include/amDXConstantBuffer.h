@@ -23,5 +23,3 @@ namespace amEngineSDK {
     D3D11_SUBRESOURCE_DATA m_subResData;
   };
 }
-
-

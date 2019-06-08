@@ -24,5 +24,3 @@ namespace amEngineSDK {
     String m_matName;
   };
 }
-
-

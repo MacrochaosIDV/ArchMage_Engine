@@ -7,15 +7,15 @@
 namespace amEngineSDK {
   amDXShader::amDXShader() {}
 
-
   amDXShader::~amDXShader() {}
 
-  HRESULT amDXShader::CompileShaderFromFile(const char* szFileName,
-                                                 LPCSTR szEntryPoint,
-                                                 LPCSTR szShaderModel,
-                                                 ID3DBlob ** ppBlobOut) {
+  int32 
+  amDXShader::CompileShaderFromFile(const char* szFileName,
+                                    LPCSTR szEntryPoint,
+                                    LPCSTR szShaderModel,
+                                    ID3DBlob ** ppBlobOut) {
     HRESULT hr = S_OK;
-
+    ppBlobOut;
     DWORD dwShaderFlags = D3DCOMPILE_ENABLE_STRICTNESS;
 #if defined( DEBUG ) || defined( _DEBUG )
     // Set the D3DCOMPILE_DEBUG flag to embed debug information in the shaders.
@@ -49,7 +49,5 @@ namespace amEngineSDK {
 
     return S_OK;
   }
-
   
 }
-

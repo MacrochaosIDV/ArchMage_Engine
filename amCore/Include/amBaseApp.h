@@ -50,18 +50,20 @@ namespace amEngineSDK {
     virtual void
     onMouseMove(float x, float y/*, btns*/);
 
-    void
+    virtual void
     initSystems();
 
     virtual void
     initContent();
-
     
+    ATOM 
+    MyRegisterClass(HINSTANCE hInstance);
 
-    
-    ATOM MyRegisterClass(HINSTANCE hInstance);
-    int32 InitInstance(HINSTANCE hInstance, int32 nCmdShow);
-    static LRESULT CALLBACK WndProc(HWND hWnd, uint32 message, WPARAM wParam, LPARAM lParam);
+    int32 
+    InitInstance(HINSTANCE hInstance, int32 nCmdShow);
+
+    static LRESULT CALLBACK 
+    WndProc(HWND hWnd, uint32 message, WPARAM wParam, LPARAM lParam);
     
     WNDCLASSEXW m_wcex;
     HINSTANCE m_hInst;                                // current instance
@@ -75,5 +77,3 @@ namespace amEngineSDK {
     amGraphicsAPI* m_GAPI;
   };
 }
-
-

@@ -29,6 +29,9 @@
     <Filter Include="Source Files\Core\Components">
       <UniqueIdentifier>{f3323f50-7194-48ca-ab5e-698b037a4ae8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Renderer classes\Render Passes">
+      <UniqueIdentifier>{ef049fb0-e71c-4bb9-b7fe-37c298d86e3e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\amComputeShader.cpp">
@@ -154,8 +157,32 @@
     <ClCompile Include="Source\amResourceManager.cpp">
       <Filter>Source Files\Core management</Filter>
     </ClCompile>
-    <ClCompile Include="amDeviceContext.cpp">
+    <ClCompile Include="Source\amDevice.cpp">
       <Filter>Source Files\API classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amDeviceContext.cpp">
+      <Filter>Source Files\API classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amCameraComponent.cpp">
+      <Filter>Source Files\Core\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amRP_SSAO.cpp">
+      <Filter>Source Files\Renderer classes\Render Passes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amAnimationMesh.cpp">
+      <Filter>Source Files\Resource classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amImage.cpp">
+      <Filter>Source Files\Resource classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amBone.cpp">
+      <Filter>Source Files\Resource classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amSkeletonMesh.cpp">
+      <Filter>Source Files\Resource classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amBlob.cpp">
+      <Filter>Source Files\Buffers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -285,8 +312,32 @@
     <ClInclude Include="Include\amResourceManager.h">
       <Filter>Source Files\Core management</Filter>
     </ClInclude>
-    <ClInclude Include="amDeviceContext.h">
+    <ClInclude Include="Include\amDevice.h">
       <Filter>Source Files\API classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amDeviceContext.h">
+      <Filter>Source Files\API classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amCameraComponent.h">
+      <Filter>Source Files\Core\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amRP_SSAO.h">
+      <Filter>Source Files\Renderer classes\Render Passes</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amAnimationMesh.h">
+      <Filter>Source Files\Resource classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amImage.h">
+      <Filter>Source Files\Resource classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amBone.h">
+      <Filter>Source Files\Resource classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amSkeletonMesh.h">
+      <Filter>Source Files\Resource classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amBlob.h">
+      <Filter>Source Files\Buffers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

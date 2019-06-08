@@ -10,6 +10,3 @@ namespace amEngineSDK {
     ~amControlerInput();
   };
 }
-
-
-

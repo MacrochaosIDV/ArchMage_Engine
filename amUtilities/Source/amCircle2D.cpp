@@ -1,46 +1,53 @@
 #include "amCircle2D.h"
 
 namespace amEngineSDK {
-  amCircle2D amCircle2D::operator+(amCircle2D & cir) const {
+  amCircle2D 
+  amCircle2D::operator+(amCircle2D & cir) const {
     amCircle2D c = *this;
     c.r += cir.r;
     c.m_center += cir.m_center;
     return c;
   }
 
-  amCircle2D amCircle2D::operator-(amCircle2D & cir) const {
+  amCircle2D 
+  amCircle2D::operator-(amCircle2D & cir) const {
     amCircle2D c = *this;
     c.r -= cir.r;
     c.m_center -= cir.m_center;
     return c;
   }
 
-  amCircle2D amCircle2D::operator*(amCircle2D & cir) const {
+  amCircle2D 
+  amCircle2D::operator*(amCircle2D & cir) const {
     amCircle2D c = *this;
     c.r *= cir.r;
     c.m_center *= cir.m_center;
     return c;
   }
 
-  amCircle2D & amCircle2D::operator=(amCircle2D & cir) {
+  amCircle2D & 
+  amCircle2D::operator=(amCircle2D & cir) {
     r = cir.r;
     m_center = cir.m_center;
     return *this;
   }
 
-  amCircle2D & amCircle2D::operator+=(amCircle2D & cir) {
+  amCircle2D & 
+  amCircle2D::operator+=(amCircle2D & cir) {
     r += cir.r;
     m_center += cir.m_center;
     return *this;
   }
 
-  amCircle2D & amCircle2D::operator-=(amCircle2D & cir) {
+  amCircle2D & 
+  amCircle2D::operator-=(amCircle2D & cir) {
     r -= cir.r;
     m_center -= cir.m_center;
     return *this;
   }
 
-  amCircle2D & amCircle2D::operator*=(amCircle2D & cir) {
+  amCircle2D & 
+  amCircle2D::operator*=(amCircle2D & cir) {
     r *= cir.r;
     m_center *= cir.m_center; 
     return *this;
@@ -52,7 +59,8 @@ namespace amEngineSDK {
     return *this;
   }
 
-  bool amCircle2D::isInside(const amVector2 & vec) {    
+  bool 
+  amCircle2D::isInside(const amVector2 & vec) {    
     if ( (vec - m_center).Mag() >= r) {
       return true;
     }
@@ -60,7 +68,8 @@ namespace amEngineSDK {
     return false;
   }
 
-  void amCircle2D::scale(const float& f) {
+  void 
+  amCircle2D::scale(const float& f) {
     r *= f;
   }
 
@@ -69,5 +78,3 @@ namespace amEngineSDK {
     m_center = newPos;
   }
 }
-
-

@@ -14,7 +14,6 @@
 namespace amEngineSDK {
   amTriangle::amTriangle() {}
 
-
   amTriangle::~amTriangle() {}
 
   amTriangle::amTriangle(const amTriangle& other) {
@@ -100,5 +99,3 @@ namespace amEngineSDK {
   }
 
 }
-
-

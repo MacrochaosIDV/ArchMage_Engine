@@ -3,6 +3,5 @@
 namespace amEngineSDK {
   amSamplerState::amSamplerState() {}
 
-
   amSamplerState::~amSamplerState() {}
 }

@@ -12,7 +12,8 @@ namespace amEngineSDK {
 
     amMatrix4x4 getViewMatrix();
 
-    void camTransition(amCamera* A, amCamera* B, float time);
+    void 
+    camTransition(amCamera* A, amCamera* B, float time);
 
     Vector<amCamera*> m_camVec;
     amCamera* m_activeCam;
@@ -20,5 +21,3 @@ namespace amEngineSDK {
     amCamera* m_targetCam;
   };
 }
-
-

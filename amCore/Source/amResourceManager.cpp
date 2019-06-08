@@ -1,4 +1,5 @@
 #include "amResourceManager.h"
+#include <stb_image.h>
 #include <assimp\Importer.hpp> // C++ importer interface
 #include <assimp/scene.h> // Output data structure
 #include <assimp/postprocess.h> // Post processing flags
@@ -20,7 +21,8 @@ namespace amEngineSDK {
 
   amResourceManager::~amResourceManager() {}
 
-  amVector3 getPos(const aiVector3D& other) {
+  amVector3 
+  getPos(const aiVector3D& other) {
     amVector3 v;
     v.x = other.x;
     v.y = other.y;
@@ -28,14 +30,16 @@ namespace amEngineSDK {
     return v;
   }
 
-  amVector2 getUV(const aiVector3t<ai_real>& other) {
+  amVector2 
+  getUV(const aiVector3t<ai_real>& other) {
     amVector2 v;
     v.x = other.x;
     v.y = other.y;
     return v;
   }
 
-  amVector4 getColorRGBA(const aiColor4D& other) {
+  amVector4 
+  getColorRGBA(const aiColor4D& other) {
     amVector4 v;
     v.x = other.r;
     v.y = other.g;
@@ -44,17 +48,19 @@ namespace amEngineSDK {
     return v;
   }
 
-  aiString str_to_aiStr(const String& str) {
+  aiString 
+  str_to_aiStr(const String& str) {
     aiString aiStr;
     aiStr.Set(str);
     return aiStr;
   }
 
-  void getAllMaterialTexturesOfType(const amModel* mdl,
-                                    const aiScene* scn,
-                                    const int32 index,
-                                    const aiTextureType type,
-                                    const String& FilePathName) {
+  void 
+  getAllMaterialTexturesOfType(const amModel* mdl,
+                               const aiScene* scn,
+                               const int32 index,
+                               const aiTextureType type,
+                               const String& FilePathName) {
     mdl;
     uint32 nMatTex = scn->mMaterials[index]->GetTextureCount(type);
     if (nMatTex > 0) {
@@ -67,7 +73,8 @@ namespace amEngineSDK {
     }
   }
 
-  amResource* amResourceManager::CreateModel(const String& pathName) {
+  amResource* 
+  amResourceManager::CreateModel(const String& pathName) {
     // Create an instance of the Importer class
     Assimp::Importer importer;
 
@@ -172,5 +179,16 @@ namespace amEngineSDK {
 
 
   }
-}
 
+  amResource * 
+  amResourceManager::CreateTexture(const String & pathName) {
+    int32 width, height, channels;
+    amTexture* tex = new amTexture();
+    UANSICHAR* texdata = stbi_load(pathName.c_str(), &width, &height, &channels, 0);
+    tex->m_tBuffer.resize(width * height);
+    memcpy(&tex->m_tBuffer, &texdata, width * height);
+    m_vecResources.push_back(tex);
+    return tex;
+  }
+
+}

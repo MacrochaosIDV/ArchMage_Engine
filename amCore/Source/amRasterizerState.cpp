@@ -3,6 +3,5 @@
 namespace amEngineSDK {
   amRasterizerState::amRasterizerState() {}
 
-
   amRasterizerState::~amRasterizerState() {}
 }

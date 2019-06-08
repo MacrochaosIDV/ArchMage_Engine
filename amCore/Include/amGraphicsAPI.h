@@ -36,7 +36,11 @@ namespace amEngineSDK {
     amGraphicsAPI();
     ~amGraphicsAPI();
 
-    virtual void createVertexBuffer(int64 nVertex, int64 vertexSize);
+    virtual void 
+    createVertexBuffer(int64 nVertex, int64 vertexSize);
+
+    virtual void 
+    Draw(amIndexBuffer* _IB, amVertexBuffer* _VB);
 
     virtual void 
     init(void* _wnd);
@@ -58,6 +62,12 @@ namespace amEngineSDK {
 
     virtual void 
     renderResourcesOnCam(amCamera* _cam, amRenderPass* _pass);
+
+    virtual void 
+    ClearRenderTarget();
+
+    virtual void 
+    Present();
 
     float m_fov;
     amRenderManager* m_pRenderManager;

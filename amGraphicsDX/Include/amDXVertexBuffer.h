@@ -3,16 +3,16 @@
 #include <vector>
 #include <amVertexBuffer.h>
 #include <amVertex.h>
-class amDXDevice;
+
 
 namespace amEngineSDK {
+  class amDXDevice;
+
   class amDXVertexBuffer : public amVertexBuffer
   {
    public:
     amDXVertexBuffer() = default;
     ~amDXVertexBuffer() = default;
-
-    
 
     void 
     setBufferData(D3D11_USAGE _usageF);
@@ -29,8 +29,6 @@ namespace amEngineSDK {
     ID3D11Buffer* m_pVB;
     D3D11_BUFFER_DESC m_bd;
     D3D11_SUBRESOURCE_DATA m_initData;
-    
   };
 
 }
-

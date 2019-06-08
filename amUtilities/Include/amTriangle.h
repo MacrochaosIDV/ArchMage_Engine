@@ -32,19 +32,25 @@ namespace amEngineSDK {
 
     amTriangle 
     operator+(const amTriangle& other) const;
+
     amTriangle 
     operator-(const amTriangle& other) const;
+
     amTriangle 
     operator*(const amTriangle& other) const;
+
     amTriangle 
     operator/(const amTriangle& other) const;
 
     amTriangle& 
     operator+=(const amTriangle& other);
+
     amTriangle& 
     operator-=(const amTriangle& other);
+
     amTriangle& 
     operator*=(const amTriangle& other);
+
     amTriangle& 
     operator/=(const amTriangle& other);
 
@@ -53,5 +59,3 @@ namespace amEngineSDK {
     amVector3 m_v2;
   };
 }
-
-

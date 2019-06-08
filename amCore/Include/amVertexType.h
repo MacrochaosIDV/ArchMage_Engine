@@ -9,5 +9,3 @@ namespace amEngineSDK {
     ~amVertexType();
   };
 }
-
-

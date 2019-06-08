@@ -3,6 +3,5 @@
 namespace amEngineSDK {
   amComputeShader::amComputeShader() {}
 
-
   amComputeShader::~amComputeShader() {}
 }

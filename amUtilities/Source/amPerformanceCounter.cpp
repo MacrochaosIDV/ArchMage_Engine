@@ -1,6 +1,5 @@
 #include "amPrerequisitesUtilities.h"
 #include "amPerformanceCounter.h"
-
 #include <iostream>
 #include <windows.h>
 
@@ -50,4 +49,3 @@ namespace amEngineSDK {
     return static_cast<double>((li.QuadPart - m_counterVal) / m_PCFreq);
   }
 }
-

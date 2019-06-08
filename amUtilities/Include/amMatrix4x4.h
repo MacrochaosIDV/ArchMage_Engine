@@ -131,7 +131,6 @@ namespace amEngineSDK {
     amMatrix4x4&
     rotateAxis(const amVector3& axis, const  float ang);
 
-
     amMatrix4x4&
     setViewProjection(const float& FOV, const float& ratio, const float& zNear, const float& zFar);
 
@@ -144,7 +143,6 @@ namespace amEngineSDK {
     amMatrix4x4
     transposed();
 
-
     amMatrix4x4
     lookAt(const amVector3& EyePos, const  amVector3& Target, const  amVector3& Up);
 
@@ -155,7 +153,6 @@ namespace amEngineSDK {
     */
     amMatrix4x4 
     inverse();
-
     
     amMatrix4x4&
     fastInverse();

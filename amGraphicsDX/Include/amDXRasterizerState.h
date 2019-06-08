@@ -1,4 +1,5 @@
 #pragma once
+#include "amDXPreReqs.h"
 
 namespace amEngineSDK {
   class amDXRasterizerState
@@ -8,5 +9,3 @@ namespace amEngineSDK {
     ~amDXRasterizerState();
   };
 }
-
-

@@ -39,7 +39,8 @@ namespace amEngineSDK {
 
   amBaseApp::~amBaseApp() {}
 
-  int32 amBaseApp::run() {
+  int32 
+  amBaseApp::run() {
     Init();
     
     // Main message loop:
@@ -66,18 +67,23 @@ namespace amEngineSDK {
 
     return (int)msg.wParam;
   }
-  void amBaseApp::Init() {
+
+  void 
+  amBaseApp::Init() {
     preInit();
     initSystems();
     initContent();
     postInit();
   }
-  void amBaseApp::Update(float deltaTime) {
+
+  void 
+  amBaseApp::Update(float deltaTime) {
     //input.update();
     postUpdate(deltaTime);
   }
 
-  void amBaseApp::Render() {
+  void 
+  amBaseApp::Render() {
     //Begin();
     m_GAPI->Render();
     postRender();
@@ -85,9 +91,11 @@ namespace amEngineSDK {
     //swap();
   }
 
-  void amBaseApp::Destroy() {}
+  void 
+  amBaseApp::Destroy() {}
 
-  void amBaseApp::preInit() {
+  void 
+  amBaseApp::preInit() {
     // Initialize global strings
 
     m_szTitle = L"ArchMage Engine";
@@ -113,32 +121,41 @@ namespace amEngineSDK {
     ShowWindow(m_hWnd, nCmdShow);
   }
 
-  void amBaseApp::postInit() {}
+  void 
+  amBaseApp::postInit() {}
 
-  void amBaseApp::postUpdate(float deltaTime) {
+  void 
+  amBaseApp::postUpdate(float deltaTime) {
     deltaTime;
   }
 
-  void amBaseApp::postRender() {}
+  void 
+  amBaseApp::postRender() {}
 
-  void amBaseApp::preDestroy() {}
+  void 
+  amBaseApp::preDestroy() {}
 
-  void amBaseApp::onMouseMove(float x, float y) {
+  void 
+  amBaseApp::onMouseMove(float x, float y) {
     x;
     y;
   }
 
-  void amBaseApp::initSystems() {
+  void 
+  amBaseApp::initSystems() {
     m_GAPI->init(m_hWnd);
   }
 
-  void amBaseApp::initContent() {}
+  void 
+  amBaseApp::initContent() {}
 
-  void amBaseApp::setGraphicsAPI(amGraphicsAPI & _API) {
+  void 
+  amBaseApp::setGraphicsAPI(amGraphicsAPI & _API) {
     m_GAPI = &_API;
   }
 
-  ATOM amBaseApp::MyRegisterClass(HINSTANCE hInstance) {
+  ATOM 
+  amBaseApp::MyRegisterClass(HINSTANCE hInstance) {
     m_wcex.cbSize = sizeof(WNDCLASSEXW);
     m_wcex.style = CS_HREDRAW | CS_VREDRAW;
     m_wcex.lpfnWndProc = WndProc;
@@ -161,7 +178,8 @@ namespace amEngineSDK {
     return 0;
   }
 
-  int32 amBaseApp::InitInstance(HINSTANCE hInstance, int32 nCmdShow) {
+  int32 
+  amBaseApp::InitInstance(HINSTANCE hInstance, int32 nCmdShow) {
     m_hInst = hInstance; // Store instance handle in our global variable
 
     m_hWnd = CreateWindowExW(0, m_szWindowClass.c_str(), m_szTitle.c_str(),
@@ -178,7 +196,8 @@ namespace amEngineSDK {
     return TRUE;
   }
 
-  LRESULT amBaseApp::WndProc(HWND hWnd, uint32 message, WPARAM wParam, LPARAM lParam) {
+  LRESULT 
+  amBaseApp::WndProc(HWND hWnd, uint32 message, WPARAM wParam, LPARAM lParam) {
     switch (message) {
       case WM_COMMAND:
       {
@@ -214,5 +233,3 @@ namespace amEngineSDK {
     return 0;
   }
 }
-
-

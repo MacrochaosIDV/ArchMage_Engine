@@ -1,7 +1,6 @@
 #pragma once
 #include "amPrerequisitesCore.h"
 
-
 namespace amEngineSDK {
   class amPixelShader;
   class amVertexShader;
@@ -27,12 +26,22 @@ namespace amEngineSDK {
   class AM_CORE_EXPORT amRenderPass
   {
   public:
-    amRenderPass();
+    amRenderPass() = default;
+    amRenderPass(amRenderPassStage::E _pass, String _strPS, String _strVS, String _name);
     ~amRenderPass();
 
     void 
     render(Vector<amResource*> _renderObjs);
 
+    int32 
+    compileShaders();
+
+
+    bool m_computeShading;
+    String m_passName;
+    String m_strPS;
+    String m_strVS;
+    amRenderPassStage::E m_renderPassStage;
     amVertexShader* m_pVS;
     amPixelShader* m_pPS;
     Vector<amResource*> m_vecPassModels;
@@ -40,5 +49,3 @@ namespace amEngineSDK {
     Vector<amRenderTarget*> m_vecRenderTargets;
   };
 }
-
-

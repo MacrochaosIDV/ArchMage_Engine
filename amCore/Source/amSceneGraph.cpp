@@ -9,12 +9,11 @@ namespace amEngineSDK {
   amSceneGraph::amSceneGraph() {}
 
   amSceneGraph::~amSceneGraph() {}
-  Vector<amResource*> amSceneGraph::getNodesOnCam(amCamera * _cam) {
 
-    m_pRoot->camOverlap(_cam);
-
+  Vector<amResource*> amSceneGraph::getAllResourcesInCam(amCamera * _cam) {
+    if(m_pRoot)
+      return m_pRoot->getAllResourcesInCam(_cam);
     return Vector<amResource*>();
   }
+
 }
-
-

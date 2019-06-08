@@ -1,5 +1,6 @@
 #pragma once
 #include "amDXPreReqs.h"
+
 namespace amEngineSDK {
   class amDXViewPort
   {
@@ -10,5 +11,3 @@ namespace amEngineSDK {
     D3D10_VIEWPORT m_viewPort;
   };
 }
-
-

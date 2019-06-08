@@ -5,6 +5,3 @@ namespace amEngineSDK {
 
   amDXShaderResourceView::~amDXShaderResourceView() {}
 }
-
-
-

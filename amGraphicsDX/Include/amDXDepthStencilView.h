@@ -1,5 +1,6 @@
 #pragma once
 #include "amDXPreReqs.h"
+
 namespace amEngineSDK {
   class amDXDepthStencilView
   {
@@ -10,5 +11,3 @@ namespace amEngineSDK {
     ID3D11DepthStencilView* m_pDSV;
   };
 }
-
-

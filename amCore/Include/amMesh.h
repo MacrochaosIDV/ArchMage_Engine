@@ -30,5 +30,3 @@ namespace amEngineSDK {
     amMaterial* m_mat;
   };
 }
-
-

@@ -56,19 +56,25 @@ namespace amEngineSDK {
 
     amFrustrum 
     operator+(const amFrustrum& other)const;
+
     amFrustrum 
     operator-(const amFrustrum& other)const;
+
     amFrustrum 
     operator*(const amFrustrum& other)const;
+
     amFrustrum 
     operator/(const amFrustrum& other)const;
 
     amFrustrum& 
     operator+=(const amFrustrum& other);
+
     amFrustrum& 
     operator-=(const amFrustrum& other);
+
     amFrustrum& 
     operator*=(const amFrustrum& other);
+
     amFrustrum& 
     operator/=(const amFrustrum& other);
 
@@ -87,5 +93,3 @@ namespace amEngineSDK {
     amPlane m_planes[FRUSTRUM::kCOUNT];
   };
 }
-
-
