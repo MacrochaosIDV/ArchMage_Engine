@@ -23,9 +23,28 @@ namespace amEngineSDK {
 
   int32 
   amRenderPass::compileShaders() {
-    m_pVS = new amVertexShader();
-    m_pPS = new amPixelShader();
-    return(m_pVS && m_pPS) ? true : false;
+    if(m_pVS)
+      m_pVS->Compile();
+    if(m_pPS)
+      m_pPS->Compile();
+    return ((m_pVS) ? 0 : 1 + ((m_pPS) ? 0 : 10));
   }
+
+  void amRenderPass::setShaders(String _strPS, String _strVS) {
+    m_strPS = _strPS;
+    m_strVS = _strVS;
+  }
+
+  void amRenderPass::setShaderPointers(amVertexShader * _pVS, amPixelShader * _pPS) {
+    m_pVS = _pVS;
+    m_pPS = _pPS;
+  }
+
+  void 
+  amRenderPass::setRenderTargetsInputs(Vector<amRenderTarget*> _vecRenderTargets) {
+    m_vecRenderTargets = _vecRenderTargets;
+  }
+
+
 
 }

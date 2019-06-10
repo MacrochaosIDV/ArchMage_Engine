@@ -1,8 +1,9 @@
 #pragma once
 #include "amDXPreReqs.h"
+#include "amRenderTargetView.h"
 
 namespace amEngineSDK {
-  class amDXRenderTargetView
+  class amDXRenderTargetView : public amRenderTargetView
   {
   public:
     amDXRenderTargetView();

@@ -20,7 +20,11 @@ namespace amEngineSDK {
     virtual void
     setShader(amDeviceContext* pDC);
 
+    virtual void 
+    Compile();
+
     amBlob m_buffer;
     String m_shaderName;
+    String m_entryPoint;
   };
 }

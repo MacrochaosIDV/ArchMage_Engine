@@ -56,4 +56,13 @@ namespace amEngineSDK {
   amDeviceContext::setVertexShader(amVertexShader* _VS) {
     _VS;
   }
+
+  void 
+  amDeviceContext::setComputeShader(amComputeShader* _CS) {
+    _CS;
+  }
+
+  void 
+  amDeviceContext::dispatchCS() {}
+
 }

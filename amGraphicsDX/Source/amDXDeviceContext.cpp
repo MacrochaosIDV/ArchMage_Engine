@@ -1,6 +1,7 @@
 #include "amDXDeviceContext.h"
 #include "amDXVertexShader.h"
 #include "amDXPixelShader.h"
+#include "amDXComputeShader.h"
 
 
 namespace amEngineSDK {
@@ -9,13 +10,17 @@ namespace amEngineSDK {
   amDXDeviceContext::~amDXDeviceContext() {}
 
   void
-  amDXDeviceContext::setPixelShader(amPixelShader * _PS) {
+  amDXDeviceContext::setPixelShader(amPixelShader* _PS) {
     m_pDC->PSSetShader(reinterpret_cast<amDXPixelShader*>(_PS)->m_ps, nullptr, 0);
   }
 
   void 
-  amDXDeviceContext::setVertexShader(amVertexShader * _VS) {
+  amDXDeviceContext::setVertexShader(amVertexShader* _VS) {
     m_pDC->VSSetShader(reinterpret_cast<amDXVertexShader*>(_VS)->m_vs, nullptr, 0);
+  }
+
+  void amDXDeviceContext::setComputeShader(amComputeShader* _CS) {
+    m_pDC->CSSetShader(reinterpret_cast<amDXComputeShader*>(_CS)->m_cs, nullptr, 0);
   }
 
 }

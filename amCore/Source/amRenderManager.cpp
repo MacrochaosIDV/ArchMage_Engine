@@ -2,16 +2,25 @@
 #include "amGraphicsAPI.h"
 
 namespace amEngineSDK {
-  amRenderManager::amRenderManager() {}
+  amRenderManager::amRenderManager() {
+    
+  }
 
   amRenderManager::~amRenderManager() {}
 
   int32 
   amRenderManager::render() {
-    //TODO: add to Render() so that it accesses the data to render from inside itself or change Render() so it accepts the data to render
     m_api->ClearRenderTarget();
 
-
+    // Get geometry to draw
+    Vector<amResource*> objsCam = m_currScene->getAllResourcesInCam(m_currCam);
+    uint32 objsCamSize = objsCam.size();
+    // Render all objs in cam
+    // TODO: upgrade to have this render in stages accounting for textures with tranparencies
+    for (uint32 i = 0; i < objsCamSize; ++i) {
+      m_api->Draw(objsCam[i], ,);
+    }
+    
 
     m_api->Present();
     return 0;

@@ -3,6 +3,7 @@
 #include "amPixelShader.h"
 #include "amDXVertexShader.h"
 #include "amDXPixelShader.h"
+#include "amDXComputeShader.h"
 
 namespace amEngineSDK {
   amDXDevice::amDXDevice() {}
@@ -34,6 +35,16 @@ namespace amEngineSDK {
                                          &reinterpret_cast<amDXPixelShader*>(_PS)->m_ps);
     if (h == S_OK)
       return _PS;
+    return nullptr;
+  }
+
+  amComputeShader * amDXDevice::createComputeShader(amComputeShader * _CS) {
+    HRESULT h = m_pDV->CreateComputeShader(reinterpret_cast<amDXComputeShader*>(_CS)->m_blob->GetBufferPointer(),
+                                           reinterpret_cast<amDXComputeShader*>(_CS)->m_blob->GetBufferSize(),
+                                           nullptr,
+                                           &reinterpret_cast<amDXComputeShader*>(_CS)->m_cs);
+    if (h == S_OK)
+      return _CS;
     return nullptr;
   }
 

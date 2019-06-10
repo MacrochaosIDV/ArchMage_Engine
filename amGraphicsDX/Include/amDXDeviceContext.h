@@ -15,6 +15,9 @@ namespace amEngineSDK {
     void
     setVertexShader(amVertexShader* _VS) override;
 
+    virtual void 
+    setComputeShader(amComputeShader* _CS) override;
+
     ID3D11DeviceContext* m_pDC;
   };
 }

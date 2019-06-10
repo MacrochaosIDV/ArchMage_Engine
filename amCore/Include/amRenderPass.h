@@ -19,7 +19,7 @@ namespace amEngineSDK {
       kBLUR_V,
       kLUMINANCE,
       kFINAL,
-      COUNT
+      kCOUNT
     };
   }
 
@@ -36,6 +36,15 @@ namespace amEngineSDK {
     int32 
     compileShaders();
 
+    void 
+    setShaders(String _strPS, String _strVS);
+
+    void 
+    setShaderPointers(amVertexShader* _pVS, amPixelShader* _pPS);
+
+    void 
+    setRenderTargetsInputs(Vector<amRenderTarget*> _vecRenderTargets);
+
 
     bool m_computeShading;
     String m_passName;
@@ -47,5 +56,6 @@ namespace amEngineSDK {
     Vector<amResource*> m_vecPassModels;
     Vector<amConstantBuffer*> m_vecPassConstBuffers;
     Vector<amRenderTarget*> m_vecRenderTargets;
+    amRenderTarget* m_outRenderTarget;
   };
 }

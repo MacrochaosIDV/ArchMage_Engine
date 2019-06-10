@@ -8,6 +8,7 @@ namespace amEngineSDK {
   class amConstantBuffer;
   class amPixelShader;
   class amVertexShader;
+  class amComputeShader;
   class amDepthStencilView;
   class amRenderTargetView;
 
@@ -55,5 +56,11 @@ namespace amEngineSDK {
 
     virtual void
     setVertexShader(amVertexShader* _VS);
+
+    virtual void
+    setComputeShader(amComputeShader* _CS);
+
+    virtual void 
+    dispatchCS();
   };
 }

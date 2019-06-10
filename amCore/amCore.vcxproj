@@ -172,6 +172,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="amRP_GBuffer.cpp" />
     <ClCompile Include="Source\amAnimationMesh.cpp" />
     <ClCompile Include="Source\amBaseApp.cpp" />
     <ClCompile Include="Source\amBlob.cpp" />
@@ -224,6 +225,7 @@
     <ClCompile Include="Source\amWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="amRP_GBuffer.h" />
     <ClInclude Include="Include\amAnimationMesh.h" />
     <ClInclude Include="Include\amBaseApp.h" />
     <ClInclude Include="Include\amBlob.h" />

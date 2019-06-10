@@ -26,6 +26,7 @@
 namespace amEngineSDK {
   class amVertexShader;
   class amPixelShader;
+  class amComputeShader;
 
   class amDXDevice : public amDevice
   {
@@ -47,6 +48,9 @@ namespace amEngineSDK {
 
     virtual amPixelShader*
     createPixelShader(amPixelShader* _PS) override;
+
+    virtual amComputeShader* 
+    createComputeShader(amComputeShader* _CS) override;
 
     ID3D11Device* m_pDV;
     amDXVertexBuffer m_VB; // temp buffer for testing

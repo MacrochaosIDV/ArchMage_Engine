@@ -29,6 +29,8 @@
 
 namespace amEngineSDK {
   class amRenderPass;
+  class amRenderTarget;
+  class amMaterial;
 
   class AM_CORE_EXPORT amGraphicsAPI
   {
@@ -40,7 +42,7 @@ namespace amEngineSDK {
     createVertexBuffer(int64 nVertex, int64 vertexSize);
 
     virtual void 
-    Draw(amIndexBuffer* _IB, amVertexBuffer* _VB);
+    Draw(amResource* _pMesh, amMaterial* _pMat, amRenderTarget* _pOutRenderTarget);
 
     virtual void 
     init(void* _wnd);
@@ -68,6 +70,9 @@ namespace amEngineSDK {
 
     virtual void 
     Present();
+
+    virtual void 
+    setShaders(amVertexShader* _VS, amPixelShader* _PS);
 
     float m_fov;
     amRenderManager* m_pRenderManager;

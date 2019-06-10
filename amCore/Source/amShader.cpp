@@ -19,4 +19,6 @@ namespace amEngineSDK {
   amShader::setShader(amDeviceContext * pDC) {
     pDC;
   }
+  void amShader::Compile() {}
+
 }

@@ -7,6 +7,7 @@ namespace amEngineSDK {
   class amConstantBuffer;
   class amPixelShader;
   class amVertexShader;
+  class amComputeShader;
 
   class AM_CORE_EXPORT amDevice
   {
@@ -15,18 +16,21 @@ namespace amEngineSDK {
     ~amDevice();
 
     virtual amIndexBuffer*
-      createIndexBuffer(amIndexBuffer* _IB);
+    createIndexBuffer(amIndexBuffer* _IB);
 
     virtual amVertexBuffer*
-      createVertexBuffer(amVertexBuffer* _VB);
+    createVertexBuffer(amVertexBuffer* _VB);
 
     virtual amConstantBuffer*
-      createConstBuffer(amConstantBuffer* _CB);
+    createConstBuffer(amConstantBuffer* _CB);
 
     virtual amPixelShader*
-      createPixelShader(amPixelShader* _PS);
+    createPixelShader(amPixelShader* _PS);
 
     virtual amVertexShader*
-      createVertexShader(amVertexShader* _VS);
+    createVertexShader(amVertexShader* _VS);
+
+    virtual amComputeShader* 
+    createComputeShader(amComputeShader* _CS);
   };
 }

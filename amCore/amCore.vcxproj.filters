@@ -91,9 +91,6 @@
     <ClCompile Include="Source\amCamera.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Source\amGraphicsAPI.cpp">
-      <Filter>Source Files\Core</Filter>
-    </ClCompile>
     <ClCompile Include="Source\amVertex.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
@@ -142,9 +139,6 @@
     <ClCompile Include="Source\amVertexType.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Source\amRenderPass.cpp">
-      <Filter>Source Files\Renderer classes</Filter>
-    </ClCompile>
     <ClCompile Include="Source\amRenderTarget.cpp">
       <Filter>Source Files\Renderer classes</Filter>
     </ClCompile>
@@ -183,6 +177,15 @@
     </ClCompile>
     <ClCompile Include="Source\amBlob.cpp">
       <Filter>Source Files\Buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amRenderPass.cpp">
+      <Filter>Source Files\Renderer classes\Render Passes</Filter>
+    </ClCompile>
+    <ClCompile Include="amRP_GBuffer.cpp">
+      <Filter>Source Files\Renderer classes\Render Passes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amGraphicsAPI.cpp">
+      <Filter>Source Files\API classes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -246,9 +249,6 @@
     <ClInclude Include="Include\amCamera.h">
       <Filter>Source Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Include\amGraphicsAPI.h">
-      <Filter>Source Files\Core</Filter>
-    </ClInclude>
     <ClInclude Include="Include\amWindow.h">
       <Filter>Source Files\Core</Filter>
     </ClInclude>
@@ -297,9 +297,6 @@
     <ClInclude Include="Include\amVertexType.h">
       <Filter>Source Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Include\amRenderPass.h">
-      <Filter>Source Files\Renderer classes</Filter>
-    </ClInclude>
     <ClInclude Include="Include\amRenderTarget.h">
       <Filter>Source Files\Renderer classes</Filter>
     </ClInclude>
@@ -338,6 +335,15 @@
     </ClInclude>
     <ClInclude Include="Include\amBlob.h">
       <Filter>Source Files\Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amRenderPass.h">
+      <Filter>Source Files\Renderer classes\Render Passes</Filter>
+    </ClInclude>
+    <ClInclude Include="amRP_GBuffer.h">
+      <Filter>Source Files\Renderer classes\Render Passes</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amGraphicsAPI.h">
+      <Filter>Source Files\API classes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -38,4 +38,10 @@ namespace amEngineSDK {
     _VS;
     return nullptr;
   }
+
+  amComputeShader * 
+  amDevice::createComputeShader(amComputeShader * _CS) {
+    _CS;
+    return nullptr;
+  }
 }

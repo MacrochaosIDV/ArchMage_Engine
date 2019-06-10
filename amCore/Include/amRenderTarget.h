@@ -8,5 +8,12 @@ namespace amEngineSDK {
   public:
     amRenderTarget();
     ~amRenderTarget();
+
+    virtual void 
+    resize(const uint32 _height, const uint32 _width);
+
+    uint32 m_height;
+    uint32 m_width;
+    Vector<UANSICHAR> m_RTBuffer;
   };
 }

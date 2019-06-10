@@ -1,4 +1,5 @@
 #include "amGraphicsAPI.h"
+#include "amRenderTarget.h"
 
 namespace amEngineSDK {
   amGraphicsAPI::amGraphicsAPI() {}
@@ -13,8 +14,8 @@ namespace amEngineSDK {
   }
 
   void 
-  amGraphicsAPI::Draw(amIndexBuffer * _IB, amVertexBuffer * _VB) {
-    _IB; _VB;
+  amGraphicsAPI::Draw(amResource* _pMesh, amMaterial* _pMat, amRenderTarget* _pOutRenderTarget) {
+    _pMesh; _pMat; _pOutRenderTarget;
   }
 
   void 
@@ -48,5 +49,9 @@ namespace amEngineSDK {
 
   void 
   amGraphicsAPI::Present() {}
+
+  void amGraphicsAPI::setShaders(amVertexShader * _VS, amPixelShader * _PS) {
+    _VS; _PS;
+  }
 
 }
