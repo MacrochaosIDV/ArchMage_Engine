@@ -39,13 +39,28 @@ namespace amEngineSDK {
   amGraphicsAPI::setManagers() {}
 
   void 
+  amGraphicsAPI::initScene() {
+  
+  }
+
+  void 
   amGraphicsAPI::renderResourcesOnCam(amCamera * _cam, amRenderPass * _pass) 
   {
     _cam; _pass;
   }
 
+  void amGraphicsAPI::setRenderTargets(const Vector<amRenderTarget*>& _rt) {
+    _rt;
+  }
+
   void 
-  amGraphicsAPI::ClearRenderTarget() {}
+  amGraphicsAPI::clearRenderTarget() {}
+
+  void 
+  amGraphicsAPI::setShaderConstantBuffers(Vector<amResource*> _vecRes, uint32 _shaderFlags) {
+    _vecRes;
+    _shaderFlags;
+  }
 
   void 
   amGraphicsAPI::Present() {}

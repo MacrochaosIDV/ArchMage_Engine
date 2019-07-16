@@ -12,14 +12,29 @@ namespace amEngineSDK {
 
   amDeviceContext::~amDeviceContext() {}
 
-  void 
-  amDeviceContext::clearDepthStencilView(amDepthStencilView * _pDSV) {
-    _pDSV;
+  void amDeviceContext::setPrimitiveTopology(amPrimitiveTopology::E _pt) {
+    _pt;
+  }
+
+  void amDeviceContext::setInputLayout(amInputLayout * _il) {
+    _il;
   }
 
   void 
-  amDeviceContext::clearRenderTargetView(amRenderTargetView * _pRTV) {
+  amDeviceContext::clearDepthStencilView(amDepthStencilView * _pDSV, 
+                                         uint32 _clearFlags, 
+                                         float _depth, 
+                                         uint8 _stencil) {
+    _pDSV;
+    _clearFlags;
+    _depth;
+    _stencil;
+  }
+
+  void 
+  amDeviceContext::clearRenderTargetView(amRenderTargetView * _pRTV, amVector4* _color) {
     _pRTV;
+    _color;
   }
 
   void 
@@ -38,8 +53,12 @@ namespace amEngineSDK {
   }
 
   void 
-  amDeviceContext::setVertexBuffer(amVertexBuffer* _VB) {
+  amDeviceContext::setVertexBuffer(amVertexBuffer* _VB, 
+                                   const uint32 _stride, 
+                                   const uint32 _offset) {
     _VB;
+    _stride;
+    _offset;
   }
 
   void 
@@ -60,6 +79,48 @@ namespace amEngineSDK {
   void 
   amDeviceContext::setComputeShader(amComputeShader* _CS) {
     _CS;
+  }
+
+  void 
+  amDeviceContext::setPS_CB(uint32 _starSlot, uint32 _nViews, amConstantBuffer * _CB) {
+    _starSlot;
+    _nViews;
+    _CB;
+  }
+
+  void 
+  amDeviceContext::setVS_CB(uint32 _starSlot, uint32 _nViews, amConstantBuffer * _CB) {
+    _starSlot;
+    _nViews;
+    _CB;
+  }
+
+  void 
+  amDeviceContext::setCS_CB(uint32 _starSlot, uint32 _nViews, amConstantBuffer * _CB) {
+    _starSlot;
+    _nViews;
+    _CB;
+  }
+
+  void
+  amDeviceContext::setPSResources(uint32 _starSlot, uint32 _nViews, amShaderResourceView* _SRV) {
+    _starSlot;
+    _nViews;
+    _SRV;
+  }
+
+  void 
+    amDeviceContext::setVSResources(uint32 _starSlot, uint32 _nViews, amShaderResourceView* _SRV) {
+    _starSlot;
+    _nViews;
+    _SRV;
+  }
+
+  void 
+    amDeviceContext::setCSResources(uint32 _starSlot, uint32 _nViews, amShaderResourceView* _SRV) {
+    _starSlot;
+    _nViews;
+    _SRV;
   }
 
   void 

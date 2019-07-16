@@ -9,39 +9,80 @@ namespace amEngineSDK {
   amDevice::amDevice() {}
 
   amDevice::~amDevice() {}
-  amIndexBuffer * 
-  amDevice::createIndexBuffer(amIndexBuffer* _IB) {
+  amIndexBuffer* 
+  amDevice::createIndexBuffer(amIndexBuffer* _IB,
+                              amResourceBindFlags::E _RBF) {
+    _RBF;
     _IB;
     return nullptr;
   }
 
-  amVertexBuffer * 
-  amDevice::createVertexBuffer(amVertexBuffer * _VB) {
+  amVertexBuffer* 
+  amDevice::createVertexBuffer(amVertexBuffer * _VB,
+                               amResourceBindFlags::E _RBF) {
+    _RBF;
     _VB;
     return nullptr;
   }
 
-  amConstantBuffer * 
-  amDevice::createConstBuffer(amConstantBuffer * _CB) {
+  amConstantBuffer* 
+  amDevice::createConstBuffer(amConstantBuffer * _CB,
+                              amResourceBindFlags::E _RBF) {
+    _RBF;
     _CB;
     return nullptr;
   }
 
-  amPixelShader * 
+  amPixelShader* 
   amDevice::createPixelShader(amPixelShader * _PS) {
     _PS;
     return nullptr;
   }
 
-  amVertexShader * 
+  amVertexShader* 
   amDevice::createVertexShader(amVertexShader * _VS) {
     _VS;
     return nullptr;
   }
 
-  amComputeShader * 
+  amComputeShader* 
   amDevice::createComputeShader(amComputeShader * _CS) {
     _CS;
     return nullptr;
   }
+
+  amShaderResourceView* 
+    amDevice::createShaderResourceView(amShaderResourceView * _SRV,
+                                       void* amSRV_type,
+                                       void* _format) {
+    _SRV;
+    amSRV_type;
+    _format;
+    return nullptr;
+  }
+
+  amDepthStencilView* 
+  amDevice::createDepthStencilView(amDepthStencilView * _DSV,
+                                     amResourceBindFlags::E _RBF) {
+    _RBF;
+    _DSV;
+    return nullptr;
+  }
+
+  amRenderTargetView* 
+  amDevice::createRenderTargetView(amRenderTargetView * _RTV,
+                                   amResourceBindFlags::E _RBF) {
+    _RBF;
+    _RTV;
+    return nullptr;
+  }
+
+  amUnorderedAccessResourceView* 
+  amDevice::createUnorderedAccessResourceView(amUnorderedAccessResourceView * _UAV,
+                                              amResourceBindFlags::E _RBF) {
+    _RBF;
+    _UAV;
+    return nullptr;
+  }
+ 
 }

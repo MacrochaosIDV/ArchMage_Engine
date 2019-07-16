@@ -1,10 +1,12 @@
 #include "amDXGraphicsAPI.h"
 #include <amVertex.h>
+#include <amMaterial.h>
+#include <amMesh.h>
 
 namespace amEngineSDK {
 
-  D3D_DRIVER_TYPE                     g_driverType = D3D_DRIVER_TYPE_NULL;
-  D3D_FEATURE_LEVEL                   g_featureLevel = D3D_FEATURE_LEVEL_11_0;
+  D3D_DRIVER_TYPE  g_driverType = D3D_DRIVER_TYPE_NULL;
+  D3D_FEATURE_LEVEL g_featureLevel = D3D_FEATURE_LEVEL_11_0;
 
 
   amDXGraphicsAPI::~amDXGraphicsAPI() {}
@@ -27,54 +29,42 @@ namespace amEngineSDK {
     initContent();
   }
 
+  //TODO: exchange this for draw()
   void 
   amDXGraphicsAPI::Render() {
     /**
     ************************
     *
+    *  @TODO remove functionality from render
     *  @TODO make the different passes for differed rendering
+    *  @TODO make RTVs for textures get set & used & passed
     *
     ************************
     */
-    float color[4] = {0.43f, 0.43f, 0.43f, 1.0f};
-    m_pImmediateContext->m_pDC->ClearRenderTargetView(m_pRenderTargetView->m_pRTV, color);
-    m_pImmediateContext->m_pDC->ClearDepthStencilView(m_pDepthStencilView->m_pDSV, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+    amVector4 color = amVector4(0.43f, 0.43f, 0.43f, 1.0f);
+
+    m_pImmediateContext->clearRenderTargetView(m_pRenderTargetView, &color);
+    m_pImmediateContext->clearDepthStencilView(m_pDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
     
-    UINT stride = sizeof(amVertex);
-    UINT offset = 0;
+    uint32 stride = sizeof(amVertex);
+    uint32 offset = 0;
 
-    m_pVertexLayout->setLayout(m_pImmediateContext);
-
-    m_pImmediateContext->m_pDC->IASetVertexBuffers(0, 1, &m_pDevice->m_VB.m_pVB, &stride, &offset);
-
-    //m_pImmediateContext->m_pDC->IASetIndexBuffer(m_pDevice->m_IB.m_pIndexBuffer, DXGI_FORMAT_R32_UINT, 0);
-
-    m_pImmediateContext->m_pDC->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-
-    m_pVertexShader->setShader(m_pImmediateContext);
-    m_pPixelShader->setShader(m_pImmediateContext);
-
+    m_pImmediateContext->setInputLayout(m_pVertexLayout);
+    m_pImmediateContext->setVertexBuffer(m_pDevice->m_VB, stride, offset);
+    m_pImmediateContext->setIndexBuffer(m_pDevice->m_IB);
+    m_pImmediateContext->setPrimitiveTopology();
+    m_pImmediateContext->setVertexShader(m_pVertexShader);
+    m_pImmediateContext->setPixelShader(m_pPixelShader);
     m_pImmediateContext->m_pDC->VSSetConstantBuffers(0, 1, &m_pCB_VP->m_pCB);
 
-    // Draw as many vertexes as in first param in Draw()
-    m_pImmediateContext->m_pDC->Draw(3, 0);
-
     // Draw with index buffers
-    //m_pImmediateContext->m_pDC->DrawIndexed(3,0,0);
-
-    /**
-    ************************
-    * TODO: Mod renderer to use DrawIndxInst to repeat one model in many instances all in one go
-    * m_pImmediateContext->m_pDC->DrawIndexedInstanced();
-    *
-    ************************
-    */
-
+    m_pImmediateContext->m_pDC->DrawIndexed(3,0,0);
     m_pSwapChain->m_pSC->Present(0, 0);
   }
 
   void 
   amDXGraphicsAPI::initContent() {
+    tmpLoadResource();
     /**
     ************************
     *
@@ -85,20 +75,8 @@ namespace amEngineSDK {
 
     m_pVertexShader->createVS("Resources/BasicShader.fx", m_pDevice);
     m_pPixelShader->createPS("Resources/BasicShader.fx", m_pDevice);
-
     m_pVertexLayout->Create(m_pDevice, m_pVertexShader);
     
-    m_pDevice->m_VB.m_vVertex.push_back(amVertex(-0.5f, 0.0f, 0.0f, 1.0f,   1.0f, 0.0f, 0.0f, 1.0f,   0.0f, 0.0f, 0.0f,   0.0f, 0.0f));
-    m_pDevice->m_VB.m_vVertex.push_back(amVertex(0.0f,  0.5f, 0.0f, 1.0f,   0.0f, 1.0f, 0.0f, 1.0f,   0.0f, 0.0f, 0.0f,   0.0f, 0.0f));
-    m_pDevice->m_VB.m_vVertex.push_back(amVertex(0.5f,  0.0f, 0.0f, 1.0f,   0.0f, 0.0f, 1.0f, 1.0f,   0.0f, 0.0f, 0.0f,   0.0f, 0.0f));
-
-    m_pDevice->m_IB.m_vecIB.push_back(0);
-    m_pDevice->m_IB.m_vecIB.push_back(1);
-    m_pDevice->m_IB.m_vecIB.push_back(2);
-
-    m_pDevice->CreateVertexBufferDefault(&m_pDevice->m_VB);
-    m_pDevice->CreateConstantBuffer(m_pCB_VP);
-
   }
 
   void 
@@ -254,12 +232,83 @@ namespace amEngineSDK {
     matProjecton._m.m11 = (height / matProjecton._m.m00 / width);
     matProjecton._m.m22 = matProjecton._m.m23 = vp.MinDepth * (vp.MaxDepth - vp.MinDepth);
     cam.m_matView *= matProjecton;
-    m_pCB_VP->cbuffer.WVP = cam.getViewMatrix();
+    m_pCB_VP->m_pCBuffer = &cam.getViewMatrix();
+    m_pCB_VP->m_size = static_cast<uint32>(sizeof(cam.getViewMatrix()));
+  }
+
+  void amDXGraphicsAPI::setShaderConstantBuffers(Vector<amResource*> _vecRes, uint32 _shaderFlags) {
+    _vecRes;
+    _shaderFlags;
+  }
+
+  void amDXGraphicsAPI::Draw(amResource * _pMesh, amMaterial * _pMat, amRenderTarget * _pOutRenderTarget) {
+    _pMat;
+    _pOutRenderTarget;
+
+    //m_pImmediateContext->setVSResources()
+    m_pImmediateContext->setVertexBuffer(&reinterpret_cast<amMesh*>(_pMesh)->m_vb,
+                                         reinterpret_cast<amMesh*>(_pMesh)->m_vb.getVertSize(),
+                                         0);
+
+    m_pImmediateContext->setIndexBuffer(&reinterpret_cast<amMesh*>(_pMesh)->m_ib);
+    _pMat->setTexsAs_PS_RSV(m_pImmediateContext);
+    m_pImmediateContext->drawIndexed(reinterpret_cast<amMesh*>(_pMesh)->getIndexCount(), 
+                                     reinterpret_cast<amMesh*>(_pMesh)->m_ib.m_vecIB[0], 
+                                     0);
+  }
+
+  void amDXGraphicsAPI::tmpLoadResource() {
+     m_pResourceManager->CreateModel("Resources/3D_Meshes/Cube.x");
+    //m_pResourceManager->CreateModel("Resources/3D_Meshes/Vela/Vela_Mat_1.X");
+    //m_pResourceManager->CreateModel("Resources/3D_Meshes/Vela/Vela_Mat_2.X");
+    //m_pResourceManager->CreateModel("Resources/3D_Meshes/Vela/Vela_Mat_3.X");
+    //m_pResourceManager->CreateModel("Resources/3D_Meshes/Vela/Vela_Mat_4.X");
+    //m_pResourceManager->CreateModel("Resources/3D_Meshes/Vela/Vela_Mat_5.X");
+    //m_pResourceManager->CreateModel("Resources/3D_Meshes/Vela/Vela_Mat_6.X");
+    //
+    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Char_BaseColor.tga");
+    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Char_Emissive.tga");
+    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Char_Metallic.tga");
+    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Char_Normal.tga");
+    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Char_Roughness.tga");
+    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_EyeCornea_BaseColor.tga");
+    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_EyeCornea_Normal.tga");
+    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_EyeCornea_Roughness.tga");
+    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Gun_BaseColor.tga");
+    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Gun_Metallic.tga");
+    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Gun_Normal.tga");
+    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Gun_Roughness.tga");
+    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Legs_BaseColor.tga");
+    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Legs_Metallic.tga");
+    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Legs_Normal.tga");
+    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Legs_Roughness.tga");
+    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Mechanical_BaseColor.tga");
+    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Mechanical_Emissive.tga");
+    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Mechanical_Metallic.tga");
+    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Mechanical_Normal.tga");
+    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Mechanical_Roughness.tga");
+    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Plate_BaseColor.tga");
+    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Plate_Emissive.tga");
+    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Plate_Metallic.tga");
+    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Plate_Normal.tga");
+    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Plate_Roughness.tga");
   }
 
   void 
   amDXGraphicsAPI::destroy() {
-
+    delete(m_pDevice);
+    delete(m_pSwapChain);
+    delete(m_pCB_VP);
+    delete(m_pDepthStencil);
+    delete(m_pCamManager);
+    delete(m_pPixelShader);
+    delete(m_pVertexShader);
+    delete(m_pVertexLayout);
+    delete(m_pRenderManager);
+    delete(m_pResourceManager);
+    delete(m_pImmediateContext);
+    delete(m_pDepthStencilView);
+    delete(m_pRenderTargetView);
   }
 
   //HRESULT amDXGraphicsAPI::InitWindow(HINSTANCE hInstance, int32 nCmdShow) {

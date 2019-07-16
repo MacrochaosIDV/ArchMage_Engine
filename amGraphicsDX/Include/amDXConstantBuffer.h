@@ -1,24 +1,22 @@
 #pragma once
 #include "amDXPreReqs.h"
+#include "amConstantBuffer.h"
 #include <amMatrix4x4.h>
 
 namespace amEngineSDK {
-  struct VS_CBuffer
-  {
-    amMatrix4x4 WVP;
-  };
 
-  class amDXConstantBuffer
+  class amDXConstantBuffer : public amConstantBuffer
   {
   public:
-    amDXConstantBuffer();
+    amDXConstantBuffer() = default;
+    amDXConstantBuffer(void* _pCB, const SIZE_T _size);
     ~amDXConstantBuffer();
 
-    void 
-    createConstBufferDefault();
+    void
+    setBufferData(D3D11_USAGE _usageF,
+                  amResourceBindFlags::E _RBF = amResourceBindFlags::E::kBINDF_VERTEX_BUFFER);
 
     ID3D11Buffer* m_pCB;
-    VS_CBuffer cbuffer;
     D3D11_BUFFER_DESC m_bd;
     D3D11_SUBRESOURCE_DATA m_subResData;
   };

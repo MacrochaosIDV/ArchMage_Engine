@@ -6,7 +6,9 @@
 #include "amSceneNode.h"
 
 namespace amEngineSDK {
-  amSceneGraph::amSceneGraph() {}
+  amSceneGraph::amSceneGraph() {
+    m_pRoot = new amSceneNode(nullptr, amNodeType::E::kROOT);
+  }
 
   amSceneGraph::~amSceneGraph() {}
 

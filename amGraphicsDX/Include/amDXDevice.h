@@ -20,13 +20,12 @@
 #include "amDXIndexBuffer.h"
 #include "amDXConstantBuffer.h"
 
-//class amDXIndexBuffer;
-//class amDXVertexBuffer;
-
 namespace amEngineSDK {
   class amVertexShader;
   class amPixelShader;
   class amComputeShader;
+  class amShaderResourceView;
+  ;
 
   class amDXDevice : public amDevice
   {
@@ -34,26 +33,34 @@ namespace amEngineSDK {
     amDXDevice();
     ~amDXDevice();
 
-    int32 
-    CreateConstantBuffer(amDXConstantBuffer* pCB);
+    virtual amConstantBuffer*
+    createConstBuffer(amConstantBuffer* _pCB,
+                         amResourceBindFlags::E _RBF = amResourceBindFlags::E::kBINDF_CONSTANT_BUFFER) override;
 
-    int32 
-    CreateVertexBufferDefault(amDXVertexBuffer* pVB);
+    virtual amVertexBuffer*
+    createVertexBuffer(amVertexBuffer* _pVB,
+                       amResourceBindFlags::E _RBF = amResourceBindFlags::E::kBINDF_VERTEX_BUFFER) override;
 
-    int32 
-    CreateIndexBufferDefault(amDXIndexBuffer* pIB);
+    virtual amIndexBuffer*
+    createIndexBuffer(amIndexBuffer* _pIB,
+                      amResourceBindFlags::E _RBF = amResourceBindFlags::E::kBINDF_INDEX_BUFFER) override;
 
     virtual amVertexShader*
-    createVertexShader(amVertexShader* _VS) override;
+    createVertexShader(amVertexShader* _pVS) override;
 
     virtual amPixelShader*
-    createPixelShader(amPixelShader* _PS) override;
+    createPixelShader(amPixelShader* _pPS) override;
 
     virtual amComputeShader* 
-    createComputeShader(amComputeShader* _CS) override;
+    createComputeShader(amComputeShader* _pCS) override;
+
+    virtual amShaderResourceView* 
+      createShaderResourceView(amShaderResourceView* _SRV,
+                               void* amSRV_type,
+                               void* _format) override;
 
     ID3D11Device* m_pDV;
-    amDXVertexBuffer m_VB; // temp buffer for testing
-    amDXIndexBuffer m_IB; // temp buffer for testing
+    amDXVertexBuffer* m_VB; // temp buffer for testing
+    amDXIndexBuffer* m_IB; // temp buffer for testing
   };
 }

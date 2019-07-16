@@ -17,6 +17,7 @@ namespace amEngineSDK {
     Vector<amResource*>
     getAllResourcesInCam(amCamera* _cam);
 
+
     amSceneNode* m_pRoot;
     amResourceManager* m_pResourceManager;
     amCameraManager* m_pCamManager;

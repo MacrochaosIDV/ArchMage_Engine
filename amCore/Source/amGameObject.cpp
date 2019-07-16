@@ -4,7 +4,7 @@
 
 namespace amEngineSDK {
   amGameObject::amGameObject(amSceneNode* _node) {
-    m_node = _node;
+    m_pNode = _node;
   }
 
   amGameObject::~amGameObject() {}
@@ -31,6 +31,18 @@ namespace amEngineSDK {
       return m_resourceComponent->getResource();
     }
     return nullptr;
+  }
+
+  amMaterial * amGameObject::getMat() {
+    if (m_pCompMat)
+      return m_pCompMat;
+    return nullptr;
+  }
+
+  Vector<amMaterial*> amGameObject::getAllMats() {
+    if (m_vecpCompMats.size() > 0)
+      return m_vecpCompMats;
+    return Vector<amMaterial*>();
   }
 
 }

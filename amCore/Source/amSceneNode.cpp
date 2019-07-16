@@ -31,7 +31,7 @@ namespace amEngineSDK {
     }
   }
 
-  Vector<amSceneNode*> 
+  Vector<amSceneNode*>& 
   amSceneNode::getAllChildrenInCam(amCamera * _cam) {
     Vector<amSceneNode*> camObjs;
     uint32 chldrn = static_cast<uint32>(m_vecChildren.size());
@@ -49,7 +49,7 @@ namespace amEngineSDK {
     return camObjs;
   }
 
-  Vector<amResource*> 
+  Vector<amResource*>& 
   amSceneNode::getAllResourcesInCam(amCamera * _cam) {
     Vector<amResource*> camRes;
     uint32 chldrn = static_cast<uint32>(m_vecChildren.size());
@@ -67,6 +67,19 @@ namespace amEngineSDK {
     return camRes;
   }
 
+  Vector<amSceneNode*>&
+  amSceneNode::getAllChildren() {
+    return m_vecChildren;
+  }
+
+  void 
+  amSceneNode::addChildren(const Vector<amSceneNode*>& _children) {
+    uint32 size = _children.size();
+    for (uint32 i = 0; i < size; ++i) {
+      addChild(_children[i]);
+    }
+  }
+
   void 
   amSceneNode::setParent(amSceneNode * _parent) {
     m_parent = _parent;
@@ -80,6 +93,10 @@ namespace amEngineSDK {
   void 
   amSceneNode::addChild(amGameObject * _childObj) {
     m_vecChildren.push_back(new amSceneNode(this, _childObj));
+  }
+
+  void amSceneNode::addEmpty() {
+    m_vecChildren.push_back(new amSceneNode(this, amNodeType::E::kEMPTY, false));
   }
 
   void 
@@ -96,7 +113,7 @@ namespace amEngineSDK {
   void 
   amSceneNode::setNodeAsRoot(amSceneNode* _root) {
     //Set this node to be Root
-    m_type = amNodeType::E::ROOT;
+    m_type = amNodeType::E::kROOT;
     m_parent = nullptr;
     if (m_nodeObj) {
       m_vecChildren.push_back(new amSceneNode(this, m_nodeObj));

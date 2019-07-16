@@ -10,10 +10,10 @@ namespace amEngineSDK {
   public:
     amVertex();
 
-    amVertex(float _x, float _y, float _z, float _w,
-             float _r, float _g, float _b, float _a,
+    amVertex(float _x, float _y, float _z,
              float _nx, float _ny, float _nz,
              float _u, float _v);
+
     amVertex(const amVertex& other);
 
     ~amVertex();
@@ -23,16 +23,10 @@ namespace amEngineSDK {
     operator=(const amVertex& other);
 
     void 
-    setVertexCoord(const float _x, const float _y, const float _z, const float _w = 1.0f);
+    setVertexCoord(const float _x, const float _y, const float _z);
 
     void 
-    setVertexCoord(const amVector3& v, const float _w = 1.0f);
-
-    void 
-    setVertexColor(const float _r, const float _g, const float _b, const float _a);
-
-    void
-    setVertexColor(const amVector4& _v);
+    setVertexCoord(const amVector3& v);
 
     void 
     setVertexNormal(const float _nx, const float _ny, const float _nz);
@@ -47,8 +41,7 @@ namespace amEngineSDK {
     setVertexUV(const amVector2& _v);
     
     
-    float x; float y; float z; float w;
-    float r; float g; float b; float a;
+    float x; float y; float z;
     float nx; float ny; float nz;
     float u; float v;
     

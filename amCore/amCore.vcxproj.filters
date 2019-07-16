@@ -20,9 +20,6 @@
     <Filter Include="Source Files\API classes">
       <UniqueIdentifier>{f10bd961-c7c2-40f7-a0aa-5f3d5a436b42}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Core management">
-      <UniqueIdentifier>{f1fa8724-c1e7-4b70-94d1-095f9d8c3f54}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Renderer classes">
       <UniqueIdentifier>{dc1ffbfc-a582-40d8-9db9-700406f2a01f}</UniqueIdentifier>
     </Filter>
@@ -31,6 +28,15 @@
     </Filter>
     <Filter Include="Source Files\Renderer classes\Render Passes">
       <UniqueIdentifier>{ef049fb0-e71c-4bb9-b7fe-37c298d86e3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shader Resources">
+      <UniqueIdentifier>{e52d49de-687b-4f4b-a037-b8c848b0f59e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Imgui">
+      <UniqueIdentifier>{a8e0bfa0-7509-4f00-bcda-83a9a631ec7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Core management">
+      <UniqueIdentifier>{f1fa8724-c1e7-4b70-94d1-095f9d8c3f54}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -103,15 +109,6 @@
     <ClCompile Include="Source\amSwapChain.cpp">
       <Filter>Source Files\API classes</Filter>
     </ClCompile>
-    <ClCompile Include="Source\amDepthStencilView.cpp">
-      <Filter>Source Files\Renderer classes</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\amRenderTargetView.cpp">
-      <Filter>Source Files\Renderer classes</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\amShaderResourceView.cpp">
-      <Filter>Source Files\Renderer classes</Filter>
-    </ClCompile>
     <ClCompile Include="Source\amViewPort.cpp">
       <Filter>Source Files\API classes</Filter>
     </ClCompile>
@@ -119,16 +116,13 @@
       <Filter>Source Files\API classes</Filter>
     </ClCompile>
     <ClCompile Include="Source\amCameraManager.cpp">
-      <Filter>Source Files\Core management</Filter>
+      <Filter>Source Files\Core\Core management</Filter>
     </ClCompile>
     <ClCompile Include="Source\amSceneGraph.cpp">
-      <Filter>Source Files\Core management</Filter>
+      <Filter>Source Files\Core\Core management</Filter>
     </ClCompile>
     <ClCompile Include="Source\amSceneNode.cpp">
-      <Filter>Source Files\Core management</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\amRenderManager.cpp">
-      <Filter>Source Files\Core management</Filter>
+      <Filter>Source Files\Core\Core management</Filter>
     </ClCompile>
     <ClCompile Include="Source\amTransform.cpp">
       <Filter>Source Files\Core\Components</Filter>
@@ -149,7 +143,7 @@
       <Filter>Source Files\Core\Components</Filter>
     </ClCompile>
     <ClCompile Include="Source\amResourceManager.cpp">
-      <Filter>Source Files\Core management</Filter>
+      <Filter>Source Files\Core\Core management</Filter>
     </ClCompile>
     <ClCompile Include="Source\amDevice.cpp">
       <Filter>Source Files\API classes</Filter>
@@ -181,11 +175,41 @@
     <ClCompile Include="Source\amRenderPass.cpp">
       <Filter>Source Files\Renderer classes\Render Passes</Filter>
     </ClCompile>
-    <ClCompile Include="amRP_GBuffer.cpp">
-      <Filter>Source Files\Renderer classes\Render Passes</Filter>
-    </ClCompile>
     <ClCompile Include="Source\amGraphicsAPI.cpp">
       <Filter>Source Files\API classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amDepthStencilView.cpp">
+      <Filter>Source Files\Shader Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amRenderTargetView.cpp">
+      <Filter>Source Files\Shader Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amShaderResourceView.cpp">
+      <Filter>Source Files\Shader Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amUnorderedAccessResourceView.cpp">
+      <Filter>Source Files\Shader Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amView.cpp">
+      <Filter>Source Files\Shader Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amRP_GBuffer.cpp">
+      <Filter>Source Files\Renderer classes\Render Passes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\..\..\..\Development\imgui\imgui.cpp">
+      <Filter>Source Files\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\..\..\..\Development\imgui\imgui_demo.cpp">
+      <Filter>Source Files\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\..\..\..\Development\imgui\imgui_draw.cpp">
+      <Filter>Source Files\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amRenderManager.cpp">
+      <Filter>Source Files\Renderer classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amSceneManager.cpp">
+      <Filter>Source Files\Core\Core management</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -261,15 +285,6 @@
     <ClInclude Include="Include\amInputLayout.h">
       <Filter>Source Files\API classes</Filter>
     </ClInclude>
-    <ClInclude Include="Include\amDepthStencilView.h">
-      <Filter>Source Files\Renderer classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\amRenderTargetView.h">
-      <Filter>Source Files\Renderer classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\amShaderResourceView.h">
-      <Filter>Source Files\Renderer classes</Filter>
-    </ClInclude>
     <ClInclude Include="Include\amViewPort.h">
       <Filter>Source Files\API classes</Filter>
     </ClInclude>
@@ -277,16 +292,13 @@
       <Filter>Source Files\API classes</Filter>
     </ClInclude>
     <ClInclude Include="Include\amCameraManager.h">
-      <Filter>Source Files\Core management</Filter>
+      <Filter>Source Files\Core\Core management</Filter>
     </ClInclude>
     <ClInclude Include="Include\amSceneNode.h">
-      <Filter>Source Files\Core management</Filter>
+      <Filter>Source Files\Core\Core management</Filter>
     </ClInclude>
     <ClInclude Include="Include\amSceneGraph.h">
-      <Filter>Source Files\Core management</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\amRenderManager.h">
-      <Filter>Source Files\Core management</Filter>
+      <Filter>Source Files\Core\Core management</Filter>
     </ClInclude>
     <ClInclude Include="Include\amTransform.h">
       <Filter>Source Files\Core\Components</Filter>
@@ -307,7 +319,7 @@
       <Filter>Source Files\Core\Components</Filter>
     </ClInclude>
     <ClInclude Include="Include\amResourceManager.h">
-      <Filter>Source Files\Core management</Filter>
+      <Filter>Source Files\Core\Core management</Filter>
     </ClInclude>
     <ClInclude Include="Include\amDevice.h">
       <Filter>Source Files\API classes</Filter>
@@ -339,11 +351,41 @@
     <ClInclude Include="Include\amRenderPass.h">
       <Filter>Source Files\Renderer classes\Render Passes</Filter>
     </ClInclude>
-    <ClInclude Include="amRP_GBuffer.h">
-      <Filter>Source Files\Renderer classes\Render Passes</Filter>
-    </ClInclude>
     <ClInclude Include="Include\amGraphicsAPI.h">
       <Filter>Source Files\API classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amDepthStencilView.h">
+      <Filter>Source Files\Shader Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amRenderTargetView.h">
+      <Filter>Source Files\Shader Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amShaderResourceView.h">
+      <Filter>Source Files\Shader Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amUnorderedAccessResourceView.h">
+      <Filter>Source Files\Shader Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amView.h">
+      <Filter>Source Files\Shader Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amRP_GBuffer.h">
+      <Filter>Source Files\Renderer classes\Render Passes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\..\..\Development\imgui\imconfig.h">
+      <Filter>Source Files\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\..\..\Development\imgui\imgui.h">
+      <Filter>Source Files\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\..\..\Development\imgui\imgui_internal.h">
+      <Filter>Source Files\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amRenderManager.h">
+      <Filter>Source Files\Renderer classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amSceneManager.h">
+      <Filter>Source Files\Core\Core management</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

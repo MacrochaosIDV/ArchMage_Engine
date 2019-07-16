@@ -6,6 +6,7 @@ namespace amEngineSDK {
     enum E
     {
       kUNDEF = 0,
+      kCONSTANT,
       kIMG,
       kMODEL,
       kSOUND,

@@ -10,7 +10,8 @@ namespace amEngineSDK {
     ~amDXIndexBuffer();
 
     void 
-    setBufferData(D3D11_USAGE _usageF);
+    setBufferData(D3D11_USAGE _usageF,
+                  amResourceBindFlags::E _RBF = amResourceBindFlags::E::kBINDF_INDEX_BUFFER);
 
     virtual void 
     setData(Vector<uint32>&  data) override;

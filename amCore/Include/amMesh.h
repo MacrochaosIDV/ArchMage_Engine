@@ -24,6 +24,12 @@ namespace amEngineSDK {
     virtual amMeshBufferSizes
     getVertexIndexSize();
 
+    void 
+    registerTextures();
+
+    uint32 
+    getIndexCount();
+
     amIndexBuffer m_ib;
     amVertexBuffer m_vb;
     amShader* m_shader;

@@ -1,8 +1,9 @@
 #pragma once
 #include "amDXPreReqs.h"
+#include <amDepthStencilView.h>
 
 namespace amEngineSDK {
-  class amDXDepthStencilView
+  class amDXDepthStencilView : public amDepthStencilView
   {
   public:
     amDXDepthStencilView();

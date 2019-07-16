@@ -97,7 +97,7 @@
       <LanguageStandard>stdcpp14</LanguageStandard>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <PreprocessorDefinitions>AM_CORE_EXPORTS;NOMINMAX;STB_IMAGE_IMPLEMENTATION;</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>./Include/;$(SolutionDir)amUtilities\Include\;$(DEVLIBS)stb-master\;$(DEVLIBS)assimp-master\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(DEVLIBS)imgui\;./Include/;$(SolutionDir)amUtilities\Include\;$(DEVLIBS)stb-master\;$(DEVLIBS)assimp-master\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
@@ -116,7 +116,7 @@
       <LanguageStandard>stdcpp14</LanguageStandard>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <PreprocessorDefinitions>AM_CORE_EXPORTS;NOMINMAX;STB_IMAGE_IMPLEMENTATION;</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>./Include/;$(SolutionDir)amUtilities\Include\;$(DEVLIBS)stb-master\;$(DEVLIBS)assimp-master\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(DEVLIBS)imgui\;./Include/;$(SolutionDir)amUtilities\Include\;$(DEVLIBS)stb-master\;$(DEVLIBS)assimp-master\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
@@ -137,7 +137,7 @@
       <LanguageStandard>stdcpp14</LanguageStandard>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <PreprocessorDefinitions>AM_CORE_EXPORTS;NOMINMAX;STB_IMAGE_IMPLEMENTATION;</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>./Include/;$(SolutionDir)amUtilities\Include\;$(DEVLIBS)stb-master\;$(DEVLIBS)assimp-master\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(DEVLIBS)imgui\;./Include/;$(SolutionDir)amUtilities\Include\;$(DEVLIBS)stb-master\;$(DEVLIBS)assimp-master\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
@@ -160,7 +160,7 @@
       <LanguageStandard>stdcpp14</LanguageStandard>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <PreprocessorDefinitions>AM_CORE_EXPORTS;NOMINMAX;STB_IMAGE_IMPLEMENTATION;</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>./Include/;$(SolutionDir)amUtilities\Include\;$(DEVLIBS)stb-master\;$(DEVLIBS)assimp-master\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(DEVLIBS)imgui\;./Include/;$(SolutionDir)amUtilities\Include\;$(DEVLIBS)stb-master\;$(DEVLIBS)assimp-master\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
@@ -172,7 +172,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="amRP_GBuffer.cpp" />
+    <ClCompile Include="..\..\..\..\..\..\..\..\..\..\Development\imgui\imgui.cpp" />
+    <ClCompile Include="..\..\..\..\..\..\..\..\..\..\Development\imgui\imgui_demo.cpp" />
+    <ClCompile Include="..\..\..\..\..\..\..\..\..\..\Development\imgui\imgui_draw.cpp" />
     <ClCompile Include="Source\amAnimationMesh.cpp" />
     <ClCompile Include="Source\amBaseApp.cpp" />
     <ClCompile Include="Source\amBlob.cpp" />
@@ -205,9 +207,11 @@
     <ClCompile Include="Source\amRenderTargetView.cpp" />
     <ClCompile Include="Source\amResource.cpp" />
     <ClCompile Include="Source\amResourceManager.cpp" />
+    <ClCompile Include="Source\amRP_GBuffer.cpp" />
     <ClCompile Include="Source\amRP_SSAO.cpp" />
     <ClCompile Include="Source\amSamplerState.cpp" />
     <ClCompile Include="Source\amSceneGraph.cpp" />
+    <ClCompile Include="Source\amSceneManager.cpp" />
     <ClCompile Include="Source\amSceneNode.cpp" />
     <ClCompile Include="Source\amShader.cpp" />
     <ClCompile Include="Source\amShaderResourceView.cpp" />
@@ -217,15 +221,19 @@
     <ClCompile Include="Source\amTexture.cpp" />
     <ClCompile Include="Source\amTextureShader.cpp" />
     <ClCompile Include="Source\amTransform.cpp" />
+    <ClCompile Include="Source\amUnorderedAccessResourceView.cpp" />
     <ClCompile Include="Source\amVertex.cpp" />
     <ClCompile Include="Source\amVertexBuffer.cpp" />
     <ClCompile Include="Source\amVertexShader.cpp" />
     <ClCompile Include="Source\amVertexType.cpp" />
+    <ClCompile Include="Source\amView.cpp" />
     <ClCompile Include="Source\amViewPort.cpp" />
     <ClCompile Include="Source\amWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="amRP_GBuffer.h" />
+    <ClInclude Include="..\..\..\..\..\..\..\..\..\..\Development\imgui\imconfig.h" />
+    <ClInclude Include="..\..\..\..\..\..\..\..\..\..\Development\imgui\imgui.h" />
+    <ClInclude Include="..\..\..\..\..\..\..\..\..\..\Development\imgui\imgui_internal.h" />
     <ClInclude Include="Include\amAnimationMesh.h" />
     <ClInclude Include="Include\amBaseApp.h" />
     <ClInclude Include="Include\amBlob.h" />
@@ -259,9 +267,11 @@
     <ClInclude Include="Include\amRenderTargetView.h" />
     <ClInclude Include="Include\amResource.h" />
     <ClInclude Include="Include\amResourceManager.h" />
+    <ClInclude Include="Include\amRP_GBuffer.h" />
     <ClInclude Include="Include\amRP_SSAO.h" />
     <ClInclude Include="Include\amSamplerState.h" />
     <ClInclude Include="Include\amSceneGraph.h" />
+    <ClInclude Include="Include\amSceneManager.h" />
     <ClInclude Include="Include\amSceneNode.h" />
     <ClInclude Include="Include\amShader.h" />
     <ClInclude Include="Include\amShaderResourceView.h" />
@@ -271,10 +281,12 @@
     <ClInclude Include="Include\amTexture.h" />
     <ClInclude Include="Include\amTextureShader.h" />
     <ClInclude Include="Include\amTransform.h" />
+    <ClInclude Include="Include\amUnorderedAccessResourceView.h" />
     <ClInclude Include="Include\amVertex.h" />
     <ClInclude Include="Include\amVertexBuffer.h" />
     <ClInclude Include="Include\amVertexShader.h" />
     <ClInclude Include="Include\amVertexType.h" />
+    <ClInclude Include="Include\amView.h" />
     <ClInclude Include="Include\amViewPort.h" />
     <ClInclude Include="Include\amWindow.h" />
   </ItemGroup>

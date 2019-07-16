@@ -9,6 +9,9 @@ namespace amEngineSDK {
     amVertexBuffer();
     ~amVertexBuffer();
 
+    virtual uint32 
+    getVertSize();
+
     Vector<amVertex> m_vVertex;
     SIZE_T m_numVertex;
   };

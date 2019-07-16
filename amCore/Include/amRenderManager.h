@@ -10,6 +10,9 @@ namespace amEngineSDK {
   class amSceneGraph;
   class amRenderPass;
   class amGraphicsAPI;
+  class amVertexShader;
+  class amPixelShader;
+  class amRenderTarget;
 
   class AM_CORE_EXPORT amRenderManager
   {
@@ -18,28 +21,39 @@ namespace amEngineSDK {
     ~amRenderManager();
 
     void
-      setpManagers(amResourceManager* _rm, amCameraManager* _cm);
+    setpManagers(amResourceManager* _rm, amCameraManager* _cm);
 
     Vector<amResource*>
-      getResourcesOnCam(amCamera* _cam);
+    getResourcesOnCam(amCamera* _cam);
 
-    void
-      addScene(amSceneGraph* _scn);
+    
 
     virtual int32
-      render();
+    render();
+
+    void 
+    setRenderTargets(const Vector<amRenderTarget*>& _rt);
 
     void
-      setScene(int32 _index);
+    setScene(amSceneGraph* _scn);
+
+    void 
+    initRenderPasses();
 
     amResourceManager* m_resourceManager;
     amCameraManager* m_camManager;
     amCamera* m_currCam;
     amGraphicsAPI* m_api;
-    Vector<amRenderPass*> m_RenderPasses;
-    Vector<amSceneGraph*> m_scenes;
+    //Vector<amRenderPass*> m_RenderPasses;
+    amRenderPass* m_RP_GBuffer;
+    amRenderPass* m_RP_SSAO;
+    amRenderPass* m_RP_DownScale;
+    amRenderPass* m_RP_BlurH;
+    amRenderPass* m_RP_BlurV;
+    amRenderPass* m_RP_Luminance;
+    amRenderPass* m_RP_Final;
     amSceneGraph* m_currScene;
-    // Render pass data
+    ////// Render pass data //////
     // G_Buffer
     // SSAO
     // DownScale

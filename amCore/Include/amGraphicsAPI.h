@@ -31,6 +31,7 @@ namespace amEngineSDK {
   class amRenderPass;
   class amRenderTarget;
   class amMaterial;
+  class amSceneGraph;
 
   class AM_CORE_EXPORT amGraphicsAPI
   {
@@ -63,10 +64,19 @@ namespace amEngineSDK {
     setManagers();
 
     virtual void 
+    initScene();
+
+    virtual void 
     renderResourcesOnCam(amCamera* _cam, amRenderPass* _pass);
 
     virtual void 
-    ClearRenderTarget();
+    setRenderTargets(const Vector<amRenderTarget*>& _rt);
+
+    virtual void 
+    clearRenderTarget();
+
+    virtual void 
+    setShaderConstantBuffers(Vector<amResource*> _vecRes, uint32 _shaderFlags);
 
     virtual void 
     Present();

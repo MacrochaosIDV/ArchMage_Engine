@@ -3,10 +3,12 @@
 #include "amResource.h"
 
 namespace amEngineSDK {
+  class amResourceManager;
+
   namespace amTexType {
     enum E
     {
-      kDEF = 0,
+      kDEFAULT = 0,
       kALBEDO,
       kNORMAL,
       kEMISSIVE,
@@ -14,6 +16,7 @@ namespace amEngineSDK {
       kMETALNESS,
       kROUGHNESS,
       kDEPTH,
+      kHEIGHT,
       kCUBEMAP,
       kRENDERTARGET,
       kCOUNT
@@ -26,11 +29,22 @@ namespace amEngineSDK {
     amTexture();
     ~amTexture();
 
-    void 
-    setTex(Vector<UANSICHAR>* _tBuffer, amTexType::E _tType = amTexType::E::kDEF);
+    virtual void
+    setTex(Vector<UANSICHAR>* _tBuffer, amTexType::E _tType = amTexType::E::kDEFAULT);
+
+    virtual void
+    loadFromFile(const String& _filePathName, amResourceManager* _pRM);
+
+    virtual void
+    unload();
+
+    virtual void
+    resizeTex(const uint32 _size);
 
     Vector<UANSICHAR> m_tBuffer;
     String m_fileName;
     amTexType::E m_tType;
+    uint32 m_height;
+    uint32 m_width;
   };
 }

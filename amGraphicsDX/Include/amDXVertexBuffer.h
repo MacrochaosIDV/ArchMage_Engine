@@ -15,7 +15,8 @@ namespace amEngineSDK {
     ~amDXVertexBuffer() = default;
 
     void 
-    setBufferData(D3D11_USAGE _usageF);
+    setBufferData(D3D11_USAGE _usageF,
+                  amResourceBindFlags::E _RBF = amResourceBindFlags::E::kBINDF_VERTEX_BUFFER);
 
     void
     setSubResourceData(const void* _data, uint32 SysMemPitch, uint32 SysMemSlicePitch);

@@ -17,11 +17,11 @@
     <Filter Include="Source Files\API classes">
       <UniqueIdentifier>{07f68674-9a59-46f2-b619-90a53d7d823e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Shader Resources">
+      <UniqueIdentifier>{b5406f22-f8c3-4e99-a4f1-78b92a01aef5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\amDXGraphicsAPI.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\amDXComputeShader.cpp">
       <Filter>Source Files\Shaders</Filter>
     </ClCompile>
@@ -42,15 +42,6 @@
     </ClCompile>
     <ClCompile Include="Source\amDXDeviceContext.cpp">
       <Filter>Source Files\API classes</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\amDXDepthStencilView.cpp">
-      <Filter>Source Files\Render</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\amDXRenderTargetView.cpp">
-      <Filter>Source Files\Render</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\amDXShaderResourceView.cpp">
-      <Filter>Source Files\Render</Filter>
     </ClCompile>
     <ClCompile Include="Source\amDXShader.cpp">
       <Filter>Source Files\Shaders</Filter>
@@ -76,9 +67,6 @@
     <ClCompile Include="Source\amDXDepthStencil.cpp">
       <Filter>Source Files\Render</Filter>
     </ClCompile>
-    <ClCompile Include="Source\amDXTexture.cpp">
-      <Filter>Source Files\Render</Filter>
-    </ClCompile>
     <ClCompile Include="Source\amDXInputLayout.cpp">
       <Filter>Source Files\API classes</Filter>
     </ClCompile>
@@ -88,11 +76,23 @@
     <ClCompile Include="Source\amDXSwapChain.cpp">
       <Filter>Source Files\API classes</Filter>
     </ClCompile>
+    <ClCompile Include="Source\amDXDepthStencilView.cpp">
+      <Filter>Source Files\Shader Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amDXShaderResourceView.cpp">
+      <Filter>Source Files\Shader Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amDXRenderTargetView.cpp">
+      <Filter>Source Files\Shader Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amDXGraphicsAPI.cpp">
+      <Filter>Source Files\API classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amDXTexture.cpp">
+      <Filter>Source Files\Shader Resources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Include\amDXGraphicsAPI.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="Include\amDXComputeShader.h">
       <Filter>Source Files\Shaders</Filter>
     </ClInclude>
@@ -113,15 +113,6 @@
     </ClInclude>
     <ClInclude Include="Include\amDXDeviceContext.h">
       <Filter>Source Files\API classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\amDXDepthStencilView.h">
-      <Filter>Source Files\Render</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\amDXRenderTargetView.h">
-      <Filter>Source Files\Render</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\amDXShaderResourceView.h">
-      <Filter>Source Files\Render</Filter>
     </ClInclude>
     <ClInclude Include="Include\amDXShader.h">
       <Filter>Source Files\Shaders</Filter>
@@ -150,9 +141,6 @@
     <ClInclude Include="Include\amDXDepthStencil.h">
       <Filter>Source Files\Render</Filter>
     </ClInclude>
-    <ClInclude Include="Include\amDXTexture.h">
-      <Filter>Source Files\Render</Filter>
-    </ClInclude>
     <ClInclude Include="Include\amDXInputLayout.h">
       <Filter>Source Files\API classes</Filter>
     </ClInclude>
@@ -161,6 +149,21 @@
     </ClInclude>
     <ClInclude Include="Include\amDXSwapChain.h">
       <Filter>Source Files\API classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amDXDepthStencilView.h">
+      <Filter>Source Files\Shader Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amDXShaderResourceView.h">
+      <Filter>Source Files\Shader Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amDXRenderTargetView.h">
+      <Filter>Source Files\Shader Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amDXGraphicsAPI.h">
+      <Filter>Source Files\API classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amDXTexture.h">
+      <Filter>Source Files\Shader Resources</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

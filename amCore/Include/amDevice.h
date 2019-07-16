@@ -8,6 +8,10 @@ namespace amEngineSDK {
   class amPixelShader;
   class amVertexShader;
   class amComputeShader;
+  class amShaderResourceView;
+  class amDepthStencilView;
+  class amRenderTargetView;
+  class amUnorderedAccessResourceView;
 
   class AM_CORE_EXPORT amDevice
   {
@@ -16,13 +20,16 @@ namespace amEngineSDK {
     ~amDevice();
 
     virtual amIndexBuffer*
-    createIndexBuffer(amIndexBuffer* _IB);
+    createIndexBuffer(amIndexBuffer* _IB,
+                      amResourceBindFlags::E _RBF = amResourceBindFlags::E::kBINDF_INDEX_BUFFER);
 
     virtual amVertexBuffer*
-    createVertexBuffer(amVertexBuffer* _VB);
+    createVertexBuffer(amVertexBuffer* _VB,
+                       amResourceBindFlags::E _RBF = amResourceBindFlags::E::kBINDF_VERTEX_BUFFER);
 
     virtual amConstantBuffer*
-    createConstBuffer(amConstantBuffer* _CB);
+    createConstBuffer(amConstantBuffer* _CB,
+                      amResourceBindFlags::E _RBF = amResourceBindFlags::E::kBINDF_CONSTANT_BUFFER);
 
     virtual amPixelShader*
     createPixelShader(amPixelShader* _PS);
@@ -32,5 +39,23 @@ namespace amEngineSDK {
 
     virtual amComputeShader* 
     createComputeShader(amComputeShader* _CS);
+
+    virtual amShaderResourceView*
+    createShaderResourceView(amShaderResourceView* _SRV,
+                             void* amSRV_type,
+                             void* _format);
+
+    virtual amDepthStencilView*
+    createDepthStencilView(amDepthStencilView* _DSV,
+                             amResourceBindFlags::E _RBF = amResourceBindFlags::E::kBINDF_DEPTH_STENCIL);
+
+    virtual amRenderTargetView*
+    createRenderTargetView(amRenderTargetView* _RTV,
+                             amResourceBindFlags::E _RBF = amResourceBindFlags::E::kBINDF_RENDER_TARGET);
+
+    virtual amUnorderedAccessResourceView*
+    createUnorderedAccessResourceView(amUnorderedAccessResourceView* _UAV,
+                                      amResourceBindFlags::E _RBF = amResourceBindFlags::E::kBINDF_UNORDERED_ACCESS);
+
   };
 }

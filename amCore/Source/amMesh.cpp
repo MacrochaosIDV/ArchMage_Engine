@@ -16,4 +16,14 @@ namespace amEngineSDK {
     res.nVertex = m_vb.m_vVertex.size();
     return res;
   }
+
+  void amMesh::registerTextures() {
+  
+  }
+
+  uint32
+  amMesh::getIndexCount() {
+    return static_cast<uint32>(m_ib.m_vecIB.size());
+  }
+
 }

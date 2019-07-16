@@ -156,4 +156,9 @@ namespace amEngineSDK {
     res.z = x * vec.y;
     return res;
   }
+
+  const float* amVector4::getVecArr() {
+    float res[4] = {x,y,z,w};
+    return res;
+  }
 }

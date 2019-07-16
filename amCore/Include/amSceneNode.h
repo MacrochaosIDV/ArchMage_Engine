@@ -9,23 +9,37 @@ namespace amEngineSDK {
   namespace amNodeType {
     enum E
     {
-      ROOT = 0,
-      NORMAL
+      kROOT = 0,
+      kNORMAL,
+      kRESOURCE,
+      kEMPTY,
+      kCOUNT
     };
   }
 
   class AM_CORE_EXPORT amSceneNode
   {
   public:
-    amSceneNode(amSceneNode* _parent, amNodeType::E _type = amNodeType::E::NORMAL, bool _isVisible = false);
-    amSceneNode(amSceneNode* _parent, amGameObject* _obj, amNodeType::E _type = amNodeType::E::NORMAL, bool _isVisible = true);
+    amSceneNode(amSceneNode* _parent,
+                amNodeType::E _type = amNodeType::E::kNORMAL,
+                bool _isVisible = false);
+    amSceneNode(amSceneNode* _parent,
+                amGameObject* _obj,
+                amNodeType::E _type = amNodeType::E::kNORMAL,
+                bool _isVisible = true);
     ~amSceneNode();
 
-    Vector<amSceneNode*>
+    Vector<amSceneNode*>&
     getAllChildrenInCam(amCamera* _cam);
 
-    Vector<amResource*>
+    Vector<amResource*>&
     getAllResourcesInCam(amCamera* _cam);
+
+    Vector<amSceneNode*>& 
+    getAllChildren();
+
+    void 
+    addChildren(const Vector<amSceneNode*>& _children);
 
     void 
     setParent(amSceneNode* _parent);
@@ -35,6 +49,9 @@ namespace amEngineSDK {
 
     void
     addChild(amGameObject* _childObj);
+
+    void 
+    addEmpty();
 
     void
     removeChild(amSceneNode* _child);

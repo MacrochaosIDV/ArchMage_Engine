@@ -38,6 +38,8 @@
 #include "amDXConstantBuffer.h"
 
 namespace amEngineSDK {
+  class amMesh;
+
   class AM_GRAPHICSDX_EXPORT amDXGraphicsAPI : public amGraphicsAPI
   {
    public:
@@ -68,6 +70,14 @@ namespace amEngineSDK {
     virtual void
     initSystems(void* _hWnd);
 
+    virtual void 
+    setShaderConstantBuffers(Vector<amResource *> _vecRes, uint32 _shaderFlags) override;
+
+    virtual void 
+    Draw(amResource* _pMesh, amMaterial* _pMat, amRenderTarget* _pOutRenderTarget) override;
+
+    void 
+    tmpLoadResource();
 
     HWND m_hWnd = NULL;
     amCamera cam;
