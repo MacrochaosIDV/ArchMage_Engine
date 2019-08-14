@@ -29,10 +29,10 @@ namespace amEngineSDK {
                 bool _isVisible = true);
     ~amSceneNode();
 
-    Vector<amSceneNode*>&
+    Vector<amSceneNode*>
     getAllChildrenInCam(amCamera* _cam);
 
-    Vector<amResource*>&
+    Vector<amResource*>
     getAllResourcesInCam(amCamera* _cam);
 
     Vector<amSceneNode*>& 
@@ -70,5 +70,6 @@ namespace amEngineSDK {
     amSceneNode* m_parent;
     Vector<amSceneNode*> m_vecChildren;
     amGameObject* m_nodeObj;
+
   };
 }

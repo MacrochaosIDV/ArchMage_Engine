@@ -21,15 +21,18 @@ namespace amEngineSDK {
 
     virtual amIndexBuffer*
     createIndexBuffer(amIndexBuffer* _IB,
-                      amResourceBindFlags::E _RBF = amResourceBindFlags::E::kBINDF_INDEX_BUFFER);
+                      amResourceBindFlags::E _RBF = 
+                        amResourceBindFlags::E::kBINDF_INDEX_BUFFER);
 
     virtual amVertexBuffer*
     createVertexBuffer(amVertexBuffer* _VB,
-                       amResourceBindFlags::E _RBF = amResourceBindFlags::E::kBINDF_VERTEX_BUFFER);
+                       amResourceBindFlags::E _RBF = 
+                         amResourceBindFlags::E::kBINDF_VERTEX_BUFFER);
 
     virtual amConstantBuffer*
     createConstBuffer(amConstantBuffer* _CB,
-                      amResourceBindFlags::E _RBF = amResourceBindFlags::E::kBINDF_CONSTANT_BUFFER);
+                      amResourceBindFlags::E _RBF = 
+                        amResourceBindFlags::E::kBINDF_CONSTANT_BUFFER);
 
     virtual amPixelShader*
     createPixelShader(amPixelShader* _PS);
@@ -42,20 +45,23 @@ namespace amEngineSDK {
 
     virtual amShaderResourceView*
     createShaderResourceView(amShaderResourceView* _SRV,
-                             void* amSRV_type,
-                             void* _format);
+                             const int32 amSRV_type,
+                             const int32 _format);
 
     virtual amDepthStencilView*
     createDepthStencilView(amDepthStencilView* _DSV,
-                             amResourceBindFlags::E _RBF = amResourceBindFlags::E::kBINDF_DEPTH_STENCIL);
+                           amResourceBindFlags::E _RBF = 
+                             amResourceBindFlags::E::kBINDF_DEPTH_STENCIL);
 
     virtual amRenderTargetView*
     createRenderTargetView(amRenderTargetView* _RTV,
-                             amResourceBindFlags::E _RBF = amResourceBindFlags::E::kBINDF_RENDER_TARGET);
+                           amResourceBindFlags::E _RBF = 
+                             amResourceBindFlags::E::kBINDF_RENDER_TARGET);
 
     virtual amUnorderedAccessResourceView*
     createUnorderedAccessResourceView(amUnorderedAccessResourceView* _UAV,
-                                      amResourceBindFlags::E _RBF = amResourceBindFlags::E::kBINDF_UNORDERED_ACCESS);
+                                      amResourceBindFlags::E _RBF = 
+                                        amResourceBindFlags::E::kBINDF_UNORDERED_ACCESS);
 
   };
 }

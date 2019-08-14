@@ -5,4 +5,6 @@ namespace amEngineSDK {
   amSwapChain::amSwapChain() {}
 
   amSwapChain::~amSwapChain() {}
+
+  void amSwapChain::Present() {}
 }

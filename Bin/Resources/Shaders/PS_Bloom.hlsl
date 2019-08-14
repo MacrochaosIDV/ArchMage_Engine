@@ -16,7 +16,7 @@ struct PS_INPUT
    float2 TexCoors : TEXCOORD0;
 };
 
-float4 ps_main(PS_INPUT Input) : COLOR0
+float4 PS(PS_INPUT Input) : COLOR0
 {   
    float4 Color = tex2D(Texture0, Input.TexCoors);
    float4 Luminance = tex2D(Texture1, Input.TexCoors);

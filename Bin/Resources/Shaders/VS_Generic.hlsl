@@ -17,7 +17,7 @@ struct VS_OUTPUT
    float2 TexCoords : TEXCOORD0;
 };
 
-VS_OUTPUT vs_main( VS_INPUT Input )
+VS_OUTPUT VS( VS_INPUT Input )
 {
    VS_OUTPUT Output;
 

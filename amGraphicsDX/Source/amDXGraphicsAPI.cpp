@@ -2,6 +2,9 @@
 #include <amVertex.h>
 #include <amMaterial.h>
 #include <amMesh.h>
+#include <amModel.h>
+#include <amResource.h>
+#include <amDXTextureObject.h>
 
 namespace amEngineSDK {
 
@@ -19,7 +22,22 @@ namespace amEngineSDK {
 
   void 
   amDXGraphicsAPI::CleanupDevice() {
-
+    delete(m_pRenderManager);
+    delete(m_pResourceManager);
+    delete(m_pCamManager);
+    delete(m_pDevice);
+    delete(m_pSwapChain);
+    delete(m_pCB_VP);
+    delete(m_pDepthStencil);
+    delete(m_pCamManager);
+    delete(m_pPixelShader);
+    delete(m_pVertexShader);
+    delete(m_pInputLayout);
+    delete(m_pRenderManager);
+    delete(m_pResourceManager);
+    delete(m_pContext);
+    delete(m_pDepthStencilView);
+    delete(m_pRenderTargetView);
   }
 
   void 
@@ -43,23 +61,26 @@ namespace amEngineSDK {
     */
     amVector4 color = amVector4(0.43f, 0.43f, 0.43f, 1.0f);
 
-    m_pImmediateContext->clearRenderTargetView(m_pRenderTargetView, &color);
-    m_pImmediateContext->clearDepthStencilView(m_pDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+    m_pContext->clearRenderTargetView(m_pRenderTargetView, &color);
+    m_pContext->clearDepthStencilView(m_pDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
     
-    uint32 stride = sizeof(amVertex);
-    uint32 offset = 0;
+    //uint32 stride = sizeof(amVertex);
+    //uint32 offset = 0;
 
-    m_pImmediateContext->setInputLayout(m_pVertexLayout);
-    m_pImmediateContext->setVertexBuffer(m_pDevice->m_VB, stride, offset);
-    m_pImmediateContext->setIndexBuffer(m_pDevice->m_IB);
-    m_pImmediateContext->setPrimitiveTopology();
-    m_pImmediateContext->setVertexShader(m_pVertexShader);
-    m_pImmediateContext->setPixelShader(m_pPixelShader);
-    m_pImmediateContext->m_pDC->VSSetConstantBuffers(0, 1, &m_pCB_VP->m_pCB);
+    m_pContext->setInputLayout(m_pInputLayout);
+    //m_pContext->setVertexBuffer(m_pDevice->m_VB, stride, offset);
+    //m_pContext->setIndexBuffer(m_pDevice->m_IB);
+    
+    m_pContext->setPrimitiveTopology();
+    m_pContext->setVertexShader(m_pVertexShader);
+    m_pContext->setPixelShader(m_pPixelShader);
+    m_pContext->setVS_CB(0, 1, m_pCB_VP);
+
 
     // Draw with index buffers
-    m_pImmediateContext->m_pDC->DrawIndexed(3,0,0);
-    m_pSwapChain->m_pSC->Present(0, 0);
+    //m_pContext->m_pDC->DrawIndexed(3,0,0);
+    Draw(m_testCube, nullptr);
+    Present();
   }
 
   void 
@@ -73,10 +94,10 @@ namespace amEngineSDK {
     ************************
     */
 
-    m_pVertexShader->createVS("Resources/BasicShader.fx", m_pDevice);
-    m_pPixelShader->createPS("Resources/BasicShader.fx", m_pDevice);
-    m_pVertexLayout->Create(m_pDevice, m_pVertexShader);
-    
+    m_pVertexShader->createVS("Resources/Shaders/VS_GBuffer.hlsl", m_pDevice);
+    m_pPixelShader->createPS("Resources/Shaders/PS_PBR.hlsl", m_pDevice);
+    m_pInputLayout->Create(m_pDevice, m_pVertexShader);
+    m_pResourceManager->loadDeafultTex();
   }
 
   void 
@@ -91,17 +112,22 @@ namespace amEngineSDK {
     m_pSwapChain = new amDXSwapChain();
     m_pCB_VP = new amDXConstantBuffer();
     m_pDepthStencil = new amDXTexture();
+    m_pContext = new amDXDeviceContext();
     m_pCamManager = new amCameraManager();
     m_pPixelShader = new amDXPixelShader();
     m_pVertexShader = new amDXVertexShader();
-    m_pVertexLayout = new  amDXInputLayout();
+    m_pInputLayout = new  amDXInputLayout();
     m_pRenderManager = new amRenderManager();
-    m_pResourceManager = new amResourceManager();
-    m_pImmediateContext = new amDXDeviceContext();
     m_pDepthStencilView = new amDXDepthStencilView();
     m_pRenderTargetView = new amDXRenderTargetView();
+    m_pResourceManager = new amResourceManager(m_pDevice);
 
-    setManagers();
+    m_farPlane = new amDXConstantBuffer();
+    m_matWorld = new amDXConstantBuffer();
+    m_nearPlane = new amDXConstantBuffer();
+    m_matViewProjection = new amDXConstantBuffer();
+
+    
 
     HRESULT hr = S_OK;
 
@@ -117,6 +143,9 @@ namespace amEngineSDK {
     createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
 #endif // AM_DEBUG_MODE
 
+    //////////////////////////////////////////////////////////////////////////
+    ////// TODO: replace this with engine types
+    //////////////////////////////////////////////////////////////////////////
     DXGI_SWAP_CHAIN_DESC sd;
     memset(&sd, 0, sizeof(sd));
     sd.BufferCount = 1;
@@ -160,7 +189,7 @@ namespace amEngineSDK {
                                          &m_pSwapChain->m_pSC,
                                          &m_pDevice->m_pDV,
                                          &g_featureLevel,
-                                         &m_pImmediateContext->m_pDC);
+                                         &m_pContext->m_pDC);
 
       if(hr == S_OK)
       {
@@ -168,10 +197,26 @@ namespace amEngineSDK {
       }
     }
 
-    AM_ASSERT(m_pImmediateContext && m_pImmediateContext->m_pDC);
+    AM_ASSERT(m_pContext && m_pContext->m_pDC);
+    /**
+    ************************
+    *  With the device created the others can be created now
+    ************************
+    */
 
+    setManagers();
+    m_pInputLayout->init();
+    
 
-    // Create a render target view
+    /**
+    ************************
+    *  Create a render target view
+    ************************
+    */
+    //////////////////////////////////////////////////////////////////////////
+    ////// TODO: replace this with engine types
+    //////////////////////////////////////////////////////////////////////////
+
     ID3D11Texture2D* pBackBuffer;
     hr = m_pSwapChain->m_pSC->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&pBackBuffer);
     AM_ASSERT(hr == S_OK);
@@ -182,7 +227,15 @@ namespace amEngineSDK {
 
     AM_ASSERT(hr == S_OK);
 
-    // Create depth stencil texture
+    /**
+    ************************
+    *  Create depth stencil texture
+    ************************
+    */
+    //////////////////////////////////////////////////////////////////////////
+    ////// TODO: replace this with engine types
+    //////////////////////////////////////////////////////////////////////////
+
     D3D11_TEXTURE2D_DESC descDepth;
     memset(&descDepth, 0, sizeof(descDepth));
     descDepth.Width = width;
@@ -199,7 +252,15 @@ namespace amEngineSDK {
     hr = m_pDevice->m_pDV->CreateTexture2D(&descDepth, nullptr, &m_pDepthStencil->m_tex);
     AM_ASSERT(hr == S_OK);
 
-    // Create the depth stencil view
+    /**
+    ************************
+    *  Create the depth stencil view
+    ************************
+    */
+    //////////////////////////////////////////////////////////////////////////
+    ////// TODO: replace this with engine types
+    //////////////////////////////////////////////////////////////////////////
+
     D3D11_DEPTH_STENCIL_VIEW_DESC descDSV;
     memset(&descDSV, 0, sizeof(descDSV));
     descDSV.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
@@ -208,9 +269,17 @@ namespace amEngineSDK {
     hr = m_pDevice->m_pDV->CreateDepthStencilView(m_pDepthStencil->m_tex, &descDSV, &m_pDepthStencilView->m_pDSV);
     AM_ASSERT(hr == S_OK);
 
-    m_pImmediateContext->m_pDC->OMSetRenderTargets(1, &m_pRenderTargetView->m_pRTV, m_pDepthStencilView->m_pDSV);
+    m_pContext->m_pDC->OMSetRenderTargets(1, &m_pRenderTargetView->m_pRTV, m_pDepthStencilView->m_pDSV);
 
-    // Setup the viewport
+    /**
+    ************************
+    *  Setup the viewport
+    ************************
+    */
+    //////////////////////////////////////////////////////////////////////////
+    ////// TODO: replace this with engine types
+    //////////////////////////////////////////////////////////////////////////
+
     D3D11_VIEWPORT vp;
     vp.Width = static_cast<float>(width);
     vp.Height = static_cast<float>(height);
@@ -218,47 +287,110 @@ namespace amEngineSDK {
     vp.MaxDepth = 1.0f;
     vp.TopLeftX = 0;
     vp.TopLeftY = 0;
-    m_pImmediateContext->m_pDC->RSSetViewports(1, &vp);
+    m_pContext->m_pDC->RSSetViewports(1, &vp);
 
-    //////////////////////////////////////////////////////////////////////////
-    // Build View Projection Matrix
-    //////////////////////////////////////////////////////////////////////////
-    m_fov = amMath::DEG2RAD * 75.0f;
-    cam.m_matView = amMatrix4x4::IDENTITY;
-    cam.movePoint(amVector3(0.0f, 0.0f, -1.0f), amVector3(0.0f, 0.0f, 1.0f), amVector3(0.0f, 1.0f, 0.0f));
+    /**
+    ************************
+    *  Build View Projection Matrix
+    ************************
+    */
+
+    // TODO: separate the mixed WVP into their own matrices
+    m_cam.m_near = 0.01f;
+    m_cam.m_far = 100.0f;
+    m_cam.m_fov = amMath::DEG2RAD * 75.0f;
+    m_cam.m_mat = amMatrix4x4::IDENTITY;
+    m_cam.movePoint(amVector3(0.0f, 0.0f, -1.0f), amVector3(0.0f, 0.0f, 1.0f), amVector3(0.0f, 1.0f, 0.0f));
     matProjecton = amMatrix4x4::IDENTITY;
-    cam.getViewMatrix();
+    m_cam.getViewMatrix();
     matProjecton._m.m00 = 1.0f/amMath::tan(m_fov * 0.5f);
     matProjecton._m.m11 = (height / matProjecton._m.m00 / width);
     matProjecton._m.m22 = matProjecton._m.m23 = vp.MinDepth * (vp.MaxDepth - vp.MinDepth);
-    cam.m_matView *= matProjecton;
-    m_pCB_VP->m_pCBuffer = &cam.getViewMatrix();
-    m_pCB_VP->m_size = static_cast<uint32>(sizeof(cam.getViewMatrix()));
+    m_cam.m_mat *= matProjecton;
+    m_pCB_VP->m_pCBuffer = &m_cam.m_mat;
+    m_pCB_VP->m_size = static_cast<uint32>(sizeof(m_cam.m_mat));
+
+    /**
+    ************************
+    * Setup constant buffers
+    ************************
+    */
+    m_farPlane->setBufferData(amDXUsageFlags::E::kDEFAULT, 0, &m_cam.m_far);
+    m_nearPlane->setBufferData(amDXUsageFlags::E::kDEFAULT, 1, &m_cam.m_near);
+    m_matViewProjection->setBufferData(amDXUsageFlags::E::kDEFAULT, 2, &m_cam.m_mat);
+    
+
   }
 
-  void amDXGraphicsAPI::setShaderConstantBuffers(Vector<amResource*> _vecRes, uint32 _shaderFlags) {
+  void 
+  amDXGraphicsAPI::setShaderResources(Vector<amResource*> _vecRes, uint32 _shaderFlags) {
+    //TODO: this
     _vecRes;
     _shaderFlags;
   }
 
-  void amDXGraphicsAPI::Draw(amResource * _pMesh, amMaterial * _pMat, amRenderTarget * _pOutRenderTarget) {
-    _pMat;
+  void 
+    amDXGraphicsAPI::Draw(amResource* _pMesh,
+                          amRenderTarget* _pOutRenderTarget,
+                          amMaterial* _pMat) { //re-writing this to be able to use other mats
+    //TODO: this
+    for(int32 i = 0; i< _pMat->m_vecTex.size(); ++i)
+      m_pContext->setPSResources(0, i, _pMat->m_vecTex[i]->m_srv); //ensure the 5 srv for gbuffer
     _pOutRenderTarget;
+    
+    uint32 ibSize = reinterpret_cast<amMesh*>(_pMesh)->getIndexCount();
 
-    //m_pImmediateContext->setVSResources()
-    m_pImmediateContext->setVertexBuffer(&reinterpret_cast<amMesh*>(_pMesh)->m_vb,
-                                         reinterpret_cast<amMesh*>(_pMesh)->m_vb.getVertSize(),
-                                         0);
+    //TODO: set constant buffers, deltaTime, 
 
-    m_pImmediateContext->setIndexBuffer(&reinterpret_cast<amMesh*>(_pMesh)->m_ib);
-    _pMat->setTexsAs_PS_RSV(m_pImmediateContext);
-    m_pImmediateContext->drawIndexed(reinterpret_cast<amMesh*>(_pMesh)->getIndexCount(), 
-                                     reinterpret_cast<amMesh*>(_pMesh)->m_ib.m_vecIB[0], 
-                                     0);
+    m_pContext->setVertexBuffer(&reinterpret_cast<amMesh*>(_pMesh)->m_vb,
+                                reinterpret_cast<amMesh*>(_pMesh)->m_vb.getVertSize(),
+                                0);
+
+    m_pContext->setIndexBuffer(&reinterpret_cast<amMesh*>(_pMesh)->m_ib);
+    _pMat->setTexsAs_PS_RSV(m_pContext);
+    m_pContext->drawIndexed(ibSize,
+                            reinterpret_cast<amMesh*>(_pMesh)->m_ib.m_vecIB[0], 
+                            0);
   }
 
-  void amDXGraphicsAPI::tmpLoadResource() {
-     m_pResourceManager->CreateModel("Resources/3D_Meshes/Cube.x");
+  void 
+  amDXGraphicsAPI::setConstantBuffer(amConstantBuffer * _cb, int32 _shaderFlags) {
+    if (amShaderType::kPIXEL == _shaderFlags)
+      m_pContext->setPS_CB(0 ,0, _cb);
+    else if (amShaderType::kVERTEX == _shaderFlags)
+      m_pContext->setVS_CB(0, 0, _cb);
+  }
+
+  void 
+  amDXGraphicsAPI::setConstantBuffer(Vector<amConstantBuffer*> _cbVec, int32 _shaderFlags) {
+    for (int32 i = 0; i < _cbVec.size(); ++i) {
+      if (amShaderType::kPIXEL == _shaderFlags)
+        m_pContext->setPS_CB(0, 0, _cbVec[i]);
+      else if (amShaderType::kVERTEX == _shaderFlags)
+        m_pContext->setVS_CB(0, 0, _cbVec[i]);
+    }
+  }
+
+  void amDXGraphicsAPI::Present() {
+    m_pSwapChain->Present();
+  }
+
+  void 
+  amDXGraphicsAPI::tmpLoadResource() {
+    //m_pResourceManager->CreateModel("Resources/3D_Meshes/Cube.x");
+    m_testCube = m_pResourceManager->CreateModel("Resources/3D_Meshes/Cube.x",
+                                                 amMeshLoadFlags::E::kNO_MATS_NO_TEX);
+    String mat = "mat";
+    reinterpret_cast<amModel*>(
+      m_testCube)->m_vecMats.push_back(reinterpret_cast<amMaterial*>(
+        m_pResourceManager->CreateMaterial(reinterpret_cast<amTextureObject*>(
+          m_pResourceManager->m_pureWhite), mat)));
+
+    m_pResourceManager->fillMaterial(reinterpret_cast<amModel*>(
+                                      m_testCube)->m_vecMats[0], 
+                                     reinterpret_cast<amTextureObject*>(
+                                      m_pResourceManager->m_pureBlack));
+
     //m_pResourceManager->CreateModel("Resources/3D_Meshes/Vela/Vela_Mat_1.X");
     //m_pResourceManager->CreateModel("Resources/3D_Meshes/Vela/Vela_Mat_2.X");
     //m_pResourceManager->CreateModel("Resources/3D_Meshes/Vela/Vela_Mat_3.X");
@@ -303,12 +435,16 @@ namespace amEngineSDK {
     delete(m_pCamManager);
     delete(m_pPixelShader);
     delete(m_pVertexShader);
-    delete(m_pVertexLayout);
+    delete(m_pInputLayout);
     delete(m_pRenderManager);
     delete(m_pResourceManager);
-    delete(m_pImmediateContext);
+    delete(m_pContext);
     delete(m_pDepthStencilView);
     delete(m_pRenderTargetView);
+  }
+
+  void amDXGraphicsAPI::Update() {
+  
   }
 
   //HRESULT amDXGraphicsAPI::InitWindow(HINSTANCE hInstance, int32 nCmdShow) {

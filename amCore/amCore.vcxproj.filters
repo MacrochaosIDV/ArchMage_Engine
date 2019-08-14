@@ -211,6 +211,21 @@
     <ClCompile Include="Source\amSceneManager.cpp">
       <Filter>Source Files\Core\Core management</Filter>
     </ClCompile>
+    <ClCompile Include="Source\amRP_Blur.cpp">
+      <Filter>Source Files\Renderer classes\Render Passes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amRP_DownScaleBloom.cpp">
+      <Filter>Source Files\Renderer classes\Render Passes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amRP_Lighting.cpp">
+      <Filter>Source Files\Renderer classes\Render Passes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amRP_Luminance.cpp">
+      <Filter>Source Files\Renderer classes\Render Passes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amTextureObject.cpp">
+      <Filter>Source Files\Shader Resources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\amComputeShader.h">
@@ -386,6 +401,21 @@
     </ClInclude>
     <ClInclude Include="Include\amSceneManager.h">
       <Filter>Source Files\Core\Core management</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amRP_Blur.h">
+      <Filter>Source Files\Renderer classes\Render Passes</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amRP_DownScaleBloom.h">
+      <Filter>Source Files\Renderer classes\Render Passes</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amRP_Lighting.h">
+      <Filter>Source Files\Renderer classes\Render Passes</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amRP_Luminance.h">
+      <Filter>Source Files\Renderer classes\Render Passes</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amTextureObject.h">
+      <Filter>Source Files\Shader Resources</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

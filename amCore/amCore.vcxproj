@@ -207,7 +207,11 @@
     <ClCompile Include="Source\amRenderTargetView.cpp" />
     <ClCompile Include="Source\amResource.cpp" />
     <ClCompile Include="Source\amResourceManager.cpp" />
+    <ClCompile Include="Source\amRP_Blur.cpp" />
+    <ClCompile Include="Source\amRP_DownScaleBloom.cpp" />
     <ClCompile Include="Source\amRP_GBuffer.cpp" />
+    <ClCompile Include="Source\amRP_Lighting.cpp" />
+    <ClCompile Include="Source\amRP_Luminance.cpp" />
     <ClCompile Include="Source\amRP_SSAO.cpp" />
     <ClCompile Include="Source\amSamplerState.cpp" />
     <ClCompile Include="Source\amSceneGraph.cpp" />
@@ -219,6 +223,7 @@
     <ClCompile Include="Source\amStaticMesh.cpp" />
     <ClCompile Include="Source\amSwapChain.cpp" />
     <ClCompile Include="Source\amTexture.cpp" />
+    <ClCompile Include="Source\amTextureObject.cpp" />
     <ClCompile Include="Source\amTextureShader.cpp" />
     <ClCompile Include="Source\amTransform.cpp" />
     <ClCompile Include="Source\amUnorderedAccessResourceView.cpp" />
@@ -267,7 +272,11 @@
     <ClInclude Include="Include\amRenderTargetView.h" />
     <ClInclude Include="Include\amResource.h" />
     <ClInclude Include="Include\amResourceManager.h" />
+    <ClInclude Include="Include\amRP_Blur.h" />
+    <ClInclude Include="Include\amRP_DownScaleBloom.h" />
     <ClInclude Include="Include\amRP_GBuffer.h" />
+    <ClInclude Include="Include\amRP_Lighting.h" />
+    <ClInclude Include="Include\amRP_Luminance.h" />
     <ClInclude Include="Include\amRP_SSAO.h" />
     <ClInclude Include="Include\amSamplerState.h" />
     <ClInclude Include="Include\amSceneGraph.h" />
@@ -279,6 +288,7 @@
     <ClInclude Include="Include\amStaticMesh.h" />
     <ClInclude Include="Include\amSwapChain.h" />
     <ClInclude Include="Include\amTexture.h" />
+    <ClInclude Include="Include\amTextureObject.h" />
     <ClInclude Include="Include\amTextureShader.h" />
     <ClInclude Include="Include\amTransform.h" />
     <ClInclude Include="Include\amUnorderedAccessResourceView.h" />

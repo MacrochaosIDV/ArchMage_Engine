@@ -34,11 +34,11 @@ namespace amEngineSDK {
     ~amDXShaderResourceView();
 
     void
-    setDesc(amDXSRV_Types::E _type,
-            amDXFormats::E _format);
+    setDesc(const int32 _type,
+            const int32 _format);
 
     virtual void 
-    createSRV(amDevice* _device, amDXSRV_Types::E _type, amDXFormats::E _format);
+    createSRV(amDevice* _device, const int32 _type, const int32 _format);
 
     ID3D11ShaderResourceView* m_pSRV;
     D3D11_SHADER_RESOURCE_VIEW_DESC m_SRV_Desc;

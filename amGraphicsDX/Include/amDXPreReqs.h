@@ -223,4 +223,14 @@ namespace amEngineSDK {
       kCOUNT
     };
   }
+  namespace amDXUsageFlags {
+    enum E
+    {
+      kDEFAULT = D3D11_USAGE_DEFAULT,
+      kIMMUTABLE = D3D11_USAGE_IMMUTABLE,
+      kDYNAMIC = D3D11_USAGE_DYNAMIC,
+      kSTAGING = D3D11_USAGE_STAGING,
+      kCOUNT
+    };
+  }
 }

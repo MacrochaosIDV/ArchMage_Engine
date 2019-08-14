@@ -1,6 +1,7 @@
 #include "amDXVertexShader.h"
 #pragma comment(lib,"d3dcompiler.lib")
 #include <fstream>
+#include <iostream>
 #include "amDevice.h"
 #include "amDeviceContext.h"
 
@@ -54,8 +55,11 @@ namespace amEngineSDK {
     hr = D3DCompile(&fileBuffer[0], fileSize, szFileName.c_str(), nullptr, NULL, szEntryPoint, szShaderModel, dwShaderFlags,
                     0, reinterpret_cast<ID3DBlob**>(ppBlobOut), &pErrorBlob);
     if (FAILED(hr)) {
-      if (pErrorBlob != NULL)
-        OutputDebugStringA((char*)pErrorBlob->GetBufferPointer());
+      if (pErrorBlob != NULL) {
+        String _error = reinterpret_cast<ANSICHAR*>(pErrorBlob->GetBufferPointer());
+        std::cout << _error;
+      }
+      //OutputDebugStringA((char*)pErrorBlob->GetBufferPointer());
       if (pErrorBlob) pErrorBlob->Release();
       return hr;
     }

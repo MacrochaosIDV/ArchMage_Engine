@@ -42,4 +42,8 @@ namespace amEngineSDK {
     return pRTV;
   }
 
+  void
+  amDXSwapChain::Present() {
+    m_pSC->Present(0, 0);
+  }
 }

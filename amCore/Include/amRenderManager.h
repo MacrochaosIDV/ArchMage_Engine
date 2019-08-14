@@ -26,7 +26,8 @@ namespace amEngineSDK {
     Vector<amResource*>
     getResourcesOnCam(amCamera* _cam);
 
-    
+    void 
+    setRenderPass(amRenderPass* _pass);
 
     virtual int32
     render();

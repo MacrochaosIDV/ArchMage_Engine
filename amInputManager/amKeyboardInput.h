@@ -1,6 +1,6 @@
 #pragma once
 #include "amPrerequisitesInputManager.h"
-#include <OISKeyboard.h>
+#include <gainput/GainputInputDeviceKeyboard.h>
 
 namespace amEngineSDK {
   class amKeyboardInput

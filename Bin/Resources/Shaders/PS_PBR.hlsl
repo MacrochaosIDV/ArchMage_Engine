@@ -24,42 +24,64 @@ float3 fresnelSchlick(float3 F0, float cosTheta) {
 
 float3 m_lightPos;
 float4 m_eyePos;
-sampler AlbedoSampler;
-sampler EmisiveSampler;
-sampler NormalSampler;
-sampler MetalnessSampler;
-sampler RoughnessSampler;
-sampler IrradianceSampler;
-sampler EmissiveSampler;
-sampler SpecularIBL;
-sampler BRDFLut;
+Texture2D AlbedoSampler;
+Texture2D NormalSampler;
+Texture2D MetalnessSampler;
+Texture2D RoughnessSampler;
+Texture2D EmissiveSampler;
+
+TextureCube IrradianceSampler;
+TextureCube SpecularIBL;
+Texture2D BRDFLut;
+
+SamplerState SS
+{
+    Filter = MIN_MAG_MIP_LINEAR;
+    AddressU = Wrap;
+    AddressV = Wrap;
+};
+
+SamplerState SS_Lut
+{
+    Filter = MIN_MAG_MIP_LINEAR;
+    AddressU = Wrap;
+    AddressV = Wrap;
+};
 
 struct PS_INPUT
 {
+   float4 Position : POSITION0;
    float3 PosWorld : TEXCOORD0;
-   float3 TexCoord : TEXCOORD1;
-   float3x3 TBN : TEXCOORD2;
+   float2 TexCoord : TEXCOORD1;
+   float Depth     : TEXCOORD2;
+   float3x3 TBN    : TEXCOORD3;
 };
 
 struct PS_OUTPUT
 {
-   float4 Color : COLOR0;
-   float4 Emissive : COLOR1;
+   float4 Color : SV_Target0;
+   float4 NormalDepth : SV_Target1;
+   float4 Emissive : SV_Target2;
+   //TODO: add metal, ao, rough & depth
 };
 
-float4 ps_main(PS_INPUT Input) : COLOR0 {
+PS_OUTPUT PS(PS_INPUT Input) {
+    PS_OUTPUT Output = (PS_OUTPUT)0;
     float Epsilon = 0.00001f;
     float fDiElectric = 0.03f;
 
 
-    float4 albedo = tex2D(AlbedoSampler, Input.TexCoord);
-    float3 normal = tex2D(NormalSampler, Input.TexCoord);
-    float metalness = tex2D(MetalnessSampler, Input.TexCoord);
-    float roughness = tex2D(RoughnessSampler, Input.TexCoord);
-    float3 emissive = tex2D(EmissiveSampler, Input.TexCoord);
+    float4 albedo = AlbedoSampler.Sample(SS, Input.TexCoord);
+    float3 normal = NormalSampler.Sample(SS, Input.TexCoord).xyz;
+    float metalness = MetalnessSampler.Sample(SS, Input.TexCoord);
+    float roughness = RoughnessSampler.Sample(SS, Input.TexCoord);
+    float3 emissive = EmissiveSampler.Sample(SS, Input.TexCoord);
     
-    normal =  2.0f * mul(normal, Input.TBN) - 1.0f;
+    normal =  2.0f * normal - 1.0f;
+    normal = mul(normal, Input.TBN);
     normal = normalize(normal);
+
+    //return float4(normal, 1.0f);
 
     float3 lightDir = normalize(m_lightPos - Input.PosWorld);
     float3 viewDir = normalize(m_eyePos.xyz - Input.PosWorld);
@@ -84,7 +106,7 @@ float4 ps_main(PS_INPUT Input) : COLOR0 {
 
     float3 ambienLighting;
     {
-        float3 irradiance = texCUBE(IrradianceSampler, normal);
+        float3 irradiance = IrradianceSampler.Sample(SS, normal);////texCube
         float3 F2 = fresnelSchlick(F0, NdV);
         float kd2 = lerp(1.0f - F2, 0.0f, metalness);
 
@@ -93,9 +115,10 @@ float4 ps_main(PS_INPUT Input) : COLOR0 {
         uint specularTextureLevels = 9;
         float3 Lr = 2.0f * NdV * normal - viewDir;
         float4 fullReflection = float4(Lr, roughness * specularTextureLevels);
-        float3 specularIrradiance = texCUBElod(SpecularIBL, fullReflection).rgb;
+        //float3 specularIrradiance = SpecularIBL.SampleLevel(SS, fullReflection).rgb;////texCubeLod
+        float3 specularIrradiance = SpecularIBL.SampleLevel(SS, fullReflection.xyz, fullReflection.w).rgb;////texCubeLod
 
-        float2 specularBRDF = tex2D(BRDFLut, float2(NdV, roughness)).rg;
+        float2 specularBRDF = BRDFLut.Sample(SS_Lut, float2(NdV, roughness)).rg;
 
         float3 specIBL = (F0 * specularBRDF.x + specularBRDF.y) * specularIrradiance;
         
@@ -105,8 +128,15 @@ float4 ps_main(PS_INPUT Input) : COLOR0 {
     // Output.Color = flaot4(directLighting + ambienLighting, 1);
     // Output.Emissive = float4(emissive, 1);
 
-    return float4( pow(
-        pow(directLighting, 2.2f) +
-        pow(ambienLighting,2.2f) +
-        pow(emissive, 2.2f), 1.0f/2.2f), 1);
+    Output.Color = float4( pow(
+        pow(directLighting, 2.2f) + pow(ambienLighting,2.2f), 1.0f/2.2f), albedo.w);
+    Output.NormalDepth = float4(normal, Input.Depth);
+    Output.Emissive = float4(pow(emissive, 2.2f), 1.0f);
+    return Output;
+
+
+    //return float4( pow(
+        //pow(directLighting, 2.2f) +
+        //pow(ambienLighting,2.2f) +
+        //pow(emissive, 2.2f), 1.0f/2.2f), albedo.w);
 }

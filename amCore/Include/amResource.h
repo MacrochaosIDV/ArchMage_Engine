@@ -11,7 +11,8 @@ namespace amEngineSDK {
       kMODEL,
       kSOUND,
       kMATERIAL,
-      COUNT
+      kTEX_OBJ,
+      kCOUNT
     };
   }
   class AM_CORE_EXPORT amResource

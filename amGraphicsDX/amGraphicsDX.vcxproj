@@ -38,6 +38,7 @@
     <ClCompile Include="Source\amDXShaderResourceView.cpp" />
     <ClCompile Include="Source\amDXSwapChain.cpp" />
     <ClCompile Include="Source\amDXTexture.cpp" />
+    <ClCompile Include="Source\amDXTextureObject.cpp" />
     <ClCompile Include="Source\amDXTextureShader.cpp" />
     <ClCompile Include="Source\amDXVertexBuffer.cpp" />
     <ClCompile Include="Source\amDXVertexShader.cpp" />
@@ -64,6 +65,7 @@
     <ClInclude Include="Include\amDXShaderResourceView.h" />
     <ClInclude Include="Include\amDXSwapChain.h" />
     <ClInclude Include="Include\amDXTexture.h" />
+    <ClInclude Include="Include\amDXTextureObject.h" />
     <ClInclude Include="Include\amDXTextureShader.h" />
     <ClInclude Include="Include\amDXVertexBuffer.h" />
     <ClInclude Include="Include\amDXVertexShader.h" />

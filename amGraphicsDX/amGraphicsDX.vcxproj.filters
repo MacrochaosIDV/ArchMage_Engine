@@ -91,6 +91,9 @@
     <ClCompile Include="Source\amDXTexture.cpp">
       <Filter>Source Files\Shader Resources</Filter>
     </ClCompile>
+    <ClCompile Include="Source\amDXTextureObject.cpp">
+      <Filter>Source Files\Shader Resources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\amDXComputeShader.h">
@@ -163,6 +166,9 @@
       <Filter>Source Files\API classes</Filter>
     </ClInclude>
     <ClInclude Include="Include\amDXTexture.h">
+      <Filter>Source Files\Shader Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amDXTextureObject.h">
       <Filter>Source Files\Shader Resources</Filter>
     </ClInclude>
   </ItemGroup>

@@ -31,12 +31,12 @@ namespace amEngineSDK {
     }
   }
 
-  Vector<amSceneNode*>& 
+
+  Vector<amSceneNode*>
   amSceneNode::getAllChildrenInCam(amCamera * _cam) {
     Vector<amSceneNode*> camObjs;
     uint32 chldrn = static_cast<uint32>(m_vecChildren.size());
     if (chldrn > 0) {
-
       for (uint32 i = 0; i < chldrn; ++i) {
         if (m_vecChildren[i]->camOverlap(_cam)) {
           camObjs.push_back(m_vecChildren[i]);
@@ -44,25 +44,24 @@ namespace amEngineSDK {
           camObjs.insert(camObjs.end(), childCamObjs.begin(), childCamObjs.end());
         }
       }
-      
     }
     return camObjs;
   }
 
-  Vector<amResource*>& 
+  Vector<amResource*> 
   amSceneNode::getAllResourcesInCam(amCamera * _cam) {
     Vector<amResource*> camRes;
     uint32 chldrn = static_cast<uint32>(m_vecChildren.size());
     if (chldrn > 0) {
-
       for (uint32 i = 0; i < chldrn; ++i) {
-        if (m_vecChildren[i]->camOverlap(_cam)) {
-          camRes.push_back(m_vecChildren[i]->m_nodeObj->getResourceInComp());
-          Vector<amResource*> childCamObjs = m_vecChildren[i]->getAllResourcesInCam(_cam);
-          camRes.insert(camRes.end(), childCamObjs.begin(), childCamObjs.end());
+        if (m_vecChildren[i]->m_nodeObj->m_hasResourceComponent && m_vecChildren[i]->m_isVisible) {
+          if (m_vecChildren[i]->camOverlap(_cam)) {
+            camRes.push_back(m_vecChildren[i]->m_nodeObj->getResourceInComp());
+            Vector<amResource*> childCamObjs = m_vecChildren[i]->getAllResourcesInCam(_cam);
+            camRes.insert(camRes.end(), childCamObjs.begin(), childCamObjs.end());
+          }
         }
       }
-
     }
     return camRes;
   }
@@ -74,7 +73,7 @@ namespace amEngineSDK {
 
   void 
   amSceneNode::addChildren(const Vector<amSceneNode*>& _children) {
-    uint32 size = _children.size();
+    uint32 size = static_cast<uint32>(_children.size());
     for (uint32 i = 0; i < size; ++i) {
       addChild(_children[i]);
     }
@@ -95,7 +94,8 @@ namespace amEngineSDK {
     m_vecChildren.push_back(new amSceneNode(this, _childObj));
   }
 
-  void amSceneNode::addEmpty() {
+  void 
+  amSceneNode::addEmpty() {
     m_vecChildren.push_back(new amSceneNode(this, amNodeType::E::kEMPTY, false));
   }
 

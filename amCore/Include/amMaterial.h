@@ -28,6 +28,7 @@ namespace amEngineSDK {
   class amTexture;
   class amDevice;
   class amDeviceContext;
+  class amTextureObject;
   class amShaderResourceView;
 
   class AM_CORE_EXPORT amMaterial : public amResource
@@ -37,7 +38,9 @@ namespace amEngineSDK {
     ~amMaterial();
 
     void
-    createTexturesAsRSV(amDevice* _dv);
+    createTexturesAsRSV(amDevice* _dv,
+                        const int32 = amSRV_Types::E::kSRV_TEXTURE2D,
+                        const int32 = amFormats::E::kFORMAT_R8G8B8A8_UINT);
 
     void 
     setTexsAs_VS_RSV(amDeviceContext* _dc);
@@ -45,8 +48,8 @@ namespace amEngineSDK {
     void
     setTexsAs_PS_RSV(amDeviceContext* _dc);
 
-    Vector<amTexture*> m_vecTex;
-    Vector<amShaderResourceView*> m_vecSRV;
+    Vector<amTextureObject*> m_vecTex;
+    //Vector<amShaderResourceView*> m_vecSRV;
     String m_matName;
   };
 }

@@ -5,4 +5,5 @@ namespace amEngineSDK {
   amInputLayout::amInputLayout() {}
 
   amInputLayout::~amInputLayout() {}
+  void amInputLayout::init() {}
 }

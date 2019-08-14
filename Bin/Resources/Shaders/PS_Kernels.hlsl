@@ -15,7 +15,7 @@ struct PS_INPUT
    float2 TexCoords : TEXCOORD0;
 };
 
-float4 ps_main(PS_INPUT Input) : COLOR0
+float4 PS(PS_INPUT Input) : COLOR0
 {   
    float2 Defaz = float2(1.0f/fViewportDimensions.x , 1.0f/fViewportDimensions.y);
    

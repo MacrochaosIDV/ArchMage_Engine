@@ -7,6 +7,7 @@ namespace amEngineSDK {
   class amTexture;
   class amMaterial;
   class amDevice;
+  class amTextureObject;
 
   class AM_CORE_EXPORT amModel : public amResource
   {
@@ -29,7 +30,7 @@ namespace amEngineSDK {
 
 
     Vector<amMesh*> m_vecMeshes;
-    Vector<amTexture*> m_vecTex;
+    Vector<amTextureObject*> m_vecTex;
     Vector<amMaterial*> m_vecMats;
   };
 }

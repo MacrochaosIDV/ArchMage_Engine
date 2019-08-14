@@ -32,6 +32,7 @@ namespace amEngineSDK {
   class amRenderTarget;
   class amMaterial;
   class amSceneGraph;
+  class amRenderPass;
 
   class AM_CORE_EXPORT amGraphicsAPI
   {
@@ -43,10 +44,15 @@ namespace amEngineSDK {
     createVertexBuffer(int64 nVertex, int64 vertexSize);
 
     virtual void 
-    Draw(amResource* _pMesh, amMaterial* _pMat, amRenderTarget* _pOutRenderTarget);
+    Draw(amResource* _pMesh,
+         amRenderTarget* _pOutRenderTarget,
+         amMaterial* _pMat = nullptr);
 
     virtual void 
     init(void* _wnd);
+
+    virtual void 
+    Update();
 
     virtual void 
     Render();
@@ -76,7 +82,7 @@ namespace amEngineSDK {
     clearRenderTarget();
 
     virtual void 
-    setShaderConstantBuffers(Vector<amResource*> _vecRes, uint32 _shaderFlags);
+    setShaderResources(Vector<amResource*> _vecRes, uint32 _shaderFlags);
 
     virtual void 
     Present();
@@ -84,9 +90,24 @@ namespace amEngineSDK {
     virtual void 
     setShaders(amVertexShader* _VS, amPixelShader* _PS);
 
+    virtual void
+    setShaders(amRenderPass* _pass);
+
+    /**
+    ************************
+    * @brief These are called from the render manager to set shader specific constBuffers
+    ************************
+    */
+    virtual void
+    setConstantBuffer(amConstantBuffer* _cb, int32 _shaderFlags);
+
+    virtual void
+    setConstantBuffer(Vector<amConstantBuffer*> _cbVec, int32 _shaderFlags);
+
     float m_fov;
     amRenderManager* m_pRenderManager;
     amCameraManager* m_pCamManager;
     amResourceManager* m_pResourceManager;
+
   };
 }

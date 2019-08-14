@@ -3,7 +3,7 @@
 #include "amRenderPass.h"
 
 namespace amEngineSDK {
-  class amRP_GBuffer
+  class amRP_GBuffer : public amRenderPass
   {
   public:
     amRP_GBuffer();

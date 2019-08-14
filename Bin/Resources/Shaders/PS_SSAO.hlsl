@@ -6,9 +6,10 @@
 ************************
 */
 
-sampler NormalSampler;
-sampler PositionSampler;
+sampler NormalDepthSampler;
+//sampler ColorSampler;
 
+float4x4 matViewProjectionInverse;
 float2 fViewportDimensions;
 
 float SampleRadius;
@@ -27,16 +28,31 @@ struct PS_INPUT
 struct PS_OUTPUT 
 {
    float4 Color : COLOR0;
+   //float AO : COLOR1;
 };
+
+float4 PosFromDepth(float depth, float2 TexCoords) {
+   //float4 clipSpacePos = float4((TexCoords * 2.0) - 1.0f, (depth * 2.0) - 1.0f, 1.0f);
+   float4 clipSpacePos = float4((TexCoords * 2.0) - 1.0f, depth, 1.0f);
+   float4 SSPos = mul(matViewProjectionInverse, clipSpacePos);
+   /// Perspective division
+   SSPos /= SSPos.w;
+   //float4 worldSpacePosition = mul(matViewProjectionInverse, SSPos);
+
+   return SSPos;
+}
 
 float4 getPosition(in float2 uv)
 {
-   return tex2D(PositionSampler, uv);
+   float4 Dpos = tex2D(NormalDepthSampler, uv);
+   return PosFromDepth(Dpos.w, uv);
+   //return tex2D(dPos, uv);
+   //return tex2D(PositionSampler, uv);
 }
 
 float3 getNormal(in float2 uv)
 {  
-   return normalize(tex2D(NormalSampler, uv).xyz);
+   return normalize(tex2D(NormalDepthSampler, uv).xyz);
 }
 
 float2 getRandom(in float2 uv)
@@ -56,10 +72,11 @@ float doAmbientOcclusion(in float2 tCoord,in float2 uv, in float3 pos, in float3
    return max(0.0f, dot(cNorm, v)- Bias) * (1.0f/(1.0f + d)) * Intensity; 
 }
 
-PS_OUTPUT ps_main(PS_INPUT Input)
+PS_OUTPUT PS(PS_INPUT Input)
 {   
-   PS_OUTPUT Output;
+   PS_OUTPUT Output = (PS_OUTPUT)0;
    Output.Color = float4(1,0,0,1);
+   //Output.AO = 1.0f;
    
    const float2 vec[4] =
    {
@@ -90,13 +107,15 @@ PS_OUTPUT ps_main(PS_INPUT Input)
       ao += doAmbientOcclusion(Input.TexCoords, coord1 * 0.25, p.xyz, n);
       ao += doAmbientOcclusion(Input.TexCoords, coord2 * 0.5,  p.xyz, n);
       ao += doAmbientOcclusion(Input.TexCoords, coord1 * 0.75, p.xyz, n);
-      ao += doAmbientOcclusion(Input.TexCoords, coord2 , p.xyz, n);
+      ao += doAmbientOcclusion(Input.TexCoords, coord2       , p.xyz, n);
    }
    
    ao /= 16;
+
+   //float4 color = tex2D(ColorSampler, Input.TexCoords);
    
-   Output.Color.xyz =  (1.0f - ao.xxx);
+   Output.Color.xyz =  (1.0f - ao.xxx);// * color.xyz;
+   //Output.AO = ao;
    
    return Output;
-   
 }

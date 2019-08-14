@@ -1,10 +1,11 @@
 #pragma once
 #include "amDXPreReqs.h"
+#include <amSwapChain.h>
 
 namespace amEngineSDK {
   class amDXDevice;
 
-  class amDXSwapChain
+  class amDXSwapChain : public amSwapChain
   {
   public:
     amDXSwapChain();
@@ -13,6 +14,9 @@ namespace amEngineSDK {
    
     ID3D11RenderTargetView* 
     getRTVFromBuffer(amDXDevice* pDevice, uint32 numBuffer = 0);
+
+    virtual void 
+    Present() override;
 
     DXGI_SWAP_CHAIN_DESC m_scd;
     IDXGISwapChain* m_pSC;

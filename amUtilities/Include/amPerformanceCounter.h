@@ -4,7 +4,11 @@ namespace amEngineSDK {
   {
   public:
     amPerformanceCounter() = default;
+    amPerformanceCounter(const uint32 _refreshRate);
     ~amPerformanceCounter() = default;
+
+    void 
+    setRefreshRate(uint32 _refreshRate);
 
     void 
     startCounterNano();
@@ -18,7 +22,7 @@ namespace amEngineSDK {
     double 
     getCounter();
 
-    double m_PCFreq = 0.0;
-    int64 m_counterVal = 0;
+    double m_refreshRate;
+    uint64 m_counterVal;
   };
 }

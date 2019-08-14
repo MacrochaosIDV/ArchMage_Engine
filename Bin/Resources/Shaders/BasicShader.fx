@@ -19,10 +19,10 @@ cbuffer cbVP : register( b0 )
 //--------------------------------------------------------------------------------------
 struct VS_INPUT
 {
-    float4 Pos   : POSITION0;
-	float4 Color : COLOR0;
-	float3 Normal: NORMAL0;
+    float3 Pos   : POSITION0;
     float2 Tex   : TEXCOORD0;
+	float3 Normal: NORMAL0;
+    
 };
 
 struct PS_INPUT
@@ -40,7 +40,7 @@ PS_INPUT VS( VS_INPUT input )
 {
     PS_INPUT output = (PS_INPUT)0;
     //output.Pos = mul( input.Pos, matViewProjection );
-	output.Pos = input.Pos;
+	output.Pos = float4(input.Pos.xyz, 1.0f);
     output.Tex = input.Tex;
 	output.Color = input.Color;
     

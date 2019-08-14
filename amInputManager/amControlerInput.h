@@ -1,6 +1,6 @@
 #pragma once
 #include "amPrerequisitesInputManager.h"
-#include <OISJoyStick.h>
+#include <gainput/GainputInputDevicePad.h>
 
 namespace amEngineSDK {
   class amControlerInput

@@ -14,6 +14,7 @@ namespace amEngineSDK {
   class amShader;
   class amMaterial;
   class amDeviceContext;
+  class amDevice;
 
   class AM_CORE_EXPORT amMesh : public amResource
   {
@@ -25,7 +26,7 @@ namespace amEngineSDK {
     getVertexIndexSize();
 
     void 
-    registerTextures();
+    registerTextures(amDevice* _dv);
 
     uint32 
     getIndexCount();

@@ -14,7 +14,9 @@ namespace amEngineSDK {
   }
 
   void 
-  amGraphicsAPI::Draw(amResource* _pMesh, amMaterial* _pMat, amRenderTarget* _pOutRenderTarget) {
+  amGraphicsAPI::Draw(amResource* _pMesh,
+                      amRenderTarget* _pOutRenderTarget,
+                      amMaterial* _pMat) {
     _pMesh; _pMat; _pOutRenderTarget;
   }
 
@@ -22,6 +24,9 @@ namespace amEngineSDK {
   amGraphicsAPI::init(void * _wnd) {
     _wnd;
   }
+
+  void 
+  amGraphicsAPI::Update() {}
 
   void 
   amGraphicsAPI::Render() {}
@@ -44,12 +49,14 @@ namespace amEngineSDK {
   }
 
   void 
-  amGraphicsAPI::renderResourcesOnCam(amCamera * _cam, amRenderPass * _pass) 
+  amGraphicsAPI::renderResourcesOnCam(amCamera * _cam, 
+                                      amRenderPass * _pass) 
   {
     _cam; _pass;
   }
 
-  void amGraphicsAPI::setRenderTargets(const Vector<amRenderTarget*>& _rt) {
+  void 
+  amGraphicsAPI::setRenderTargets(const Vector<amRenderTarget*>& _rt) {
     _rt;
   }
 
@@ -57,7 +64,8 @@ namespace amEngineSDK {
   amGraphicsAPI::clearRenderTarget() {}
 
   void 
-  amGraphicsAPI::setShaderConstantBuffers(Vector<amResource*> _vecRes, uint32 _shaderFlags) {
+  amGraphicsAPI::setShaderResources(Vector<amResource*> _vecRes, 
+                                    uint32 _shaderFlags) {
     _vecRes;
     _shaderFlags;
   }
@@ -65,8 +73,28 @@ namespace amEngineSDK {
   void 
   amGraphicsAPI::Present() {}
 
-  void amGraphicsAPI::setShaders(amVertexShader * _VS, amPixelShader * _PS) {
+  void 
+  amGraphicsAPI::setShaders(amVertexShader * _VS, 
+                            amPixelShader * _PS) {
     _VS; _PS;
   }
 
+  void 
+  amGraphicsAPI::setShaders(amRenderPass* _pass) {
+    _pass;
+  }
+
+  void 
+  amGraphicsAPI::setConstantBuffer(amConstantBuffer * _cb, 
+                                   int32 _shaderFlags) {
+    _cb;
+    _shaderFlags;
+  }
+
+  void 
+  amGraphicsAPI::setConstantBuffer(Vector<amConstantBuffer*> _cbVec, 
+                                   int32 _shaderFlags) {
+    _cbVec;
+    _shaderFlags;
+  }
 }

@@ -53,8 +53,8 @@ namespace amEngineSDK {
 
   amShaderResourceView* 
     amDevice::createShaderResourceView(amShaderResourceView * _SRV,
-                                       void* amSRV_type,
-                                       void* _format) {
+                                       const int32 amSRV_type,
+                                       const int32 _format) {
     _SRV;
     amSRV_type;
     _format;

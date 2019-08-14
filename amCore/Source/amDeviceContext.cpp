@@ -62,8 +62,9 @@ namespace amEngineSDK {
   }
 
   void 
-  amDeviceContext::setConstBuffer(amConstantBuffer* _CB) {
+  amDeviceContext::setConstBuffer(amConstantBuffer* _CB, amShaderType::E _shdr) {
     _CB;
+    _shdr;
   }
 
   void 

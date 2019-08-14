@@ -44,7 +44,7 @@ namespace amEngineSDK {
 
   }
 
-  amCamera::amCamera(const amCamera & other) {
+  amCamera::amCamera(const amCamera& other) {
     m_dirty = true;
     m_front = other.m_front;
     m_right = other.m_right;
@@ -54,11 +54,11 @@ namespace amEngineSDK {
     m_near = other.m_near;
     m_far = other.m_far;
     m_clipSpace = other.m_clipSpace;
-    m_matView = other.m_matView;
+    m_mat = other.m_mat;
   }
 
-  amCamera & 
-  amCamera::operator=(const amCamera & other) {
+  amCamera& 
+  amCamera::operator=(const amCamera& other) {
     // m_dirty = true;
     m_front = other.m_front;
     m_right = other.m_right;
@@ -68,7 +68,7 @@ namespace amEngineSDK {
     m_near = other.m_near;
     m_far = other.m_far;
     m_clipSpace = other.m_clipSpace;
-    m_matView = other.m_matView;
+    m_mat = other.m_mat;
     return *this;
   }
 
@@ -137,19 +137,19 @@ namespace amEngineSDK {
   void 
   amCamera::update() {
     if (m_dirty)
-      m_matView = getViewMatrix();
+      m_mat = getViewMatrix();
 
   }
 
   amMatrix4x4 
   amCamera::getViewMatrix() {
     if (m_dirty) {
-      m_matView = {m_right.x,           m_up.x,            m_front.x,             0,
+      m_mat =     {m_right.x,           m_up.x,            m_front.x,             0,
                    m_right.y,           m_up.y,            m_front.y,             0,
                    m_right.z,           m_up.z,            m_front.z,             1,
                    m_right | m_position, m_up | m_position, m_front | m_position, 0};
-      return m_matView;
+      return m_mat;
     }
-    return m_matView;
+    return m_mat;
   }
 }

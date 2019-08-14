@@ -4,6 +4,7 @@
 #include "amVector3.h"
 #include "amVector2.h"
 
+//TODO: turn this into temple class
 namespace amEngineSDK {
   class AM_CORE_EXPORT amVertex
   {
@@ -42,8 +43,10 @@ namespace amEngineSDK {
     
     
     float x; float y; float z;
-    float nx; float ny; float nz;
     float u; float v;
+    //float tx; float ty; float tz;
+    //float bx; float by; float bz;
+    float nx; float ny; float nz;
     
   };
 }

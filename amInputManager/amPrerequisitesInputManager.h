@@ -1,5 +1,5 @@
 #pragma once
-#include <OISInputManager.h>
+#include <gainput/gaInput.h>
 
 #if AM_PLATFORM == AM_PLATFORM_WIN32
 #  if AM_COMPILER == AM_COMPILER_MSVC

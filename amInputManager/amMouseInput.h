@@ -1,6 +1,6 @@
 #pragma once
 #include "amPrerequisitesInputManager.h"
-#include <OISMouse.h>
+#include <gainput/GainputInputDeviceMouse.h>
 
 namespace amEngineSDK {
   class amMouseInput

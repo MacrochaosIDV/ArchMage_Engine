@@ -6,6 +6,7 @@
 #include "amDXComputeShader.h"
 #include "amDXShaderResourceView.h"
 #include "amDXTexture.h"
+#include "amDXTextureObject.h"
 
 namespace amEngineSDK {
   amDXDevice::amDXDevice() {
@@ -52,16 +53,20 @@ namespace amEngineSDK {
   }
 
   amShaderResourceView* 
-    amDXDevice::createShaderResourceView(amShaderResourceView * _pSRV,
-                                         void* amSRV_type,
-                                         void* _format) {
+  amDXDevice::createShaderResourceView(amShaderResourceView * _pSRV,
+                                       const int32 amSRV_type,
+                                       const int32 _format) {
     //TODO check if RBF is correct on _pSRV->m_texResource for binding as shader resource
     //if(_pSRV->m_texResource->)
-    reinterpret_cast<amDXShaderResourceView*>(_pSRV)->setDesc(*reinterpret_cast<amDXSRV_Types::E*>(amSRV_type), 
-                                                              *reinterpret_cast<amDXFormats::E*>(_format));
-    HRESULT h = m_pDV->CreateShaderResourceView(reinterpret_cast<amDXTexture*>(_pSRV->m_texResource)->m_tex, //texture must have been init'ed with shader resource bind flags
-                                                &reinterpret_cast<amDXShaderResourceView*>(_pSRV)->m_SRV_Desc,
-                                                &reinterpret_cast<amDXShaderResourceView*>(_pSRV)->m_pSRV);
+    reinterpret_cast<amDXShaderResourceView*>(_pSRV)->setDesc(amSRV_type,
+                                                              _format);
+    HRESULT h = m_pDV->CreateShaderResourceView(reinterpret_cast<ID3D11Resource*>(
+                                                  reinterpret_cast<amDXTextureObject*>(
+                                                    _pSRV)->m_pApiTex), //check that texture was init-ed with shader resource bind flags
+                                                &reinterpret_cast<amDXShaderResourceView*>(
+                                                  _pSRV)->m_SRV_Desc,
+                                                &reinterpret_cast<amDXShaderResourceView*>(
+                                                  _pSRV)->m_pSRV);
     if (h == S_OK)
       return _pSRV;
     return nullptr;
@@ -82,7 +87,7 @@ namespace amEngineSDK {
   amConstantBuffer*
   amDXDevice::createConstBuffer(amConstantBuffer* _pCB,
                                      amResourceBindFlags::E _RBF) {
-    reinterpret_cast<amDXConstantBuffer*>(_pCB)->setBufferData(D3D11_USAGE_DEFAULT, _RBF);
+    reinterpret_cast<amDXConstantBuffer*>(_pCB)->setBufferData(amUsageFlags::E::kDEFAULT, _RBF);
     HRESULT h = m_pDV->CreateBuffer(&reinterpret_cast<amDXConstantBuffer*>(_pCB)->m_bd,
                         &reinterpret_cast<amDXConstantBuffer*>(_pCB)->m_subResData,
                         &reinterpret_cast<amDXConstantBuffer*>(_pCB)->m_pCB);

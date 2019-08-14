@@ -53,7 +53,7 @@ namespace amEngineSDK {
     setVertexBuffer(amVertexBuffer* _VB, const uint32 _stride, const uint32 _offset);
 
     virtual void
-    setConstBuffer(amConstantBuffer* _CB);
+    setConstBuffer(amConstantBuffer* _CB, amShaderType::E _shdr);
 
     virtual void
     setPixelShader(amPixelShader* _PS);

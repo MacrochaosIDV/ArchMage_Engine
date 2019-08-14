@@ -283,4 +283,31 @@ namespace amEngineSDK {
       PRIMITIVE_TOPOLOGY_32_CONTROL_POINT_PATCHLIST = 64
     };
   }
+  namespace amShaderType {
+    enum E
+    {
+      kUNKNOWN = 0,
+      kVERTEX,
+      kPIXEL,
+      kCOMPUTE
+    };
+  }
+  namespace amShaderInputLayout {
+    enum E
+    {
+      kGBUFFER = 0,
+      kDEFFERRED,
+      kCOUNT
+    };
+  }
+  namespace amUsageFlags {
+    enum E
+    {
+      kDEFAULT = 0,
+      kIMMUTABLE,
+      kDYNAMIC,
+      kSTAGING,
+      kCOUNT
+    };
+  }
 }

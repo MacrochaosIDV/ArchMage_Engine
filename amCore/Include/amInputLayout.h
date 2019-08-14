@@ -7,5 +7,10 @@ namespace amEngineSDK {
   public:
     amInputLayout();
     ~amInputLayout();
+
+    virtual void 
+    init();
+
+    amShaderInputLayout::E m_shaderLayout;
   };
 }

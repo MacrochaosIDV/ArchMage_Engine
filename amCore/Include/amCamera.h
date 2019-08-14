@@ -70,6 +70,6 @@ namespace amEngineSDK {
     amVector3 m_front;
     amVector3 m_right;
     amFrustrum m_clipSpace;
-    amMatrix4x4 m_matView;
+    amMatrix4x4 m_mat;
   };
 }

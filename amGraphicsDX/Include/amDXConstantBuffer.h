@@ -13,8 +13,7 @@ namespace amEngineSDK {
     ~amDXConstantBuffer();
 
     void
-    setBufferData(D3D11_USAGE _usageF,
-                  amResourceBindFlags::E _RBF = amResourceBindFlags::E::kBINDF_VERTEX_BUFFER);
+    setBufferData(uint32 _usageF, uint32 _cpuAccessFlags, void* _data = nullptr);
 
     ID3D11Buffer* m_pCB;
     D3D11_BUFFER_DESC m_bd;

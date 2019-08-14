@@ -2,7 +2,7 @@
 #include "amResourceManager.h"
 
 namespace amEngineSDK {
-  amTexture::amTexture(Vector<UANSICHAR>* _tBuffer, amTexType::E _tType) {
+  amTexture::amTexture(Vector<ANSICHAR>* _tBuffer, amTexType::E _tType) {
     m_tBuffer = *_tBuffer;
     m_tType = _tType;
     m_resourceType = amResourceType::E::kIMG;
@@ -25,7 +25,7 @@ namespace amEngineSDK {
   
 
   void 
-  amTexture::setTex(Vector<UANSICHAR>* _tBuffer, amTexType::E _tType) {
+  amTexture::setTex(Vector<ANSICHAR>* _tBuffer, amTexType::E _tType) {
     m_tBuffer = *_tBuffer;
     m_tType = _tType;
   }

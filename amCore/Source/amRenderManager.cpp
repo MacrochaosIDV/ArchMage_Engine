@@ -12,7 +12,6 @@ namespace amEngineSDK {
   int32 
   amRenderManager::render() {
     m_api->clearRenderTarget();
-
     // Get geometry to draw
     Vector<amResource*> objsCam = m_currScene->getAllResourcesInCam(m_currCam);
     uint32 objsCamSize = static_cast<uint32>(objsCam.size());
@@ -21,9 +20,8 @@ namespace amEngineSDK {
     for (uint32 i = 0; i < objsCamSize; ++i) {
       // TODO: make a way to get the materials along their meshes
       //m_api->Draw(objsCam[i],,);
-    }
-    
 
+    }
     m_api->Present();
     return 0;
   }
@@ -39,7 +37,7 @@ namespace amEngineSDK {
   }
 
   void amRenderManager::initRenderPasses() {
-    m_RP_GBuffer->setShaders("PS_GBuffer.hlsl", "VS_GBuffer.hlsl");
+    m_RP_GBuffer->setShaders("PS_PBR.hlsl", "VS_GBuffer.hlsl");
     m_RP_GBuffer->compileShaders();
     m_RP_SSAO->setShaders("PS_SSAO.hlsl", "VS_Generic.hlsl");
     m_RP_SSAO->compileShaders();
@@ -51,7 +49,7 @@ namespace amEngineSDK {
     m_RP_BlurV->compileShaders();
     m_RP_Luminance->setShaders("PS_Luminance.hlsl", "VS_Generic.hlsl");
     m_RP_Luminance->compileShaders();
-    m_RP_Final->setShaders("PS_PBR.hlsl", "VS_Generic.hlsl");
+    m_RP_Final->setShaders("PS_Lighting.hlsl", "VS_Generic.hlsl");
     m_RP_Final->compileShaders();
   }
 
@@ -66,6 +64,8 @@ namespace amEngineSDK {
     return m_currScene->getAllResourcesInCam(_cam);
   }
 
-  
-
+  void 
+  amRenderManager::setRenderPass(amRenderPass * _pass) {
+    m_api->setShaders(_pass);
+  }
 }

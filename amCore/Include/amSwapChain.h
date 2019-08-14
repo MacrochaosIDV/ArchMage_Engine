@@ -7,5 +7,8 @@ namespace amEngineSDK {
   public:
     amSwapChain();
     ~amSwapChain();
+
+    virtual void 
+    Present();
   };
 }

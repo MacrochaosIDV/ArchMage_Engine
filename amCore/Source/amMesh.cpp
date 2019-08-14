@@ -5,7 +5,9 @@
 #include "amMaterial.h"
 
 namespace amEngineSDK {
-  amMesh::amMesh() {}
+  amMesh::amMesh() {
+    //m_mat = new amMaterial();
+  }
 
   amMesh::~amMesh() {}
 
@@ -17,13 +19,12 @@ namespace amEngineSDK {
     return res;
   }
 
-  void amMesh::registerTextures() {
-  
+  void amMesh::registerTextures(amDevice * _dv) {
+    m_mat->createTexturesAsRSV(_dv);
   }
 
   uint32
   amMesh::getIndexCount() {
     return static_cast<uint32>(m_ib.m_vecIB.size());
   }
-
 }

@@ -39,6 +39,18 @@ namespace amEngineSDK {
                           uint8 _stencil) override;
 
     virtual void 
+    setConstBuffer(amConstantBuffer* _CB, amShaderType::E _shdr) override;
+
+    virtual void 
+    setCS_CB(uint32 _starSlot, uint32 _nViews, amConstantBuffer* _CB) override;
+
+    virtual void 
+    setPS_CB(uint32 _starSlot, uint32 _nViews, amConstantBuffer* _CB) override;
+
+    virtual void 
+    setVS_CB(uint32 _starSlot, uint32 _nViews, amConstantBuffer* _CB) override;
+
+    virtual void 
     clearRenderTargetView(amRenderTargetView* _pRTV, amVector4* _color) override;
 
     ID3D11DeviceContext* m_pDC;

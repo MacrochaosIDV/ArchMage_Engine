@@ -7,6 +7,7 @@
 #include "amDXVertexBuffer.h"
 #include "amDXIndexBuffer.h"
 #include "amDXInputLayout.h"
+#include "amDXInputLayout.h"
 #include <amVector4.h>
 
 
@@ -20,7 +21,7 @@ namespace amEngineSDK {
   }
 
   void amDXDeviceContext::setInputLayout(amInputLayout * _il) {
-    m_pDC->IASetInputLayout(reinterpret_cast<amDXInputLayout*>(_il)->m_pVertexLayout);
+    m_pDC->IASetInputLayout(reinterpret_cast<amDXInputLayout*>(_il)->m_pInputLayout);
   }
 
   //TODO: change setVB in DC to have stride & offset
@@ -61,7 +62,38 @@ namespace amEngineSDK {
     m_pDC->ClearDepthStencilView(reinterpret_cast<amDXDepthStencilView*>(_pDSV)->m_pDSV, _clearFlags, _depth, _stencil);
   }
 
-  void amDXDeviceContext::clearRenderTargetView(amRenderTargetView * _pRTV, amVector4* _color) {
+  void amDXDeviceContext::setConstBuffer(amConstantBuffer * _CB, amShaderType::E _shdr) {
+    if(_shdr == amShaderType::E::kPIXEL){
+      setPS_CB(0, 0, _CB);
+    }
+    else if (_shdr == amShaderType::E::kVERTEX) {
+      setVS_CB(0, 0, _CB);
+    }
+    else if (_shdr == amShaderType::E::kCOMPUTE) {
+      setCS_CB(0, 0, _CB);
+    }
+    else {
+      // @TODO: throw error
+    }
+  }
+
+  void 
+  amDXDeviceContext::setCS_CB(uint32 _starSlot, uint32 _nViews, amConstantBuffer* _CB ) {
+    m_pDC->CSSetConstantBuffers(_starSlot, _nViews, &reinterpret_cast<amDXConstantBuffer*>(_CB)->m_pCB);
+  }
+
+  void 
+  amDXDeviceContext::setPS_CB(uint32 _starSlot, uint32 _nViews, amConstantBuffer* _CB) {
+    m_pDC->PSSetConstantBuffers(_starSlot, _nViews, &reinterpret_cast<amDXConstantBuffer*>(_CB)->m_pCB);
+  }
+
+  void 
+  amDXDeviceContext::setVS_CB(uint32 _starSlot, uint32 _nViews, amConstantBuffer* _CB) {
+    m_pDC->VSSetConstantBuffers(_starSlot, _nViews, &reinterpret_cast<amDXConstantBuffer*>(_CB)->m_pCB);
+  }
+
+  void 
+  amDXDeviceContext::clearRenderTargetView(amRenderTargetView * _pRTV, amVector4* _color) {
     m_pDC->ClearRenderTargetView(reinterpret_cast<amDXRenderTargetView*>(_pRTV)->m_pRTV, _color->getVecArr());
   }
 

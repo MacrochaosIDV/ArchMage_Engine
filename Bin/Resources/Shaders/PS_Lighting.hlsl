@@ -26,7 +26,7 @@ struct PS_OUTPUT
    float4 Light     : COLOR1;
 };
 
-PS_OUTPUT ps_main(PS_INPUT Input)
+PS_OUTPUT PS(PS_INPUT Input)
 {  
    PS_OUTPUT Output = (PS_OUTPUT)0;
    

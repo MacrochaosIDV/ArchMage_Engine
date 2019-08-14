@@ -35,15 +35,18 @@ namespace amEngineSDK {
 
     virtual amConstantBuffer*
     createConstBuffer(amConstantBuffer* _pCB,
-                         amResourceBindFlags::E _RBF = amResourceBindFlags::E::kBINDF_CONSTANT_BUFFER) override;
+                      amResourceBindFlags::E _RBF = 
+                        amResourceBindFlags::E::kBINDF_CONSTANT_BUFFER) override;
 
     virtual amVertexBuffer*
     createVertexBuffer(amVertexBuffer* _pVB,
-                       amResourceBindFlags::E _RBF = amResourceBindFlags::E::kBINDF_VERTEX_BUFFER) override;
+                       amResourceBindFlags::E _RBF = 
+                         amResourceBindFlags::E::kBINDF_VERTEX_BUFFER) override;
 
     virtual amIndexBuffer*
     createIndexBuffer(amIndexBuffer* _pIB,
-                      amResourceBindFlags::E _RBF = amResourceBindFlags::E::kBINDF_INDEX_BUFFER) override;
+                      amResourceBindFlags::E _RBF = 
+                        amResourceBindFlags::E::kBINDF_INDEX_BUFFER) override;
 
     virtual amVertexShader*
     createVertexShader(amVertexShader* _pVS) override;
@@ -55,9 +58,11 @@ namespace amEngineSDK {
     createComputeShader(amComputeShader* _pCS) override;
 
     virtual amShaderResourceView* 
-      createShaderResourceView(amShaderResourceView* _SRV,
-                               void* amSRV_type,
-                               void* _format) override;
+    createShaderResourceView(amShaderResourceView* _SRV,
+                             const int32 amSRV_type,
+                             const int32 _format) override;
+
+     
 
     ID3D11Device* m_pDV;
     amDXVertexBuffer* m_VB; // temp buffer for testing

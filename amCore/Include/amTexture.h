@@ -19,21 +19,25 @@ namespace amEngineSDK {
       kHEIGHT,
       kCUBEMAP,
       kRENDERTARGET,
+      kLUT,
       kCOUNT
     };
   }
   class AM_CORE_EXPORT amTexture : public amResource
   {
   public:
-    amTexture(Vector<UANSICHAR>* _tBuffer, amTexType::E _tType = amTexType::E::kALBEDO);
+    amTexture(Vector<ANSICHAR>* _tBuffer, 
+              amTexType::E _tType = amTexType::E::kALBEDO);
     amTexture();
     ~amTexture();
 
     virtual void
-    setTex(Vector<UANSICHAR>* _tBuffer, amTexType::E _tType = amTexType::E::kDEFAULT);
+    setTex(Vector<ANSICHAR>* _tBuffer, 
+           amTexType::E _tType = amTexType::E::kDEFAULT);
 
     virtual void
-    loadFromFile(const String& _filePathName, amResourceManager* _pRM);
+    loadFromFile(const String& _filePathName, 
+                 amResourceManager* _pRM);
 
     virtual void
     unload();
@@ -41,7 +45,7 @@ namespace amEngineSDK {
     virtual void
     resizeTex(const uint32 _size);
 
-    Vector<UANSICHAR> m_tBuffer;
+    Vector<ANSICHAR> m_tBuffer;
     String m_fileName;
     amTexType::E m_tType;
     uint32 m_height;
