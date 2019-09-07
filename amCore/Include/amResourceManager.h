@@ -30,9 +30,10 @@ namespace amEngineSDK {
     ~amResourceManager();
 
     amResource* 
-    CreateRegisterModel(const String& pathName, 
-                        amMeshLoadFlags::E _flags = amMeshLoadFlags::E::kNO_FLAG,
-                        amDevice* _dv = nullptr);
+    CreateRegisterModel(const String& pathName,
+                        const int32 _rbf,
+                        amMeshLoadFlags::E _flags = amMeshLoadFlags::E::kNO_FLAG
+                        );
 
     amResource*
     CreateModel(const String& pathName, 
@@ -44,8 +45,7 @@ namespace amEngineSDK {
     amShaderResourceView*
     RegisterTexture(amResource* _res, 
                     const int32,
-                    const int32 _srv = amSRV_Types::E::kSRV_TEXTURE2D,
-                    amDevice* _dv = nullptr);
+                    const int32 _srv = amSRV_Types::E::kSRV_TEXTURE2D);
 
     void 
     loadDeafultTex();
@@ -65,6 +65,7 @@ namespace amEngineSDK {
     void 
     setDevice(amDevice* _dv);
 
+    //<TODO>: change these ptrs to TexObj
     amResource* m_pureBlack;
     amResource* m_pureWhite;
     amResource* m_defaultTex;
@@ -72,6 +73,11 @@ namespace amEngineSDK {
     amShaderResourceView* m_SRVpureBlack;
     amShaderResourceView* m_SRVpureWhite;
     amShaderResourceView* m_SRVdefaultTex;
+
+    amTextureObject* m_texObjPureBlack;
+    amTextureObject* m_texObjPureWhite;
+    amTextureObject* m_texObjDefaultTex;
+    //<TODO/>
 
     amDevice* m_dv;
 

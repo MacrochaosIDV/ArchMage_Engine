@@ -26,7 +26,7 @@ namespace amEngineSDK {
     getVertexIndexSize();
 
     void 
-    registerTextures(amDevice* _dv);
+    registerTextures(amDevice* _dv, const int32 _rbf);
 
     uint32 
     getIndexCount();

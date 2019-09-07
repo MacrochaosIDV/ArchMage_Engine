@@ -39,6 +39,7 @@ namespace amEngineSDK {
 
     void
     createTexturesAsRSV(amDevice* _dv,
+                        const int32 _rbf,
                         const int32 = amSRV_Types::E::kSRV_TEXTURE2D,
                         const int32 = amFormats::E::kFORMAT_R8G8B8A8_UINT);
 

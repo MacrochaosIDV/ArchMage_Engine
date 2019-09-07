@@ -29,14 +29,11 @@ namespace amEngineSDK {
   amResourceManager::~amResourceManager() {}
 
   amResource* 
-  amResourceManager::CreateRegisterModel(const String & pathName, 
-                                         amMeshLoadFlags::E _flags,
-                                         amDevice * _dv) {
+  amResourceManager::CreateRegisterModel(const String & pathName,
+                                         const int32 _rbf,
+                                         amMeshLoadFlags::E _flags) {
     amResource* res = CreateModel(pathName, _flags);
-    if(!_dv)
-      reinterpret_cast<amModel*>(res)->registerMeshTextures(m_dv);
-    else
-      reinterpret_cast<amModel*>(res)->registerMeshTextures(_dv);
+    reinterpret_cast<amModel*>(res)->registerMeshTextures(m_dv, _rbf);
     return res;
   }
 
@@ -276,7 +273,8 @@ namespace amEngineSDK {
                                    uint32 _textureFlags) {
     int32 width, height, channels;
     amTextureObject* tex = new amTextureObject();
-    UANSICHAR* texdata = stbi_load(pathName.c_str(), 
+    tex->m_tex->m_resBindFlag = amResourceBindFlags::E::kBINDF_SHADER_RESOURCE;
+    UANSICHAR* texdata = stbi_load(pathName.c_str(),
                                    &width, 
                                    &height, 
                                    &channels, 
@@ -286,30 +284,40 @@ namespace amEngineSDK {
     tex->m_tex->m_tBuffer.resize(width * height);
     memcpy(&tex->m_tex->m_tBuffer[0], &texdata[0], width * height);
     m_vecResources.push_back(tex);
-    if (_textureFlags == amTexType::E::kLUT || 
-        _textureFlags == amTexType::E::kCUBEMAP) {
-      m_vecSceneSharedRes.push_back(tex);
+
+    /**
+    ************************
+    * Format Detection
+    ************************
+    */
+    //Format assumes a color texture
+    amFormats::E format = amFormats::E::kFORMAT_R8G8B8A8_UINT;
+
+    if (_textureFlags == amTexType::kMETALNESS ||
+        _textureFlags == amTexType::kROUGHNESS) {
+      //Format becomes greyScale
+      format = amFormats::E::kFORMAT_R8_UINT;
     }
-    tex->m_srv = RegisterTexture(tex->m_tex, 
-                                 amFormats::E::kFORMAT_R8G8B8A8_UINT);
+    else if (_textureFlags == amTexType::E::kLUT ||
+             _textureFlags == amTexType::E::kCUBEMAP) {
+      m_vecSceneSharedRes.push_back(tex);
+      if (_textureFlags == amTexType::E::kCUBEMAP) {
+        //Format becomes 16float for HDR lighting
+        format = amFormats::E::kFORMAT_R16G16B16A16_FLOAT;
+      }
+    }
+    //TODO: Check Resource Bind Flags ////////
+    tex->m_srv = RegisterTexture(tex->m_tex, format);
     return tex;
   }
 
   amShaderResourceView*
   amResourceManager::RegisterTexture(amResource * _res,
                                      const int32 _format,
-                                     const int32 _srv,
-                                     amDevice * _dv) {
-    if (!_dv) {
-      return m_dv->createShaderResourceView(reinterpret_cast<amShaderResourceView*>(_res),
-                                     _srv,
-                                     _format);
-    }
-    else {
-      return _dv->createShaderResourceView(reinterpret_cast<amShaderResourceView*>(_res),
-                                    _srv, 
-                                    _format);
-    }
+                                     const int32 _srv) {
+    return m_dv->createShaderResourceView(reinterpret_cast<amShaderResourceView*>(_res),
+                                          _srv,
+                                          _format);
   }
 
   void 
@@ -356,6 +364,7 @@ namespace amEngineSDK {
   void amResourceManager::fillMaterial(amMaterial * _mat, 
                                        amTextureObject * _tex) {
     if (_mat->m_vecTex.size() < 5) { //Change the 5 to a const
+      _mat->m_vecTex.resize(5);
       for (uint32 i = static_cast<uint32>(_mat->m_vecTex.size()); i < 5; ++i) {
         _mat->m_vecTex[i] = _tex;
         //_mat->m_vecSRV[i] = _srv;

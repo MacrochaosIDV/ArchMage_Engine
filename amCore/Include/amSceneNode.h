@@ -23,10 +23,12 @@ namespace amEngineSDK {
     amSceneNode(amSceneNode* _parent,
                 amNodeType::E _type = amNodeType::E::kNORMAL,
                 bool _isVisible = false);
+
     amSceneNode(amSceneNode* _parent,
                 amGameObject* _obj,
                 amNodeType::E _type = amNodeType::E::kNORMAL,
                 bool _isVisible = true);
+
     ~amSceneNode();
 
     Vector<amSceneNode*>

@@ -13,4 +13,8 @@ namespace amEngineSDK {
     m_resourceType = amResourceType::kTEX_OBJ;
     return *this;
   }
+
+  void amTextureObject::setapiTex(void * _tex) {
+    m_pApiTex = _tex;
+  }
 }

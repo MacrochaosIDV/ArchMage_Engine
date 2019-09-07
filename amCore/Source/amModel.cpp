@@ -10,10 +10,10 @@ namespace amEngineSDK {
 
   amModel::~amModel() {}
 
-  void amModel::registerMeshTextures(amDevice* _dv) {
+  void amModel::registerMeshTextures(amDevice* _dv, const int32 _rbf) {
     uint32 size = static_cast<uint32>(m_vecMeshes.size());
     for (uint32 i = 0; i < size; ++i) {
-      m_vecMeshes[i]->registerTextures(_dv);
+      m_vecMeshes[i]->registerTextures(_dv, _rbf);
     }
   }
 

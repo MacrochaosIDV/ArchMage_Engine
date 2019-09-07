@@ -19,8 +19,8 @@ namespace amEngineSDK {
     return res;
   }
 
-  void amMesh::registerTextures(amDevice * _dv) {
-    m_mat->createTexturesAsRSV(_dv);
+  void amMesh::registerTextures(amDevice * _dv, const int32 _rbf) {
+    m_mat->createTexturesAsRSV(_dv, _rbf);
   }
 
   uint32

@@ -22,5 +22,6 @@ namespace amEngineSDK {
     ~amResource();
 
     amResourceType::E m_resourceType;
+    amResourceBindFlags::E m_resBindFlag;
   };
 }

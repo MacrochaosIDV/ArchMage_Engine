@@ -13,6 +13,7 @@ namespace amEngineSDK {
   amMaterial::~amMaterial() {}
 
   void amMaterial::createTexturesAsRSV(amDevice* _dv,    
+                                       const int32 _rbf,
                                        const int32 _srvType,
                                        const int32 _format) {
     int32 size = static_cast<int32>(m_vecTex.size());
@@ -20,7 +21,7 @@ namespace amEngineSDK {
     if (size > 0) {
       for (int32 i = 0; i < size; ++i) {
         m_vecTex[i]->m_srv->m_texResource = m_vecTex[i]->m_tex;
-        _dv->createShaderResourceView(m_vecTex[i]->m_srv, _srvType, _format);
+        _dv->createShaderResourceView(m_vecTex[i]->m_srv, _srvType, _format, _rbf);
       }
     }
   }

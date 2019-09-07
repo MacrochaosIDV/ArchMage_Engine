@@ -85,7 +85,6 @@ namespace amEngineSDK {
 
   void 
   amDXGraphicsAPI::initContent() {
-    tmpLoadResource();
     /**
     ************************
     *
@@ -98,6 +97,7 @@ namespace amEngineSDK {
     m_pPixelShader->createPS("Resources/Shaders/PS_PBR.hlsl", m_pDevice);
     m_pInputLayout->Create(m_pDevice, m_pVertexShader);
     m_pResourceManager->loadDeafultTex();
+    tmpLoadResource();
   }
 
   void 
@@ -146,19 +146,19 @@ namespace amEngineSDK {
     //////////////////////////////////////////////////////////////////////////
     ////// TODO: replace this with engine types
     //////////////////////////////////////////////////////////////////////////
-    DXGI_SWAP_CHAIN_DESC sd;
-    memset(&sd, 0, sizeof(sd));
-    sd.BufferCount = 1;
-    sd.BufferDesc.Width = width;
-    sd.BufferDesc.Height = height;
-    sd.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-    sd.BufferDesc.RefreshRate.Numerator = 60;
-    sd.BufferDesc.RefreshRate.Denominator = 1;
-    sd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
-    sd.OutputWindow = m_hWnd;
-    sd.SampleDesc.Count = 1;
-    sd.SampleDesc.Quality = 0;
-    sd.Windowed = true;
+    //DXGI_SWAP_CHAIN_DESC sd;
+    memset(&m_pSwapChain->m_scd, 0, sizeof(m_pSwapChain->m_scd));
+    m_pSwapChain->m_scd.BufferCount = 1;
+    m_pSwapChain->m_scd.BufferDesc.Width = width;
+    m_pSwapChain->m_scd.BufferDesc.Height = height;
+    m_pSwapChain->m_scd.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+    m_pSwapChain->m_scd.BufferDesc.RefreshRate.Numerator = 60;
+    m_pSwapChain->m_scd.BufferDesc.RefreshRate.Denominator = 1;
+    m_pSwapChain->m_scd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
+    m_pSwapChain->m_scd.OutputWindow = m_hWnd;
+    m_pSwapChain->m_scd.SampleDesc.Count = 1;
+    m_pSwapChain->m_scd.SampleDesc.Quality = 0;
+    m_pSwapChain->m_scd.Windowed = true;
 
     D3D_DRIVER_TYPE driverTypes[] =
     {
@@ -185,7 +185,7 @@ namespace amEngineSDK {
                                          featureLevels,
                                          numFeatureLevels,
                                          D3D11_SDK_VERSION,
-                                         &sd,
+                                         &m_pSwapChain->m_scd,
                                          &m_pSwapChain->m_pSC,
                                          &m_pDevice->m_pDV,
                                          &g_featureLevel,
@@ -235,6 +235,8 @@ namespace amEngineSDK {
     //////////////////////////////////////////////////////////////////////////
     ////// TODO: replace this with engine types
     //////////////////////////////////////////////////////////////////////////
+
+    //m_pDepthStencil->m_pDesc = 
 
     D3D11_TEXTURE2D_DESC descDepth;
     memset(&descDepth, 0, sizeof(descDepth));

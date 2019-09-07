@@ -60,7 +60,8 @@ namespace amEngineSDK {
     virtual amShaderResourceView* 
     createShaderResourceView(amShaderResourceView* _SRV,
                              const int32 amSRV_type,
-                             const int32 _format) override;
+                             const int32 _format,
+                             const int32 _rbf) override;
 
      
 

@@ -15,6 +15,9 @@ namespace amEngineSDK {
     amTextureObject& 
     operator=(const amTextureObject* _texObj);
 
+    virtual void 
+    setapiTex(void* _tex);
+
     amTexture* m_tex;
     amShaderResourceView* m_srv;
     void* m_pApiTex;

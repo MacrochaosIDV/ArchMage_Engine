@@ -55,11 +55,17 @@ namespace amEngineSDK {
   amShaderResourceView* 
   amDXDevice::createShaderResourceView(amShaderResourceView * _pSRV,
                                        const int32 amSRV_type,
-                                       const int32 _format) {
+                                       const int32 _format,
+                                       const int32 _rbf) {
     //TODO check if RBF is correct on _pSRV->m_texResource for binding as shader resource
     //if(_pSRV->m_texResource->)
+    //
+    _pSRV = new amDXShaderResourceView();
+
     reinterpret_cast<amDXShaderResourceView*>(_pSRV)->setDesc(amSRV_type,
                                                               _format);
+
+    reinterpret_cast<amDXShaderResourceView*>(_pSRV)->m_texResource->m_resBindFlag = static_cast<amResourceBindFlags::E>(_rbf);
     HRESULT h = m_pDV->CreateShaderResourceView(reinterpret_cast<ID3D11Resource*>(
                                                   reinterpret_cast<amDXTextureObject*>(
                                                     _pSRV)->m_pApiTex), //check that texture was init-ed with shader resource bind flags

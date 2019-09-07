@@ -50,5 +50,7 @@ namespace amEngineSDK {
     amTexType::E m_tType;
     uint32 m_height;
     uint32 m_width;
+    void* m_pDesc;
+    void* m_apiPtr;
   };
 }
