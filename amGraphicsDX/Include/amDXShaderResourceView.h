@@ -38,7 +38,10 @@ namespace amEngineSDK {
             const int32 _format);
 
     virtual void 
-    createSRV(amDevice* _device, const int32 _type, const int32 _format);
+    createSRV(amDevice* _device, 
+              amTexture* _tex, 
+              const int32 _type, 
+              const int32 _format);
 
     ID3D11ShaderResourceView* m_pSRV;
     D3D11_SHADER_RESOURCE_VIEW_DESC m_SRV_Desc;

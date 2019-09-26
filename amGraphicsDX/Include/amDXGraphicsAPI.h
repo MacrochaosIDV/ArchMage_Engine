@@ -33,7 +33,7 @@
 #include "amDXVertexShader.h"
 #include "amDXPixelShader.h"
 #include "amDXDepthStencilView.h"
-#include "amDXTexture.h"
+//#include "amDXTexture.h"
 #include "amDXSamplerState.h"
 #include "amDXConstantBuffer.h"
 
@@ -41,6 +41,7 @@
 namespace amEngineSDK {
   class amMesh;
   class amModel;
+  class amTexture;
 
   class AM_GRAPHICSDX_EXPORT amDXGraphicsAPI : public amGraphicsAPI
   {
@@ -79,7 +80,7 @@ namespace amEngineSDK {
     setShaderResources(Vector<amResource *> _vecRes, uint32 _shaderFlags) override;
 
     virtual void 
-    Draw(amResource* _pMesh, 
+    Draw(amMesh* _pMesh,
          amRenderTarget* _pOutRenderTarget, 
          amMaterial* _pMat = nullptr) override;
 
@@ -92,8 +93,13 @@ namespace amEngineSDK {
     virtual void 
     Present() override;
 
+    virtual void
+    clearRenderTargets() override;
+
     void 
     tmpLoadResource();
+
+    amVector4 m_clearColor;
 
     HWND m_hWnd = NULL;
     amCamera m_cam;
@@ -104,14 +110,21 @@ namespace amEngineSDK {
     amDXConstantBuffer* m_matWorld;
     amDXConstantBuffer* m_matViewProjection;
 
-    amResource* m_testCube;
+    amRenderTargetView* m_fullColor;
+    amRenderTargetView* m_emissive;
+    amRenderTargetView* m_normals;
+    amRenderTargetView* m_blur;
+    amRenderTargetView* m_luminance;
+    amRenderTargetView* m_MADR;
+
+    amModel* m_testCube;
     
     amDXDeviceContext*                  m_pContext = NULL;
     amDXDepthStencilView*               m_pDepthStencilView = NULL;
     amDXRenderTargetView*               m_pRenderTargetView = NULL;
     amDXSamplerState*                   m_pSamplerLinear = NULL;
     amDXInputLayout*                    m_pInputLayout = NULL;
-    amDXTexture*                        m_pDepthStencil = NULL;
+    amTexture*                          m_pDepthStencil = NULL;
     amDXVertexShader*                   m_pVertexShader = NULL;
     amDXPixelShader*                    m_pPixelShader = NULL;
     amDXShaderResourceView*             m_pTextureRV = NULL;

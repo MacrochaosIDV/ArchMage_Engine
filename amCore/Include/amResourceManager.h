@@ -8,6 +8,7 @@ namespace amEngineSDK {
   class amMaterial;
   class amShaderResourceView;
   class amTextureObject;
+  class amRenderTarget;
 
   namespace amMeshLoadFlags
   {
@@ -31,33 +32,55 @@ namespace amEngineSDK {
 
     amResource* 
     CreateRegisterModel(const String& pathName,
-                        const int32 _rbf,
-                        amMeshLoadFlags::E _flags = amMeshLoadFlags::E::kNO_FLAG
-                        );
+                        amMeshLoadFlags::E _flags = amMeshLoadFlags::E::kNO_FLAG);
 
     amResource*
     CreateModel(const String& pathName, 
                 amMeshLoadFlags::E _flags = amMeshLoadFlags::E::kNO_FLAG);
 
-    amResource*
+    amTexture*
     CreateTexture(const String& pathName, uint32 _textureFlags = 0);
 
+    amTextureObject*
+    CreateTextureObject(const String& pathName, uint32 _textureFlags = 0);
+
+    /**
+    ************************
+    *  @brief Creates a texObj for render targets' textures
+    *  Only use for render targets
+    ************************
+    */
+    amTextureObject*
+    CreateTextureObject(const uint32 _height, 
+                        const uint32 _width, 
+                        const amFormats::E _format, 
+                        const bool _hdr);
+
     amShaderResourceView*
-    RegisterTexture(amResource* _res, 
+    RegisterTexture(amShaderResourceView* _res,
+                    amTexture* _tex,
                     const int32,
                     const int32 _srv = amSRV_Types::E::kSRV_TEXTURE2D);
+
+    amRenderTargetView* 
+    RegisterRenderTarget(amRenderTargetView* _rt);
 
     void 
     loadDeafultTex();
 
-    amResource* 
+    amMaterial*
     CreateMaterial(amTextureObject* _tex, const String& _matName = "");
 
-    amResource* 
+    amMaterial*
     CreateMaterial(Vector<amTextureObject*>& _texVec, const String& _matName = "");
 
-    amResource* 
+    amMaterial*
     CreateMaterial(const String& _pathName, uint32 _textureFlags = 0);
+
+    amRenderTarget* 
+    CreateRenderTarget(amRenderTarget* _rt, 
+                       const amFormats::E _format, 
+                       const bool _hdr);
 
     void 
     fillMaterial(amMaterial* _mat, amTextureObject* _tex);
@@ -65,19 +88,19 @@ namespace amEngineSDK {
     void 
     setDevice(amDevice* _dv);
 
-    //<TODO>: change these ptrs to TexObj
-    amResource* m_pureBlack;
-    amResource* m_pureWhite;
-    amResource* m_defaultTex;
-
-    amShaderResourceView* m_SRVpureBlack;
-    amShaderResourceView* m_SRVpureWhite;
-    amShaderResourceView* m_SRVdefaultTex;
-
+    /**
+    ************************
+    *  Default textures and materials
+    ************************
+    */
     amTextureObject* m_texObjPureBlack;
     amTextureObject* m_texObjPureWhite;
+    amTextureObject* m_texObjPureMidGrey;
+    amTextureObject* m_texObjDefaultNormals;
+    amTextureObject* m_texObjIBL_BRDF_LUT;
     amTextureObject* m_texObjDefaultTex;
-    //<TODO/>
+    
+    amMaterial* m_defaultMat;
 
     amDevice* m_dv;
 

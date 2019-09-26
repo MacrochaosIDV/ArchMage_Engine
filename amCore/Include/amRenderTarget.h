@@ -1,9 +1,10 @@
 #pragma once
 #include "amPrerequisitesCore.h"
-#include "amTexture.h"
 
 namespace amEngineSDK {
-  class AM_CORE_EXPORT amRenderTarget : public amTexture
+  class amTextureObject;
+
+  class AM_CORE_EXPORT amRenderTarget
   {
   public:
     amRenderTarget();
@@ -14,6 +15,6 @@ namespace amEngineSDK {
 
     uint32 m_height;
     uint32 m_width;
-    Vector<UANSICHAR> m_RTBuffer;
+    amTextureObject* m_tex;
   };
 }

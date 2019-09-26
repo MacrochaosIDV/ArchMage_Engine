@@ -1,4 +1,5 @@
 #include "amRenderTarget.h"
+#include "amTextureObject.h"
 
 namespace amEngineSDK {
   amRenderTarget::amRenderTarget() {}
@@ -7,10 +8,8 @@ namespace amEngineSDK {
 
   void 
   amRenderTarget::resize(const uint32 _height, const uint32 _width) {
-    uint32 size = _height * _width;
-    if (size != m_RTBuffer.size()) {
-      m_RTBuffer.resize(size);
-    }
+    m_height = _height;
+    m_width = _width;
+    m_tex->resize(_height, _width);
   }
-
 }

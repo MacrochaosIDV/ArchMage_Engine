@@ -1,5 +1,6 @@
 #include "amGraphicsAPI.h"
 #include "amRenderTarget.h"
+#include "amMesh.h"
 
 namespace amEngineSDK {
   amGraphicsAPI::amGraphicsAPI() {}
@@ -14,7 +15,7 @@ namespace amEngineSDK {
   }
 
   void 
-  amGraphicsAPI::Draw(amResource* _pMesh,
+  amGraphicsAPI::Draw(amMesh* _pMesh,
                       amRenderTarget* _pOutRenderTarget,
                       amMaterial* _pMat) {
     _pMesh; _pMat; _pOutRenderTarget;
@@ -61,7 +62,7 @@ namespace amEngineSDK {
   }
 
   void 
-  amGraphicsAPI::clearRenderTarget() {}
+  amGraphicsAPI::clearRenderTargets() {}
 
   void 
   amGraphicsAPI::setShaderResources(Vector<amResource*> _vecRes, 

@@ -42,14 +42,29 @@ namespace amEngineSDK {
     virtual void
     unload();
 
+    void 
+    resize(const uint32 _height, const uint32 _width);
+
     virtual void
     resizeTex(const uint32 _size);
-
+    /**
+    ************************
+    * The data buffer
+    ************************
+    */
     Vector<ANSICHAR> m_tBuffer;
+    /**
+    ************************
+    * A ptr for creating a buffer of another type
+    ************************
+    */
+    void* m_tBuffer_f;
     String m_fileName;
     amTexType::E m_tType;
+    amFormats::E m_format;
     uint32 m_height;
     uint32 m_width;
+    bool m_hrd;
     void* m_pDesc;
     void* m_apiPtr;
   };

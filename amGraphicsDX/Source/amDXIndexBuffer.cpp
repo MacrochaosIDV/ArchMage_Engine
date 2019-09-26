@@ -19,7 +19,7 @@ namespace amEngineSDK {
     m_initData.pSysMem = &m_vecIB[0]; // the actual vertex data that goes into the GPU
     m_initData.SysMemPitch = 0;
     m_initData.SysMemSlicePitch = 0;
-    m_vecIB.clear();
+    //m_vecIB.clear();
   }
 
   void 

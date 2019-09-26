@@ -310,4 +310,11 @@ namespace amEngineSDK {
       kCOUNT
     };
   }
+  namespace amClearFlags {
+    enum E
+    {
+      kCLEAR_DEPTH = 0x1L,
+      kCLEAR_STENCIL = 0x2L
+    };
+  }
 }

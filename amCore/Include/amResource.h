@@ -23,5 +23,6 @@ namespace amEngineSDK {
 
     amResourceType::E m_resourceType;
     amResourceBindFlags::E m_resBindFlag;
+    void* m_pApiResource;
   };
 }

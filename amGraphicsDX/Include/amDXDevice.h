@@ -25,7 +25,8 @@ namespace amEngineSDK {
   class amPixelShader;
   class amComputeShader;
   class amShaderResourceView;
-  ;
+  class amRenderTargetView;
+  class amRenderTarget;
 
   class amDXDevice : public amDevice
   {
@@ -59,11 +60,14 @@ namespace amEngineSDK {
 
     virtual amShaderResourceView* 
     createShaderResourceView(amShaderResourceView* _SRV,
+                             amTexture* _texResource,
                              const int32 amSRV_type,
-                             const int32 _format,
-                             const int32 _rbf) override;
+                             const int32 _format) override;
 
-     
+    virtual amRenderTargetView* 
+    createRenderTargetView(amRenderTargetView* _RTV, 
+                           amResourceBindFlags::E _RBF = 
+                             amResourceBindFlags::E::kBINDF_RENDER_TARGET) override;
 
     ID3D11Device* m_pDV;
     amDXVertexBuffer* m_VB; // temp buffer for testing

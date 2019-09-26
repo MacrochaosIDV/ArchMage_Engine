@@ -9,6 +9,12 @@ namespace amEngineSDK {
   class AM_CORE_EXPORT amTextureObject : public amResource
   {
   public:
+    /**
+    ************************
+    *  @long Default constructor will create its amTaxture pointer but not the srv pointer
+    *  that one must be created by the api while creating its api srv
+    ************************
+    */
     amTextureObject();
     ~amTextureObject();
 
@@ -17,6 +23,9 @@ namespace amEngineSDK {
 
     virtual void 
     setapiTex(void* _tex);
+
+    void 
+    resize(const uint32 _height, const uint32 _width);
 
     amTexture* m_tex;
     amShaderResourceView* m_srv;

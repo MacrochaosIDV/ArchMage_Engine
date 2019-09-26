@@ -10,10 +10,25 @@ namespace amEngineSDK {
     m_resourceType = amResourceType::E::kMATERIAL;
   }
 
+  amMaterial::amMaterial(const String _name) {
+    m_resourceType = amResourceType::E::kMATERIAL;
+    m_matName = _name;
+  }
+
+  amMaterial::amMaterial(const Vector<amTextureObject*>& _vecTex) {
+    m_resourceType = amResourceType::E::kMATERIAL;
+    m_vecTex = _vecTex;
+  }
+
+  amMaterial::amMaterial(const String _name, const Vector<amTextureObject*>& _vecTex) {
+    m_resourceType = amResourceType::E::kMATERIAL;
+    m_matName = _name;
+    m_vecTex = _vecTex;
+  }
+
   amMaterial::~amMaterial() {}
 
-  void amMaterial::createTexturesAsRSV(amDevice* _dv,    
-                                       const int32 _rbf,
+  void amMaterial::createTexturesAsRSV(amDevice* _dv,
                                        const int32 _srvType,
                                        const int32 _format) {
     int32 size = static_cast<int32>(m_vecTex.size());
@@ -21,7 +36,7 @@ namespace amEngineSDK {
     if (size > 0) {
       for (int32 i = 0; i < size; ++i) {
         m_vecTex[i]->m_srv->m_texResource = m_vecTex[i]->m_tex;
-        _dv->createShaderResourceView(m_vecTex[i]->m_srv, _srvType, _format, _rbf);
+        _dv->createShaderResourceView(m_vecTex[i]->m_srv, m_vecTex[i]->m_tex, _srvType, _format);
       }
     }
   }

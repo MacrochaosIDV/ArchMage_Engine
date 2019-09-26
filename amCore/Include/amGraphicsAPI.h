@@ -32,6 +32,7 @@ namespace amEngineSDK {
   class amRenderTarget;
   class amMaterial;
   class amSceneGraph;
+  class amMesh;
   class amRenderPass;
 
   class AM_CORE_EXPORT amGraphicsAPI
@@ -44,7 +45,7 @@ namespace amEngineSDK {
     createVertexBuffer(int64 nVertex, int64 vertexSize);
 
     virtual void 
-    Draw(amResource* _pMesh,
+    Draw(amMesh* _pMesh,
          amRenderTarget* _pOutRenderTarget,
          amMaterial* _pMat = nullptr);
 
@@ -79,7 +80,7 @@ namespace amEngineSDK {
     setRenderTargets(const Vector<amRenderTarget*>& _rt);
 
     virtual void 
-    clearRenderTarget();
+    clearRenderTargets();
 
     virtual void 
     setShaderResources(Vector<amResource*> _vecRes, uint32 _shaderFlags);
@@ -108,6 +109,5 @@ namespace amEngineSDK {
     amRenderManager* m_pRenderManager;
     amCameraManager* m_pCamManager;
     amResourceManager* m_pResourceManager;
-
   };
 }

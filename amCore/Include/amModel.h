@@ -26,7 +26,7 @@ namespace amEngineSDK {
     ************************
     */
     void 
-    registerMeshTextures(amDevice* _dv, const int32 _rbf);
+    registerMeshTextures(amDevice* _dv);
 
 
     Vector<amMesh*> m_vecMeshes;

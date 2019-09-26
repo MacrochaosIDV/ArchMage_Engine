@@ -1,5 +1,6 @@
 #include "amDXShaderResourceView.h"
 #include "amDXDevice.h"
+#include "amTexture.h"
 
 namespace amEngineSDK {
   amDXShaderResourceView::amDXShaderResourceView() {}
@@ -16,8 +17,9 @@ namespace amEngineSDK {
 
   void 
   amDXShaderResourceView::createSRV(amDevice* _device, 
+                                    amTexture* _tex,
                                     const int32 _type, 
                                     const int32 _format) {
-    reinterpret_cast<amDXDevice*>(_device)->createShaderResourceView(this, _type, _format);
+    reinterpret_cast<amDXDevice*>(_device)->createShaderResourceView(this, _tex, _type, _format);
   }
 }

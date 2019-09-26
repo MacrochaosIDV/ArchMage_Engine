@@ -4,6 +4,7 @@
 namespace amEngineSDK {
   class amIndexBuffer;
   class amVertexBuffer;
+  class amTexture;
   class amConstantBuffer;
   class amPixelShader;
   class amVertexShader;
@@ -45,9 +46,9 @@ namespace amEngineSDK {
 
     virtual amShaderResourceView*
     createShaderResourceView(amShaderResourceView* _SRV,
+                             amTexture* _texResource,
                              const int32 amSRV_type,
-                             const int32 _format,
-                             const int32 _rbf);
+                             const int32 _format);
 
     virtual amDepthStencilView*
     createDepthStencilView(amDepthStencilView* _DSV,

@@ -4,6 +4,7 @@
 #include "amConstantBuffer.h"
 #include "amPixelShader.h"
 #include "amVertexShader.h"
+#include "amTexture.h"
 
 namespace amEngineSDK {
   amDevice::amDevice() {}
@@ -53,10 +54,10 @@ namespace amEngineSDK {
 
   amShaderResourceView* 
     amDevice::createShaderResourceView(amShaderResourceView * _SRV,
+                                       amTexture* _texResource,
                                        const int32 amSRV_type,
-                                       const int32 _format,
-                                       const int32 _rbf) {
-    _rbf;
+                                       const int32 _format) {
+    _texResource;
     _SRV;
     amSRV_type;
     _format;

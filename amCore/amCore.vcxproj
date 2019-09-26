@@ -190,9 +190,7 @@
     <ClCompile Include="Source\amDevice.cpp" />
     <ClCompile Include="Source\amDeviceContext.cpp" />
     <ClCompile Include="Source\amGameObject.cpp" />
-    <ClCompile Include="Source\amGeomShader.cpp" />
     <ClCompile Include="Source\amGraphicsAPI.cpp" />
-    <ClCompile Include="Source\amGraphicsBuffer.cpp" />
     <ClCompile Include="Source\amImage.cpp" />
     <ClCompile Include="Source\amIndexBuffer.cpp" />
     <ClCompile Include="Source\amInputLayout.cpp" />
@@ -224,7 +222,6 @@
     <ClCompile Include="Source\amSwapChain.cpp" />
     <ClCompile Include="Source\amTexture.cpp" />
     <ClCompile Include="Source\amTextureObject.cpp" />
-    <ClCompile Include="Source\amTextureShader.cpp" />
     <ClCompile Include="Source\amTransform.cpp" />
     <ClCompile Include="Source\amUnorderedAccessResourceView.cpp" />
     <ClCompile Include="Source\amVertex.cpp" />
@@ -254,9 +251,7 @@
     <ClInclude Include="Include\amDevice.h" />
     <ClInclude Include="Include\amDeviceContext.h" />
     <ClInclude Include="Include\amGameObject.h" />
-    <ClInclude Include="Include\amGeomShader.h" />
     <ClInclude Include="Include\amGraphicsAPI.h" />
-    <ClInclude Include="Include\amGraphicsBuffer.h" />
     <ClInclude Include="Include\amImage.h" />
     <ClInclude Include="Include\amIndexBuffer.h" />
     <ClInclude Include="Include\amInputLayout.h" />
@@ -289,7 +284,6 @@
     <ClInclude Include="Include\amSwapChain.h" />
     <ClInclude Include="Include\amTexture.h" />
     <ClInclude Include="Include\amTextureObject.h" />
-    <ClInclude Include="Include\amTextureShader.h" />
     <ClInclude Include="Include\amTransform.h" />
     <ClInclude Include="Include\amUnorderedAccessResourceView.h" />
     <ClInclude Include="Include\amVertex.h" />

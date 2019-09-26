@@ -43,25 +43,16 @@
     <ClCompile Include="Source\amComputeShader.cpp">
       <Filter>Source Files\Shaders</Filter>
     </ClCompile>
-    <ClCompile Include="Source\amGeomShader.cpp">
-      <Filter>Source Files\Shaders</Filter>
-    </ClCompile>
     <ClCompile Include="Source\amPixelShader.cpp">
       <Filter>Source Files\Shaders</Filter>
     </ClCompile>
     <ClCompile Include="Source\amShader.cpp">
       <Filter>Source Files\Shaders</Filter>
     </ClCompile>
-    <ClCompile Include="Source\amTextureShader.cpp">
-      <Filter>Source Files\Shaders</Filter>
-    </ClCompile>
     <ClCompile Include="Source\amVertexShader.cpp">
       <Filter>Source Files\Shaders</Filter>
     </ClCompile>
     <ClCompile Include="Source\amConstantBuffer.cpp">
-      <Filter>Source Files\Buffers</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\amGraphicsBuffer.cpp">
       <Filter>Source Files\Buffers</Filter>
     </ClCompile>
     <ClCompile Include="Source\amIndexBuffer.cpp">
@@ -224,14 +215,11 @@
       <Filter>Source Files\Renderer classes\Render Passes</Filter>
     </ClCompile>
     <ClCompile Include="Source\amTextureObject.cpp">
-      <Filter>Source Files\Shader Resources</Filter>
+      <Filter>Source Files\Resource classes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\amComputeShader.h">
-      <Filter>Source Files\Shaders</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\amGeomShader.h">
       <Filter>Source Files\Shaders</Filter>
     </ClInclude>
     <ClInclude Include="Include\amPixelShader.h">
@@ -240,16 +228,10 @@
     <ClInclude Include="Include\amShader.h">
       <Filter>Source Files\Shaders</Filter>
     </ClInclude>
-    <ClInclude Include="Include\amTextureShader.h">
-      <Filter>Source Files\Shaders</Filter>
-    </ClInclude>
     <ClInclude Include="Include\amVertexShader.h">
       <Filter>Source Files\Shaders</Filter>
     </ClInclude>
     <ClInclude Include="Include\amConstantBuffer.h">
-      <Filter>Source Files\Buffers</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\amGraphicsBuffer.h">
       <Filter>Source Files\Buffers</Filter>
     </ClInclude>
     <ClInclude Include="Include\amIndexBuffer.h">
@@ -415,7 +397,7 @@
       <Filter>Source Files\Renderer classes\Render Passes</Filter>
     </ClInclude>
     <ClInclude Include="Include\amTextureObject.h">
-      <Filter>Source Files\Shader Resources</Filter>
+      <Filter>Source Files\Resource classes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

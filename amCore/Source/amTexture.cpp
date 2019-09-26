@@ -6,10 +6,12 @@ namespace amEngineSDK {
     m_tBuffer = *_tBuffer;
     m_tType = _tType;
     m_resourceType = amResourceType::E::kIMG;
+    m_hrd = false;
   }
 
   amTexture::amTexture() {
     m_resourceType = amResourceType::E::kIMG;
+    m_hrd = false;
   }
 
   amTexture::~amTexture() {}
@@ -21,6 +23,10 @@ namespace amEngineSDK {
 
   void
   amTexture::unload() {}
+
+  void amTexture::resize(const uint32 _height, const uint32 _width) {
+    //TODO: this
+  }
 
   
 

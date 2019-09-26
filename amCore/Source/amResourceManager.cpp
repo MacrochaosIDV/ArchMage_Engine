@@ -13,6 +13,7 @@
 #include "amVector2.h"
 
 #include "amTexture.h"
+#include "amRenderTarget.h"
 #include "amTextureObject.h"
 #include "amMaterial.h"
 #include "amResource.h"
@@ -30,10 +31,9 @@ namespace amEngineSDK {
 
   amResource* 
   amResourceManager::CreateRegisterModel(const String & pathName,
-                                         const int32 _rbf,
                                          amMeshLoadFlags::E _flags) {
     amResource* res = CreateModel(pathName, _flags);
-    reinterpret_cast<amModel*>(res)->registerMeshTextures(m_dv, _rbf);
+    reinterpret_cast<amModel*>(res)->registerMeshTextures(m_dv);
     return res;
   }
 
@@ -268,76 +268,130 @@ namespace amEngineSDK {
     return model;
   }
 
-  amResource* 
+  amTexture*
   amResourceManager::CreateTexture(const String & pathName, 
                                    uint32 _textureFlags) {
     int32 width, height, channels;
-    amTextureObject* tex = new amTextureObject();
-    tex->m_tex->m_resBindFlag = amResourceBindFlags::E::kBINDF_SHADER_RESOURCE;
+    amTexture* tex = new amTexture();
+    tex->m_resBindFlag = amResourceBindFlags::E::kBINDF_SHADER_RESOURCE;
     UANSICHAR* texdata = stbi_load(pathName.c_str(),
                                    &width, 
                                    &height, 
                                    &channels, 
                                    0);
-    tex->m_tex->m_width = width;
-    tex->m_tex->m_height = height;
-    tex->m_tex->m_tBuffer.resize(width * height);
-    memcpy(&tex->m_tex->m_tBuffer[0], &texdata[0], width * height);
-    m_vecResources.push_back(tex);
-
+    tex->m_width = width;
+    tex->m_height = height;
+    
     /**
     ************************
     * Format Detection
     ************************
     */
     //Format assumes a color texture
-    amFormats::E format = amFormats::E::kFORMAT_R8G8B8A8_UINT;
+    tex->m_format = amFormats::E::kFORMAT_R8G8B8A8_UNORM;
 
     if (_textureFlags == amTexType::kMETALNESS ||
         _textureFlags == amTexType::kROUGHNESS) {
       //Format becomes greyScale
-      format = amFormats::E::kFORMAT_R8_UINT;
+      tex->m_format = amFormats::E::kFORMAT_R32_FLOAT;
     }
     else if (_textureFlags == amTexType::E::kLUT ||
              _textureFlags == amTexType::E::kCUBEMAP) {
       m_vecSceneSharedRes.push_back(tex);
       if (_textureFlags == amTexType::E::kCUBEMAP) {
         //Format becomes 16float for HDR lighting
-        format = amFormats::E::kFORMAT_R16G16B16A16_FLOAT;
+        tex->m_format = amFormats::E::kFORMAT_R16G16B16A16_FLOAT;
       }
     }
-    //TODO: Check Resource Bind Flags ////////
-    tex->m_srv = RegisterTexture(tex->m_tex, format);
+    if (_textureFlags == amTexType::E::kCUBEMAP) {
+      Vector<float>* v = new Vector<float>();
+      v->resize(width * height);
+      memcpy(&tex->m_tBuffer_f, &texdata, width * height);
+      tex->m_tBuffer_f = v;
+    }
+    else {
+      tex->m_tBuffer.resize(width * height);
+      memcpy(&tex->m_tBuffer, &texdata, width * height);
+    }
+    m_vecResources.push_back(tex);
     return tex;
   }
 
+  amTextureObject*
+  amResourceManager::CreateTextureObject(const String& pathName, uint32 _textureFlags) {
+    amTextureObject* texObj = new amTextureObject();
+    texObj->m_tex = CreateTexture(pathName, _textureFlags);
+    RegisterTexture(texObj->m_srv, texObj->m_tex, texObj->m_tex->m_format);
+    return texObj;
+  }
+
+  amTextureObject* 
+  amResourceManager::CreateTextureObject(const uint32 _height, 
+                                         const uint32 _width, 
+                                         const amFormats::E _format, 
+                                         const bool _hdr) {
+
+    amTextureObject* texObj = new amTextureObject();
+    texObj->m_tex->m_height = _height;
+    texObj->m_tex->m_width = _width;
+    uint32 size = _height * _width;
+    if (_hdr) {
+      Vector<float>* v = new Vector<float>();
+      v->resize(size);
+      texObj->m_tex->m_tBuffer_f = v;
+    }
+    else {
+      texObj->m_tex->m_tBuffer.resize(size);
+    }
+    RegisterRenderTarget(texObj->m_srv, texObj->m_tex, _format);
+    return texObj;
+  }
+
   amShaderResourceView*
-  amResourceManager::RegisterTexture(amResource * _res,
+  amResourceManager::RegisterTexture(amShaderResourceView * _res,
+                                     amTexture* _tex,
                                      const int32 _format,
                                      const int32 _srv) {
-    return m_dv->createShaderResourceView(reinterpret_cast<amShaderResourceView*>(_res),
+    return m_dv->createShaderResourceView(_res,
+                                          _tex,
                                           _srv,
                                           _format);
   }
 
-  void 
-  amResourceManager::loadDeafultTex() {
-    m_pureWhite = CreateTexture("Resources/Textures/pureWhite.png");
-    m_pureBlack = CreateTexture("Resources/Textures/pureBlack.png"); 
-    m_defaultTex = CreateTexture("Resources/Textures/DefaultTexture.png");
+  amRenderTargetView* 
+  amResourceManager::RegisterRenderTarget(amRenderTargetView * _rt) {
+
+    return nullptr;
   }
 
-  amResource* 
-  amResourceManager::CreateMaterial(amTextureObject * _tex,
+  void 
+  amResourceManager::loadDeafultTex() {
+    m_texObjPureWhite = CreateTextureObject("Resources/Textures/pureWhite.png");
+    m_texObjPureBlack = CreateTextureObject("Resources/Textures/pureBlack.png");
+    m_texObjPureMidGrey = CreateTextureObject("Resources/Textures/midGrey.png");
+    m_texObjDefaultNormals = CreateTextureObject("Resources/Textures/defaultNormals.png");
+    m_texObjDefaultTex = CreateTextureObject("Resources/Textures/DefaultTexture.png");
+    m_texObjIBL_BRDF_LUT = CreateTextureObject("Resources/Textures/ibl_brdf_lut.png",
+                                               amTexType::kLUT);
+
+    m_defaultMat = new amMaterial("Default Material");
+    m_defaultMat->m_vecTex.push_back(m_texObjPureMidGrey);
+    m_defaultMat->m_vecTex.push_back(m_texObjDefaultNormals);
+    m_defaultMat->m_vecTex.push_back(m_texObjPureBlack);
+    m_defaultMat->m_vecTex.push_back(m_texObjPureWhite);
+    m_defaultMat->m_vecTex.push_back(m_texObjPureWhite);
+  }
+
+  amMaterial*
+  amResourceManager::CreateMaterial(amTextureObject* _tex,
                                     const String& _matName) {
-    amMaterial* mat = new amMaterial();
-    mat->m_matName = _matName;
+    amMaterial* mat = new amMaterial(_matName);
     mat->m_vecTex.push_back(_tex);
     //TODO: make sure texture is registered
     return mat;
   }
 
-  amResource* 
+  amMaterial*
   amResourceManager::CreateMaterial(Vector<amTextureObject*>& _texVec, 
                                     const String& _matName) {
     amMaterial* mat = new amMaterial();
@@ -351,7 +405,7 @@ namespace amEngineSDK {
     return mat;
   }
 
-  amResource* 
+  amMaterial*
   amResourceManager::CreateMaterial(const String& _pathName, 
                                     uint32 _textureFlags) {
     amMaterial* mat = new amMaterial();
@@ -361,8 +415,19 @@ namespace amEngineSDK {
     return mat;
   }
 
-  void amResourceManager::fillMaterial(amMaterial * _mat, 
-                                       amTextureObject * _tex) {
+  amRenderTarget* 
+  amResourceManager::CreateRenderTarget(amRenderTarget * _rt, 
+                                        const amFormats::E _format, 
+                                        const bool _hdr) {
+
+    _rt->m_tex = CreateTextureObject(_rt->m_height, _rt->m_width, _format, _hdr);
+    return _rt;
+  }
+
+  void 
+  amResourceManager::fillMaterial(amMaterial * _mat, 
+                                  amTextureObject * _tex) {
+
     if (_mat->m_vecTex.size() < 5) { //Change the 5 to a const
       _mat->m_vecTex.resize(5);
       for (uint32 i = static_cast<uint32>(_mat->m_vecTex.size()); i < 5; ++i) {

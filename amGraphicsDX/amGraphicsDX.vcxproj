@@ -21,13 +21,10 @@
   <ItemGroup>
     <ClCompile Include="Source\amDXComputeShader.cpp" />
     <ClCompile Include="Source\amDXConstantBuffer.cpp" />
-    <ClCompile Include="Source\amDXDepthStencil.cpp" />
     <ClCompile Include="Source\amDXDepthStencilView.cpp" />
     <ClCompile Include="Source\amDXDevice.cpp" />
     <ClCompile Include="Source\amDXDeviceContext.cpp" />
-    <ClCompile Include="Source\amDXGeomShader.cpp" />
     <ClCompile Include="Source\amDXGraphicsAPI.cpp" />
-    <ClCompile Include="Source\amDXGraphicsBuffer.cpp" />
     <ClCompile Include="Source\amDXIndexBuffer.cpp" />
     <ClCompile Include="Source\amDXInputLayout.cpp" />
     <ClCompile Include="Source\amDXPixelShader.cpp" />
@@ -37,9 +34,6 @@
     <ClCompile Include="Source\amDXShader.cpp" />
     <ClCompile Include="Source\amDXShaderResourceView.cpp" />
     <ClCompile Include="Source\amDXSwapChain.cpp" />
-    <ClCompile Include="Source\amDXTexture.cpp" />
-    <ClCompile Include="Source\amDXTextureObject.cpp" />
-    <ClCompile Include="Source\amDXTextureShader.cpp" />
     <ClCompile Include="Source\amDXVertexBuffer.cpp" />
     <ClCompile Include="Source\amDXVertexShader.cpp" />
     <ClCompile Include="Source\amDXViewPort.cpp" />
@@ -47,13 +41,10 @@
   <ItemGroup>
     <ClInclude Include="Include\amDXComputeShader.h" />
     <ClInclude Include="Include\amDXConstantBuffer.h" />
-    <ClInclude Include="Include\amDXDepthStencil.h" />
     <ClInclude Include="Include\amDXDepthStencilView.h" />
     <ClInclude Include="Include\amDXDevice.h" />
     <ClInclude Include="Include\amDXDeviceContext.h" />
-    <ClInclude Include="Include\amDXGeomShader.h" />
     <ClInclude Include="Include\amDXGraphicsAPI.h" />
-    <ClInclude Include="Include\amDXGraphicsBuffer.h" />
     <ClInclude Include="Include\amDXIndexBuffer.h" />
     <ClInclude Include="Include\amDXInputLayout.h" />
     <ClInclude Include="Include\amDXPixelShader.h" />
@@ -64,9 +55,6 @@
     <ClInclude Include="Include\amDXShader.h" />
     <ClInclude Include="Include\amDXShaderResourceView.h" />
     <ClInclude Include="Include\amDXSwapChain.h" />
-    <ClInclude Include="Include\amDXTexture.h" />
-    <ClInclude Include="Include\amDXTextureObject.h" />
-    <ClInclude Include="Include\amDXTextureShader.h" />
     <ClInclude Include="Include\amDXVertexBuffer.h" />
     <ClInclude Include="Include\amDXVertexShader.h" />
     <ClInclude Include="Include\amDXViewPort.h" />
