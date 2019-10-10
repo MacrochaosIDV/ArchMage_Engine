@@ -317,4 +317,22 @@ namespace amEngineSDK {
       kCLEAR_STENCIL = 0x2L
     };
   }
+  namespace amMeshLoadFlags {
+    enum E
+    {
+      kNO_FLAG = 0,
+      kNO_MATS = 0b10,
+      kNO_TEX = 0b100,
+      kNO_MATS_NO_TEX = 0b1000,
+      kFIRST_MESH_ONLY = 0b10000,
+      kCOMBINE_MESHES = 0b100000,
+      kCOUNT
+    };
+  };
+  namespace amConstants {
+    enum E
+    {
+      kCOUNT
+    };
+  }
 }

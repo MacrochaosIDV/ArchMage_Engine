@@ -69,8 +69,9 @@ namespace amEngineSDK {
                            amResourceBindFlags::E _RBF = 
                              amResourceBindFlags::E::kBINDF_RENDER_TARGET) override;
 
+    virtual amTexture*
+    createTexture(amTexture* _tex, amFormats::E _format) override;
+
     ID3D11Device* m_pDV;
-    amDXVertexBuffer* m_VB; // temp buffer for testing
-    amDXIndexBuffer* m_IB; // temp buffer for testing
   };
 }

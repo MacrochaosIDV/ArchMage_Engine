@@ -21,27 +21,23 @@
 ************************
 */
 #include <amGraphicsAPI.h>
-#include <amCamera.h>
-#include "amDXDevice.h"
-#include "amDXDeviceContext.h"
-#include "amDXSwapChain.h"
-#include "amDXRenderTargetView.h"
-#include "amDXInputLayout.h"
-#include "amDXIndexBuffer.h"
-#include "amDXVertexBuffer.h"
-#include "amDXShaderResourceView.h"
-#include "amDXVertexShader.h"
-#include "amDXPixelShader.h"
-#include "amDXDepthStencilView.h"
-//#include "amDXTexture.h"
-#include "amDXSamplerState.h"
-#include "amDXConstantBuffer.h"
-
 
 namespace amEngineSDK {
   class amMesh;
   class amModel;
   class amTexture;
+  class amDXTexture;
+  class amDXConstantBuffer;
+  class amDXSamplerState;
+  class amDXDepthStencilView;
+  class amDXPixelShader;
+  class amDXVertexShader;
+  class amDXInputLayout;
+  class amDXRenderTargetView;
+  class amDXSwapChain;
+  class amDXDeviceContext;
+  class amDXDevice;
+  class amCamera;
 
   class AM_GRAPHICSDX_EXPORT amDXGraphicsAPI : public amGraphicsAPI
   {
@@ -99,6 +95,61 @@ namespace amEngineSDK {
     void 
     tmpLoadResource();
 
+    /**
+    ************************
+    *
+    *
+    *  section@ API resource creation
+    *
+    *
+    ************************
+    */
+
+    virtual amShaderResourceView*
+    createTextureShaderResourceV(const String& _pathName,
+                                 const uint32 _textureFlags = 0) override;
+
+    virtual amRenderTargetView*
+    loadTexture(const String& _pathName,
+                const uint32 _textureFlags = 0) override;
+
+    virtual amRenderTargetView*
+    createRenderTargetV(const uint32 _height,
+                        const uint32 _width,
+                        const amFormats::E _format,
+                        const float _scale = 1.0f) override;
+
+    virtual amTexture*
+    createTexture(const uint32 _height,
+                  const uint32 _width,
+                  const amFormats::E _format) override;
+
+    virtual amTexture*
+    createTexture(const String& _pathName, 
+                  const uint32 _textureFlags = 0) override;
+
+    virtual amModel*
+    createModel(const String& _pathName,
+                const uint32 _meshLoadFlags = 0) override;
+
+    virtual amDepthStencilView*
+    createDepthStencilV(const uint32 _height,
+                        const uint32 _width,
+                        const amFormats::E _format) override;
+
+    amMaterial*
+    CreateMaterial(amTextureObject* _tex, 
+                   const String& _matName = "Material") override;
+
+    amMaterial*
+    CreateMaterial(Vector<amTextureObject*>& _texVec,
+                   const String& _matName = "Material") override;
+
+    amMaterial*
+    CreateMaterial(const String& _pathName, uint32 _textureFlags = 0);
+
+
+
     amVector4 m_clearColor;
 
     HWND m_hWnd = NULL;
@@ -110,12 +161,12 @@ namespace amEngineSDK {
     amDXConstantBuffer* m_matWorld;
     amDXConstantBuffer* m_matViewProjection;
 
-    amRenderTargetView* m_fullColor;
-    amRenderTargetView* m_emissive;
-    amRenderTargetView* m_normals;
-    amRenderTargetView* m_blur;
-    amRenderTargetView* m_luminance;
-    amRenderTargetView* m_MADR;
+    amRenderTargetView* m_rtFullColor;
+    amRenderTargetView* m_rtEmissive;
+    amRenderTargetView* m_rtNormals;
+    amRenderTargetView* m_rtBlur;
+    amRenderTargetView* m_rtLuminance;
+    amRenderTargetView* m_rtMADR;
 
     amModel* m_testCube;
     
@@ -131,5 +182,19 @@ namespace amEngineSDK {
     amDXSwapChain*                      m_pSwapChain = NULL;
     amDXDevice*                         m_pDevice = NULL;
     amDXConstantBuffer*                 m_pCB_VP = NULL;
+    /**
+    ************************
+    *
+    /**
+    ************************
+    *
+    *  @PRIORITY_1_TODO: re write resource creation process to that
+    *  resManager::get data -> Api::create ptrs -> resManager::store ptrd
+    *
+    ************************
+    *
+    *
+    ************************
+    */
   };
 }

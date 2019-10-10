@@ -25,7 +25,7 @@ namespace amEngineSDK {
   amTexture::unload() {}
 
   void amTexture::resize(const uint32 _height, const uint32 _width) {
-    //TODO: this
+    m_tBuffer.resize(_height * _width);
   }
 
   

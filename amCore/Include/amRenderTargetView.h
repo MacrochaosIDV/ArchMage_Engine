@@ -8,6 +8,9 @@ namespace amEngineSDK {
   class AM_CORE_EXPORT amRenderTargetView : public amView
   {
   public:
+    amRenderTargetView(const uint32 _height, 
+                       const uint32 _width, 
+                       const float _scale = 1.0f);
     amRenderTargetView();
     ~amRenderTargetView();
 

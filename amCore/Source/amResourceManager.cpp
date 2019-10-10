@@ -14,6 +14,7 @@
 
 #include "amTexture.h"
 #include "amRenderTarget.h"
+#include "amRenderTargetView.h"
 #include "amTextureObject.h"
 #include "amMaterial.h"
 #include "amResource.h"
@@ -192,7 +193,7 @@ namespace amEngineSDK {
     }
   }
 
-  amResource* 
+  amModel*
   amResourceManager::CreateModel(const String& pathName, 
                                  amMeshLoadFlags::E _flags) {
     // Create an instance of the Importer class
@@ -326,10 +327,11 @@ namespace amEngineSDK {
   }
 
   amTextureObject* 
-  amResourceManager::CreateTextureObject(const uint32 _height, 
-                                         const uint32 _width, 
-                                         const amFormats::E _format, 
-                                         const bool _hdr) {
+  amResourceManager::CreateTextureObjectRT(const uint32 _height, 
+                                           const uint32 _width, 
+                                           const amFormats::E _format, 
+                                           const bool _hdr) {
+    _format;
 
     amTextureObject* texObj = new amTextureObject();
     texObj->m_tex->m_height = _height;
@@ -343,7 +345,8 @@ namespace amEngineSDK {
     else {
       texObj->m_tex->m_tBuffer.resize(size);
     }
-    RegisterRenderTarget(texObj->m_srv, texObj->m_tex, _format);
+    //RegisterRenderTarget(texObj->m_srv, texObj->m_tex, _format);
+
     return texObj;
   }
 
@@ -360,7 +363,7 @@ namespace amEngineSDK {
 
   amRenderTargetView* 
   amResourceManager::RegisterRenderTarget(amRenderTargetView * _rt) {
-
+    _rt;
     return nullptr;
   }
 
@@ -415,13 +418,16 @@ namespace amEngineSDK {
     return mat;
   }
 
-  amRenderTarget* 
-  amResourceManager::CreateRenderTarget(amRenderTarget * _rt, 
+  amRenderTargetView*
+  amResourceManager::CreateRenderTarget(amRenderTargetView * _rtv,
                                         const amFormats::E _format, 
                                         const bool _hdr) {
 
-    _rt->m_tex = CreateTextureObject(_rt->m_height, _rt->m_width, _format, _hdr);
-    return _rt;
+    _rtv->m_rt->m_tex = CreateTextureObjectRT(_rtv->m_rt->m_height, 
+                                              _rtv->m_rt->m_width, 
+                                              _format, 
+                                              _hdr);
+    return _rtv;
   }
 
   void 

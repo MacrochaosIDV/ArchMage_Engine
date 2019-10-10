@@ -34,6 +34,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "amInputManager", "amInputMa
 		{6C371892-A904-4B38-A5CF-D700D1541CF0} = {6C371892-A904-4B38-A5CF-D700D1541CF0}
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{72D20937-16BE-4E61-9A6C-3EB40DDC53DE}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\..\..\..\Desktop\archmageenginelogo.ico = ..\..\..\..\..\..\..\Desktop\archmageenginelogo.ico
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64

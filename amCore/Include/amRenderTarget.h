@@ -7,6 +7,7 @@ namespace amEngineSDK {
   class AM_CORE_EXPORT amRenderTarget
   {
   public:
+    amRenderTarget(const uint32 _height, const uint32 _width);
     amRenderTarget();
     ~amRenderTarget();
 

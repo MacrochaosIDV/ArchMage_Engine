@@ -65,5 +65,8 @@ namespace amEngineSDK {
                                       amResourceBindFlags::E _RBF = 
                                         amResourceBindFlags::E::kBINDF_UNORDERED_ACCESS);
 
+    virtual amTexture*
+    createTexture(amTexture* _tex, amFormats::E _format);
+
   };
 }

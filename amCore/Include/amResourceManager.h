@@ -9,20 +9,10 @@ namespace amEngineSDK {
   class amShaderResourceView;
   class amTextureObject;
   class amRenderTarget;
+  class amRenderTargetView;
+  class amModel;
 
-  namespace amMeshLoadFlags
-  {
-    enum E
-    {
-      kNO_FLAG = 0,
-      kNO_MATS,
-      kNO_TEX,
-      kNO_MATS_NO_TEX,
-      kFIRST_MESH_ONLY,
-      kCOMBINE_MESHES,
-      kCOUNT
-    };
-  };
+  
 
   class AM_CORE_EXPORT amResourceManager
   {
@@ -34,7 +24,7 @@ namespace amEngineSDK {
     CreateRegisterModel(const String& pathName,
                         amMeshLoadFlags::E _flags = amMeshLoadFlags::E::kNO_FLAG);
 
-    amResource*
+    amModel*
     CreateModel(const String& pathName, 
                 amMeshLoadFlags::E _flags = amMeshLoadFlags::E::kNO_FLAG);
 
@@ -51,10 +41,10 @@ namespace amEngineSDK {
     ************************
     */
     amTextureObject*
-    CreateTextureObject(const uint32 _height, 
-                        const uint32 _width, 
-                        const amFormats::E _format, 
-                        const bool _hdr);
+    CreateTextureObjectRT(const uint32 _height, 
+                          const uint32 _width, 
+                          const amFormats::E _format, 
+                          const bool _hdr);
 
     amShaderResourceView*
     RegisterTexture(amShaderResourceView* _res,
@@ -72,13 +62,14 @@ namespace amEngineSDK {
     CreateMaterial(amTextureObject* _tex, const String& _matName = "");
 
     amMaterial*
-    CreateMaterial(Vector<amTextureObject*>& _texVec, const String& _matName = "");
+    CreateMaterial(Vector<amTextureObject*>& _texVec, 
+                   const String& _matName = "");
 
     amMaterial*
     CreateMaterial(const String& _pathName, uint32 _textureFlags = 0);
 
-    amRenderTarget* 
-    CreateRenderTarget(amRenderTarget* _rt, 
+    amRenderTargetView* 
+    CreateRenderTarget(amRenderTargetView* _rtv,
                        const amFormats::E _format, 
                        const bool _hdr);
 
@@ -106,5 +97,21 @@ namespace amEngineSDK {
 
     Vector<amResource*> m_vecResources;
     Vector<amResource*> m_vecSceneSharedRes;
+    Vector<amResource*> m_vecRenderTargets;
+    Vector<amResource*> m_vecMaterials;
+    /**
+    ************************
+    *
+    /**
+    ************************
+    *
+    *  @PRIORITY_1_TODO: re write resource creation process to that
+    *  resManager::get data -> Api::create ptrs -> resManager::store ptrs
+    *
+    ************************
+    *
+    *
+    ************************
+    */
   };
 }

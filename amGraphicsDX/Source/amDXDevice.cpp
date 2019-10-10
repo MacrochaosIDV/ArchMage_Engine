@@ -11,15 +11,9 @@
 #include "amRenderTarget.h"
 
 namespace amEngineSDK {
-  amDXDevice::amDXDevice() {
-    //temp initializing of temp vars
-    m_VB = new amDXVertexBuffer();
-    m_IB = new amDXIndexBuffer();
-  }
+  amDXDevice::amDXDevice() {}
 
   amDXDevice::~amDXDevice() {}
-
-  
 
   amVertexShader* 
   amDXDevice::createVertexShader(amVertexShader * _pVS) {
@@ -109,6 +103,7 @@ namespace amEngineSDK {
 
   amRenderTargetView* 
   amDXDevice::createRenderTargetView(amRenderTargetView * _RTV, amResourceBindFlags::E _RBF) {
+    _RBF;
 
     D3D11_SUBRESOURCE_DATA subRes;
     memset(&subRes, 0, sizeof(subRes));
@@ -125,7 +120,7 @@ namespace amEngineSDK {
     desc.SampleDesc.Count = 1;
     desc.SampleDesc.Quality = 0;
     desc.Usage = D3D11_USAGE_DEFAULT;
-    desc.BindFlags = D3D11_BIND_RENDER_TARGET || D3D11_BIND_SHADER_RESOURCE;
+    desc.BindFlags = D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE;
     desc.CPUAccessFlags = 0;
     desc.MiscFlags = 0;
 
@@ -149,14 +144,44 @@ namespace amEngineSDK {
     if (h != S_OK)
       return nullptr;
 
-    HRESULT h = m_pDV->CreateRenderTargetView(reinterpret_cast<ID3D11Texture2D*>(
-                                                &_RTV->m_rt->m_tex->m_tex->m_apiPtr), 
-                                              &rtDesc, 
-                                              reinterpret_cast<ID3D11RenderTargetView**>(
-                                                &_RTV->m_ApiPtr));
+    h = m_pDV->CreateRenderTargetView(reinterpret_cast<ID3D11Texture2D*>(
+                                        &_RTV->m_rt->m_tex->m_tex->m_apiPtr), 
+                                      &rtDesc, 
+                                      reinterpret_cast<ID3D11RenderTargetView**>(
+                                        &_RTV->m_ApiPtr));
     if (h == S_OK)
       return _RTV;
     return nullptr;
+  }
+
+  amTexture* 
+  amDXDevice::createTexture(amTexture * _tex, amFormats::E _format) {
+    amDXTexture* dxTex = reinterpret_cast<amDXTexture*>(_tex);
+
+    D3D11_SUBRESOURCE_DATA subRes;
+    memset(&subRes, 0, sizeof(subRes));
+    subRes.pSysMem = &_tex->m_tBuffer[0];
+    subRes.SysMemPitch = 0;
+    subRes.SysMemSlicePitch = 0;
+
+    //Set the ID3D11_TEXTURE2D_DESC
+    memset(&dxTex->m_desc, 0, sizeof(dxTex->m_desc));
+    dxTex->m_desc.Width = _tex->m_width;
+    dxTex->m_desc.Height = _tex->m_height;
+    dxTex->m_desc.MipLevels = dxTex->m_desc.ArraySize = 1;
+    dxTex->m_desc.Format = static_cast<DXGI_FORMAT>(_format);
+    dxTex->m_desc.SampleDesc.Count = 1;
+    dxTex->m_desc.SampleDesc.Quality = 0;
+    dxTex->m_desc.Usage = D3D11_USAGE_DEFAULT;
+    dxTex->m_desc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
+    dxTex->m_desc.CPUAccessFlags = 0;
+    dxTex->m_desc.MiscFlags = 0;
+
+    HRESULT h = m_pDV->CreateTexture2D(&dxTex->m_desc, nullptr, &dxTex->m_tex);
+
+    if (h != S_OK)
+      return nullptr;
+    return _tex;
   }
 
   amIndexBuffer*

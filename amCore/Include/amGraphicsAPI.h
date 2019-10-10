@@ -100,11 +100,65 @@ namespace amEngineSDK {
     ************************
     */
     virtual void
-    setConstantBuffer(amConstantBuffer* _cb, int32 _shaderFlags);
+    setConstantBuffer(amConstantBuffer* _cb, const int32 _shaderFlags);
 
     virtual void
-    setConstantBuffer(Vector<amConstantBuffer*> _cbVec, int32 _shaderFlags);
+    setConstantBuffer(Vector<amConstantBuffer*> _cbVec, 
+                      const int32 _shaderFlags);
 
+    /**
+    ************************
+    *
+    *
+    *  section@ API resource creation
+    *
+    *
+    ************************
+    */
+
+    virtual amShaderResourceView* 
+    createTextureShaderResourceV(const String& _pathName, 
+                                 const uint32 _textureFlags = 0);
+
+    virtual amRenderTargetView*
+    loadTexture(const String& _pathName,
+                const uint32 _textureFlags = 0);
+
+    virtual amRenderTargetView*
+    createRenderTargetV(const uint32 _height,
+                        const uint32 _width,
+                        const amFormats::E _format,
+                        const float _scale = 1.0f);
+
+    virtual amTexture*
+    createTexture(const uint32 _height,
+                  const uint32 _width,
+                  const amFormats::E _format);
+
+    virtual amTexture*
+    createTexture(const String& _pathName, const uint32 _textureFlags = 0);
+
+    virtual amModel* 
+    createModel(const String& _pathName,
+                const uint32 _meshLoadFlags = 0);
+
+    virtual amDepthStencilView*
+    createDepthStencilV(const uint32 _height,
+                        const uint32 _width,
+                        const amFormats::E _format);
+
+    amMaterial*
+    CreateMaterial(amTextureObject* _tex, const String& _matName = "Material");
+
+    amMaterial*
+    CreateMaterial(Vector<amTextureObject*>& _texVec,
+                   const String& _matName = "Material");
+
+    amMaterial*
+    CreateMaterial(const String& _pathName, uint32 _textureFlags = 0);
+
+
+    float m_bloomIntensity;
     float m_fov;
     amRenderManager* m_pRenderManager;
     amCameraManager* m_pCamManager;

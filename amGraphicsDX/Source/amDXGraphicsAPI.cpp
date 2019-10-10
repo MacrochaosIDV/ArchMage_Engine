@@ -5,7 +5,21 @@
 #include <amTexture.h>
 #include <amModel.h>
 #include <amResource.h>
-#include <amDXTextureObject.h>
+#include <amCamera.h>
+
+#include "amDXTexture.h"
+#include "amDXTextureObject.h"
+#include "amDXConstantBuffer.h"
+#include "amDXSamplerState.h"
+#include "amDXDepthStencilView.h"
+#include "amDXPixelShader.h"
+#include "amDXVertexShader.h"
+#include "amDXInputLayout.h"
+#include "amDXRenderTargetView.h"
+#include "amDXSwapChain.h"
+#include "amDXDeviceContext.h"
+#include "amDXDevice.h"
+
 
 namespace amEngineSDK {
 
@@ -89,6 +103,24 @@ namespace amEngineSDK {
     m_pPixelShader->createPS("Resources/Shaders/PS_PBR.hlsl", m_pDevice);
     m_pInputLayout->Create(m_pDevice, m_pVertexShader);
     m_pResourceManager->loadDeafultTex();
+    m_pResourceManager->CreateRenderTarget(m_rtFullColor,
+                                           amFormats::E::kFORMAT_R16G16B16A16_FLOAT, 
+                                           true);
+    m_pResourceManager->CreateRenderTarget(m_rtEmissive,
+                                           amFormats::E::kFORMAT_R8G8B8A8_UNORM,
+                                           false);
+    m_pResourceManager->CreateRenderTarget(m_rtNormals,
+                                           amFormats::E::kFORMAT_R8G8B8A8_UNORM,
+                                           false);
+    m_pResourceManager->CreateRenderTarget(m_rtBlur,
+                                           amFormats::E::kFORMAT_R8G8B8A8_UNORM,
+                                           false);
+    m_pResourceManager->CreateRenderTarget(m_rtLuminance,
+                                           amFormats::E::kFORMAT_R8G8B8A8_UNORM,
+                                           false);
+    m_pResourceManager->CreateRenderTarget(m_rtMADR,
+                                           amFormats::E::kFORMAT_R8G8B8A8_UNORM,
+                                           false);
     tmpLoadResource();
   }
 
@@ -99,7 +131,11 @@ namespace amEngineSDK {
 
   void 
   amDXGraphicsAPI::initSystems(void* _hWnd) {
-
+    /**
+    ************************
+    * Initialize API objects
+    ************************
+    */
     m_pDevice = new amDXDevice();
     m_pSwapChain = new amDXSwapChain();
     m_pCB_VP = new amDXConstantBuffer();
@@ -127,6 +163,20 @@ namespace amEngineSDK {
     GetClientRect(m_hWnd, &rc);
     uint32 width = rc.right - rc.left;
     uint32 height = rc.bottom - rc.top;
+
+    m_bloomIntensity = 0.25f;
+
+    /**
+    ************************
+    * Initialize Render Targets
+    ************************
+    */
+    m_rtFullColor = new amRenderTargetView(height, width);
+    m_rtEmissive = new amRenderTargetView(height, width);
+    m_rtNormals = new amRenderTargetView(height, width);
+    m_rtBlur = new amRenderTargetView(height, width, 0.25f);
+    m_rtLuminance = new amRenderTargetView(height, width);
+    m_rtMADR = new amRenderTargetView(height, width);
 
     uint32 createDeviceFlags = 0;
 #if AM_DEBUG_MODE
@@ -399,12 +449,12 @@ namespace amEngineSDK {
                                         amClearFlags::E::kCLEAR_STENCIL, 
                                       1.0f, 
                                       0);
-    m_pContext->clearRenderTargetView(m_fullColor, &m_clearColor);
-    m_pContext->clearRenderTargetView(m_emissive, &m_clearColor);
-    m_pContext->clearRenderTargetView(m_normals, &m_clearColor);
-    m_pContext->clearRenderTargetView(m_blur, &m_clearColor);
-    m_pContext->clearRenderTargetView(m_luminance, &m_clearColor);
-    m_pContext->clearRenderTargetView(m_MADR, &m_clearColor);
+    m_pContext->clearRenderTargetView(m_rtFullColor, &m_clearColor);
+    m_pContext->clearRenderTargetView(m_rtEmissive, &m_clearColor);
+    m_pContext->clearRenderTargetView(m_rtNormals, &m_clearColor);
+    m_pContext->clearRenderTargetView(m_rtBlur, &m_clearColor);
+    m_pContext->clearRenderTargetView(m_rtLuminance, &m_clearColor);
+    m_pContext->clearRenderTargetView(m_rtMADR, &m_clearColor);
   }
 
   void 
@@ -479,58 +529,13 @@ namespace amEngineSDK {
   amDXGraphicsAPI::Update() {
   
   }
-
-  //HRESULT amDXGraphicsAPI::InitWindow(HINSTANCE hInstance, int32 nCmdShow) {
-  //  // Register class
-  //  WNDCLASSEX wcex;
-  //  wcex.cbSize = sizeof(WNDCLASSEX);
-  //  wcex.style = CS_HREDRAW | CS_VREDRAW;
-  //  wcex.lpfnWndProc = WndProc;
-  //  wcex.cbClsExtra = 0;
-  //  wcex.cbWndExtra = 0;
-  //  wcex.hInstance = hInstance;
-  //  //wcex.hIcon = LoadIcon(hInstance, (LPCTSTR)IDI_TUTORIAL1);
-  //  //wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
-  //  wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-  //  wcex.lpszMenuName = NULL;
-  //  wcex.lpszClassName = "TutorialWindowClass";
-  //  //wcex.hIconSm = LoadIcon(wcex.hInstance, (LPCTSTR)IDI_TUTORIAL1);
-  //  if (!RegisterClassEx(&wcex))
-  //    return E_FAIL;
-  //
-  //  // Create window
-  //  m_hInst = hInstance;
-  //  RECT rc = {0, 0, 640, 480};
-  //  AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
-  //  m_hWnd = CreateWindow("TutorialWindowClass", "Direct3D 11 Tutorial 7", WS_OVERLAPPEDWINDOW,
-  //                        CW_USEDEFAULT, CW_USEDEFAULT, rc.right - rc.left, rc.bottom - rc.top, NULL, NULL, hInstance,
-  //                        NULL);
-  //  if (!m_hWnd)
-  //    return E_FAIL;
-  //
-  //  ShowWindow(m_hWnd, nCmdShow);
-  //
-  //  return S_OK;
-  //}
-
-  /*LRESULT CALLBACK WindowProc(HWND hWnd, uint32 message, WPARAM wParam, LPARAM lParam) {
-    PAINTSTRUCT ps;
-    HDC hdc;
-
-    switch (message) {
-      case WM_PAINT:
-        hdc = BeginPaint(hWnd, &ps);
-        EndPaint(hWnd, &ps);
-        break;
-
-      case WM_DESTROY:
-        PostQuitMessage(0);
-        break;
-
-      default:
-        return DefWindowProc(hWnd, message, wParam, lParam);
-    }
-
-    return 0;
-  }*/
+  amTexture* 
+  amDXGraphicsAPI::createTexture(const uint32 _height, 
+                                 const uint32 _width, 
+                                 const amFormats::E _format) {
+    amDXTexture* tex = new amDXTexture();
+    tex->resize(_height, _width);
+    m_pDevice->createTexture(tex, _format);
+    return tex;
+  }
 }

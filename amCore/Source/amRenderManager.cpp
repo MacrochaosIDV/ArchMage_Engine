@@ -11,7 +11,7 @@ namespace amEngineSDK {
 
   int32 
   amRenderManager::render() {
-    m_api->clearRenderTarget();
+    m_api->clearRenderTargets();
     // Get geometry to draw
     Vector<amResource*> objsCam = m_currScene->getAllResourcesInCam(m_currCam);
     uint32 objsCamSize = static_cast<uint32>(objsCam.size());

@@ -87,5 +87,12 @@ namespace amEngineSDK {
     _UAV;
     return nullptr;
   }
+
+  amTexture* 
+  amDevice::createTexture(amTexture * _tex, amFormats::E _format) {
+    _tex;
+    _format;
+    return nullptr;
+  }
  
 }

@@ -9,7 +9,8 @@ namespace amEngineSDK {
   amGraphicsAPI::~amGraphicsAPI() {}
 
   void 
-  amGraphicsAPI::createVertexBuffer(int64 nVertex, int64 vertexSize) {
+  amGraphicsAPI::createVertexBuffer(const int64 nVertex, 
+                                    const  int64 vertexSize) {
     nVertex;
     vertexSize;
   }
@@ -66,7 +67,7 @@ namespace amEngineSDK {
 
   void 
   amGraphicsAPI::setShaderResources(Vector<amResource*> _vecRes, 
-                                    uint32 _shaderFlags) {
+                                    const uint32 _shaderFlags) {
     _vecRes;
     _shaderFlags;
   }
@@ -87,15 +88,98 @@ namespace amEngineSDK {
 
   void 
   amGraphicsAPI::setConstantBuffer(amConstantBuffer * _cb, 
-                                   int32 _shaderFlags) {
+                                   const int32 _shaderFlags) {
     _cb;
     _shaderFlags;
   }
 
   void 
   amGraphicsAPI::setConstantBuffer(Vector<amConstantBuffer*> _cbVec, 
-                                   int32 _shaderFlags) {
+                                   const int32 _shaderFlags) {
     _cbVec;
     _shaderFlags;
+  }
+
+  amShaderResourceView* 
+  amGraphicsAPI::createTextureShaderResourceV(const String & _pathName,
+                                              const uint32 _textureFlags) {
+    _pathName;
+    _textureFlags;
+    return nullptr;
+  }
+
+  amRenderTargetView* 
+  amGraphicsAPI::loadTexture(const String & _pathName, 
+                             const uint32 _textureFlags) {
+    _pathName;
+    _textureFlags;
+    return nullptr;
+  }
+
+  amRenderTargetView* 
+  amGraphicsAPI::createRenderTargetV(const uint32 _height, 
+                                     const uint32 _width,
+                                     const amFormats::E _format,
+                                     const float _scale) {
+    _height;
+    _width;
+    _format;
+    _scale;
+    return nullptr;
+  }
+
+  amTexture* 
+  amGraphicsAPI::createTexture(const uint32 _height, 
+                               const uint32 _width, 
+                               const amFormats::E _format) {
+    _height;
+    _width;
+    _format;
+    return nullptr;
+  }
+
+  amTexture* 
+  amGraphicsAPI::createTexture(const String& _pathName, 
+                               const uint32 _textureFlags) {
+    _pathName;
+    _textureFlags;
+    return nullptr;
+  }
+
+  amModel* 
+  amGraphicsAPI::createModel(const String& _pathName, 
+                             const uint32 _meshLoadFlags) {
+    _pathName;
+    _meshLoadFlags;
+    return nullptr;
+  }
+
+  amDepthStencilView* 
+  amGraphicsAPI::createDepthStencilV(const uint32 _height,
+                                     const uint32 _width,
+                                     const amFormats::E _format) {
+    return nullptr;
+  }
+
+  amMaterial* 
+  amGraphicsAPI::CreateMaterial(amTextureObject * _tex, 
+                                const String & _matName) {
+    _tex;
+    _matName;
+    return nullptr;
+  }
+
+  amMaterial* 
+  amGraphicsAPI::CreateMaterial(Vector<amTextureObject*>& _texVec, 
+                                const String & _matName) {
+    _texVec;
+    _matName;
+    return nullptr;
+  }
+  amMaterial* 
+  amGraphicsAPI::CreateMaterial(const String & _pathName, uint32 _textureFlags) {
+    _pathName;
+    _textureFlags;
+    return nullptr;
   }
 }
