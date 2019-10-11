@@ -59,11 +59,11 @@ namespace amEngineSDK {
     ************************
     */
     void* m_tBufferF;
+    bool m_hrd;
     String m_fileName;
     amTexType::E m_tType;
     amFormats::E m_format;
     uint32 m_height;
     uint32 m_width;
-    bool m_hrd;
   };
 }

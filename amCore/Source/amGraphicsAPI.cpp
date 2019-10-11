@@ -158,6 +158,9 @@ namespace amEngineSDK {
   amGraphicsAPI::createDepthStencilV(const uint32 _height,
                                      const uint32 _width,
                                      const amFormats::E _format) {
+    _height;
+    _width;
+    _format;
     return nullptr;
   }
 

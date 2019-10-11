@@ -3,7 +3,7 @@
 #include "amView.h"
 
 namespace amEngineSDK {
-  class amRenderTarget;
+  class amTexture;
 
   class AM_CORE_EXPORT amRenderTargetView : public amView
   {
@@ -17,7 +17,6 @@ namespace amEngineSDK {
     void 
     resize(const uint32 _height, const uint32 _width);
 
-    amRenderTarget* m_rt;
-    void* m_ApiPtr;
+    amTexture* m_rt;
   };
 }

@@ -124,9 +124,6 @@
     <ClCompile Include="Source\amVertexType.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Source\amRenderTarget.cpp">
-      <Filter>Source Files\Renderer classes</Filter>
-    </ClCompile>
     <ClCompile Include="Source\amComponent.cpp">
       <Filter>Source Files\Core\Components</Filter>
     </ClCompile>
@@ -215,6 +212,9 @@
       <Filter>Source Files\Renderer classes\Render Passes</Filter>
     </ClCompile>
     <ClCompile Include="Source\amTextureObject.cpp">
+      <Filter>Source Files\Resource classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amRenderTarget.cpp">
       <Filter>Source Files\Resource classes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -306,9 +306,6 @@
     <ClInclude Include="Include\amVertexType.h">
       <Filter>Source Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Include\amRenderTarget.h">
-      <Filter>Source Files\Renderer classes</Filter>
-    </ClInclude>
     <ClInclude Include="Include\amComponent.h">
       <Filter>Source Files\Core\Components</Filter>
     </ClInclude>
@@ -397,6 +394,9 @@
       <Filter>Source Files\Renderer classes\Render Passes</Filter>
     </ClInclude>
     <ClInclude Include="Include\amTextureObject.h">
+      <Filter>Source Files\Resource classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amRenderTarget.h">
       <Filter>Source Files\Resource classes</Filter>
     </ClInclude>
   </ItemGroup>

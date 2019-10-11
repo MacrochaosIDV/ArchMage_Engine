@@ -10,5 +10,6 @@ namespace amEngineSDK {
     ~amDXRenderTargetView();
 
     ID3D11RenderTargetView* m_pRTV;
+    D3D11_RENDER_TARGET_VIEW_DESC m_desc;
   };
 }

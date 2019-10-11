@@ -53,48 +53,22 @@ namespace amEngineSDK {
                                        amTexture* _texResource,
                                        const int32 amSRV_type,
                                        const int32 _format) {
-    //TODO check if RBF is correct on _pSRV->m_texResource for binding as shader resource
-    //if(_pSRV->m_texResource->)
-    //
+
+    amDXTexture* texDX = reinterpret_cast<amDXTexture*>(_texResource);
+
+    _texResource = createTexture(_texResource, _format);
+    
     amDXShaderResourceView* _pDXSRV = new amDXShaderResourceView();
+
     memset(&_pDXSRV->m_SRV_Desc, 0, sizeof(_pDXSRV->m_SRV_Desc));
     _pDXSRV->m_SRV_Desc.Format = static_cast<DXGI_FORMAT>(_format);
     _pDXSRV->m_SRV_Desc.ViewDimension = static_cast<D3D11_SRV_DIMENSION>(amSRV_type);
     _pDXSRV->m_SRV_Desc.Texture2D.MipLevels = 1;
     _pDXSRV->m_SRV_Desc.Texture2D.MostDetailedMip = 0;
 
-    D3D11_SUBRESOURCE_DATA subRes;
-    memset(&subRes, 0, sizeof(subRes));
-    subRes.pSysMem = &_texResource->m_tBuffer[0];
-    subRes.SysMemPitch = 0;
-    subRes.SysMemSlicePitch = 0;
-    
-    D3D11_TEXTURE2D_DESC desc;
-    memset(&desc, 0, sizeof(desc));
-    desc.Width = _texResource->m_width;
-    desc.Height = _texResource->m_height;
-    desc.MipLevels = desc.ArraySize = 1;
-    desc.Format = static_cast<DXGI_FORMAT>(_format);
-    desc.SampleDesc.Count = 1;
-    desc.SampleDesc.Quality = 0;
-    desc.Usage = D3D11_USAGE_DEFAULT;
-    desc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
-    desc.CPUAccessFlags = 0;
-    desc.MiscFlags = 0;
-    _pSRV = _pDXSRV;
-
-    HRESULT h = m_pDV->CreateTexture2D(&desc,
-                                       nullptr,
-                                       reinterpret_cast<ID3D11Texture2D**>(
-                                         &_texResource->m_apiPtr));
-
-    if (h != S_OK)
-      return nullptr;
-
-    h = m_pDV->CreateShaderResourceView(reinterpret_cast<ID3D11Texture2D*>(
-                                                  _texResource->m_apiPtr),
-                                                &_pDXSRV->m_SRV_Desc,
-                                                &_pDXSRV->m_pSRV);
+    HRESULT h = m_pDV->CreateShaderResourceView(texDX->m_tex,
+                                        &_pDXSRV->m_SRV_Desc,
+                                        &_pDXSRV->m_pSRV);
 
     if (h == S_OK)
       return _pSRV;
@@ -102,33 +76,15 @@ namespace amEngineSDK {
   }
 
   amRenderTargetView* 
-  amDXDevice::createRenderTargetView(amRenderTargetView * _RTV, amResourceBindFlags::E _RBF) {
-    _RBF;
+  amDXDevice::createRenderTargetView(amRenderTargetView * _RTV, const int32 _format) {
 
-    D3D11_SUBRESOURCE_DATA subRes;
-    memset(&subRes, 0, sizeof(subRes));
-    subRes.pSysMem = &_RTV->m_rt->m_tex->m_tex->m_tBuffer[0];
-    subRes.SysMemPitch = 0;
-    subRes.SysMemSlicePitch = 0;
-
-    D3D11_TEXTURE2D_DESC desc;
-    memset(&desc, 0, sizeof(desc));
-    desc.Width = _RTV->m_rt->m_tex->m_tex->m_width;
-    desc.Height = _RTV->m_rt->m_tex->m_tex->m_height;
-    desc.MipLevels = desc.ArraySize = 1;
-    desc.Format = static_cast<DXGI_FORMAT>(_RTV->m_rt->m_tex->m_tex->m_format);
-    desc.SampleDesc.Count = 1;
-    desc.SampleDesc.Quality = 0;
-    desc.Usage = D3D11_USAGE_DEFAULT;
-    desc.BindFlags = D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE;
-    desc.CPUAccessFlags = 0;
-    desc.MiscFlags = 0;
+    createTexture(_RTV->m_rt, _format);
 
     D3D11_RENDER_TARGET_VIEW_DESC rtDesc;
     memset(&rtDesc, 0, sizeof(rtDesc));
-    rtDesc.Format = static_cast<DXGI_FORMAT>(_RTV->m_rt->m_tex->m_tex->m_format);
+    rtDesc.Format = static_cast<DXGI_FORMAT>(_RTV->m_rt->m_format);
 
-    if (_RTV->m_rt->m_tex->m_tex->m_hrd) {
+    if (_RTV->m_rt->m_hrd) {
       rtDesc.ViewDimension = static_cast<D3D11_RTV_DIMENSION>(amSRV_Types::kSRV_TEXTURE2DARRAY);
     }
     else {
@@ -139,13 +95,13 @@ namespace amEngineSDK {
     HRESULT h = m_pDV->CreateTexture2D(&desc,
                                        nullptr,
                                        reinterpret_cast<ID3D11Texture2D**>(
-                                       &_RTV->m_rt->m_tex->m_tex->m_apiPtr));
+                                       &_RTV->m_rt->));
 
     if (h != S_OK)
       return nullptr;
 
     h = m_pDV->CreateRenderTargetView(reinterpret_cast<ID3D11Texture2D*>(
-                                        &_RTV->m_rt->m_tex->m_tex->m_apiPtr), 
+                                        &_RTV->m_rt->), 
                                       &rtDesc, 
                                       reinterpret_cast<ID3D11RenderTargetView**>(
                                         &_RTV->m_ApiPtr));
@@ -155,7 +111,7 @@ namespace amEngineSDK {
   }
 
   amTexture* 
-  amDXDevice::createTexture(amTexture * _tex, amFormats::E _format) {
+  amDXDevice::createTexture(amTexture * _tex, const int32 _format) {
     amDXTexture* dxTex = reinterpret_cast<amDXTexture*>(_tex);
 
     D3D11_SUBRESOURCE_DATA subRes;
@@ -173,7 +129,7 @@ namespace amEngineSDK {
     dxTex->m_desc.SampleDesc.Count = 1;
     dxTex->m_desc.SampleDesc.Quality = 0;
     dxTex->m_desc.Usage = D3D11_USAGE_DEFAULT;
-    dxTex->m_desc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
+    dxTex->m_desc.BindFlags = D3D11_BIND_SHADER_RESOURCE | D3D11_BIND_RENDER_TARGET;
     dxTex->m_desc.CPUAccessFlags = 0;
     dxTex->m_desc.MiscFlags = 0;
 

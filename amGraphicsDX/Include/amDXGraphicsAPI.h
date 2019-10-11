@@ -21,6 +21,8 @@
 ************************
 */
 #include <amGraphicsAPI.h>
+#include <amCamera.h>
+#include <amVector4.h>
 
 namespace amEngineSDK {
   class amMesh;
@@ -38,6 +40,7 @@ namespace amEngineSDK {
   class amDXDeviceContext;
   class amDXDevice;
   class amCamera;
+  class amVector4;
 
   class AM_GRAPHICSDX_EXPORT amDXGraphicsAPI : public amGraphicsAPI
   {
@@ -139,11 +142,11 @@ namespace amEngineSDK {
 
     amMaterial*
     CreateMaterial(amTextureObject* _tex, 
-                   const String& _matName = "Material") override;
+                   const String& _matName = "Material");
 
     amMaterial*
     CreateMaterial(Vector<amTextureObject*>& _texVec,
-                   const String& _matName = "Material") override;
+                   const String& _matName = "Material");
 
     amMaterial*
     CreateMaterial(const String& _pathName, uint32 _textureFlags = 0);

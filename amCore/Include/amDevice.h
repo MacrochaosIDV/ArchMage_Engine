@@ -57,8 +57,7 @@ namespace amEngineSDK {
 
     virtual amRenderTargetView*
     createRenderTargetView(amRenderTargetView* _RTV,
-                           amResourceBindFlags::E _RBF = 
-                             amResourceBindFlags::E::kBINDF_RENDER_TARGET);
+                           const int32 _format);
 
     virtual amUnorderedAccessResourceView*
     createUnorderedAccessResourceView(amUnorderedAccessResourceView* _UAV,
@@ -66,7 +65,7 @@ namespace amEngineSDK {
                                         amResourceBindFlags::E::kBINDF_UNORDERED_ACCESS);
 
     virtual amTexture*
-    createTexture(amTexture* _tex, amFormats::E _format);
+    createTexture(amTexture* _tex, const int32 _format);
 
   };
 }

@@ -307,8 +307,8 @@ namespace amEngineSDK {
     if (_textureFlags == amTexType::E::kCUBEMAP) {
       Vector<float>* v = new Vector<float>();
       v->resize(width * height);
-      memcpy(&tex->m_tBuffer_f, &texdata, width * height);
-      tex->m_tBuffer_f = v;
+      memcpy(&tex->m_tBufferF, &texdata, width * height);
+      tex->m_tBufferF = v;
     }
     else {
       tex->m_tBuffer.resize(width * height);
@@ -340,7 +340,7 @@ namespace amEngineSDK {
     if (_hdr) {
       Vector<float>* v = new Vector<float>();
       v->resize(size);
-      texObj->m_tex->m_tBuffer_f = v;
+      texObj->m_tex->m_tBufferF = v;
     }
     else {
       texObj->m_tex->m_tBuffer.resize(size);
@@ -423,10 +423,12 @@ namespace amEngineSDK {
                                         const amFormats::E _format, 
                                         const bool _hdr) {
 
-    _rtv->m_rt->m_tex = CreateTextureObjectRT(_rtv->m_rt->m_height, 
+    _format;
+    _hdr;
+    /*_rtv->m_rt = CreateTextureObjectRT(_rtv->m_rt->m_height, 
                                               _rtv->m_rt->m_width, 
                                               _format, 
-                                              _hdr);
+                                              _hdr);*/
     return _rtv;
   }
 

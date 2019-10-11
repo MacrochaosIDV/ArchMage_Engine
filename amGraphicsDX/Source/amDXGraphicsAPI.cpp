@@ -5,7 +5,7 @@
 #include <amTexture.h>
 #include <amModel.h>
 #include <amResource.h>
-#include <amCamera.h>
+
 
 #include "amDXTexture.h"
 #include "amDXTextureObject.h"
@@ -62,8 +62,7 @@ namespace amEngineSDK {
     initContent();
   }
 
-  //TODO: exchange this for draw()
-
+  //TODO: rename to Run()
   void 
   amDXGraphicsAPI::Render() {
     /**
@@ -78,7 +77,6 @@ namespace amEngineSDK {
     //m_pContext->clearDepthStencilView(m_pDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
     
     m_pContext->setInputLayout(m_pInputLayout);
-    
     m_pContext->setPrimitiveTopology();
     m_pContext->setVertexShader(m_pVertexShader);
     m_pContext->setPixelShader(m_pPixelShader);
@@ -103,24 +101,31 @@ namespace amEngineSDK {
     m_pPixelShader->createPS("Resources/Shaders/PS_PBR.hlsl", m_pDevice);
     m_pInputLayout->Create(m_pDevice, m_pVertexShader);
     m_pResourceManager->loadDeafultTex();
+
     m_pResourceManager->CreateRenderTarget(m_rtFullColor,
                                            amFormats::E::kFORMAT_R16G16B16A16_FLOAT, 
                                            true);
+
     m_pResourceManager->CreateRenderTarget(m_rtEmissive,
                                            amFormats::E::kFORMAT_R8G8B8A8_UNORM,
                                            false);
+
     m_pResourceManager->CreateRenderTarget(m_rtNormals,
                                            amFormats::E::kFORMAT_R8G8B8A8_UNORM,
                                            false);
+
     m_pResourceManager->CreateRenderTarget(m_rtBlur,
                                            amFormats::E::kFORMAT_R8G8B8A8_UNORM,
                                            false);
+
     m_pResourceManager->CreateRenderTarget(m_rtLuminance,
                                            amFormats::E::kFORMAT_R8G8B8A8_UNORM,
                                            false);
+
     m_pResourceManager->CreateRenderTarget(m_rtMADR,
                                            amFormats::E::kFORMAT_R8G8B8A8_UNORM,
                                            false);
+
     tmpLoadResource();
   }
 
@@ -139,15 +144,15 @@ namespace amEngineSDK {
     m_pDevice = new amDXDevice();
     m_pSwapChain = new amDXSwapChain();
     m_pCB_VP = new amDXConstantBuffer();
-    m_pDepthStencil = new amTexture();
     m_pContext = new amDXDeviceContext();
-    m_pCamManager = new amCameraManager();
     m_pPixelShader = new amDXPixelShader();
     m_pVertexShader = new amDXVertexShader();
     m_pInputLayout = new  amDXInputLayout();
-    m_pRenderManager = new amRenderManager();
     m_pDepthStencilView = new amDXDepthStencilView();
     m_pRenderTargetView = new amDXRenderTargetView();
+
+    m_pCamManager = new amCameraManager();
+    m_pRenderManager = new amRenderManager();
     m_pResourceManager = new amResourceManager(m_pDevice);
 
     m_farPlane = new amDXConstantBuffer();
@@ -163,6 +168,8 @@ namespace amEngineSDK {
     GetClientRect(m_hWnd, &rc);
     uint32 width = rc.right - rc.left;
     uint32 height = rc.bottom - rc.top;
+
+    m_pDepthStencil = new amDXTexture();
 
     m_bloomIntensity = 0.25f;
 
@@ -472,40 +479,6 @@ namespace amEngineSDK {
                                       m_testCube)->m_vecMats[0], 
                                      reinterpret_cast<amTextureObject*>(
                                       m_pResourceManager->m_texObjPureBlack));
-
-    //m_pResourceManager->CreateModel("Resources/3D_Meshes/Vela/Vela_Mat_1.X");
-    //m_pResourceManager->CreateModel("Resources/3D_Meshes/Vela/Vela_Mat_2.X");
-    //m_pResourceManager->CreateModel("Resources/3D_Meshes/Vela/Vela_Mat_3.X");
-    //m_pResourceManager->CreateModel("Resources/3D_Meshes/Vela/Vela_Mat_4.X");
-    //m_pResourceManager->CreateModel("Resources/3D_Meshes/Vela/Vela_Mat_5.X");
-    //m_pResourceManager->CreateModel("Resources/3D_Meshes/Vela/Vela_Mat_6.X");
-    //
-    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Char_BaseColor.tga");
-    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Char_Emissive.tga");
-    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Char_Metallic.tga");
-    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Char_Normal.tga");
-    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Char_Roughness.tga");
-    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_EyeCornea_BaseColor.tga");
-    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_EyeCornea_Normal.tga");
-    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_EyeCornea_Roughness.tga");
-    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Gun_BaseColor.tga");
-    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Gun_Metallic.tga");
-    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Gun_Normal.tga");
-    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Gun_Roughness.tga");
-    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Legs_BaseColor.tga");
-    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Legs_Metallic.tga");
-    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Legs_Normal.tga");
-    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Legs_Roughness.tga");
-    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Mechanical_BaseColor.tga");
-    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Mechanical_Emissive.tga");
-    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Mechanical_Metallic.tga");
-    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Mechanical_Normal.tga");
-    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Mechanical_Roughness.tga");
-    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Plate_BaseColor.tga");
-    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Plate_Emissive.tga");
-    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Plate_Metallic.tga");
-    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Plate_Normal.tga");
-    //m_pResourceManager->CreateTexture("Resources/3D_Meshes/Vela/Textures/Vela_Plate_Roughness.tga");
   }
 
   void 
@@ -529,13 +502,76 @@ namespace amEngineSDK {
   amDXGraphicsAPI::Update() {
   
   }
-  amTexture* 
+  amShaderResourceView* 
+  amDXGraphicsAPI::createTextureShaderResourceV(const String & _pathName, 
+                                                const uint32 _textureFlags) {
+    return nullptr;
+  }
+
+  amRenderTargetView* 
+  amDXGraphicsAPI::loadTexture(const String & _pathName, 
+                               const uint32 _textureFlags) {
+    return nullptr;
+  }
+
+  amRenderTargetView*
+  amDXGraphicsAPI::createRenderTargetV(const uint32 _height, 
+                                       const uint32 _width, 
+                                       const amFormats::E _format, 
+                                       const float _scale) {
+    amDXRenderTargetView* rtv = new amDXRenderTargetView();
+    rtv->m_rt = new amDXTexture();
+    rtv->resize(_height, _width);
+    m_pDevice->createRenderTargetView(rtv, _format);
+    //Store in res manager
+    return nullptr;
+  }
+
+  amTexture*
   amDXGraphicsAPI::createTexture(const uint32 _height, 
                                  const uint32 _width, 
                                  const amFormats::E _format) {
     amDXTexture* tex = new amDXTexture();
     tex->resize(_height, _width);
     m_pDevice->createTexture(tex, _format);
+    //Store in res manager
     return tex;
+  }
+
+  amTexture* 
+  amDXGraphicsAPI::createTexture(const String & _pathName, 
+                                 const uint32 _textureFlags) {
+    return nullptr;
+  }
+
+  amModel* 
+  amDXGraphicsAPI::createModel(const String & _pathName, 
+                               const uint32 _meshLoadFlags) {
+    return nullptr;
+  }
+
+  amDepthStencilView* 
+  amDXGraphicsAPI::createDepthStencilV(const uint32 _height, 
+                                       const uint32 _width, 
+                                       const amFormats::E _format) {
+    return nullptr;
+  }
+
+  amMaterial* 
+  amDXGraphicsAPI::CreateMaterial(amTextureObject * _tex, 
+                                  const String & _matName) {
+    return nullptr;
+  }
+
+  amMaterial* 
+  amDXGraphicsAPI::CreateMaterial(Vector<amTextureObject*>& _texVec, 
+                                  const String & _matName) {
+    return nullptr;
+  }
+
+  amMaterial* 
+  amDXGraphicsAPI::CreateMaterial(const String & _pathName, 
+                                  uint32 _textureFlags) {
+    return nullptr;
   }
 }

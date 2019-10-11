@@ -74,8 +74,8 @@ namespace amEngineSDK {
 
   amRenderTargetView* 
   amDevice::createRenderTargetView(amRenderTargetView * _RTV,
-                                   amResourceBindFlags::E _RBF) {
-    _RBF;
+                                   const int32 _format) {
+    _format;
     _RTV;
     return nullptr;
   }
@@ -89,7 +89,7 @@ namespace amEngineSDK {
   }
 
   amTexture* 
-  amDevice::createTexture(amTexture * _tex, amFormats::E _format) {
+  amDevice::createTexture(amTexture * _tex, const int32 _format) {
     _tex;
     _format;
     return nullptr;
