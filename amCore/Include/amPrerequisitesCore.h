@@ -80,16 +80,17 @@ namespace amEngineSDK {
   namespace amResourceBindFlags {
     enum E
     {
-      kBIND_VERTEX_BUFFER     = 0x1L,
-      kBIND_INDEX_BUFFER      = 0x2L,
-      kBIND_CONSTANT_BUFFER   = 0x4L,
-      kBIND_SHADER_RESOURCE   = 0x8L,
-      kBIND_STREAM_OUTPUT    = 0x10L,
-      kBIND_RENDER_TARGET    = 0x20L,
-      kBIND_DEPTH_STENCIL    = 0x40L,
-      kBIND_UNORDERED_ACCESS = 0x80L,
-      kBIND_DECODER         = 0x200L,
-      kBIND_VIDEO_ENCODER   = 0x400L,
+      kBIND_VERTEX_BUFFER                 = 0x1L,
+      kBIND_INDEX_BUFFER                  = 0x2L,
+      kBIND_CONSTANT_BUFFER               = 0x4L,
+      kBIND_SHADER_RESOURCE               = 0x8L,
+      kBIND_STREAM_OUTPUT                 = 0x10L,
+      kBIND_RENDER_TARGET                 = 0x20L,
+      kBIND_DEPTH_STENCIL                 = 0x40L,
+      kBIND_UNORDERED_ACCESS              = 0x80L,
+      kBIND_DECODER                       = 0x200L,
+      kBIND_VIDEO_ENCODER                 = 0x400L,
+      kBIND_RENDER_T_SHADER_R = kBIND_SHADER_RESOURCE | kBIND_RENDER_TARGET,
       kCOUNT
     };
   }

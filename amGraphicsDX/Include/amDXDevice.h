@@ -36,17 +36,17 @@ namespace amEngineSDK {
 
     virtual amConstantBuffer*
     createConstBuffer(amConstantBuffer* _pCB,
-                      amResourceBindFlags::E _RBF = 
+                      const int32 _RBF =
                         amResourceBindFlags::E::kBIND_CONSTANT_BUFFER) override;
 
     virtual amVertexBuffer*
     createVertexBuffer(amVertexBuffer* _pVB,
-                       amResourceBindFlags::E _RBF = 
+                       const int32 _RBF =
                          amResourceBindFlags::E::kBIND_VERTEX_BUFFER) override;
 
     virtual amIndexBuffer*
     createIndexBuffer(amIndexBuffer* _pIB,
-                      amResourceBindFlags::E _RBF = 
+                      const int32 =
                         amResourceBindFlags::E::kBIND_INDEX_BUFFER) override;
 
     virtual amVertexShader*
@@ -62,14 +62,18 @@ namespace amEngineSDK {
     createShaderResourceView(amShaderResourceView* _SRV,
                              amTexture* _texResource,
                              const int32 amSRV_type,
-                             const int32 _format) override;
+                             const int32 _format, 
+                             const int32 _rbf) override;
 
     virtual amRenderTargetView* 
     createRenderTargetView(amRenderTargetView* _RTV, 
-                           const int32 _format) override;
+                           const int32 _format,
+                           const int32 _rbf) override;
 
     virtual amTexture*
-    createTexture(amTexture* _tex, const int32 _format) override;
+    createTexture(amTexture* _tex, 
+                  const int32 _format, 
+                  const int32 _rbf) override;
 
     ID3D11Device* m_pDV;
   };

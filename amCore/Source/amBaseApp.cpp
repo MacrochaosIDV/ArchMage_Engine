@@ -85,7 +85,7 @@ namespace amEngineSDK {
   void 
   amBaseApp::Render() {
     //Begin();
-    m_GAPI->Render();
+    m_GAPI->Run();
     postRender();
     //end();
     //swap();

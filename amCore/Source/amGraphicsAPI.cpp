@@ -31,7 +31,7 @@ namespace amEngineSDK {
   amGraphicsAPI::Update() {}
 
   void 
-  amGraphicsAPI::Render() {}
+  amGraphicsAPI::Run() {}
 
   void 
   amGraphicsAPI::destroy() {}
@@ -100,7 +100,7 @@ namespace amEngineSDK {
     _shaderFlags;
   }
 
-  amShaderResourceView* 
+  /*amShaderResourceView* 
   amGraphicsAPI::createTextureShaderResourceV(const String & _pathName,
                                               const uint32 _textureFlags) {
     _pathName;
@@ -108,7 +108,7 @@ namespace amEngineSDK {
     return nullptr;
   }
 
-  amRenderTargetView* 
+  amShaderResourceView*
   amGraphicsAPI::loadTexture(const String & _pathName, 
                              const uint32 _textureFlags) {
     _pathName;
@@ -184,5 +184,5 @@ namespace amEngineSDK {
     _pathName;
     _textureFlags;
     return nullptr;
-  }
+  }*/
 }

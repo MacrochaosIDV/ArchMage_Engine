@@ -20,6 +20,12 @@ namespace amEngineSDK {
                                     amTexture* _tex,
                                     const int32 _type, 
                                     const int32 _format) {
-    reinterpret_cast<amDXDevice*>(_device)->createShaderResourceView(this, _tex, _type, _format);
+
+    amDXDevice* dxDV = reinterpret_cast<amDXDevice*>(_device);
+    dxDV->createShaderResourceView(this,
+                                   _tex,
+                                   _type,
+                                   _format,
+                                   amResourceBindFlags::kBIND_SHADER_RESOURCE);
   }
 }

@@ -4,7 +4,7 @@
 namespace amEngineSDK {
   void 
   amDXVertexBuffer::setBufferData(D3D11_USAGE _usageF,
-                                  amResourceBindFlags::E _RBF) {
+                                  const int32 _RBF) {
     memset(&m_bd, 0, sizeof(m_bd));
     m_bd.Usage = _usageF;
     m_numVertex = m_vVertex.size();

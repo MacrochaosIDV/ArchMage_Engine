@@ -16,7 +16,7 @@ namespace amEngineSDK {
 
     void 
     setBufferData(D3D11_USAGE _usageF,
-                  amResourceBindFlags::E _RBF = amResourceBindFlags::E::kBINDF_VERTEX_BUFFER);
+                  const int32 _RBF = amResourceBindFlags::E::kBIND_VERTEX_BUFFER);
 
     void
     setSubResourceData(const void* _data, uint32 SysMemPitch, uint32 SysMemSlicePitch);

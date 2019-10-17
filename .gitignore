@@ -1,6 +1,9 @@
 # Folders to ignore
 .vs/
 Intermediate/
+Bin/x64/
+Bin/x86/
+Lib/
 .iobj/
 .pdb/
 

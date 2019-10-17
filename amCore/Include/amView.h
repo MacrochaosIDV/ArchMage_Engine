@@ -7,6 +7,9 @@ namespace amEngineSDK {
   public:
     amView();
     ~amView();
+
+    virtual void 
+    resize(const uint32 _height, const uint32 _width) = 0;
   };
 }
 

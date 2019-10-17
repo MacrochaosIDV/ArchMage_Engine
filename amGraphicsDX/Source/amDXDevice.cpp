@@ -8,6 +8,7 @@
 #include "amDXTexture.h"
 #include "amDXTextureObject.h"
 #include "amRenderTargetView.h"
+#include "amDXRenderTargetView.h"
 #include "amRenderTarget.h"
 
 namespace amEngineSDK {
@@ -17,10 +18,12 @@ namespace amEngineSDK {
 
   amVertexShader* 
   amDXDevice::createVertexShader(amVertexShader * _pVS) {
-    HRESULT h = m_pDV->CreateVertexShader(reinterpret_cast<amDXVertexShader*>(_pVS)->m_blob->GetBufferPointer(),
-                                          reinterpret_cast<amDXVertexShader*>(_pVS)->m_blob->GetBufferSize(),
+    amDXVertexShader* dxVS = reinterpret_cast<amDXVertexShader*>(_pVS);
+
+    HRESULT h = m_pDV->CreateVertexShader(dxVS->m_blob->GetBufferPointer(),
+                                          dxVS->m_blob->GetBufferSize(),
                                           nullptr,
-                                          &reinterpret_cast<amDXVertexShader*>(_pVS)->m_vs);
+                                          &dxVS->m_vs);
     if(h == S_OK)
       return _pVS;
     return nullptr;
@@ -28,10 +31,12 @@ namespace amEngineSDK {
 
   amPixelShader* 
   amDXDevice::createPixelShader(amPixelShader * _pPS) {
-    HRESULT h = m_pDV->CreatePixelShader(reinterpret_cast<amDXPixelShader*>(_pPS)->m_blob->GetBufferPointer(),
-                                         reinterpret_cast<amDXPixelShader*>(_pPS)->m_blob->GetBufferSize(),
+    amDXPixelShader* dxPS = reinterpret_cast<amDXPixelShader*>(_pPS);
+
+    HRESULT h = m_pDV->CreatePixelShader(dxPS->m_blob->GetBufferPointer(),
+                                         dxPS->m_blob->GetBufferSize(),
                                          nullptr,
-                                         &reinterpret_cast<amDXPixelShader*>(_pPS)->m_ps);
+                                         &dxPS->m_ps);
     if (h == S_OK)
       return _pPS;
     return nullptr;
@@ -39,10 +44,12 @@ namespace amEngineSDK {
 
   amComputeShader* 
   amDXDevice::createComputeShader(amComputeShader * _pCS) {
-    HRESULT h = m_pDV->CreateComputeShader(reinterpret_cast<amDXComputeShader*>(_pCS)->m_blob->GetBufferPointer(),
-                                           reinterpret_cast<amDXComputeShader*>(_pCS)->m_blob->GetBufferSize(),
+    amDXComputeShader* dxCS = reinterpret_cast<amDXComputeShader*>(_pCS);
+
+    HRESULT h = m_pDV->CreateComputeShader(dxCS->m_blob->GetBufferPointer(),
+                                           dxCS->m_blob->GetBufferSize(),
                                            nullptr,
-                                           &reinterpret_cast<amDXComputeShader*>(_pCS)->m_cs);
+                                           &dxCS->m_cs);
     if (h == S_OK)
       return _pCS;
     return nullptr;
@@ -52,11 +59,12 @@ namespace amEngineSDK {
   amDXDevice::createShaderResourceView(amShaderResourceView * _pSRV,
                                        amTexture* _texResource,
                                        const int32 amSRV_type,
-                                       const int32 _format) {
+                                       const int32 _format, 
+                                       const int32 _rbf) {
 
     amDXTexture* texDX = reinterpret_cast<amDXTexture*>(_texResource);
 
-    _texResource = createTexture(_texResource, _format);
+    _texResource = createTexture(_texResource, _format, _rbf);
     
     amDXShaderResourceView* _pDXSRV = new amDXShaderResourceView();
 
@@ -76,42 +84,41 @@ namespace amEngineSDK {
   }
 
   amRenderTargetView* 
-  amDXDevice::createRenderTargetView(amRenderTargetView * _RTV, const int32 _format) {
+  amDXDevice::createRenderTargetView(amRenderTargetView * _RTV, 
+                                     const int32 _format, 
+                                     const int32 _rbf) {
 
-    createTexture(_RTV->m_rt, _format);
+    amDXRenderTargetView* dxRTV = reinterpret_cast<amDXRenderTargetView*>(_RTV);
+    
+    createTexture(_RTV->m_rt, _format, _rbf);
 
-    D3D11_RENDER_TARGET_VIEW_DESC rtDesc;
-    memset(&rtDesc, 0, sizeof(rtDesc));
-    rtDesc.Format = static_cast<DXGI_FORMAT>(_RTV->m_rt->m_format);
+    amDXTexture* dxTex = reinterpret_cast<amDXTexture*>(_RTV->m_rt);
+
+    //D3D11_RENDER_TARGET_VIEW_DESC rtDesc;
+    memset(&dxRTV->m_desc, 0, sizeof(dxRTV->m_desc));
+    dxRTV->m_desc.Format = static_cast<DXGI_FORMAT>(_format);
 
     if (_RTV->m_rt->m_hrd) {
-      rtDesc.ViewDimension = static_cast<D3D11_RTV_DIMENSION>(amSRV_Types::kSRV_TEXTURE2DARRAY);
+      dxRTV->m_desc.ViewDimension = static_cast<D3D11_RTV_DIMENSION>(amSRV_Types::kSRV_TEXTURE2DARRAY);
     }
     else {
-      rtDesc.ViewDimension = static_cast<D3D11_RTV_DIMENSION>(amSRV_Types::kSRV_TEXTURE2D);
+      dxRTV->m_desc.ViewDimension = static_cast<D3D11_RTV_DIMENSION>(amSRV_Types::kSRV_TEXTURE2D);
     }
-    rtDesc.Texture2D.MipSlice = 0;
+    dxRTV->m_desc.Texture2D.MipSlice = 0;
 
-    HRESULT h = m_pDV->CreateTexture2D(&desc,
-                                       nullptr,
-                                       reinterpret_cast<ID3D11Texture2D**>(
-                                       &_RTV->m_rt->));
 
-    if (h != S_OK)
-      return nullptr;
-
-    h = m_pDV->CreateRenderTargetView(reinterpret_cast<ID3D11Texture2D*>(
-                                        &_RTV->m_rt->), 
-                                      &rtDesc, 
-                                      reinterpret_cast<ID3D11RenderTargetView**>(
-                                        &_RTV->m_ApiPtr));
+    HRESULT h = m_pDV->CreateRenderTargetView(dxTex->m_tex,
+                                              &dxRTV->m_desc,
+                                              &dxRTV->m_pRTV);
     if (h == S_OK)
       return _RTV;
     return nullptr;
   }
 
   amTexture* 
-  amDXDevice::createTexture(amTexture * _tex, const int32 _format) {
+  amDXDevice::createTexture(amTexture * _tex, 
+                            const int32 _format,
+                            const int32 _rbf) {
     amDXTexture* dxTex = reinterpret_cast<amDXTexture*>(_tex);
 
     D3D11_SUBRESOURCE_DATA subRes;
@@ -129,7 +136,7 @@ namespace amEngineSDK {
     dxTex->m_desc.SampleDesc.Count = 1;
     dxTex->m_desc.SampleDesc.Quality = 0;
     dxTex->m_desc.Usage = D3D11_USAGE_DEFAULT;
-    dxTex->m_desc.BindFlags = D3D11_BIND_SHADER_RESOURCE | D3D11_BIND_RENDER_TARGET;
+    dxTex->m_desc.BindFlags = static_cast<D3D11_BIND_FLAG>(_rbf);
     dxTex->m_desc.CPUAccessFlags = 0;
     dxTex->m_desc.MiscFlags = 0;
 
@@ -140,13 +147,19 @@ namespace amEngineSDK {
     return _tex;
   }
 
+  /**
+  ************************
+  * @TODO: The buffers for cleaner code
+  ************************
+  */
   amIndexBuffer*
   amDXDevice::createIndexBuffer(amIndexBuffer* _pIB,
-                                amResourceBindFlags::E _RBF) {
-    reinterpret_cast<amDXIndexBuffer*>(_pIB)->setBufferData(D3D11_USAGE_DEFAULT, _RBF);
-    HRESULT h = m_pDV->CreateBuffer(&reinterpret_cast<amDXIndexBuffer*>(_pIB)->m_bd,
-                        &reinterpret_cast<amDXIndexBuffer*>(_pIB)->m_initData,
-                        &reinterpret_cast<amDXIndexBuffer*>(_pIB)->m_pIndexBuffer);
+                                const int32 _RBF) {
+    amDXIndexBuffer* dxIB = reinterpret_cast<amDXIndexBuffer*>(_pIB);
+    dxIB->setBufferData(D3D11_USAGE_DEFAULT, _RBF);
+    HRESULT h = m_pDV->CreateBuffer(&dxIB->m_bd, 
+                                    &dxIB->m_initData, 
+                                    &dxIB->m_pIndexBuffer);
     if (h == S_OK)
       return _pIB;
     return nullptr;
@@ -154,11 +167,12 @@ namespace amEngineSDK {
 
   amConstantBuffer*
   amDXDevice::createConstBuffer(amConstantBuffer* _pCB,
-                                     amResourceBindFlags::E _RBF) {
-    reinterpret_cast<amDXConstantBuffer*>(_pCB)->setBufferData(amUsageFlags::E::kDEFAULT, _RBF);
-    HRESULT h = m_pDV->CreateBuffer(&reinterpret_cast<amDXConstantBuffer*>(_pCB)->m_bd,
-                        &reinterpret_cast<amDXConstantBuffer*>(_pCB)->m_subResData,
-                        &reinterpret_cast<amDXConstantBuffer*>(_pCB)->m_pCB);
+                                const int32 _RBF) {
+    amDXConstantBuffer* dxCB = reinterpret_cast<amDXConstantBuffer*>(_pCB);
+    dxCB->setBufferData(amUsageFlags::E::kDEFAULT, _RBF);
+    HRESULT h = m_pDV->CreateBuffer(&dxCB->m_bd,
+                                    &dxCB->m_subResData,
+                                    &dxCB->m_pCB);
     if (h == S_OK)
       return _pCB;
     return nullptr;
@@ -166,11 +180,12 @@ namespace amEngineSDK {
 
   amVertexBuffer*
   amDXDevice::createVertexBuffer(amVertexBuffer* pVB,
-                                   amResourceBindFlags::E _RBF) {
-    reinterpret_cast<amDXVertexBuffer*>(pVB)->setBufferData(D3D11_USAGE_DEFAULT, _RBF);
-    HRESULT h = m_pDV->CreateBuffer(&reinterpret_cast<amDXVertexBuffer*>(pVB)->m_bd,
-                        &reinterpret_cast<amDXVertexBuffer*>(pVB)->m_initData,
-                        &reinterpret_cast<amDXVertexBuffer*>(pVB)->m_pVB);
+                                 const int32 _RBF) {
+    amDXVertexBuffer* dxVB = reinterpret_cast<amDXVertexBuffer*>(pVB);
+    dxVB->setBufferData(D3D11_USAGE_DEFAULT, _RBF);
+    HRESULT h = m_pDV->CreateBuffer(&dxVB->m_bd,
+                                    &dxVB->m_initData,
+                                    &dxVB->m_pVB);
     if (h == S_OK)
       return pVB;
     return nullptr;

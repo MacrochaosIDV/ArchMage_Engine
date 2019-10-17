@@ -11,7 +11,7 @@ namespace amEngineSDK {
 
     void 
     setBufferData(D3D11_USAGE _usageF,
-                  amResourceBindFlags::E _RBF = amResourceBindFlags::E::kBINDF_INDEX_BUFFER);
+                  const int32 _RBF = amResourceBindFlags::E::kBIND_INDEX_BUFFER);
 
     virtual void 
     setData(Vector<uint32>&  data) override;

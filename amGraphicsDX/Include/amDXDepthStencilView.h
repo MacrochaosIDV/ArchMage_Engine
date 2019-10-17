@@ -10,5 +10,6 @@ namespace amEngineSDK {
     ~amDXDepthStencilView();
 
     ID3D11DepthStencilView* m_pDSV;
+    D3D11_TEXTURE2D_DESC m_desc;
   };
 }

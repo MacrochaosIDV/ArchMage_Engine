@@ -18,6 +18,9 @@ namespace amEngineSDK {
     virtual void 
     createSRV(amTexture * _tex, amDevice * _device);
 
+    virtual void 
+    resize(const uint32 _height, const uint32 _width) override;
+
     amTexture* m_texResource;
   };
 }

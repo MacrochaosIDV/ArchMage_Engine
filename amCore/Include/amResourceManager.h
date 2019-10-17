@@ -22,17 +22,17 @@ namespace amEngineSDK {
 
     amResource* 
     CreateRegisterModel(const String& pathName,
-                        amMeshLoadFlags::E _flags = amMeshLoadFlags::E::kNO_FLAG);
+                        const int32 = amMeshLoadFlags::E::kNO_FLAG);
 
     amModel*
     CreateModel(const String& pathName, 
-                amMeshLoadFlags::E _flags = amMeshLoadFlags::E::kNO_FLAG);
+                const int32 _flags = amMeshLoadFlags::E::kNO_FLAG);
 
     amTexture*
-    CreateTexture(const String& pathName, uint32 _textureFlags = 0);
+    CreateTexture(const String& pathName, const int32 _textureFlags = 0);
 
     amTextureObject*
-    CreateTextureObject(const String& pathName, uint32 _textureFlags = 0);
+    CreateTextureObject(const String& pathName, const int32 _textureFlags = 0);
 
     /**
     ************************
@@ -43,7 +43,7 @@ namespace amEngineSDK {
     amTextureObject*
     CreateTextureObjectRT(const uint32 _height, 
                           const uint32 _width, 
-                          const amFormats::E _format, 
+                          const int32 _format,
                           const bool _hdr);
 
     amShaderResourceView*
@@ -66,11 +66,11 @@ namespace amEngineSDK {
                    const String& _matName = "");
 
     amMaterial*
-    CreateMaterial(const String& _pathName, uint32 _textureFlags = 0);
+    CreateMaterial(const String& _pathName, const int32 _textureFlags = 0);
 
     amRenderTargetView* 
     CreateRenderTarget(amRenderTargetView* _rtv,
-                       const amFormats::E _format, 
+                       const int32 _format,
                        const bool _hdr);
 
     void 

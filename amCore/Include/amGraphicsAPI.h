@@ -55,8 +55,8 @@ namespace amEngineSDK {
     virtual void 
     Update();
 
-    virtual void 
-    Render();
+    virtual void
+    Run();
 
     virtual void 
     destroy();
@@ -116,11 +116,11 @@ namespace amEngineSDK {
     ************************
     */
 
-    virtual amShaderResourceView* 
+    /*virtual amShaderResourceView* 
     createTextureShaderResourceV(const String& _pathName, 
                                  const uint32 _textureFlags = 0);
 
-    virtual amRenderTargetView*
+    virtual amShaderResourceView*
     loadTexture(const String& _pathName,
                 const uint32 _textureFlags = 0);
 
@@ -155,7 +155,7 @@ namespace amEngineSDK {
                    const String& _matName = "Material");
 
     amMaterial*
-    CreateMaterial(const String& _pathName, uint32 _textureFlags = 0);
+    CreateMaterial(const String& _pathName, uint32 _textureFlags = 0);*/
 
 
     float m_bloomIntensity;

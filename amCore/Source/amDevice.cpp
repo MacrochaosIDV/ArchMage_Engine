@@ -12,7 +12,7 @@ namespace amEngineSDK {
   amDevice::~amDevice() {}
   amIndexBuffer* 
   amDevice::createIndexBuffer(amIndexBuffer* _IB,
-                              amResourceBindFlags::E _RBF) {
+                              const int32 _RBF) {
     _RBF;
     _IB;
     return nullptr;
@@ -20,7 +20,7 @@ namespace amEngineSDK {
 
   amVertexBuffer* 
   amDevice::createVertexBuffer(amVertexBuffer * _VB,
-                               amResourceBindFlags::E _RBF) {
+                               const int32 _RBF) {
     _RBF;
     _VB;
     return nullptr;
@@ -28,7 +28,7 @@ namespace amEngineSDK {
 
   amConstantBuffer* 
   amDevice::createConstBuffer(amConstantBuffer * _CB,
-                              amResourceBindFlags::E _RBF) {
+                              const int32 _RBF) {
     _RBF;
     _CB;
     return nullptr;
@@ -56,7 +56,9 @@ namespace amEngineSDK {
     amDevice::createShaderResourceView(amShaderResourceView * _SRV,
                                        amTexture* _texResource,
                                        const int32 amSRV_type,
-                                       const int32 _format) {
+                                       const int32 _format,
+                                       const int32 _rbf) {
+    _rbf;
     _texResource;
     _SRV;
     amSRV_type;
@@ -66,7 +68,7 @@ namespace amEngineSDK {
 
   amDepthStencilView* 
   amDevice::createDepthStencilView(amDepthStencilView * _DSV,
-                                     amResourceBindFlags::E _RBF) {
+                                   const int32 _RBF) {
     _RBF;
     _DSV;
     return nullptr;
@@ -74,7 +76,9 @@ namespace amEngineSDK {
 
   amRenderTargetView* 
   amDevice::createRenderTargetView(amRenderTargetView * _RTV,
-                                   const int32 _format) {
+                                   const int32 _format,
+                                   const int32 _rbf) {
+    _rbf;
     _format;
     _RTV;
     return nullptr;
@@ -82,14 +86,17 @@ namespace amEngineSDK {
 
   amUnorderedAccessResourceView* 
   amDevice::createUnorderedAccessResourceView(amUnorderedAccessResourceView * _UAV,
-                                              amResourceBindFlags::E _RBF) {
+                                              const int32 _RBF) {
     _RBF;
     _UAV;
     return nullptr;
   }
 
   amTexture* 
-  amDevice::createTexture(amTexture * _tex, const int32 _format) {
+  amDevice::createTexture(amTexture * _tex, 
+                          const int32 _format,
+                          const int32 _rbf) {
+    _rbf;
     _tex;
     _format;
     return nullptr;

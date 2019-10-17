@@ -36,7 +36,11 @@ namespace amEngineSDK {
     if (size > 0) {
       for (int32 i = 0; i < size; ++i) {
         m_vecTex[i]->m_srv->m_texResource = m_vecTex[i]->m_tex;
-        _dv->createShaderResourceView(m_vecTex[i]->m_srv, m_vecTex[i]->m_tex, _srvType, _format);
+        _dv->createShaderResourceView(m_vecTex[i]->m_srv, 
+                                      m_vecTex[i]->m_tex, 
+                                      _srvType, 
+                                      _format, 
+                                      amResourceBindFlags::kBIND_SHADER_RESOURCE);
       }
     }
   }

@@ -62,9 +62,8 @@ namespace amEngineSDK {
     initContent();
   }
 
-  //TODO: rename to Run()
   void 
-  amDXGraphicsAPI::Render() {
+  amDXGraphicsAPI::Run() {
     /**
     ************************
     *
@@ -284,8 +283,9 @@ namespace amEngineSDK {
     //////////////////////////////////////////////////////////////////////////
 
     //m_pDepthStencil->m_pDesc = 
+    m_pDepthStencilView = createDepthStencilV(height, width, amFormats::kFORMAT_R8G8B8A8_UNORM);
 
-    D3D11_TEXTURE2D_DESC descDepth;
+    /*D3D11_TEXTURE2D_DESC descDepth;
     memset(&descDepth, 0, sizeof(descDepth));
     descDepth.Width = width;
     descDepth.Height = height;
@@ -301,19 +301,15 @@ namespace amEngineSDK {
     hr = m_pDevice->m_pDV->CreateTexture2D(&descDepth, 
                                            nullptr, 
                                            reinterpret_cast<ID3D11Texture2D**>(
-                                             &m_pDepthStencil->m_apiPtr));
-    AM_ASSERT(hr == S_OK);
+                                             &m_pDepthStencil->m_apiPtr));*/
 
     /**
     ************************
     *  Create the depth stencil view
     ************************
     */
-    //////////////////////////////////////////////////////////////////////////
-    ////// TODO: replace this with engine types
-    //////////////////////////////////////////////////////////////////////////
 
-    D3D11_DEPTH_STENCIL_VIEW_DESC descDSV;
+    /*D3D11_DEPTH_STENCIL_VIEW_DESC descDSV;
     memset(&descDSV, 0, sizeof(descDSV));
     descDSV.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
     descDSV.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
@@ -322,7 +318,16 @@ namespace amEngineSDK {
                                                    m_pDepthStencil->m_apiPtr),
                                                   &descDSV,
                                                   &m_pDepthStencilView->m_pDSV);
-    AM_ASSERT(hr == S_OK);
+    AM_ASSERT(hr == S_OK);*/
+
+    AM_ASSERT(m_pDepthStencilView != nullptr);
+
+    
+    //////////////////////////////////////////////////////////////////////////
+    ////// TODO: replace this with engine types
+    //////////////////////////////////////////////////////////////////////////
+
+    
 
     m_pContext->m_pDC->OMSetRenderTargets(1, &m_pRenderTargetView->m_pRTV, m_pDepthStencilView->m_pDSV);
 
@@ -468,7 +473,8 @@ namespace amEngineSDK {
   amDXGraphicsAPI::tmpLoadResource() {
     //m_pResourceManager->CreateModel("Resources/3D_Meshes/Cube.x");
     m_testCube = m_pResourceManager->CreateModel("Resources/3D_Meshes/Cube.x",
-                                                 amMeshLoadFlags::E::kNO_MATS_NO_TEX);
+                                                 amMeshLoadFlags::E::kNO_MATS | 
+                                                 amMeshLoadFlags::E::kNO_TEX);
     String mat = "mat";
     reinterpret_cast<amModel*>(
       m_testCube)->m_vecMats.push_back(reinterpret_cast<amMaterial*>(
@@ -502,76 +508,99 @@ namespace amEngineSDK {
   amDXGraphicsAPI::Update() {
   
   }
-  amShaderResourceView* 
-  amDXGraphicsAPI::createTextureShaderResourceV(const String & _pathName, 
-                                                const uint32 _textureFlags) {
-    return nullptr;
-  }
 
-  amRenderTargetView* 
+  
+
+  amDXShaderResourceView*
   amDXGraphicsAPI::loadTexture(const String & _pathName, 
                                const uint32 _textureFlags) {
+    _pathName;
+    _textureFlags;
     return nullptr;
   }
 
-  amRenderTargetView*
+  amDXShaderResourceView*
+    amDXGraphicsAPI::createTextureShaderResourceV(const String & _pathName,
+                                                  const uint32 _textureFlags) {
+    _pathName;
+    _textureFlags;
+    /**
+    ************************
+    *  @TODO: this
+    ************************
+    */
+    return nullptr;
+  }
+
+  amDXRenderTargetView*
   amDXGraphicsAPI::createRenderTargetV(const uint32 _height, 
                                        const uint32 _width, 
                                        const amFormats::E _format, 
                                        const float _scale) {
-    amDXRenderTargetView* rtv = new amDXRenderTargetView();
-    rtv->m_rt = new amDXTexture();
-    rtv->resize(_height, _width);
-    m_pDevice->createRenderTargetView(rtv, _format);
+    amDXRenderTargetView* dxRTV = new amDXRenderTargetView();
+    dxRTV->m_rt = new amDXTexture();
+    dxRTV->resize(static_cast<uint32>(_height * _scale),
+                  static_cast<uint32>(_width * _scale));
+    m_pDevice->createRenderTargetView(dxRTV,
+                                      _format, 
+                                      amResourceBindFlags::kBIND_RENDER_T_SHADER_R);
     //Store in res manager
     return nullptr;
   }
 
-  amTexture*
+  amDXDepthStencilView*
+  amDXGraphicsAPI::createDepthStencilV(const uint32 _height,
+                                       const uint32 _width,
+                                       const amFormats::E _format) {
+    amDXDepthStencilView* depth = new amDXDepthStencilView();
+    depth->m_tex = new amDXTexture();
+    depth->resize(_height, _width);
+    m_pDevice->createDepthStencilView(depth, amResourceBindFlags::kBIND_DEPTH_STENCIL);
+    //Store in res manager
+    return depth;
+  }
+
+  amDXTexture*
   amDXGraphicsAPI::createTexture(const uint32 _height, 
                                  const uint32 _width, 
-                                 const amFormats::E _format) {
+                                 const amFormats::E _format,
+                                 const int32 _rbf) {
     amDXTexture* tex = new amDXTexture();
     tex->resize(_height, _width);
-    m_pDevice->createTexture(tex, _format);
+    m_pDevice->createTexture(tex, _format, _rbf);
     //Store in res manager
     return tex;
   }
 
-  amTexture* 
-  amDXGraphicsAPI::createTexture(const String & _pathName, 
+  amDXTexture*
+  amDXGraphicsAPI::createTexture(const String& _pathName, 
                                  const uint32 _textureFlags) {
+    _pathName;
+    _textureFlags;
     return nullptr;
   }
 
   amModel* 
-  amDXGraphicsAPI::createModel(const String & _pathName, 
+  amDXGraphicsAPI::createModel(const String& _pathName, 
                                const uint32 _meshLoadFlags) {
-    return nullptr;
-  }
-
-  amDepthStencilView* 
-  amDXGraphicsAPI::createDepthStencilV(const uint32 _height, 
-                                       const uint32 _width, 
-                                       const amFormats::E _format) {
+    _pathName;
+    _meshLoadFlags;
     return nullptr;
   }
 
   amMaterial* 
-  amDXGraphicsAPI::CreateMaterial(amTextureObject * _tex, 
-                                  const String & _matName) {
+  amDXGraphicsAPI::CreateMaterial(amTextureObject* _tex, 
+                                  const String& _matName) {
+    _tex;
+    _matName;
     return nullptr;
   }
 
   amMaterial* 
-  amDXGraphicsAPI::CreateMaterial(Vector<amTextureObject*>& _texVec, 
-                                  const String & _matName) {
-    return nullptr;
-  }
-
-  amMaterial* 
-  amDXGraphicsAPI::CreateMaterial(const String & _pathName, 
+  amDXGraphicsAPI::CreateMaterial(const String& _pathName, 
                                   uint32 _textureFlags) {
+    _pathName;
+    _textureFlags;
     return nullptr;
   }
 }

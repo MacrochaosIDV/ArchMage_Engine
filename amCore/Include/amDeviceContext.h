@@ -21,7 +21,7 @@ namespace amEngineSDK {
     ~amDeviceContext();
 
     virtual void 
-    setPrimitiveTopology(amPrimitiveTopology::E _pt = amPrimitiveTopology::E::PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+    setPrimitiveTopology(amPrimitiveTopology::E _pt = amPrimitiveTopology::E::kPRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
     virtual void 
     setInputLayout(amInputLayout* _il);

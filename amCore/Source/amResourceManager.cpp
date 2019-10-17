@@ -32,7 +32,7 @@ namespace amEngineSDK {
 
   amResource* 
   amResourceManager::CreateRegisterModel(const String & pathName,
-                                         amMeshLoadFlags::E _flags) {
+                                         const int32 _flags) {
     amResource* res = CreateModel(pathName, _flags);
     reinterpret_cast<amModel*>(res)->registerMeshTextures(m_dv);
     return res;
@@ -195,7 +195,7 @@ namespace amEngineSDK {
 
   amModel*
   amResourceManager::CreateModel(const String& pathName, 
-                                 amMeshLoadFlags::E _flags) {
+                                 const int32 _flags) {
     // Create an instance of the Importer class
     Assimp::Importer importer;
 
@@ -227,8 +227,7 @@ namespace amEngineSDK {
       amMesh* mesh = new amMesh();
 
       processMesh(scene->mMeshes[i], mesh);
-      if (_flags != amMeshLoadFlags::E::kNO_MATS &&
-          _flags != amMeshLoadFlags::E::kNO_MATS_NO_TEX) {
+      if (_flags != amMeshLoadFlags::E::kNO_MATS) {
         if (i < scene->mNumMaterials) {
           processMaterial(scene->mMaterials[scene->mMeshes[i]->mMaterialIndex], mesh, model);
         }
@@ -241,8 +240,7 @@ namespace amEngineSDK {
       *  Load Default Texture data
       ************************
       */
-    if (_flags != amMeshLoadFlags::E::kNO_TEX &&
-        _flags != amMeshLoadFlags::E::kNO_MATS_NO_TEX) {
+    if (_flags != amMeshLoadFlags::E::kNO_TEX) {
       if (scene->HasTextures()) {
         uint32 nTex = scene->mNumTextures;
         model->m_vecTex.resize(nTex);
@@ -271,10 +269,10 @@ namespace amEngineSDK {
 
   amTexture*
   amResourceManager::CreateTexture(const String & pathName, 
-                                   uint32 _textureFlags) {
+                                   const int32 _textureFlags) {
     int32 width, height, channels;
     amTexture* tex = new amTexture();
-    tex->m_resBindFlag = amResourceBindFlags::E::kBINDF_SHADER_RESOURCE;
+    tex->m_resBindFlag = amResourceBindFlags::E::kBIND_SHADER_RESOURCE;
     UANSICHAR* texdata = stbi_load(pathName.c_str(),
                                    &width, 
                                    &height, 
@@ -319,7 +317,8 @@ namespace amEngineSDK {
   }
 
   amTextureObject*
-  amResourceManager::CreateTextureObject(const String& pathName, uint32 _textureFlags) {
+  amResourceManager::CreateTextureObject(const String& pathName, 
+                                         const int32 _textureFlags) {
     amTextureObject* texObj = new amTextureObject();
     texObj->m_tex = CreateTexture(pathName, _textureFlags);
     RegisterTexture(texObj->m_srv, texObj->m_tex, texObj->m_tex->m_format);
@@ -329,7 +328,7 @@ namespace amEngineSDK {
   amTextureObject* 
   amResourceManager::CreateTextureObjectRT(const uint32 _height, 
                                            const uint32 _width, 
-                                           const amFormats::E _format, 
+                                           const int32 _format,
                                            const bool _hdr) {
     _format;
 
@@ -355,10 +354,11 @@ namespace amEngineSDK {
                                      amTexture* _tex,
                                      const int32 _format,
                                      const int32 _srv) {
-    return m_dv->createShaderResourceView(_res,
-                                          _tex,
-                                          _srv,
-                                          _format);
+    return m_dv->createShaderResourceView(_res, 
+                                          _tex, 
+                                          _srv, 
+                                          _format,
+                                          amResourceBindFlags::kBIND_SHADER_RESOURCE);
   }
 
   amRenderTargetView* 
@@ -410,7 +410,7 @@ namespace amEngineSDK {
 
   amMaterial*
   amResourceManager::CreateMaterial(const String& _pathName, 
-                                    uint32 _textureFlags) {
+                                    const int32 _textureFlags) {
     amMaterial* mat = new amMaterial();
     mat->m_matName = _pathName;
     mat->m_vecTex.push_back(reinterpret_cast<amTextureObject*>(CreateTexture(_pathName,
@@ -420,7 +420,7 @@ namespace amEngineSDK {
 
   amRenderTargetView*
   amResourceManager::CreateRenderTarget(amRenderTargetView * _rtv,
-                                        const amFormats::E _format, 
+                                        const int32 _format,
                                         const bool _hdr) {
 
     _format;
