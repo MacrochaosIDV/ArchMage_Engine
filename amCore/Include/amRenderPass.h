@@ -53,9 +53,11 @@ namespace amEngineSDK {
     amRenderPassStage::E m_renderPassStage;
     amVertexShader* m_pVS;
     amPixelShader* m_pPS;
+    //move to renderer
     Vector<amResource*> m_vecPassModels;
     Vector<amConstantBuffer*> m_vecPassConstBuffers;
     Vector<amRenderTarget*> m_vecRenderTargets;
     amRenderTarget* m_outRenderTarget;
+    //
   };
 }
