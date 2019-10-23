@@ -41,7 +41,7 @@ namespace amEngineSDK {
     amMaterial(const String _name, const Vector<amShaderResourceView*>& _vecTex);
     ~amMaterial();
 
-    void
+    /*void
     createTexturesAsRSV(amDevice* _dv,
                         const int32 = amSRV_Types::E::kSRV_TEXTURE2D,
                         const int32 = amFormats::E::kFORMAT_R8G8B8A8_UINT);
@@ -50,7 +50,7 @@ namespace amEngineSDK {
     setTexsAs_VS_RSV(amDeviceContext* _dc);
 
     void
-    setTexsAs_PS_RSV(amDeviceContext* _dc);
+    setTexsAs_PS_RSV(amDeviceContext* _dc);*/
 
     Vector<amShaderResourceView*> m_vecTex;
     String m_matName;

@@ -152,6 +152,11 @@ namespace amEngineSDK {
     amMaterial*
     CreateMaterial(const String& _pathName, uint32 _textureFlags = 0);
 
+    amModel* 
+    CreateModel(const String& _pathName, const uint32 _meshLoadFlags = 0);
+
+
+
 
 
     amVector4 m_clearColor;

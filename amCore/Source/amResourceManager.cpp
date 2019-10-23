@@ -15,6 +15,7 @@
 #include "amTexture.h"
 #include "amRenderTarget.h"
 #include "amRenderTargetView.h"
+#include "amShaderResourceView.h"
 #include "amTextureObject.h"
 #include "amMaterial.h"
 #include "amResource.h"
@@ -130,6 +131,7 @@ namespace amEngineSDK {
     *  Load Material data
     ************************
     */
+    //TODO: re write this in the graphics api
     //TODO: make _mesh->m_mat not be nullptr 
     uint32 nMatTextures = _aiMat->mNumProperties;
     uint32 nModelTextures = static_cast<uint32>(_model->m_vecTex.size());
@@ -138,33 +140,33 @@ namespace amEngineSDK {
     _model->m_vecTex.resize(nModelTextures + nMatTextures);
     for (uint32 j = 0; j < nMatTextures; ++j) {
       uint32 texTYpe = _aiMat->mProperties[j]->mType;
-      _mesh->m_mat->m_vecTex[j] = new amTextureObject();
-      _mesh->m_mat->m_vecTex[j]->m_tex->m_fileName = _aiMat->GetName().C_Str();
-      _mesh->m_mat->m_vecTex[j]->m_tex->m_tBuffer.resize(_aiMat->mProperties[j]->mDataLength * sizeof(SIZE_T));
+      //_mesh->m_mat->m_vecTex[j] = new amTextureObject();
+      _mesh->m_mat->m_vecTex[j]->m_texResource->m_fileName = _aiMat->GetName().C_Str();
+      _mesh->m_mat->m_vecTex[j]->m_texResource->m_tBuffer.resize(_aiMat->mProperties[j]->mDataLength * sizeof(SIZE_T));
       /**
       ************************
       *  Get texture types of the material
       ************************
       */
       if (texTYpe == aiTextureType::aiTextureType_DIFFUSE)
-        _mesh->m_mat->m_vecTex[j]->m_tex->m_tType = amTexType::E::kALBEDO;
+        _mesh->m_mat->m_vecTex[j]->m_texResource->m_tType = amTexType::E::kALBEDO;
       else if (texTYpe == aiTextureType::aiTextureType_EMISSIVE)
-        _mesh->m_mat->m_vecTex[j]->m_tex->m_tType = amTexType::E::kEMISSIVE;
+        _mesh->m_mat->m_vecTex[j]->m_texResource->m_tType = amTexType::E::kEMISSIVE;
       else if (texTYpe == aiTextureType::aiTextureType_NORMALS)
-        _mesh->m_mat->m_vecTex[j]->m_tex->m_tType = amTexType::E::kNORMAL;
+        _mesh->m_mat->m_vecTex[j]->m_texResource->m_tType = amTexType::E::kNORMAL;
       else if (texTYpe == aiTextureType::AI_MATKEY_GLTF_PBRMETALLICROUGHNESS_METALLICROUGHNESS_TEXTURE) {
         //if (_aiMat->GetTexture(AI_MATKEY_GLTF_PBRMETALLICROUGHNESS_METALLIC_FACTOR, j, )) {
           //TODO: add metalness & roughness, revert to spec = metal & shiny = rough
         //}
       }
       else
-        _mesh->m_mat->m_vecTex[j]->m_tex->m_tType = amTexType::E::kDEFAULT;
+        _mesh->m_mat->m_vecTex[j]->m_texResource->m_tType = amTexType::E::kDEFAULT;
       /**
       ************************
       *  Copy the texture buffer
       ************************
       */
-      memcpy(&_mesh->m_mat->m_vecTex[j]->m_tex->m_tBuffer,
+      memcpy(&_mesh->m_mat->m_vecTex[j]->m_texResource->m_tBuffer,
              _aiMat->mProperties[j]->mData,
              _aiMat->mProperties[j]->mDataLength);
       /**
@@ -172,7 +174,7 @@ namespace amEngineSDK {
       *  Save a copy of the pointer to the model
       ************************
       */
-      _model->m_vecTex[nModelTextures + j]->m_tex = _mesh->m_mat->m_vecTex[j]->m_tex;
+      _model->m_vecTex[nModelTextures + j]->m_tex = _mesh->m_mat->m_vecTex[j]->m_texResource;
     }
   }
 
@@ -257,7 +259,7 @@ namespace amEngineSDK {
         model->m_vecTex.push_back(defaultTex);
         amMaterial* defaultMat = new amMaterial();
         defaultMat->m_matName = "Default Material";
-        defaultMat->m_vecTex.push_back(defaultTex);
+        //defaultMat->m_vecTex.push_back(defaultTex);
         model->m_vecMats.push_back(defaultMat);
       }
     }
@@ -378,18 +380,19 @@ namespace amEngineSDK {
                                                amTexType::kLUT);
 
     m_defaultMat = new amMaterial("Default Material");
-    m_defaultMat->m_vecTex.push_back(m_texObjPureMidGrey);
-    m_defaultMat->m_vecTex.push_back(m_texObjDefaultNormals);
-    m_defaultMat->m_vecTex.push_back(m_texObjPureBlack);
-    m_defaultMat->m_vecTex.push_back(m_texObjPureWhite);
-    m_defaultMat->m_vecTex.push_back(m_texObjPureWhite);
+    //m_defaultMat->m_vecTex.push_back(m_texObjPureMidGrey);
+    //m_defaultMat->m_vecTex.push_back(m_texObjDefaultNormals);
+    //m_defaultMat->m_vecTex.push_back(m_texObjPureBlack);
+    //m_defaultMat->m_vecTex.push_back(m_texObjPureWhite);
+    //m_defaultMat->m_vecTex.push_back(m_texObjPureWhite);
   }
 
   amMaterial*
   amResourceManager::CreateMaterial(amTextureObject* _tex,
                                     const String& _matName) {
     amMaterial* mat = new amMaterial(_matName);
-    mat->m_vecTex.push_back(_tex);
+    _tex;
+    //mat->m_vecTex.push_back(_tex);
     //TODO: make sure texture is registered
     return mat;
   }
@@ -403,7 +406,7 @@ namespace amEngineSDK {
     mat->m_vecTex.resize(size);
     //mat->m_vecSRV.resize(size);
     for (uint32 i = 0; i < size; ++i) {
-      mat->m_vecTex[i] = _texVec[i];
+      //mat->m_vecTex[i] = _texVec[i];
     }
     return mat;
   }
@@ -413,8 +416,9 @@ namespace amEngineSDK {
                                     const int32 _textureFlags) {
     amMaterial* mat = new amMaterial();
     mat->m_matName = _pathName;
-    mat->m_vecTex.push_back(reinterpret_cast<amTextureObject*>(CreateTexture(_pathName,
-                            _textureFlags)));
+    /*mat->m_vecTex.push_back(reinterpret_cast<amTextureObject*>(CreateTexture(_pathName,
+                            _textureFlags)));*/
+    _textureFlags;
     return mat;
   }
 
@@ -436,10 +440,11 @@ namespace amEngineSDK {
   amResourceManager::fillMaterial(amMaterial * _mat, 
                                   amTextureObject * _tex) {
 
+    _tex;
     if (_mat->m_vecTex.size() < 5) { //Change the 5 to a const
       _mat->m_vecTex.resize(5);
       for (uint32 i = static_cast<uint32>(_mat->m_vecTex.size()); i < 5; ++i) {
-        _mat->m_vecTex[i] = _tex;
+        //_mat->m_vecTex[i] = _tex;
         //_mat->m_vecSRV[i] = _srv;
       }
     }

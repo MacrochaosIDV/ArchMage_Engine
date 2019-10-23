@@ -375,10 +375,10 @@ namespace amEngineSDK {
     ************************
     */
     if (_pMat) {
-      _pMat->setTexsAs_PS_RSV(m_pContext);
+      //_pMat->setTexsAs_PS_RSV(m_pContext);
     }
     else {
-      _pMesh->m_mat->setTexsAs_PS_RSV(m_pContext);
+      //_pMesh->m_mat->setTexsAs_PS_RSV(m_pContext);
     }
     //ensure the 5 srv for g-buffer
     _pOutRenderTarget;
@@ -568,5 +568,10 @@ namespace amEngineSDK {
     _pathName;
     _textureFlags;
     return nullptr;
+  }
+  amModel * amDXGraphicsAPI::CreateModel(const String & _pathName, const uint32 _meshLoadFlags) {
+    amModel* model = new amModel();
+
+    return model;
   }
 }

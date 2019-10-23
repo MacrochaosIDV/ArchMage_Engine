@@ -19,9 +19,9 @@ namespace amEngineSDK {
     return res;
   }
 
-  void amMesh::registerTextures(amDevice * _dv) {
+  /*void amMesh::registerTextures(amDevice * _dv) {
     m_mat->createTexturesAsRSV(_dv);
-  }
+  }*/
 
   uint32
   amMesh::getIndexCount() {

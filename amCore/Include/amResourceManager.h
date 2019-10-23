@@ -11,6 +11,7 @@ namespace amEngineSDK {
   class amRenderTarget;
   class amRenderTargetView;
   class amModel;
+  class amMesh;
 
   
 
@@ -102,7 +103,7 @@ namespace amEngineSDK {
     /**
     ************************
     *
-    /**
+    *
     ************************
     *
     *  @PRIORITY_1_TODO: re write resource creation process to that

@@ -15,12 +15,12 @@ namespace amEngineSDK {
     m_matName = _name;
   }
 
-  amMaterial::amMaterial(const Vector<amTextureObject*>& _vecTex) {
+  amMaterial::amMaterial(const Vector<amShaderResourceView*>& _vecTex) {
     m_resourceType = amResourceType::E::kMATERIAL;
     m_vecTex = _vecTex;
   }
 
-  amMaterial::amMaterial(const String _name, const Vector<amTextureObject*>& _vecTex) {
+  amMaterial::amMaterial(const String _name, const Vector<amShaderResourceView*>& _vecTex) {
     m_resourceType = amResourceType::E::kMATERIAL;
     m_matName = _name;
     m_vecTex = _vecTex;
@@ -28,7 +28,7 @@ namespace amEngineSDK {
 
   amMaterial::~amMaterial() {}
 
-  void amMaterial::createTexturesAsRSV(amDevice* _dv,
+  /*void amMaterial::createTexturesAsRSV(amDevice* _dv,
                                        const int32 _srvType,
                                        const int32 _format) {
     int32 size = static_cast<int32>(m_vecTex.size());
@@ -61,6 +61,6 @@ namespace amEngineSDK {
         _dc->setPSResources(i, 1, m_vecTex[i]->m_srv);
       }
     }
-  }
+  }*/
 
 }
