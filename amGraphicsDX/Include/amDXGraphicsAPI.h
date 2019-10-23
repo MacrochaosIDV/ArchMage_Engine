@@ -143,7 +143,7 @@ namespace amEngineSDK {
     virtual amDXDepthStencilView*
     createDepthStencilV(const uint32 _height,
                         const uint32 _width,
-                        const amFormats::E _format);
+                        const uint32 _format = amFormats::kFORMAT_D24_UNORM_S8_UINT);
 
     amMaterial*
     CreateMaterial(amTextureObject* _tex, 

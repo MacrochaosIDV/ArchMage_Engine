@@ -68,7 +68,9 @@ namespace amEngineSDK {
 
   amDepthStencilView* 
   amDevice::createDepthStencilView(amDepthStencilView * _DSV,
-                                   const int32 _RBF) {
+                                   const int32 _RBF,
+                                   const int32 _format) {
+    _format;
     _RBF;
     _DSV;
     return nullptr;

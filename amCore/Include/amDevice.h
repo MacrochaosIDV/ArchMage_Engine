@@ -54,7 +54,8 @@ namespace amEngineSDK {
     virtual amDepthStencilView*
     createDepthStencilView(amDepthStencilView* _DSV,
                            const int32 _RBF = 
-                             amResourceBindFlags::E::kBIND_DEPTH_STENCIL);
+                             amResourceBindFlags::kBIND_DEPTH_STENCIL,
+                           const int32 _format = amFormats::kFORMAT_D24_UNORM_S8_UINT);
 
     virtual amRenderTargetView*
     createRenderTargetView(amRenderTargetView* _RTV,

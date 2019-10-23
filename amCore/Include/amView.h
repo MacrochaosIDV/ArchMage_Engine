@@ -5,6 +5,9 @@ namespace amEngineSDK {
   class AM_CORE_EXPORT amView
   {
   public:
+    amView(const uint32 _height, 
+           const uint32 _width, 
+           const float _scale = 1.0f);
     amView();
     ~amView();
 

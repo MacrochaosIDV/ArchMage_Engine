@@ -23,6 +23,7 @@
 #pragma once
 #include "amPrerequisitesCore.h"
 #include "amResource.h"
+#include "amVector4.h"
 
 namespace amEngineSDK {
   class amTexture;
@@ -36,8 +37,8 @@ namespace amEngineSDK {
   public:
     amMaterial();
     amMaterial(const String _name);
-    amMaterial(const Vector<amTextureObject*>& _vecTex);
-    amMaterial(const String _name, const Vector<amTextureObject*>& _vecTex);
+    amMaterial(const Vector<amShaderResourceView*>& _vecTex);
+    amMaterial(const String _name, const Vector<amShaderResourceView*>& _vecTex);
     ~amMaterial();
 
     void
@@ -51,7 +52,13 @@ namespace amEngineSDK {
     void
     setTexsAs_PS_RSV(amDeviceContext* _dc);
 
-    Vector<amTextureObject*> m_vecTex;
+    Vector<amShaderResourceView*> m_vecTex;
     String m_matName;
+
+    amVector4 m_colorAlbedo;
+    amVector4 m_colorEmissive;
+    amVector4 m_colorNormal;
+    float m_metalness;
+    float m_roughness;
   };
 }

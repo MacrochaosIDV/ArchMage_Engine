@@ -9,6 +9,7 @@
 #include "amDXTextureObject.h"
 #include "amRenderTargetView.h"
 #include "amDXRenderTargetView.h"
+#include "amDXDepthStencilView.h"
 #include "amRenderTarget.h"
 
 namespace amEngineSDK {
@@ -145,6 +146,30 @@ namespace amEngineSDK {
     if (h != S_OK)
       return nullptr;
     return _tex;
+  }
+
+  amDepthStencilView* 
+  amDXDevice::createDepthStencilView(amDepthStencilView * _DSV, 
+                                     const int32 _RBF, 
+                                     const int32 _format) {
+    amDXDepthStencilView* dxDS = reinterpret_cast<amDXDepthStencilView*>(_DSV);
+    amDXTexture* dxTex = reinterpret_cast<amDXTexture*>(_DSV->m_tex);
+
+    createTexture(dxTex, _format, _RBF);
+    
+
+    memset(&dxDS->m_desc, 0, sizeof(dxDS->m_desc));
+    dxDS->m_desc.Format = static_cast<DXGI_FORMAT>(_format);
+    dxDS->m_desc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
+    dxDS->m_desc.Flags = 0;
+    dxDS->m_desc.Texture2D.MipSlice = 0;
+
+    HRESULT h = m_pDV->CreateDepthStencilView(dxTex->m_tex, 
+                                              &dxDS->m_desc, 
+                                              &dxDS->m_pDSV);
+    if (h != S_OK)
+      return nullptr;
+    return dxDS;
   }
 
   /**

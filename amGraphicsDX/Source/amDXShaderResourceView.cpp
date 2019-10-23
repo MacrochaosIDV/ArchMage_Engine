@@ -1,9 +1,17 @@
 #include "amDXShaderResourceView.h"
 #include "amDXDevice.h"
 #include "amTexture.h"
+#include "amDXTexture.h"
 
 namespace amEngineSDK {
   amDXShaderResourceView::amDXShaderResourceView() {}
+
+  amDXShaderResourceView::amDXShaderResourceView(const uint32 _height, 
+                                                 const uint32 _width, 
+                                                 const float _scale) {
+    m_texResource = new amDXTexture();
+    m_texResource->resize(_height * _scale, _width * _scale);
+  }
 
   amDXShaderResourceView::~amDXShaderResourceView() {}
 

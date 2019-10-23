@@ -31,6 +31,9 @@ namespace amEngineSDK {
   {
    public:
     amDXShaderResourceView();
+    amDXShaderResourceView(const uint32 _height,
+                           const uint32 _width,
+                           const float _scale = 1.0f);
     ~amDXShaderResourceView();
 
     void

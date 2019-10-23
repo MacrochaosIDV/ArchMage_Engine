@@ -7,6 +7,9 @@ namespace amEngineSDK {
   {
   public:
     amDXRenderTargetView();
+    amDXRenderTargetView(const uint32 _height,
+                         const uint32 _width,
+                         const float _scale = 1.0f);
     ~amDXRenderTargetView();
 
     ID3D11RenderTargetView* m_pRTV;

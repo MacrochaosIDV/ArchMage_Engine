@@ -6,6 +6,14 @@
 namespace amEngineSDK {
   amShaderResourceView::amShaderResourceView() {}
 
+  amShaderResourceView::amShaderResourceView(const uint32 _height, 
+                                             const uint32 _width, 
+                                             const float _scale) {
+    _height;
+    _width;
+    _scale;
+  }
+
   amShaderResourceView::~amShaderResourceView() {}
 
   void 

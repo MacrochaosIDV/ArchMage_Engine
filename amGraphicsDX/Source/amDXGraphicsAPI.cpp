@@ -147,7 +147,6 @@ namespace amEngineSDK {
     m_pPixelShader = new amDXPixelShader();
     m_pVertexShader = new amDXVertexShader();
     m_pInputLayout = new  amDXInputLayout();
-    m_pDepthStencilView = new amDXDepthStencilView();
     m_pRenderTargetView = new amDXRenderTargetView();
 
     m_pCamManager = new amCameraManager();
@@ -172,17 +171,7 @@ namespace amEngineSDK {
 
     m_bloomIntensity = 0.25f;
 
-    /**
-    ************************
-    * Initialize Render Targets
-    ************************
-    */
-    m_rtFullColor = new amRenderTargetView(height, width);
-    m_rtEmissive = new amRenderTargetView(height, width);
-    m_rtNormals = new amRenderTargetView(height, width);
-    m_rtBlur = new amRenderTargetView(height, width, 0.25f);
-    m_rtLuminance = new amRenderTargetView(height, width);
-    m_rtMADR = new amRenderTargetView(height, width);
+    
 
     uint32 createDeviceFlags = 0;
 #if AM_DEBUG_MODE
@@ -222,6 +211,14 @@ namespace amEngineSDK {
     };
     uint32 numFeatureLevels = _ARRAYSIZE(featureLevels);
 
+    /**
+    ************************
+    *
+    *  Device and Swap-chain creation 
+    *
+    ************************
+    */
+
     for (uint32 driverTypeIndex = 0; driverTypeIndex < numDriverTypes; driverTypeIndex++) {
       g_driverType = driverTypes[driverTypeIndex];
       hr = D3D11CreateDeviceAndSwapChain(nullptr,
@@ -250,6 +247,22 @@ namespace amEngineSDK {
     ************************
     */
 
+    /**
+    ************************
+    * Initialize Render Targets and depth stencil
+    ************************
+    */
+
+    m_rtFullColor = createRenderTargetV(height, width, amFormats::kFORMAT_R16G16B16A16_FLOAT);
+    m_rtEmissive = createRenderTargetV(height, width, amFormats::kFORMAT_R8G8B8A8_UNORM);
+    m_rtNormals = createRenderTargetV(height, width, amFormats::kFORMAT_R8G8B8A8_UNORM);
+    m_rtBlur = createRenderTargetV(height, width, amFormats::kFORMAT_R8G8B8A8_UNORM, 0.25f);
+    m_rtLuminance = createRenderTargetV(height, width, amFormats::kFORMAT_R8G8B8A8_UNORM);
+    m_rtMADR = createRenderTargetV(height, width, amFormats::kFORMAT_R8G8B8A8_UNORM);
+
+    m_pDepthStencilView = createDepthStencilV(height, width);
+    AM_ASSERT(m_pDepthStencilView != nullptr);
+
     setManagers();
     m_pInputLayout->init();
     
@@ -273,54 +286,8 @@ namespace amEngineSDK {
 
     AM_ASSERT(hr == S_OK);
 
-    /**
-    ************************
-    *  Create depth stencil texture
-    ************************
-    */
-    //////////////////////////////////////////////////////////////////////////
-    ////// TODO: replace this with engine types
-    //////////////////////////////////////////////////////////////////////////
-
-    //m_pDepthStencil->m_pDesc = 
-    m_pDepthStencilView = createDepthStencilV(height, width, amFormats::kFORMAT_R8G8B8A8_UNORM);
-
-    /*D3D11_TEXTURE2D_DESC descDepth;
-    memset(&descDepth, 0, sizeof(descDepth));
-    descDepth.Width = width;
-    descDepth.Height = height;
-    descDepth.MipLevels = 1;
-    descDepth.ArraySize = 1;
-    descDepth.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
-    descDepth.SampleDesc.Count = 1;
-    descDepth.SampleDesc.Quality = 0;
-    descDepth.Usage = D3D11_USAGE_DEFAULT;
-    descDepth.BindFlags = D3D11_BIND_DEPTH_STENCIL;
-    descDepth.CPUAccessFlags = 0;
-    descDepth.MiscFlags = 0;
-    hr = m_pDevice->m_pDV->CreateTexture2D(&descDepth, 
-                                           nullptr, 
-                                           reinterpret_cast<ID3D11Texture2D**>(
-                                             &m_pDepthStencil->m_apiPtr));*/
-
-    /**
-    ************************
-    *  Create the depth stencil view
-    ************************
-    */
-
-    /*D3D11_DEPTH_STENCIL_VIEW_DESC descDSV;
-    memset(&descDSV, 0, sizeof(descDSV));
-    descDSV.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
-    descDSV.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
-    descDSV.Texture2D.MipSlice = 0;
-    hr = m_pDevice->m_pDV->CreateDepthStencilView(reinterpret_cast<ID3D11Texture2D*>(
-                                                   m_pDepthStencil->m_apiPtr),
-                                                  &descDSV,
-                                                  &m_pDepthStencilView->m_pDSV);
-    AM_ASSERT(hr == S_OK);*/
-
-    AM_ASSERT(m_pDepthStencilView != nullptr);
+    
+    
 
     
     //////////////////////////////////////////////////////////////////////////
@@ -524,11 +491,8 @@ namespace amEngineSDK {
                                                   const uint32 _textureFlags) {
     _pathName;
     _textureFlags;
-    /**
-    ************************
-    *  @TODO: this
-    ************************
-    */
+    amDXRenderTargetView* dxRTV = new amDXRenderTargetView();
+    dxRTV->m_rt = new amDXTexture();
     return nullptr;
   }
 
@@ -551,11 +515,13 @@ namespace amEngineSDK {
   amDXDepthStencilView*
   amDXGraphicsAPI::createDepthStencilV(const uint32 _height,
                                        const uint32 _width,
-                                       const amFormats::E _format) {
-    amDXDepthStencilView* depth = new amDXDepthStencilView();
-    depth->m_tex = new amDXTexture();
-    depth->resize(_height, _width);
-    m_pDevice->createDepthStencilView(depth, amResourceBindFlags::kBIND_DEPTH_STENCIL);
+                                       const uint32 _format) {
+    amDXDepthStencilView* depth = new amDXDepthStencilView(_height, _width);
+    //depth->m_tex = new amDXTexture();
+    //depth->resize(_height, _width);
+    m_pDevice->createDepthStencilView(depth, 
+                                      amResourceBindFlags::kBIND_DEPTH_STENCIL,
+                                      _format);
     //Store in res manager
     return depth;
   }

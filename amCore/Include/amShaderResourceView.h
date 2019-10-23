@@ -10,6 +10,9 @@ namespace amEngineSDK {
   {
   public:
     amShaderResourceView();
+    amShaderResourceView(const uint32 _height,
+                         const uint32 _width,
+                         const float _scale = 1.0f);
     ~amShaderResourceView();
 
   private:

@@ -75,6 +75,11 @@ namespace amEngineSDK {
                   const int32 _format, 
                   const int32 _rbf) override;
 
+    virtual amDepthStencilView*
+    createDepthStencilView(amDepthStencilView* _DSV,
+                           const int32 _RBF = amResourceBindFlags::kBIND_DEPTH_STENCIL,
+                           const int32 _format = amFormats::kFORMAT_D24_UNORM_S8_UINT);
+
     ID3D11Device* m_pDV;
   };
 }
