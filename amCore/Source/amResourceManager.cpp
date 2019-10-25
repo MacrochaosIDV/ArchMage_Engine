@@ -32,7 +32,7 @@ namespace amEngineSDK {
   amResourceManager::~amResourceManager() {}
 
   amResource* 
-  amResourceManager::CreateRegisterModel(const String & pathName,
+  amResourceManager::CreateRegisterModel(const String& pathName,
                                          const int32 _flags) {
     amResource* res = CreateModel(pathName, _flags);
     reinterpret_cast<amModel*>(res)->registerMeshTextures(m_dv);
@@ -86,10 +86,10 @@ namespace amEngineSDK {
       ************************
       */
     uint32 nvertx = _aiMesh->mNumVertices;
-    _mesh->m_vb.m_vVertex.resize(nvertx);
+    _mesh->m_vb->m_vVertex.resize(nvertx);
     for (uint32 j = 0; j < nvertx; ++j) {
-      _mesh->m_vb.m_vVertex[j].setVertexCoord(getPos(_aiMesh->mVertices[j]));
-      _mesh->m_vb.m_vVertex[j].setVertexNormal(getPos(_aiMesh->mNormals[j]));
+      _mesh->m_vb->m_vVertex[j].setVertexCoord(getPos(_aiMesh->mVertices[j]));
+      _mesh->m_vb->m_vVertex[j].setVertexNormal(getPos(_aiMesh->mNormals[j]));
 
       /**
       ************************
@@ -97,8 +97,8 @@ namespace amEngineSDK {
       ************************
       */
       if (_aiMesh->mTextureCoords[0]) {
-        _mesh->m_vb.m_vVertex[j].u = _aiMesh->mTextureCoords[0][j].x;
-        _mesh->m_vb.m_vVertex[j].v = _aiMesh->mTextureCoords[0][j].y;
+        _mesh->m_vb->m_vVertex[j].u = _aiMesh->mTextureCoords[0][j].x;
+        _mesh->m_vb->m_vVertex[j].v = _aiMesh->mTextureCoords[0][j].y;
       }
     }
 
@@ -111,21 +111,23 @@ namespace amEngineSDK {
     uint32 j = 0;
     uint32 nFaces = _aiMesh->mNumFaces;
     aiFace* face = nullptr;
-    _mesh->m_ib.m_vecIB.resize(nFaces * 3);
+    _mesh->m_ib->m_vecIB.resize(nFaces * 3);
     for (uint32 i = 0; i < nFaces; ++i) {
       face = &_aiMesh->mFaces[i];
       for (j = 0; j < face->mNumIndices; ++j) {
-        _mesh->m_ib.m_vecIB[nIndex] = face->mIndices[j];
+        _mesh->m_ib->m_vecIB[nIndex] = face->mIndices[j];
         ++nIndex;
       }
     }
     if (nIndex != nFaces * 3) {
-      _mesh->m_ib.m_vecIB.resize(nIndex);
+      _mesh->m_ib->m_vecIB.resize(nIndex);
     }
   }
 
   void 
-  processMaterial(aiMaterial* _aiMat, amMesh* _mesh, amModel* _model) {
+  processMaterial(aiMaterial* _aiMat, 
+                  amMesh* _mesh, 
+                  amModel* _model) {
     /**
     ************************
     *  Load Material data
@@ -270,7 +272,7 @@ namespace amEngineSDK {
   }
 
   amTexture*
-  amResourceManager::CreateTexture(const String & pathName, 
+  amResourceManager::CreateTexture(const String& pathName, 
                                    const int32 _textureFlags) {
     int32 width, height, channels;
     amTexture* tex = new amTexture();
@@ -352,7 +354,7 @@ namespace amEngineSDK {
   }
 
   amShaderResourceView*
-  amResourceManager::RegisterTexture(amShaderResourceView * _res,
+  amResourceManager::RegisterTexture(amShaderResourceView* _res,
                                      amTexture* _tex,
                                      const int32 _format,
                                      const int32 _srv) {
@@ -364,7 +366,7 @@ namespace amEngineSDK {
   }
 
   amRenderTargetView* 
-  amResourceManager::RegisterRenderTarget(amRenderTargetView * _rt) {
+  amResourceManager::RegisterRenderTarget(amRenderTargetView* _rt) {
     _rt;
     return nullptr;
   }
@@ -423,7 +425,7 @@ namespace amEngineSDK {
   }
 
   amRenderTargetView*
-  amResourceManager::CreateRenderTarget(amRenderTargetView * _rtv,
+  amResourceManager::CreateRenderTarget(amRenderTargetView* _rtv,
                                         const int32 _format,
                                         const bool _hdr) {
 
@@ -437,8 +439,8 @@ namespace amEngineSDK {
   }
 
   void 
-  amResourceManager::fillMaterial(amMaterial * _mat, 
-                                  amTextureObject * _tex) {
+  amResourceManager::fillMaterial(amMaterial* _mat, 
+                                  amTextureObject* _tex) {
 
     _tex;
     if (_mat->m_vecTex.size() < 5) { //Change the 5 to a const
@@ -451,7 +453,24 @@ namespace amEngineSDK {
   }
 
   void 
-  amResourceManager::setDevice(amDevice * _dv) {
+  amResourceManager::setDevice(amDevice* _dv) {
     m_dv = _dv;
+  }
+
+  const void*
+  amResourceManager::GetScene(const String& _pathname) {
+    Assimp::Importer importer;
+    const aiScene* scene = importer.ReadFile(_pathname.c_str(),
+                                             aiProcess_CalcTangentSpace |
+                                             aiProcess_Triangulate |
+                                             aiProcess_GenUVCoords |
+                                             aiProcess_GenSmoothNormals |
+                                             aiProcess_JoinIdenticalVertices |
+                                             aiProcess_SortByPType);
+
+    if (!scene) {
+      return nullptr;
+    }
+    return scene;
   }
 }

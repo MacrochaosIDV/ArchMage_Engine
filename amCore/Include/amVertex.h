@@ -27,13 +27,25 @@ namespace amEngineSDK {
     setVertexCoord(const float _x, const float _y, const float _z);
 
     void 
-    setVertexCoord(const amVector3& v);
+    setVertexCoord(const amVector3& _v);
 
     void 
     setVertexNormal(const float _nx, const float _ny, const float _nz);
 
     void
-    setVertexNormal(const amVector3& v);
+    setVertexNormal(const amVector3& _v);
+
+    void
+    setVertexTangent(const float _tx, const float _ty, const float _tz);
+
+    void
+    setVertexTangent(const amVector3& _v);
+
+    void
+    setVertexBinormal(const float _bx, const float _by, const float _bz);
+
+    void
+    setVertexBinormal(const amVector3& _v);
 
     void 
     setVertexUV(const float _u, const float _v);
@@ -44,8 +56,8 @@ namespace amEngineSDK {
     
     float x; float y; float z;
     float u; float v;
-    //float tx; float ty; float tz;
-    //float bx; float by; float bz;
+    float tx; float ty; float tz;
+    float bx; float by; float bz;
     float nx; float ny; float nz;
     
   };

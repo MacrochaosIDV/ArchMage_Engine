@@ -31,8 +31,8 @@ namespace amEngineSDK {
     uint32 
     getIndexCount();
 
-    amIndexBuffer m_ib;
-    amVertexBuffer m_vb;
+    amIndexBuffer* m_ib;
+    amVertexBuffer* m_vb;
     amShader* m_shader;
     amMaterial* m_mat;
   };

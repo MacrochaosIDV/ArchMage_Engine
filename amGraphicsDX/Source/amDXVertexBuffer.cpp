@@ -2,7 +2,12 @@
 #include "amDXDevice.h"
 
 namespace amEngineSDK {
-  void 
+
+  amDXVertexBuffer::amDXVertexBuffer(const uint32 _size) {
+    m_vVertex.resize(_size);
+  }
+
+  void
   amDXVertexBuffer::setBufferData(D3D11_USAGE _usageF,
                                   const int32 _RBF) {
     memset(&m_bd, 0, sizeof(m_bd));

@@ -4,6 +4,10 @@
 namespace amEngineSDK {
   amDXIndexBuffer::amDXIndexBuffer() {}
 
+  amDXIndexBuffer::amDXIndexBuffer(const uint32 _size) {
+    m_vecIB.resize(_size);
+  }
+
   amDXIndexBuffer::~amDXIndexBuffer() {}
 
   void 

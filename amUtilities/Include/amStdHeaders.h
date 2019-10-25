@@ -40,6 +40,7 @@
 #include <stack>
 #include <deque>
 
+
 #endif
 
 namespace amEngineSDK {
@@ -90,33 +91,33 @@ namespace amEngineSDK {
 
   template<class _Kty,
            class _Ty,
-           class _Pr = less<_Kty>,
-           class _Alloc = std::allocator<pair<const _Kty, _Ty>>>
+           class _Pr = std::less<_Kty>,
+           class _Alloc = std::allocator<std::pair<const _Kty, _Ty>>>
   using Map = std::map<_Kty, _Ty, _Pr, _Alloc>;
 
-  template<class _Ty, class _Container = deque<_Ty> >
+  template<class _Ty, class _Container = std::deque<_Ty> >
   using Queue = std::queue<_Ty, _Container>;
 
   template<class _Kty,
-           class _Pr = less<_Kty>,
+           class _Pr = std::less<_Kty>,
            class _Alloc = std::allocator<_Kty>>
   using Set = std::set<_Kty, _Pr, _Alloc>;
 
   template<class _Kty,
            class _Ty,
-           class _Hasher = hash<_Kty>,
-           class _Keyeq = equal_to<_Kty>,
-           class _Alloc = std::allocator<pair<const _Kty, _Ty>>>
+           class _Hasher = std::hash<_Kty>,
+           class _Keyeq = std::equal_to<_Kty>,
+           class _Alloc = std::allocator<std::pair<const _Kty, _Ty>>>
   using UMap = std::unordered_map<_Kty, _Ty, _Hasher, _Keyeq, _Alloc>;
 
   template<class _Kty,
-           class _Hasher = hash<_Kty>,
-           class _Keyeq = equal_to<_Kty>,
+           class _Hasher = std::hash<_Kty>,
+           class _Keyeq = std::equal_to<_Kty>,
            class _Alloc = std::allocator<_Kty>>
   using USet = std::unordered_set<_Kty, _Hasher, _Keyeq, _Alloc>;
 
   template<class _Ty,
-           class _Container = deque<_Ty> >
+           class _Container = std::deque<_Ty> >
   using Stack = std::stack<_Ty, _Container>;
 
   template<class _Ty,
@@ -131,7 +132,5 @@ namespace amEngineSDK {
 
   //template<class T1, class T2>
   //using Pair = std::pair<T1, T2, std::allocator<_Ty>>;
-
-  
 #endif
 }

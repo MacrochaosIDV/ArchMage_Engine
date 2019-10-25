@@ -171,5 +171,8 @@
     <ClInclude Include="Include\amModule.h">
       <Filter>Source Files\Systems</Filter>
     </ClInclude>
+    <ClInclude Include="Include\amIOStream.h">
+      <Filter>Source Files\Prerequisites</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

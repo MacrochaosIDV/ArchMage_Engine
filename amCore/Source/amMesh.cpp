@@ -14,8 +14,11 @@ namespace amEngineSDK {
   amMeshBufferSizes 
   amMesh::getVertexIndexSize() {
     amMeshBufferSizes res;
-    res.nIndex = m_ib.m_vecIB.size();
-    res.nVertex = m_vb.m_vVertex.size();
+    memset(&res, 0, sizeof(res));
+    if (m_ib)
+      res.nIndex = m_ib->m_vecIB.size();
+    if (m_vb)
+      res.nVertex = m_vb->m_vVertex.size();
     return res;
   }
 
@@ -25,6 +28,8 @@ namespace amEngineSDK {
 
   uint32
   amMesh::getIndexCount() {
-    return static_cast<uint32>(m_ib.m_vecIB.size());
+    if (m_ib)
+      return static_cast<uint32>(m_ib->m_vecIB.size());
+    return 0;
   }
 }

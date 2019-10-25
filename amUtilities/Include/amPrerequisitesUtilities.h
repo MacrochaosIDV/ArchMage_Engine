@@ -17,3 +17,4 @@
 #include "amPlatformTypes.h"
 #include "amFwdDeclUtilities.h"
 #include "amStdHeaders.h"
+#include "amIOStream.h"

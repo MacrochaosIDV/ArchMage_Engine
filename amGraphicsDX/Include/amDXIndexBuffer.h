@@ -7,6 +7,7 @@ namespace amEngineSDK {
   {
   public:
     amDXIndexBuffer();
+    amDXIndexBuffer(const uint32 _size);
     ~amDXIndexBuffer();
 
     void 

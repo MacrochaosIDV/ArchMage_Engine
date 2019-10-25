@@ -10,7 +10,8 @@ namespace amEngineSDK {
                                                  const uint32 _width, 
                                                  const float _scale) {
     m_texResource = new amDXTexture();
-    m_texResource->resize(_height * _scale, _width * _scale);
+    m_texResource->resize(static_cast<uint32>(_height * _scale), 
+                          static_cast<uint32>(_width * _scale));
   }
 
   amDXShaderResourceView::~amDXShaderResourceView() {}

@@ -12,6 +12,7 @@ namespace amEngineSDK {
   {
    public:
     amDXVertexBuffer() = default;
+    amDXVertexBuffer(const uint32 _size);
     ~amDXVertexBuffer() = default;
 
     void 

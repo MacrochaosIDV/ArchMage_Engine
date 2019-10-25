@@ -210,6 +210,7 @@
     <ClInclude Include="Include\amCapsule.h" />
     <ClInclude Include="Include\amCircle2D.h" />
     <ClInclude Include="Include\amFrustrum.h" />
+    <ClInclude Include="Include\amIOStream.h" />
     <ClInclude Include="Include\amLine2D.h" />
     <ClInclude Include="Include\amMath.h" />
     <ClInclude Include="Include\amMatrix4x4.h" />

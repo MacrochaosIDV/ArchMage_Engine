@@ -1,6 +1,9 @@
 #pragma once
 #include "amPrerequisitesCore.h"
 
+#include <fstream>
+
+
 namespace amEngineSDK {
   namespace amResourceType {
     enum E
@@ -21,8 +24,13 @@ namespace amEngineSDK {
     amResource();
     ~amResource();
 
+    virtual void 
+    operator<<(FStream& f);
+
+    virtual void
+    operator>>(FStream& f);
+
     amResourceType::E m_resourceType;
     amResourceBindFlags::E m_resBindFlag;
-    void* m_pApiResource;
   };
 }

@@ -1,9 +1,10 @@
 #pragma once
 #include "amPrerequisitesCore.h"
+#include "amResource.h"
 #include "amVertex.h"
 
 namespace amEngineSDK {
-  class AM_CORE_EXPORT amVertexBuffer
+  class AM_CORE_EXPORT amVertexBuffer : public amResource
   {
   public:
     amVertexBuffer();

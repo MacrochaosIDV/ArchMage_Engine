@@ -143,11 +143,11 @@
       <LanguageStandard>stdcpp14</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PreprocessorDefinitions>AM_GRAPHICSDX_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(DEVLIBS)EASTL/include/;$(DEVLIBS)EASTL\test\packages\EABase\include\Common\;$(ProjectDir)Include\;$(SolutionDir)amCore\Include\;$(SolutionDir)amUtilities\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(DEVLIBS)EASTL/include/;$(DEVLIBS)EASTL\test\packages\EABase\include\Common\;$(ProjectDir)Include\;$(SolutionDir)amCore\Include\;$(SolutionDir)amUtilities\Include\;$(DEVLIBS)assimp-master\include\;$(DEVLIBS)stb-master\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>amUtilitiesd.lib;amCored.lib;d3d11.lib;dxguid.lib;D3DCompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Lib\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>amUtilitiesd.lib;amCored.lib;d3d11.lib;dxguid.lib;D3DCompiler.lib;assimp-vc140-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Lib\$(PlatformTarget);$(DEVLIBS)assimp-master\lib\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)Lib\$(PlatformTarget)\$(TargetName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
@@ -162,11 +162,11 @@
       <LanguageStandard>stdcpp14</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PreprocessorDefinitions>AM_GRAPHICSDX_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(DEVLIBS)EASTL/include/;$(DEVLIBS)EASTL\test\packages\EABase\include\Common\;$(ProjectDir)Include\;$(SolutionDir)amCore\Include\;$(SolutionDir)amUtilities\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(DEVLIBS)EASTL/include/;$(DEVLIBS)EASTL\test\packages\EABase\include\Common\;$(ProjectDir)Include\;$(SolutionDir)amCore\Include\;$(SolutionDir)amUtilities\Include\;$(DEVLIBS)assimp-master\include\;$(DEVLIBS)stb-master\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>amUtilitiesd.lib;amCored.lib;d3d11.lib;dxguid.lib;D3DCompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Lib\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>amUtilitiesd.lib;amCored.lib;d3d11.lib;dxguid.lib;D3DCompiler.lib;assimp-vc140-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Lib\$(PlatformTarget);$(DEVLIBS)assimp-master\lib\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)Lib\$(PlatformTarget)\$(TargetName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
@@ -183,13 +183,13 @@
       <LanguageStandard>stdcpp14</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PreprocessorDefinitions>AM_GRAPHICSDX_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(DEVLIBS)EASTL/include/;$(DEVLIBS)EASTL\test\packages\EABase\include\Common\;$(ProjectDir)Include\;$(SolutionDir)amCore\Include\;$(SolutionDir)amUtilities\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(DEVLIBS)EASTL/include/;$(DEVLIBS)EASTL\test\packages\EABase\include\Common\;$(ProjectDir)Include\;$(SolutionDir)amCore\Include\;$(SolutionDir)amUtilities\Include\;$(DEVLIBS)assimp-master\include\;$(DEVLIBS)stb-master\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>amUtilities.lib;amCore.lib;d3d11.lib;dxguid.lib;D3DCompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Lib\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>amUtilities.lib;amCore.lib;d3d11.lib;dxguid.lib;D3DCompiler.lib;assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Lib\$(PlatformTarget);$(DEVLIBS)assimp-master\lib\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)Lib\$(PlatformTarget)\$(TargetName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
@@ -206,13 +206,13 @@
       <LanguageStandard>stdcpp14</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PreprocessorDefinitions>AM_GRAPHICSDX_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(DEVLIBS)EASTL/include/;$(DEVLIBS)EASTL\test\packages\EABase\include\Common\;$(ProjectDir)Include\;$(SolutionDir)amCore\Include\;$(SolutionDir)amUtilities\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(DEVLIBS)EASTL/include/;$(DEVLIBS)EASTL\test\packages\EABase\include\Common\;$(ProjectDir)Include\;$(SolutionDir)amCore\Include\;$(SolutionDir)amUtilities\Include\;$(DEVLIBS)assimp-master\include\;$(DEVLIBS)stb-master\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>amUtilities.lib;amCore.lib;d3d11.lib;dxguid.lib;D3DCompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Lib\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>amUtilities.lib;amCore.lib;d3d11.lib;dxguid.lib;D3DCompiler.lib;assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Lib\$(PlatformTarget);$(DEVLIBS)assimp-master\lib\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)Lib\$(PlatformTarget)\$(TargetName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>

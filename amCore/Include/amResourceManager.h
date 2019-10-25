@@ -13,8 +13,6 @@ namespace amEngineSDK {
   class amModel;
   class amMesh;
 
-  
-
   class AM_CORE_EXPORT amResourceManager
   {
   public:
@@ -79,6 +77,9 @@ namespace amEngineSDK {
 
     void 
     setDevice(amDevice* _dv);
+
+    const void*
+    GetScene(const String& _pathname);
 
     /**
     ************************

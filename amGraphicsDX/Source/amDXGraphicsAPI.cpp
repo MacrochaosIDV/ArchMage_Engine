@@ -4,14 +4,22 @@
 #include <amMesh.h>
 #include <amTexture.h>
 #include <amModel.h>
+#include <amMesh.h>
 #include <amResource.h>
+#include <amMaterial.h>
 
+#include <stb_image.h>
+#include <assimp/Importer.hpp> // C++ importer interface
+#include <assimp/scene.h> // Output data structure
+#include <assimp/postprocess.h> // Post processing flags
+#include <assimp/pbrmaterial.h> // Post processing flags
 
 #include "amDXTexture.h"
 #include "amDXTextureObject.h"
 #include "amDXConstantBuffer.h"
 #include "amDXSamplerState.h"
 #include "amDXDepthStencilView.h"
+#include "amDXShaderResourceView.h"
 #include "amDXPixelShader.h"
 #include "amDXVertexShader.h"
 #include "amDXInputLayout.h"
@@ -22,6 +30,20 @@
 
 
 namespace amEngineSDK {
+  /**
+  ************************
+  *  Function forward declarations
+  ************************
+  */
+
+  void
+  process_Mesh(aiMesh* _aiMesh, amMesh* _mesh);
+
+  void
+  process_Material(aiMaterial* _aiMat, amMesh* _mesh, amModel* _model);
+
+  amVector3
+  get_Pos(const aiVector3D& other);
 
   D3D_DRIVER_TYPE  g_driverType = D3D_DRIVER_TYPE_NULL;
   D3D_FEATURE_LEVEL g_featureLevel = D3D_FEATURE_LEVEL_11_0;
@@ -365,8 +387,8 @@ namespace amEngineSDK {
     * Set the Vertex & Index buffer
     ************************
     */
-    m_pContext->setVertexBuffer(&_pMesh->m_vb, _pMesh->m_vb.getVertSize(), 0);
-    m_pContext->setIndexBuffer(&_pMesh->m_ib);
+    m_pContext->setVertexBuffer(_pMesh->m_vb, _pMesh->m_vb->getVertSize(), 0);
+    m_pContext->setIndexBuffer(_pMesh->m_ib);
     uint32 ibSize = _pMesh->getIndexCount();
 
     /**
@@ -395,7 +417,7 @@ namespace amEngineSDK {
     * Draw
     ************************
     */
-    m_pContext->drawIndexed(ibSize, _pMesh->m_ib.m_vecIB[0], 0);
+    m_pContext->drawIndexed(ibSize, _pMesh->m_ib->m_vecIB[0], 0);
   }
 
   void 
@@ -516,9 +538,8 @@ namespace amEngineSDK {
   amDXGraphicsAPI::createDepthStencilV(const uint32 _height,
                                        const uint32 _width,
                                        const uint32 _format) {
+
     amDXDepthStencilView* depth = new amDXDepthStencilView(_height, _width);
-    //depth->m_tex = new amDXTexture();
-    //depth->resize(_height, _width);
     m_pDevice->createDepthStencilView(depth, 
                                       amResourceBindFlags::kBIND_DEPTH_STENCIL,
                                       _format);
@@ -546,14 +567,6 @@ namespace amEngineSDK {
     return nullptr;
   }
 
-  amModel* 
-  amDXGraphicsAPI::createModel(const String& _pathName, 
-                               const uint32 _meshLoadFlags) {
-    _pathName;
-    _meshLoadFlags;
-    return nullptr;
-  }
-
   amMaterial* 
   amDXGraphicsAPI::CreateMaterial(amTextureObject* _tex, 
                                   const String& _matName) {
@@ -569,9 +582,214 @@ namespace amEngineSDK {
     _textureFlags;
     return nullptr;
   }
-  amModel * amDXGraphicsAPI::CreateModel(const String & _pathName, const uint32 _meshLoadFlags) {
+
+  amModel* 
+  amDXGraphicsAPI::CreateModel(const String& _pathName, 
+                               const uint32 _meshLoadFlags) {
     amModel* model = new amModel();
+    Assimp::Importer importer;
+    const aiScene* scene = importer.ReadFile(_pathName.c_str(),
+                                             aiProcess_CalcTangentSpace |
+                                             aiProcess_Triangulate |
+                                             aiProcess_GenUVCoords |
+                                             aiProcess_GenSmoothNormals |
+                                             aiProcess_JoinIdenticalVertices |
+                                             aiProcess_SortByPType);
+    if (!scene)
+      return nullptr;
+    uint32 nMeshes = scene->mNumMeshes;
+
+    /**
+    ************************
+    *  If model loaded do a pass for each mesh
+    ************************
+    */
+    for (uint32 i = 0; i < nMeshes; ++i) {
+      amMesh* mesh = new amMesh();
+
+      process_Mesh(scene->mMeshes[i], mesh);
+      if (_meshLoadFlags != amMeshLoadFlags::E::kNO_MATS) {
+        if (i < scene->mNumMaterials) {
+          process_Material(scene->mMaterials[scene->mMeshes[i]->mMaterialIndex], mesh, model);
+        }
+      }
+      model->m_vecMeshes.push_back(mesh);
+    }
+    // We're done. Everything will be cleaned up by the importer destructor
+    //m_vecResources.push_back(model);
 
     return model;
+  }
+
+  /**
+  ************************************************************************
+  *
+  *  @Helper functions for loading resources
+  *
+  ************************************************************************
+  */
+
+  /**
+  *-----------------------
+  *
+  *  @Process the mesh 
+  *
+  *-----------------------
+  */
+  void
+  process_Mesh(aiMesh* _aiMesh, amMesh* _mesh) {
+    /**
+      ************************
+      *  Load Vertex data for the mesh
+      ************************
+      */
+
+
+    uint32 nvertx = _aiMesh->mNumVertices;
+    _mesh->m_vb = new amDXVertexBuffer(nvertx);
+    for (uint32 j = 0; j < nvertx; ++j) {
+      _mesh->m_vb->m_vVertex[j].setVertexCoord(get_Pos(_aiMesh->mVertices[j]));
+      _mesh->m_vb->m_vVertex[j].setVertexNormal(get_Pos(_aiMesh->mNormals[j]));
+      _mesh->m_vb->m_vVertex[j].setVertexTangent(get_Pos(_aiMesh->mTangents[j]));
+      _mesh->m_vb->m_vVertex[j].setVertexBinormal(get_Pos(_aiMesh->mBitangents[j]));
+
+      /**
+      ************************
+      *  Load UV data for the mesh if it exists
+      ************************
+      */
+      if (_aiMesh->mTextureCoords[0]) {
+        _mesh->m_vb->m_vVertex[j].u = _aiMesh->mTextureCoords[0][j].x;
+        _mesh->m_vb->m_vVertex[j].v = _aiMesh->mTextureCoords[0][j].y;
+      }
+    }
+
+    /**
+      ************************
+      *  Load Index data for the mesh
+      ************************
+      */
+    uint32 nIndex = 0;
+    uint32 j = 0;
+    uint32 nFaces = _aiMesh->mNumFaces;
+    aiFace* face = nullptr;
+    _mesh->m_ib = new amDXIndexBuffer(nFaces * 3);
+    for (uint32 i = 0; i < nFaces; ++i) {
+      face = &_aiMesh->mFaces[i];
+      for (j = 0; j < face->mNumIndices; ++j) {
+        _mesh->m_ib->m_vecIB[nIndex] = face->mIndices[j];
+        ++nIndex;
+      }
+    }
+    if (nIndex != nFaces * 3) {
+      _mesh->m_ib->m_vecIB.resize(nIndex);
+    }
+    /**
+    ************************
+    *  Create the Index Buffer in the device
+    ************************
+    */
+
+  }
+
+  /**
+  *-----------------------
+  *
+  *  @Process the material
+  *
+  *-----------------------
+  */
+  void
+  process_Material(aiMaterial* _aiMat,
+                  amMesh* _mesh,
+                  amModel* _model) {
+    /**
+    ************************
+    *  Load Material data
+    ************************
+    */
+    //TODO: make _mesh->m_mat not be nullptr 
+    uint32 nMatTextures = _aiMat->mNumProperties;
+    uint32 nModelTextures = static_cast<uint32>(_model->m_vecTex.size());
+    _mesh->m_mat = new amMaterial();
+    _mesh->m_mat->m_vecTex.resize(nMatTextures);
+    _model->m_vecTex.resize(nModelTextures + nMatTextures);
+    for (uint32 j = 0; j < nMatTextures; ++j) {
+      uint32 texTYpe = _aiMat->mProperties[j]->mType;
+      //_mesh->m_mat->m_vecTex[j] = new amTextureObject();
+      _mesh->m_mat->m_vecTex[j]->m_texResource->m_fileName = _aiMat->GetName().C_Str();
+      _mesh->m_mat->m_vecTex[j]->m_texResource->m_tBuffer.resize(_aiMat->mProperties[j]->mDataLength * sizeof(SIZE_T));
+      /**
+      ************************
+      *  Get texture types of the material
+      ************************
+      */
+      if (texTYpe == aiTextureType::aiTextureType_DIFFUSE)
+        _mesh->m_mat->m_vecTex[j]->m_texResource->m_tType = amTexType::E::kALBEDO;
+      else if (texTYpe == aiTextureType::aiTextureType_EMISSIVE)
+        _mesh->m_mat->m_vecTex[j]->m_texResource->m_tType = amTexType::E::kEMISSIVE;
+      else if (texTYpe == aiTextureType::aiTextureType_NORMALS)
+        _mesh->m_mat->m_vecTex[j]->m_texResource->m_tType = amTexType::E::kNORMAL;
+      else if (texTYpe == aiTextureType::AI_MATKEY_GLTF_PBRMETALLICROUGHNESS_METALLICROUGHNESS_TEXTURE) {
+        //if (_aiMat->GetTexture(AI_MATKEY_GLTF_PBRMETALLICROUGHNESS_METALLIC_FACTOR, j, )) {
+          //TODO: add metalness & roughness, revert to spec = metal & shiny = rough
+        //}
+      }
+      else
+        _mesh->m_mat->m_vecTex[j]->m_texResource->m_tType = amTexType::E::kDEFAULT;
+      /**
+      ************************
+      *  Copy the texture buffer
+      ************************
+      */
+      memcpy(&_mesh->m_mat->m_vecTex[j]->m_texResource->m_tBuffer,
+             _aiMat->mProperties[j]->mData,
+             _aiMat->mProperties[j]->mDataLength);
+      /**
+      ************************
+      *  Save a copy of the pointer to the model
+      ************************
+      */
+      _model->m_vecTex[nModelTextures + j]->m_tex = _mesh->m_mat->m_vecTex[j]->m_texResource;
+    }
+  }
+
+  String
+  aiStr_to_amStr(aiString& _aiStr) {
+    return _aiStr.C_Str();
+  }
+
+  amVector3
+  get_Pos(const aiVector3D& other) {
+    amVector3 v;
+    v.x = other.x;
+    v.y = other.y;
+    v.z = other.z;
+    return v;
+  }
+
+  amVector2
+  getUV(const aiVector3t<ai_real>& other) {
+    amVector2 v;
+    v.x = other.x;
+    v.y = other.y;
+    return v;
+  }
+
+  amVector4
+  getColorRGBA(const aiColor4D& other) {
+    amVector4 v;
+    v.x = other.r;
+    v.y = other.g;
+    v.z = other.b;
+    v.w = other.a;
+    return v;
+  }
+
+  aiString
+  str_to_aiStr(const String& str) {
+    aiString aiStr;
+    aiStr.Set(str);
+    return aiStr;
   }
 }

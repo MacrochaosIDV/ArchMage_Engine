@@ -27,6 +27,7 @@
 namespace amEngineSDK {
   class amMesh;
   class amModel;
+  class amMaterial;
   class amTexture;
   class amDXTexture;
   class amDXConstantBuffer;
@@ -136,10 +137,6 @@ namespace amEngineSDK {
     createTexture(const String& _pathName, 
                   const uint32 _textureFlags = 0);
 
-    virtual amModel*
-    createModel(const String& _pathName,
-                const uint32 _meshLoadFlags = 0);
-
     virtual amDXDepthStencilView*
     createDepthStencilV(const uint32 _height,
                         const uint32 _width,
@@ -152,8 +149,9 @@ namespace amEngineSDK {
     amMaterial*
     CreateMaterial(const String& _pathName, uint32 _textureFlags = 0);
 
-    amModel* 
-    CreateModel(const String& _pathName, const uint32 _meshLoadFlags = 0);
+    virtual amModel*
+    CreateModel(const String& _pathName, 
+                const uint32 _meshLoadFlags = 0) override;
 
 
 

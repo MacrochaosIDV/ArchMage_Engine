@@ -144,17 +144,17 @@ namespace amEngineSDK {
     _pathName;
     _textureFlags;
     return nullptr;
-  }
+  }*/
 
   amModel* 
-  amGraphicsAPI::createModel(const String& _pathName, 
+  amGraphicsAPI::CreateModel(const String& _pathName, 
                              const uint32 _meshLoadFlags) {
     _pathName;
     _meshLoadFlags;
     return nullptr;
   }
 
-  amDepthStencilView* 
+  /*amDepthStencilView* 
   amGraphicsAPI::createDepthStencilV(const uint32 _height,
                                      const uint32 _width,
                                      const amFormats::E _format) {

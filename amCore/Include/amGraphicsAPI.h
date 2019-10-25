@@ -136,13 +136,13 @@ namespace amEngineSDK {
                   const amFormats::E _format);
 
     virtual amTexture*
-    createTexture(const String& _pathName, const uint32 _textureFlags = 0);
+    createTexture(const String& _pathName, const uint32 _textureFlags = 0);*/
 
     virtual amModel* 
-    createModel(const String& _pathName,
+    CreateModel(const String& _pathName,
                 const uint32 _meshLoadFlags = 0);
 
-    virtual amDepthStencilView*
+    /*virtual amDepthStencilView*
     createDepthStencilV(const uint32 _height,
                         const uint32 _width,
                         const amFormats::E _format);
