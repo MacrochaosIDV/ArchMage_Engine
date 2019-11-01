@@ -63,13 +63,13 @@ namespace amEngineSDK {
   }
 
   void amDXDeviceContext::setConstBuffer(amConstantBuffer * _CB, amShaderType::E _shdr) {
-    if(_shdr == amShaderType::E::kPIXEL){
+    if(_shdr == amShaderType::kPIXEL){
       setPS_CB(0, 0, _CB);
     }
-    else if (_shdr == amShaderType::E::kVERTEX) {
+    else if (_shdr == amShaderType::kVERTEX) {
       setVS_CB(0, 0, _CB);
     }
-    else if (_shdr == amShaderType::E::kCOMPUTE) {
+    else if (_shdr == amShaderType::kCOMPUTE) {
       setCS_CB(0, 0, _CB);
     }
     else {
@@ -78,23 +78,34 @@ namespace amEngineSDK {
   }
 
   void 
-  amDXDeviceContext::setCS_CB(uint32 _starSlot, uint32 _nViews, amConstantBuffer* _CB ) {
-    m_pDC->CSSetConstantBuffers(_starSlot, _nViews, &reinterpret_cast<amDXConstantBuffer*>(_CB)->m_pCB);
+  amDXDeviceContext::setCS_CB(uint32 _starSlot, 
+                              uint32 _nViews, 
+                              amConstantBuffer* _CB ) {
+    m_pDC->CSSetConstantBuffers(_starSlot, 
+                                _nViews, 
+                                &reinterpret_cast<amDXConstantBuffer*>(_CB)->m_pCB);
   }
 
   void 
-  amDXDeviceContext::setPS_CB(uint32 _starSlot, uint32 _nViews, amConstantBuffer* _CB) {
-    m_pDC->PSSetConstantBuffers(_starSlot, _nViews, &reinterpret_cast<amDXConstantBuffer*>(_CB)->m_pCB);
+  amDXDeviceContext::setPS_CB(uint32 _starSlot, 
+                              uint32 _nViews, 
+                              amConstantBuffer* _CB) {
+    m_pDC->PSSetConstantBuffers(_starSlot, _nViews, 
+                                &reinterpret_cast<amDXConstantBuffer*>(_CB)->m_pCB);
   }
 
   void 
   amDXDeviceContext::setVS_CB(uint32 _starSlot, uint32 _nViews, amConstantBuffer* _CB) {
-    m_pDC->VSSetConstantBuffers(_starSlot, _nViews, &reinterpret_cast<amDXConstantBuffer*>(_CB)->m_pCB);
+    m_pDC->VSSetConstantBuffers(_starSlot, 
+                                _nViews, 
+                                &reinterpret_cast<amDXConstantBuffer*>(_CB)->m_pCB);
   }
 
   void 
-  amDXDeviceContext::clearRenderTargetView(amRenderTargetView * _pRTV, amVector4* _color) {
-    m_pDC->ClearRenderTargetView(reinterpret_cast<amDXRenderTargetView*>(_pRTV)->m_pRTV, _color->getVecArr());
+  amDXDeviceContext::clearRenderTargetView(amRenderTargetView * _pRTV, 
+                                           amVector4* _color) {
+    float vec[4] = {_color->x, _color->y, _color->z, _color->w};
+    m_pDC->ClearRenderTargetView(reinterpret_cast<amDXRenderTargetView*>(_pRTV)->m_pRTV, vec);
   }
 
 }

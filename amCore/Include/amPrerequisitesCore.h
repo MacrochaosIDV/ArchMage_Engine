@@ -77,6 +77,19 @@
 #endif
 
 namespace amEngineSDK {
+
+  /**
+  ************************
+  *  Pre-defined paths to default textures
+  ************************
+  */
+#define AM_MISSING_TEX "Resources/Textures/defaultTexture.png"
+#define AM_BRDF_LUT_TEX "Resources/Textures/ibl_brdf_lut.png"
+#define AM_NORMALS_TEX "Resources/Textures/defaultNormals.png"
+#define AM_BLACK_TEX "Resources/Textures/pureBlack.png"
+#define AM_GREY_TEX "Resources/Textures/midGrey.png"
+#define AM_WHITE_TEX "Resources/Textures/pureWhite.png"
+
   namespace amResourceBindFlags {
     enum E
     {

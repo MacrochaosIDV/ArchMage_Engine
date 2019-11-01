@@ -233,6 +233,7 @@
     <ClInclude Include="Include\amVector3.h" />
     <ClInclude Include="Include\amVector4.h" />
     <ClInclude Include="Include\amWinMath.h" />
+    <ClInclude Include="Include\half.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

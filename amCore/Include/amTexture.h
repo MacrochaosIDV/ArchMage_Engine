@@ -20,6 +20,7 @@ namespace amEngineSDK {
       kCUBEMAP,
       kRENDERTARGET,
       kLUT,
+      kHDR,
       kCOUNT
     };
   }
@@ -36,10 +37,6 @@ namespace amEngineSDK {
            amTexType::E _tType = amTexType::E::kDEFAULT);
 
     virtual void
-    loadFromFile(const String& _filePathName, 
-                 amResourceManager* _pRM);
-
-    virtual void
     unload();
 
     void 
@@ -53,12 +50,13 @@ namespace amEngineSDK {
     ************************
     */
     Vector<ANSICHAR> m_tBuffer;
+
     /**
     ************************
-    * A ptr for creating a buffer of another type
+    * Data buffer for floatRGBA16 textures
     ************************
     */
-    void* m_tBufferF;
+    Vector<HALF> m_tBufferF;
     bool m_hrd;
     String m_fileName;
     amTexType::E m_tType;

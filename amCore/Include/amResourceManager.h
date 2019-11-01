@@ -16,104 +16,31 @@ namespace amEngineSDK {
   class AM_CORE_EXPORT amResourceManager
   {
   public:
-    amResourceManager(amDevice* _dv);
-    ~amResourceManager();
+    amResourceManager() = default;
+    ~amResourceManager() = default;
 
-    amResource* 
-    CreateRegisterModel(const String& pathName,
-                        const int32 = amMeshLoadFlags::E::kNO_FLAG);
+    uint32 
+    addModel(amModel* _model);
 
-    amModel*
-    CreateModel(const String& pathName, 
-                const int32 _flags = amMeshLoadFlags::E::kNO_FLAG);
+    uint32 
+    addMaterial(amMaterial* _mat);
 
-    amTexture*
-    CreateTexture(const String& pathName, const int32 _textureFlags = 0);
+    uint32 
+    addRenderTarget(amRenderTargetView* _rtv);
 
-    amTextureObject*
-    CreateTextureObject(const String& pathName, const int32 _textureFlags = 0);
+    uint32 
+    addSharedResource(amResource* _res);
 
-    /**
-    ************************
-    *  @brief Creates a texObj for render targets' textures
-    *  Only use for render targets
-    ************************
-    */
-    amTextureObject*
-    CreateTextureObjectRT(const uint32 _height, 
-                          const uint32 _width, 
-                          const int32 _format,
-                          const bool _hdr);
+    uint32 
+    addTexture(amResource* _tex);
 
-    amShaderResourceView*
-    RegisterTexture(amShaderResourceView* _res,
-                    amTexture* _tex,
-                    const int32,
-                    const int32 _srv = amSRV_Types::E::kSRV_TEXTURE2D);
 
-    amRenderTargetView* 
-    RegisterRenderTarget(amRenderTargetView* _rt);
-
-    void 
-    loadDeafultTex();
-
-    amMaterial*
-    CreateMaterial(amTextureObject* _tex, const String& _matName = "");
-
-    amMaterial*
-    CreateMaterial(Vector<amTextureObject*>& _texVec, 
-                   const String& _matName = "");
-
-    amMaterial*
-    CreateMaterial(const String& _pathName, const int32 _textureFlags = 0);
-
-    amRenderTargetView* 
-    CreateRenderTarget(amRenderTargetView* _rtv,
-                       const int32 _format,
-                       const bool _hdr);
-
-    void 
-    fillMaterial(amMaterial* _mat, amTextureObject* _tex);
-
-    void 
-    setDevice(amDevice* _dv);
-
-    const void*
-    GetScene(const String& _pathname);
-
-    /**
-    ************************
-    *  Default textures and materials
-    ************************
-    */
-    amTextureObject* m_texObjPureBlack;
-    amTextureObject* m_texObjPureWhite;
-    amTextureObject* m_texObjPureMidGrey;
-    amTextureObject* m_texObjDefaultNormals;
-    amTextureObject* m_texObjIBL_BRDF_LUT;
-    amTextureObject* m_texObjDefaultTex;
-    
     amMaterial* m_defaultMat;
 
-    amDevice* m_dv;
-
-    Vector<amResource*> m_vecResources;
+    Vector<amResource*> m_vecModels;
     Vector<amResource*> m_vecSceneSharedRes;
+    Vector<amResource*> m_vecTextures;
     Vector<amResource*> m_vecRenderTargets;
     Vector<amResource*> m_vecMaterials;
-    /**
-    ************************
-    *
-    *
-    ************************
-    *
-    *  @PRIORITY_1_TODO: re write resource creation process to that
-    *  resManager::get data -> Api::create ptrs -> resManager::store ptrs
-    *
-    ************************
-    *
-    *
-    ************************
-    */
   };
 }

@@ -106,11 +106,11 @@ namespace amEngineSDK {
     tmpLoadResource();
 
     /**
-    ************************
+    ************************************************
     *
     *  @section API resource creation
     *
-    ************************
+    ************************************************
     */
 
     virtual amDXShaderResourceView*
@@ -142,18 +142,14 @@ namespace amEngineSDK {
                         const uint32 _width,
                         const uint32 _format = amFormats::kFORMAT_D24_UNORM_S8_UINT);
 
-    amMaterial*
-    CreateMaterial(amTextureObject* _tex, 
-                   const String& _matName = "Material");
-
-    amMaterial*
-    CreateMaterial(const String& _pathName, uint32 _textureFlags = 0);
-
     virtual amModel*
     CreateModel(const String& _pathName, 
                 const uint32 _meshLoadFlags = 0) override;
 
-
+    /**
+    ************************************************
+    ************************************************
+    */
 
 
 
@@ -189,20 +185,5 @@ namespace amEngineSDK {
     amDXSwapChain*                      m_pSwapChain = NULL;
     amDXDevice*                         m_pDevice = NULL;
     amDXConstantBuffer*                 m_pCB_VP = NULL;
-
-    /**
-    ************************
-    *
-    /**
-    ************************
-    *
-    *  @PRIORITY_1_TODO: re write resource creation process to that
-    *  resManager::get data -> Api::create ptrs -> resManager::store ptrd
-    *
-    ************************
-    *
-    *
-    ************************
-    */
   };
 }

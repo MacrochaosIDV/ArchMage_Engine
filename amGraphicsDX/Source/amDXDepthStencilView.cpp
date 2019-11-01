@@ -8,7 +8,8 @@ namespace amEngineSDK {
                                              const uint32 _width, 
                                              const float _scale) {
     m_tex = new amDXTexture();
-    m_tex->resize(_height * _scale, _width * _scale);
+    m_tex->resize(static_cast<uint32>(_height * _scale), 
+                  static_cast<uint32>(_width * _scale));
   }
 
   amDXDepthStencilView::~amDXDepthStencilView() {}

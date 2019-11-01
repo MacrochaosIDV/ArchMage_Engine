@@ -15,7 +15,6 @@ namespace amEngineSDK {
     amModel();
     ~amModel();
 
-    // TODO: make a shared VB & IB
     /**
     ************************
     * //// Mesh ////
@@ -30,7 +29,8 @@ namespace amEngineSDK {
 
 
     Vector<amMesh*> m_vecMeshes;
-    Vector<amTextureObject*> m_vecTex;
-    Vector<amMaterial*> m_vecMats;
+    uint32 m_numMeshes;
+    //Vector<amTextureObject*> m_vecTex;
+    //Vector<amMaterial*> m_vecMats;
   };
 }

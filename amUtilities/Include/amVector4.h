@@ -122,8 +122,8 @@ namespace amEngineSDK {
     amVector4
     cross3(const amVector4& vec);
 
-    const float*
-    getVecArr();
+    /*const float*
+    getVecArr();*/
     
     float x;
     float y;

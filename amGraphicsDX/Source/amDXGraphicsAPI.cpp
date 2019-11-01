@@ -37,10 +37,12 @@ namespace amEngineSDK {
   */
 
   void
-  process_Mesh(aiMesh* _aiMesh, amMesh* _mesh);
+  process_Mesh(aiMesh* _aiMesh, amMesh* _mesh, amDevice* _dv);
 
   void
-  process_Material(aiMaterial* _aiMat, amMesh* _mesh, amModel* _model);
+  process_Material(aiMaterial* _aiMat, 
+                   amMesh* _mesh, 
+                   amDevice* _dv);
 
   amVector3
   get_Pos(const aiVector3D& other);
@@ -121,31 +123,6 @@ namespace amEngineSDK {
     m_pVertexShader->createVS("Resources/Shaders/VS_GBuffer.hlsl", m_pDevice);
     m_pPixelShader->createPS("Resources/Shaders/PS_PBR.hlsl", m_pDevice);
     m_pInputLayout->Create(m_pDevice, m_pVertexShader);
-    m_pResourceManager->loadDeafultTex();
-
-    m_pResourceManager->CreateRenderTarget(m_rtFullColor,
-                                           amFormats::E::kFORMAT_R16G16B16A16_FLOAT, 
-                                           true);
-
-    m_pResourceManager->CreateRenderTarget(m_rtEmissive,
-                                           amFormats::E::kFORMAT_R8G8B8A8_UNORM,
-                                           false);
-
-    m_pResourceManager->CreateRenderTarget(m_rtNormals,
-                                           amFormats::E::kFORMAT_R8G8B8A8_UNORM,
-                                           false);
-
-    m_pResourceManager->CreateRenderTarget(m_rtBlur,
-                                           amFormats::E::kFORMAT_R8G8B8A8_UNORM,
-                                           false);
-
-    m_pResourceManager->CreateRenderTarget(m_rtLuminance,
-                                           amFormats::E::kFORMAT_R8G8B8A8_UNORM,
-                                           false);
-
-    m_pResourceManager->CreateRenderTarget(m_rtMADR,
-                                           amFormats::E::kFORMAT_R8G8B8A8_UNORM,
-                                           false);
 
     tmpLoadResource();
   }
@@ -173,7 +150,7 @@ namespace amEngineSDK {
 
     m_pCamManager = new amCameraManager();
     m_pRenderManager = new amRenderManager();
-    m_pResourceManager = new amResourceManager(m_pDevice);
+    m_pResourceManager = new amResourceManager();
 
     m_farPlane = new amDXConstantBuffer();
     m_matWorld = new amDXConstantBuffer();
@@ -364,9 +341,9 @@ namespace amEngineSDK {
     * Setup constant buffers
     ************************
     */
-    m_farPlane->setBufferData(amDXUsageFlags::E::kDEFAULT, 0, &m_cam.m_far);
-    m_nearPlane->setBufferData(amDXUsageFlags::E::kDEFAULT, 1, &m_cam.m_near);
-    m_matViewProjection->setBufferData(amDXUsageFlags::E::kDEFAULT, 2, &m_cam.m_mat);
+    m_farPlane->setBufferData(amDXUsageFlags::kDEFAULT, 0, &m_cam.m_far);
+    m_nearPlane->setBufferData(amDXUsageFlags::kDEFAULT, 1, &m_cam.m_near);
+    m_matViewProjection->setBufferData(amDXUsageFlags::kDEFAULT, 2, &m_cam.m_mat);
     
 
   }
@@ -421,7 +398,7 @@ namespace amEngineSDK {
   }
 
   void 
-  amDXGraphicsAPI::setConstantBuffer(amConstantBuffer * _cb, int32 _shaderFlags) {
+  amDXGraphicsAPI::setConstantBuffer(amConstantBuffer* _cb, int32 _shaderFlags) {
     if (amShaderType::kPIXEL == _shaderFlags)
       m_pContext->setPS_CB(0 ,0, _cb);
     else if (amShaderType::kVERTEX == _shaderFlags)
@@ -447,7 +424,7 @@ namespace amEngineSDK {
   amDXGraphicsAPI::clearRenderTargets() {
     m_pContext->clearDepthStencilView(m_pDepthStencilView, 
                                       amClearFlags::E::kCLEAR_DEPTH | 
-                                        amClearFlags::E::kCLEAR_STENCIL, 
+                                      amClearFlags::E::kCLEAR_STENCIL, 
                                       1.0f, 
                                       0);
     m_pContext->clearRenderTargetView(m_rtFullColor, &m_clearColor);
@@ -460,20 +437,7 @@ namespace amEngineSDK {
 
   void 
   amDXGraphicsAPI::tmpLoadResource() {
-    //m_pResourceManager->CreateModel("Resources/3D_Meshes/Cube.x");
-    m_testCube = m_pResourceManager->CreateModel("Resources/3D_Meshes/Cube.x",
-                                                 amMeshLoadFlags::E::kNO_MATS | 
-                                                 amMeshLoadFlags::E::kNO_TEX);
-    String mat = "mat";
-    reinterpret_cast<amModel*>(
-      m_testCube)->m_vecMats.push_back(reinterpret_cast<amMaterial*>(
-        m_pResourceManager->CreateMaterial(reinterpret_cast<amTextureObject*>(
-          m_pResourceManager->m_texObjPureWhite), mat)));
 
-    m_pResourceManager->fillMaterial(reinterpret_cast<amModel*>(
-                                      m_testCube)->m_vecMats[0], 
-                                     reinterpret_cast<amTextureObject*>(
-                                      m_pResourceManager->m_texObjPureBlack));
   }
 
   void 
@@ -503,18 +467,24 @@ namespace amEngineSDK {
   amDXShaderResourceView*
   amDXGraphicsAPI::loadTexture(const String & _pathName, 
                                const uint32 _textureFlags) {
+    /**
+    ***************************************************************************
+    *
+    *  @TODO: this 
+    *
+    ***************************************************************************
+    */
     _pathName;
     _textureFlags;
     return nullptr;
   }
 
   amDXShaderResourceView*
-    amDXGraphicsAPI::createTextureShaderResourceV(const String & _pathName,
-                                                  const uint32 _textureFlags) {
-    _pathName;
-    _textureFlags;
+  amDXGraphicsAPI::createTextureShaderResourceV(const String & _pathName,
+                                                const uint32 _textureFlags) {
     amDXRenderTargetView* dxRTV = new amDXRenderTargetView();
-    dxRTV->m_rt = new amDXTexture();
+    dxRTV->m_rt = createTexture(_pathName, _textureFlags);
+    m_pResourceManager->addTexture(dxRTV->m_rt);
     return nullptr;
   }
 
@@ -530,7 +500,7 @@ namespace amEngineSDK {
     m_pDevice->createRenderTargetView(dxRTV,
                                       _format, 
                                       amResourceBindFlags::kBIND_RENDER_T_SHADER_R);
-    //Store in res manager
+    
     return nullptr;
   }
 
@@ -562,25 +532,53 @@ namespace amEngineSDK {
   amDXTexture*
   amDXGraphicsAPI::createTexture(const String& _pathName, 
                                  const uint32 _textureFlags) {
-    _pathName;
-    _textureFlags;
-    return nullptr;
-  }
+    int32 width, height, channels;
+    amDXTexture* tex = new amDXTexture();
+    tex->m_resBindFlag = amResourceBindFlags::kBIND_SHADER_RESOURCE;
+    UANSICHAR* texdata = stbi_load(_pathName.c_str(),
+                                   &width,
+                                   &height,
+                                   &channels,
+                                   0);
+    tex->m_width = width;
+    tex->m_height = height;
 
-  amMaterial* 
-  amDXGraphicsAPI::CreateMaterial(amTextureObject* _tex, 
-                                  const String& _matName) {
-    _tex;
-    _matName;
-    return nullptr;
-  }
+    /**
+    ************************
+    * Format Detection
+    ************************
+    */
+    //Format is assumed an 8bit rgba texture
+    tex->m_format = amFormats::kFORMAT_R8G8B8A8_UNORM;
 
-  amMaterial* 
-  amDXGraphicsAPI::CreateMaterial(const String& _pathName, 
-                                  uint32 _textureFlags) {
-    _pathName;
-    _textureFlags;
-    return nullptr;
+    if (_textureFlags == amTexType::kMETALNESS ||
+        _textureFlags == amTexType::kROUGHNESS) {
+      //Format becomes greyScale
+      tex->m_format = amFormats::kFORMAT_R32_FLOAT;
+    }
+
+    else if (_textureFlags == amTexType::kLUT ||
+             _textureFlags == amTexType::kCUBEMAP) {
+      if (_textureFlags == amTexType::kCUBEMAP) {
+        //Format becomes 16float for HDR lighting
+        tex->m_format = amFormats::kFORMAT_R16G16B16A16_FLOAT;
+      }
+    }
+
+    if (_textureFlags == amTexType::kHDR) {
+      tex->m_tBufferF.resize(width * height);
+      memcpy(&tex->m_tBufferF, &texdata, width * height);
+    }
+
+    else {
+      tex->m_tBuffer.resize(width * height);
+      memcpy(&tex->m_tBuffer, &texdata, width * height);
+    }
+    tex = createTexture(tex->m_height, 
+                        tex->m_width, 
+                        tex->m_format, 
+                        amResourceBindFlags::kBIND_SHADER_RESOURCE);
+    return tex;
   }
 
   amModel* 
@@ -589,11 +587,12 @@ namespace amEngineSDK {
     amModel* model = new amModel();
     Assimp::Importer importer;
     const aiScene* scene = importer.ReadFile(_pathName.c_str(),
-                                             aiProcess_CalcTangentSpace |
                                              aiProcess_Triangulate |
                                              aiProcess_GenUVCoords |
+                                             aiProcess_CalcTangentSpace |
                                              aiProcess_GenSmoothNormals |
                                              aiProcess_JoinIdenticalVertices |
+                                             aiProcess_RemoveRedundantMaterials |
                                              aiProcess_SortByPType);
     if (!scene)
       return nullptr;
@@ -607,10 +606,12 @@ namespace amEngineSDK {
     for (uint32 i = 0; i < nMeshes; ++i) {
       amMesh* mesh = new amMesh();
 
-      process_Mesh(scene->mMeshes[i], mesh);
-      if (_meshLoadFlags != amMeshLoadFlags::E::kNO_MATS) {
+      process_Mesh(scene->mMeshes[i], mesh, m_pDevice);
+      if (_meshLoadFlags != amMeshLoadFlags::kNO_MATS) {
         if (i < scene->mNumMaterials) {
-          process_Material(scene->mMaterials[scene->mMeshes[i]->mMaterialIndex], mesh, model);
+          process_Material(scene->mMaterials[scene->mMeshes[i]->mMaterialIndex], 
+                           mesh, 
+                           m_pDevice);
         }
       }
       model->m_vecMeshes.push_back(mesh);
@@ -622,22 +623,20 @@ namespace amEngineSDK {
   }
 
   /**
-  ************************************************************************
+  *****************************************************************************
   *
   *  @Helper functions for loading resources
   *
-  ************************************************************************
+  *****************************************************************************
   */
 
   /**
-  *-----------------------
-  *
-  *  @Process the mesh 
-  *
-  *-----------------------
+  *----------------------------------------------------------------------------
+  *  Process the mesh 
+  *----------------------------------------------------------------------------
   */
   void
-  process_Mesh(aiMesh* _aiMesh, amMesh* _mesh) {
+  process_Mesh(aiMesh* _aiMesh, amMesh* _mesh, amDevice* _dv) {
     /**
       ************************
       *  Load Vertex data for the mesh
@@ -686,71 +685,83 @@ namespace amEngineSDK {
     }
     /**
     ************************
-    *  Create the Index Buffer in the device
+    *  Create the Index & Vertex Buffer in the device
     ************************
     */
-
+    _dv->createVertexBuffer(_mesh->m_vb);
+    _dv->createIndexBuffer(_mesh->m_ib);
   }
 
   /**
-  *-----------------------
-  *
-  *  @Process the material
-  *
-  *-----------------------
+  *----------------------------------------------------------------------------
+  *  Process the material
+  *----------------------------------------------------------------------------
   */
   void
   process_Material(aiMaterial* _aiMat,
                   amMesh* _mesh,
-                  amModel* _model) {
+                  amDevice* _dv) {
     /**
     ************************
     *  Load Material data
     ************************
     */
-    //TODO: make _mesh->m_mat not be nullptr 
     uint32 nMatTextures = _aiMat->mNumProperties;
-    uint32 nModelTextures = static_cast<uint32>(_model->m_vecTex.size());
+    //uint32 nModelTextures = static_cast<uint32>(_model->m_vecTex.size());
     _mesh->m_mat = new amMaterial();
-    _mesh->m_mat->m_vecTex.resize(nMatTextures);
-    _model->m_vecTex.resize(nModelTextures + nMatTextures);
+    _mesh->m_mat->m_vecTex.reserve(nMatTextures);
+    //_model->m_vecTex.resize(nModelTextures + nMatTextures);
+
     for (uint32 j = 0; j < nMatTextures; ++j) {
+      if (j >= 4)
+        break;
+      amDXShaderResourceView* tex = new amDXShaderResourceView();
       uint32 texTYpe = _aiMat->mProperties[j]->mType;
-      //_mesh->m_mat->m_vecTex[j] = new amTextureObject();
+      _mesh->m_mat->m_vecTex[j] = tex;
       _mesh->m_mat->m_vecTex[j]->m_texResource->m_fileName = _aiMat->GetName().C_Str();
       _mesh->m_mat->m_vecTex[j]->m_texResource->m_tBuffer.resize(_aiMat->mProperties[j]->mDataLength * sizeof(SIZE_T));
       /**
-      ************************
+      ************************************************
       *  Get texture types of the material
-      ************************
+      ************************************************
       */
-      if (texTYpe == aiTextureType::aiTextureType_DIFFUSE)
+      if (texTYpe == aiTextureType::aiTextureType_DIFFUSE) {
         _mesh->m_mat->m_vecTex[j]->m_texResource->m_tType = amTexType::E::kALBEDO;
-      else if (texTYpe == aiTextureType::aiTextureType_EMISSIVE)
+      }
+      else if (texTYpe == aiTextureType::aiTextureType_EMISSIVE) {
         _mesh->m_mat->m_vecTex[j]->m_texResource->m_tType = amTexType::E::kEMISSIVE;
-      else if (texTYpe == aiTextureType::aiTextureType_NORMALS)
+      }
+      else if (texTYpe == aiTextureType::aiTextureType_NORMALS) {
         _mesh->m_mat->m_vecTex[j]->m_texResource->m_tType = amTexType::E::kNORMAL;
+      }
       else if (texTYpe == aiTextureType::AI_MATKEY_GLTF_PBRMETALLICROUGHNESS_METALLICROUGHNESS_TEXTURE) {
         //if (_aiMat->GetTexture(AI_MATKEY_GLTF_PBRMETALLICROUGHNESS_METALLIC_FACTOR, j, )) {
           //TODO: add metalness & roughness, revert to spec = metal & shiny = rough
         //}
       }
-      else
+      else {
         _mesh->m_mat->m_vecTex[j]->m_texResource->m_tType = amTexType::E::kDEFAULT;
+      }
       /**
-      ************************
+      ************************************************
       *  Copy the texture buffer
-      ************************
+      ************************************************
       */
+      _mesh->m_mat->m_vecTex[j]->m_texResource->m_format = amFormats::kFORMAT_R8G8B8A8_UNORM;
       memcpy(&_mesh->m_mat->m_vecTex[j]->m_texResource->m_tBuffer,
              _aiMat->mProperties[j]->mData,
              _aiMat->mProperties[j]->mDataLength);
       /**
-      ************************
+      ************************************************
       *  Save a copy of the pointer to the model
-      ************************
+      ************************************************
       */
-      _model->m_vecTex[nModelTextures + j]->m_tex = _mesh->m_mat->m_vecTex[j]->m_texResource;
+      //_model->m_vecTex[nModelTextures + j]->m_tex = _mesh->m_mat->m_vecTex[j]->m_texResource;
+      _dv->createShaderResourceView(tex, 
+                                    tex->m_texResource, 
+                                    amSRV_Types::kSRV_TEXTURE2D, 
+                                    amFormats::kFORMAT_R8G8B8A8_UNORM,
+                                    amResourceBindFlags::kBIND_SHADER_RESOURCE);
     }
   }
 

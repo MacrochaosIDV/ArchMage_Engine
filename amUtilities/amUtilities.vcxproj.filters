@@ -174,5 +174,8 @@
     <ClInclude Include="Include\amIOStream.h">
       <Filter>Source Files\Prerequisites</Filter>
     </ClInclude>
+    <ClInclude Include="Include\half.hpp">
+      <Filter>Source Files\Prerequisites</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

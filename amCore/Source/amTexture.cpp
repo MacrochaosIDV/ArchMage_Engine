@@ -17,11 +17,6 @@ namespace amEngineSDK {
   amTexture::~amTexture() {}
 
   void
-  amTexture::loadFromFile(const String& _filePathName, amResourceManager* _pRM) {
-    _pRM->CreateTexture(_filePathName);
-  }
-
-  void
   amTexture::unload() {}
 
   void amTexture::resize(const uint32 _height, const uint32 _width) {

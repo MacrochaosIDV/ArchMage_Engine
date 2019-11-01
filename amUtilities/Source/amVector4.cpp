@@ -157,8 +157,8 @@ namespace amEngineSDK {
     return res;
   }
 
-  const float* amVector4::getVecArr() {
+  /*const float* amVector4::getVecArr() {
     float res[4] = {x,y,z,w};
     return res;
-  }
+  }*/
 }
