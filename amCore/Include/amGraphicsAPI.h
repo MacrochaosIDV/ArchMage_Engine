@@ -42,12 +42,7 @@ namespace amEngineSDK {
     ~amGraphicsAPI();
 
     virtual void 
-    createVertexBuffer(int64 nVertex, int64 vertexSize);
-
-    virtual void 
-    Draw(amMesh* _pMesh,
-         amRenderTarget* _pOutRenderTarget,
-         amMaterial* _pMat = nullptr);
+    Draw(amMesh* _pMesh);
 
     virtual void 
     init(void* _wnd);

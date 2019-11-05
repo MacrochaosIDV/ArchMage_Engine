@@ -1,14 +1,17 @@
 # Folders to ignore
-.vs/
-Intermediate/
-Bin/x64/
-Bin/x86/
-Lib/
-.iobj/
-.pdb/
+.vs/*
+Intermediate/*
+Bin/x64/*
+Bin/x86/*
+Lib/*
+.iobj/*
+.pdb/*
 
 # Prerequisites
 *.d
+
+# Others
+*.ini
 
 # Compiled Object files
 *.slo
@@ -44,3 +47,4 @@ Lib/
 *.exe
 *.out
 *.app
+Bin/Resources/3D_Meshes/Vela/

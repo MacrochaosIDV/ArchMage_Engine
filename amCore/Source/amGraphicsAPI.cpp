@@ -9,17 +9,8 @@ namespace amEngineSDK {
   amGraphicsAPI::~amGraphicsAPI() {}
 
   void 
-  amGraphicsAPI::createVertexBuffer(const int64 nVertex, 
-                                    const  int64 vertexSize) {
-    nVertex;
-    vertexSize;
-  }
-
-  void 
-  amGraphicsAPI::Draw(amMesh* _pMesh,
-                      amRenderTarget* _pOutRenderTarget,
-                      amMaterial* _pMat) {
-    _pMesh; _pMat; _pOutRenderTarget;
+    amGraphicsAPI::Draw(amMesh* _pMesh) {
+    _pMesh;
   }
 
   void 

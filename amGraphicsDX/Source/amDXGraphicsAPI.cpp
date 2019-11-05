@@ -51,12 +51,8 @@ namespace amEngineSDK {
   D3D_FEATURE_LEVEL g_featureLevel = D3D_FEATURE_LEVEL_11_0;
 
 
-  amDXGraphicsAPI::~amDXGraphicsAPI() {}
-
-  void 
-  amDXGraphicsAPI::createVertexBuffer(int32 nVertex, int32 vertexSize) {
-    nVertex;
-    vertexSize;
+  amDXGraphicsAPI::~amDXGraphicsAPI() {
+    CleanupDevice();
   }
 
   void 
@@ -88,17 +84,6 @@ namespace amEngineSDK {
 
   void 
   amDXGraphicsAPI::Run() {
-    /**
-    ************************
-    *
-    *  @TODO: remove Draw functionality from render
-    *  @TODO: make the different passes for differed rendering
-    *  @TODO: make RTVs for textures get set & used & passed
-    *
-    ************************
-    */
-    //m_pContext->clearDepthStencilView(m_pDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
-    
     m_pContext->setInputLayout(m_pInputLayout);
     m_pContext->setPrimitiveTopology();
     m_pContext->setVertexShader(m_pVertexShader);
@@ -106,7 +91,7 @@ namespace amEngineSDK {
     m_pContext->setVS_CB(0, 1, m_pCB_VP);
 
     // Draw with index buffers
-    Draw(m_testCube->m_vecMeshes[0], nullptr);
+    Draw(m_testCube->m_vecMeshes[0]);
     Present();
   }
 
@@ -114,9 +99,7 @@ namespace amEngineSDK {
   amDXGraphicsAPI::initContent() {
     /**
     ************************
-    *
-    *  @TODO: set up render passes with models and shaders
-    *
+    *  @TODO: set up Render passes
     ************************
     */
     m_clearColor = amVector4(0.0f, 0.0f, 0.0f, 1.0f);
@@ -356,9 +339,7 @@ namespace amEngineSDK {
   }
 
   void 
-  amDXGraphicsAPI::Draw(amMesh* _pMesh,
-                        amRenderTarget* _pOutRenderTarget,
-                        amMaterial* _pMat) { //re-writing this to be able to use other mats
+  amDXGraphicsAPI::Draw(amMesh* _pMesh) {
     /**
     ************************
     * Set the Vertex & Index buffer
@@ -373,14 +354,6 @@ namespace amEngineSDK {
     * Set the Textures
     ************************
     */
-    if (_pMat) {
-      //_pMat->setTexsAs_PS_RSV(m_pContext);
-    }
-    else {
-      //_pMesh->m_mat->setTexsAs_PS_RSV(m_pContext);
-    }
-    //ensure the 5 srv for g-buffer
-    _pOutRenderTarget;
     
     //TODO: this
     /**
@@ -437,6 +410,7 @@ namespace amEngineSDK {
 
   void 
   amDXGraphicsAPI::tmpLoadResource() {
+    m_testCube = CreateModel("Resources/3D_Meshes/Cube.x");
 
   }
 
@@ -493,15 +467,13 @@ namespace amEngineSDK {
                                        const uint32 _width, 
                                        const amFormats::E _format, 
                                        const float _scale) {
-    amDXRenderTargetView* dxRTV = new amDXRenderTargetView();
-    dxRTV->m_rt = new amDXTexture();
-    dxRTV->resize(static_cast<uint32>(_height * _scale),
-                  static_cast<uint32>(_width * _scale));
+
+    amDXRenderTargetView* dxRTV = new amDXRenderTargetView(_height, _width, _scale);
     m_pDevice->createRenderTargetView(dxRTV,
                                       _format, 
                                       amResourceBindFlags::kBIND_RENDER_T_SHADER_R);
-    
-    return nullptr;
+    m_pResourceManager->addRenderTarget(dxRTV);
+    return dxRTV;
   }
 
   amDXDepthStencilView*
@@ -513,7 +485,7 @@ namespace amEngineSDK {
     m_pDevice->createDepthStencilView(depth, 
                                       amResourceBindFlags::kBIND_DEPTH_STENCIL,
                                       _format);
-    //Store in res manager
+    m_pResourceManager->addTexture(depth->m_tex);
     return depth;
   }
 
@@ -525,7 +497,6 @@ namespace amEngineSDK {
     amDXTexture* tex = new amDXTexture();
     tex->resize(_height, _width);
     m_pDevice->createTexture(tex, _format, _rbf);
-    //Store in res manager
     return tex;
   }
 
@@ -717,6 +688,12 @@ namespace amEngineSDK {
         break;
       amDXShaderResourceView* tex = new amDXShaderResourceView();
       uint32 texTYpe = _aiMat->mProperties[j]->mType;
+      /**
+      ************************
+      * TODO: Create a DXtex here
+      ************************
+      */
+      _mesh->m_mat->m_vecTex.reserve(nMatTextures);
       _mesh->m_mat->m_vecTex[j] = tex;
       _mesh->m_mat->m_vecTex[j]->m_texResource->m_fileName = _aiMat->GetName().C_Str();
       _mesh->m_mat->m_vecTex[j]->m_texResource->m_tBuffer.resize(_aiMat->mProperties[j]->mDataLength * sizeof(SIZE_T));

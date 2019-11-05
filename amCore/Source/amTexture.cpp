@@ -20,6 +20,8 @@ namespace amEngineSDK {
   amTexture::unload() {}
 
   void amTexture::resize(const uint32 _height, const uint32 _width) {
+    m_height = _height;
+    m_width = _width;
     m_tBuffer.resize(_height * _width);
   }
 
