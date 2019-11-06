@@ -8,59 +8,44 @@
 namespace amEngineSDK {
   amMaterial::amMaterial() {
     m_resourceType = amResourceType::E::kMATERIAL;
+    zero();
   }
 
   amMaterial::amMaterial(const String _name) {
     m_resourceType = amResourceType::E::kMATERIAL;
     m_matName = _name;
+    zero();
   }
 
   amMaterial::amMaterial(const Vector<amShaderResourceView*>& _vecTex) {
     m_resourceType = amResourceType::E::kMATERIAL;
     m_vecTex = _vecTex;
+    zero();
   }
 
   amMaterial::amMaterial(const String _name, const Vector<amShaderResourceView*>& _vecTex) {
     m_resourceType = amResourceType::E::kMATERIAL;
     m_matName = _name;
     m_vecTex = _vecTex;
+    zero();
   }
 
   amMaterial::~amMaterial() {}
 
-  /*void amMaterial::createTexturesAsRSV(amDevice* _dv,
-                                       const int32 _srvType,
-                                       const int32 _format) {
-    int32 size = static_cast<int32>(m_vecTex.size());
-    //m_vecSRV.resize(size);
-    if (size > 0) {
-      for (int32 i = 0; i < size; ++i) {
-        m_vecTex[i]->m_srv->m_texResource = m_vecTex[i]->m_tex;
-        _dv->createShaderResourceView(m_vecTex[i]->m_srv, 
-                                      m_vecTex[i]->m_tex, 
-                                      _srvType, 
-                                      _format, 
-                                      amResourceBindFlags::kBIND_SHADER_RESOURCE);
-      }
-    }
+  void 
+  amMaterial::addTextureToMat(amShaderResourceView* _tex) {
+    if (m_matSize >= 5)
+      return;
+    m_vecTex.push_back(_tex);
+    ++m_matSize;
   }
 
-  void amMaterial::setTexsAs_VS_RSV(amDeviceContext * _dc) {
-    int32 size = static_cast<int32>(m_vecTex.size());
-    if (size <= 0) {
-      for (int32 i = 0; i < size; ++i) {
-        _dc->setVSResources(i, 1, m_vecTex[i]->m_srv);
-      }
-    }
+  void amMaterial::zero() {
+    m_colorAlbedo = amVector4::ZERO;
+    m_colorNormal = amVector4::ZERO;
+    m_colorEmissive = amVector4::ZERO;
+    m_metalness = 0;
+    m_roughness = 0;
+    m_matSize = 0;
   }
-
-  void amMaterial::setTexsAs_PS_RSV(amDeviceContext * _dc) {
-    int32 size = static_cast<int32>(m_vecTex.size());
-    if (size <= 0) {
-      for (int32 i = 0; i < size; ++i) {
-        _dc->setPSResources(i, 1, m_vecTex[i]->m_srv);
-      }
-    }
-  }*/
-
 }

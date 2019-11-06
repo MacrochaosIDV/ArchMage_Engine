@@ -24,6 +24,9 @@
 #include <amCamera.h>
 #include <amVector4.h>
 
+struct aiMesh;
+struct aiMaterial;
+
 namespace amEngineSDK {
   class amMesh;
   class amModel;
@@ -139,8 +142,18 @@ namespace amEngineSDK {
                         const uint32 _format = amFormats::kFORMAT_D24_UNORM_S8_UINT);
 
     virtual amModel*
-    CreateModel(const String& _pathName, 
+    createModel(const String& _pathName, 
                 const uint32 _meshLoadFlags = 0) override;
+
+   private:
+    void
+    process_Material(aiMaterial* _aiMat,
+                     amMesh* _mesh,
+                     amDevice* _dv);
+
+    void 
+    process_Mesh(aiMesh* _aiMesh, amMesh* _mesh, amDevice* _dv);
+   public:
 
     /**
     ************************************************
@@ -173,6 +186,8 @@ namespace amEngineSDK {
     amRenderPass* m_RP_Lighting;
     amRenderPass* m_RP_Luminance;
     amRenderPass* m_RP_Bloom;
+
+    amMaterial* m_defaultMaterial;
 
     amModel* m_testCube;
     

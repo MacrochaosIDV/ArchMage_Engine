@@ -27,13 +27,13 @@ namespace amEngineSDK {
   class AM_CORE_EXPORT amTexture : public amResource
   {
   public:
-    amTexture(Vector<ANSICHAR>* _tBuffer, 
+    amTexture(Vector<UANSICHAR>* _tBuffer, 
               amTexType::E _tType = amTexType::E::kALBEDO);
     amTexture();
     ~amTexture();
 
     virtual void
-    setTex(Vector<ANSICHAR>* _tBuffer, 
+    setTex(Vector<UANSICHAR>* _tBuffer,
            amTexType::E _tType = amTexType::E::kDEFAULT);
 
     virtual void
@@ -49,7 +49,7 @@ namespace amEngineSDK {
     * The data buffer
     ************************
     */
-    Vector<ANSICHAR> m_tBuffer;
+    Vector<UANSICHAR> m_tBuffer;
 
     /**
     ************************

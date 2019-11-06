@@ -36,14 +36,6 @@ namespace amEngineSDK {
   ************************
   */
 
-  void
-  process_Mesh(aiMesh* _aiMesh, amMesh* _mesh, amDevice* _dv);
-
-  void
-  process_Material(aiMaterial* _aiMat, 
-                   amMesh* _mesh, 
-                   amDevice* _dv);
-
   amVector3
   get_Pos(const aiVector3D& other);
 
@@ -106,6 +98,19 @@ namespace amEngineSDK {
     m_pVertexShader->createVS("Resources/Shaders/VS_GBuffer.hlsl", m_pDevice);
     m_pPixelShader->createPS("Resources/Shaders/PS_PBR.hlsl", m_pDevice);
     m_pInputLayout->Create(m_pDevice, m_pVertexShader);
+
+    m_defaultMaterial = new amMaterial("Default Material");
+    m_defaultMaterial->addTextureToMat(createTextureShaderResourceV(AM_MISSING_TEX, 
+                                                                    amTexType::kALBEDO));
+    m_defaultMaterial->addTextureToMat(createTextureShaderResourceV(AM_BLACK_TEX, 
+                                                                    amTexType::kEMISSIVE));
+    m_defaultMaterial->addTextureToMat(createTextureShaderResourceV(AM_NORMALS_TEX, 
+                                                                    amTexType::kNORMAL));
+    m_defaultMaterial->addTextureToMat(createTextureShaderResourceV(AM_WHITE_TEX, 
+                                                                    amTexType::kROUGHNESS));
+    m_defaultMaterial->addTextureToMat(createTextureShaderResourceV(AM_GREY_TEX, 
+                                                                    amTexType::kMETALNESS));
+    m_pResourceManager->addMaterial(m_defaultMaterial);
 
     tmpLoadResource();
   }
@@ -410,8 +415,9 @@ namespace amEngineSDK {
 
   void 
   amDXGraphicsAPI::tmpLoadResource() {
-    m_testCube = CreateModel("Resources/3D_Meshes/Cube.x");
-
+    m_testCube = createModel("Resources/3D_Meshes/Cube.x", 
+                             amMeshLoadFlags::kNO_MATS);
+    m_testCube->m_vecMeshes[0]->m_mat = m_defaultMaterial;
   }
 
   void 
@@ -456,10 +462,10 @@ namespace amEngineSDK {
   amDXShaderResourceView*
   amDXGraphicsAPI::createTextureShaderResourceV(const String & _pathName,
                                                 const uint32 _textureFlags) {
-    amDXRenderTargetView* dxRTV = new amDXRenderTargetView();
-    dxRTV->m_rt = createTexture(_pathName, _textureFlags);
-    m_pResourceManager->addTexture(dxRTV->m_rt);
-    return nullptr;
+    amDXShaderResourceView* dxRTV = new amDXShaderResourceView();
+    dxRTV->m_texResource = createTexture(_pathName, _textureFlags);
+    m_pResourceManager->addTexture(dxRTV->m_texResource);
+    return dxRTV;
   }
 
   amDXRenderTargetView*
@@ -510,7 +516,7 @@ namespace amEngineSDK {
                                    &width,
                                    &height,
                                    &channels,
-                                   0);
+                                   STBI_rgb_alpha);
     tex->m_width = width;
     tex->m_height = height;
 
@@ -525,7 +531,7 @@ namespace amEngineSDK {
     if (_textureFlags == amTexType::kMETALNESS ||
         _textureFlags == amTexType::kROUGHNESS) {
       //Format becomes greyScale
-      tex->m_format = amFormats::kFORMAT_R32_FLOAT;
+      tex->m_format = amFormats::kFORMAT_R8_UNORM;
     }
 
     else if (_textureFlags == amTexType::kLUT ||
@@ -537,13 +543,18 @@ namespace amEngineSDK {
     }
 
     if (_textureFlags == amTexType::kHDR) {
-      tex->m_tBufferF.resize(width * height);
-      memcpy(&tex->m_tBufferF, &texdata, width * height);
+      tex->m_tBufferF.resize(width * height * sizeof(HALF));
+      memcpy(&tex->m_tBufferF[0], &texdata, width * height * sizeof(HALF));
     }
-
     else {
-      tex->m_tBuffer.resize(width * height);
-      memcpy(&tex->m_tBuffer, &texdata, width * height);
+      uint32 arraySize = width * height;
+      tex->m_tBuffer.resize(tex->m_tBuffer.size() + arraySize);
+      memcpy(&tex->m_tBuffer[tex->m_tBuffer.size() - arraySize], 
+             &tex->m_tBuffer[0], 
+             arraySize * sizeof(UANSICHAR));
+      //tex->m_tBuffer.resize(width * height * sizeof(UANSICHAR));
+      //memcpy(&tex->m_tBuffer[0], &texdata, width * height * sizeof(UANSICHAR));
+      //memcpy(&tex->m_tBuffer.begin(), &texdata, width * height * sizeof(UANSICHAR));
     }
     tex = createTexture(tex->m_height, 
                         tex->m_width, 
@@ -553,7 +564,7 @@ namespace amEngineSDK {
   }
 
   amModel* 
-  amDXGraphicsAPI::CreateModel(const String& _pathName, 
+  amDXGraphicsAPI::createModel(const String& _pathName, 
                                const uint32 _meshLoadFlags) {
     amModel* model = new amModel();
     Assimp::Importer importer;
@@ -607,7 +618,9 @@ namespace amEngineSDK {
   *----------------------------------------------------------------------------
   */
   void
-  process_Mesh(aiMesh* _aiMesh, amMesh* _mesh, amDevice* _dv) {
+  amDXGraphicsAPI::process_Mesh(aiMesh* _aiMesh, 
+                                amMesh* _mesh, 
+                                amDevice* _dv) {
     /**
       ************************
       *  Load Vertex data for the mesh
@@ -669,9 +682,9 @@ namespace amEngineSDK {
   *----------------------------------------------------------------------------
   */
   void
-  process_Material(aiMaterial* _aiMat,
-                  amMesh* _mesh,
-                  amDevice* _dv) {
+  amDXGraphicsAPI::process_Material(aiMaterial* _aiMat,
+                                    amMesh* _mesh,
+                                    amDevice* _dv) {
     /**
     ************************
     *  Load Material data
@@ -680,23 +693,18 @@ namespace amEngineSDK {
     uint32 nMatTextures = _aiMat->mNumProperties;
     //uint32 nModelTextures = static_cast<uint32>(_model->m_vecTex.size());
     _mesh->m_mat = new amMaterial();
-    _mesh->m_mat->m_vecTex.reserve(nMatTextures);
+    uint32 matTexCount = (nMatTextures > 5) ? 5 : nMatTextures;
+    _mesh->m_mat->m_vecTex.reserve(matTexCount);
     //_model->m_vecTex.resize(nModelTextures + nMatTextures);
 
-    for (uint32 j = 0; j < nMatTextures; ++j) {
-      if (j >= 4)
-        break;
-      amDXShaderResourceView* tex = new amDXShaderResourceView();
+    for (uint32 j = 0; j < matTexCount; ++j) {
+      uint32 texWidth =  amMath::sqrt(_aiMat->mProperties[j]->mDataLength);
+      uint32 texHeight = texWidth;
+      amDXShaderResourceView* tex = new amDXShaderResourceView(texHeight, 
+                                                               texWidth);
+      tex->m_texResource->m_fileName = _aiMat->GetName().C_Str();
+      _mesh->m_mat->m_vecTex.push_back(tex);
       uint32 texTYpe = _aiMat->mProperties[j]->mType;
-      /**
-      ************************
-      * TODO: Create a DXtex here
-      ************************
-      */
-      _mesh->m_mat->m_vecTex.reserve(nMatTextures);
-      _mesh->m_mat->m_vecTex[j] = tex;
-      _mesh->m_mat->m_vecTex[j]->m_texResource->m_fileName = _aiMat->GetName().C_Str();
-      _mesh->m_mat->m_vecTex[j]->m_texResource->m_tBuffer.resize(_aiMat->mProperties[j]->mDataLength * sizeof(SIZE_T));
       /**
       ************************************************
       *  Get texture types of the material
@@ -711,7 +719,8 @@ namespace amEngineSDK {
       else if (texTYpe == aiTextureType::aiTextureType_NORMALS) {
         _mesh->m_mat->m_vecTex[j]->m_texResource->m_tType = amTexType::E::kNORMAL;
       }
-      else if (texTYpe == aiTextureType::AI_MATKEY_GLTF_PBRMETALLICROUGHNESS_METALLICROUGHNESS_TEXTURE) {
+      else if (texTYpe == 
+               aiTextureType::AI_MATKEY_GLTF_PBRMETALLICROUGHNESS_METALLICROUGHNESS_TEXTURE) {
         //if (_aiMat->GetTexture(AI_MATKEY_GLTF_PBRMETALLICROUGHNESS_METALLIC_FACTOR, j, )) {
           //TODO: add metalness & roughness, revert to spec = metal & shiny = rough
         //}
@@ -734,11 +743,17 @@ namespace amEngineSDK {
       ************************************************
       */
       //_model->m_vecTex[nModelTextures + j]->m_tex = _mesh->m_mat->m_vecTex[j]->m_texResource;
-      _dv->createShaderResourceView(tex, 
-                                    tex->m_texResource, 
-                                    amSRV_Types::kSRV_TEXTURE2D, 
+      _dv->createShaderResourceView(tex,
+                                    tex->m_texResource,
+                                    amSRV_Types::kSRV_TEXTURE2D,
                                     amFormats::kFORMAT_R8G8B8A8_UNORM,
                                     amResourceBindFlags::kBIND_SHADER_RESOURCE);
+      
+      //_mesh->m_mat->m_vecTex.reserve(nMatTextures);
+      //_mesh->m_mat->m_vecTex[j] = tex;
+      //_mesh->m_mat->m_vecTex[j]->m_texResource->m_fileName = _aiMat->GetName().C_Str();
+      //_mesh->m_mat->m_vecTex[j]->m_texResource->m_tBuffer.resize(_aiMat->mProperties[j]->mDataLength * sizeof(SIZE_T));
+      
     }
   }
 

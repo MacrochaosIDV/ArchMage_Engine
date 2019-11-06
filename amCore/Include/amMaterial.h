@@ -34,23 +34,20 @@ namespace amEngineSDK {
 
   class AM_CORE_EXPORT amMaterial : public amResource
   {
-  public:
+   public:
     amMaterial();
     amMaterial(const String _name);
     amMaterial(const Vector<amShaderResourceView*>& _vecTex);
     amMaterial(const String _name, const Vector<amShaderResourceView*>& _vecTex);
     ~amMaterial();
 
-    /*void
-    createTexturesAsRSV(amDevice* _dv,
-                        const int32 = amSRV_Types::E::kSRV_TEXTURE2D,
-                        const int32 = amFormats::E::kFORMAT_R8G8B8A8_UINT);
-
-    void 
-    setTexsAs_VS_RSV(amDeviceContext* _dc);
-
     void
-    setTexsAs_PS_RSV(amDeviceContext* _dc);*/
+    addTextureToMat(amShaderResourceView* _tex);
+   private:
+     void
+     zero();
+
+   public:
 
     Vector<amShaderResourceView*> m_vecTex;
     String m_matName;
@@ -60,5 +57,8 @@ namespace amEngineSDK {
     amVector4 m_colorNormal;
     float m_metalness;
     float m_roughness;
+
+   private:
+    uint8 m_matSize;
   };
 }

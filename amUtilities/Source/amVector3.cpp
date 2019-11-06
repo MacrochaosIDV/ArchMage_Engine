@@ -36,24 +36,21 @@ namespace amEngineSDK {
   amVector3::One = amVector3(VECTOR_INIT::kVECTOR_ONE);
 
   amVector3::amVector3(int32 val) {
+    memset(this, 0, sizeof(amVector3));
     if (val == VECTOR_INIT::kVECTOR_FRONT) {
-      x = 0.0f; y = 0.0f; z = 1.0f;
+      z = 1.0f;
     }
 
     else if (val == VECTOR_INIT::kVECTOR_RIGHT) {
-      x = 1.0f; y = 0.0f; z = 0.0f;
+      x = 1.0f;
     }
 
     else if (val == VECTOR_INIT::kVECTOR_UP) {
-      x = 0.0f; y = 1.0f; z = 0.0f;
-    }
-
-    else if (val == VECTOR_INIT::kVECTOR_ZERO) {
-      x = 0.0f; y = 0.0f; z = 0.0f;
+      y = 1.0f;
     }
 
     else if (val == VECTOR_INIT::kVECTOR_ONE) {
-      x = 1.0f; y = 1.0f; z = 1.0f;
+      x = y =  z = 1.0f;
     }
   }
 

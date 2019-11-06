@@ -18,6 +18,31 @@ namespace amEngineSDK {
 
   amVector4::~amVector4() {}
 
+  const amVector4
+  amVector4::UP = amVector4(FORCE_INIT_VECTOR4::kUP);
+
+  const amVector4
+  amVector4::ZERO = amVector4(FORCE_INIT_VECTOR4::kZERO);
+
+  const amVector4
+  amVector4::RIGHT = amVector4(FORCE_INIT_VECTOR4::kRIGHT);
+
+  const amVector4
+  amVector4::FRONT = amVector4(FORCE_INIT_VECTOR4::kFRONT);
+
+  amVector4::amVector4(const uint32 val) {
+    memset(this, 0, sizeof(amVector4));
+    if (val == FORCE_INIT_VECTOR4::kUP) {
+      y = 1;
+    }
+    if (val == FORCE_INIT_VECTOR4::kRIGHT) {
+      x = 1;
+    }
+    if (val == FORCE_INIT_VECTOR4::kFRONT) {
+      z = 1;
+    }
+  }
+
   amVector4::amVector4(const float& xx, const float& yy, const float& zz, const float& ww) {
     x = xx;
     y = yy;

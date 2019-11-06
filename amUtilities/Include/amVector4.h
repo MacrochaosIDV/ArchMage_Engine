@@ -20,11 +20,35 @@
 #include "amVector3.h"
 
 namespace amEngineSDK {
+  namespace FORCE_INIT_VECTOR4 {
+    enum E
+    {
+      kZERO = 0,
+      kFRONT,
+      kUP,
+      kRIGHT,
+      kCOUNT
+    };
+  }
+
   class AM_UTILITIES_EXPORT amVector4
   {
   public:
     amVector4();
     ~amVector4();
+
+    static const amVector4 ZERO;
+    static const amVector4 FRONT;
+    static const amVector4 UP;
+    static const amVector4 RIGHT;
+
+    /**
+    ************************
+    *  @brief Constructor for firectional constants
+    ************************
+    */
+    amVector4
+    (const uint32 val);
 
     /***********************
     *  @brief Constructor from 3 float values
