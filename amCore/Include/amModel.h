@@ -27,6 +27,9 @@ namespace amEngineSDK {
     void 
     registerMeshTextures(amDevice* _dv);
 
+    void 
+    setMaterial(amMaterial* _mat, const uint32 _matIndex);
+
 
     Vector<amMesh*> m_vecMeshes;
     uint32 m_numMeshes;

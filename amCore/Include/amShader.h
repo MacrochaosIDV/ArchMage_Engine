@@ -7,8 +7,12 @@ namespace amEngineSDK {
 
   class AM_CORE_EXPORT amShader
   {
-  public:
-    amShader();
+   public:
+    amShader() = default;
+    amShader(const String _pathName,
+             const String _shaderName,
+             const String _entryPoint, 
+             const String _shaderModel);
     ~amShader();
 
     virtual int32
@@ -25,6 +29,8 @@ namespace amEngineSDK {
 
     amBlob m_buffer;
     String m_shaderName;
+    String m_pathFileName;
     String m_entryPoint;
+    String m_shaderModel;
   };
 }

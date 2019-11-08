@@ -90,6 +90,38 @@ namespace amEngineSDK {
 #define AM_GREY_TEX "Resources/Textures/midGrey.png"
 #define AM_WHITE_TEX "Resources/Textures/pureWhite.png"
 
+  /**
+  ************************
+  *  Pre-defined paths to Shaders
+  ************************
+  */
+
+  /**
+  * HLSL Shaders
+  */
+#define AM_DX_VS_GBUFFER_SHDR "Resources/Shaders/VS_GBuffer.hlsl"
+#define AM_DX_VS_GENERIC_SHDR "Resources/Shaders/VS_Generic.hlsl"
+
+#define AM_DX_PS_GBUFFER_SHDR "Resources/Shaders/ibl_brdf_lut.hlsl"
+#define AM_DX_PS_SSAO_SHDR "Resources/Shaders/PS_SSAO.hlsl"
+#define AM_DX_PS_BLOOM_SHDR "Resources/Shaders/PS_Bloom.hlsl"
+#define AM_DX_PS_LIGHTING_SHDR "Resources/Shaders/PS_Lighting.hlsl"
+#define AM_DX_PS_LUMINANCE_SHDR "Resources/Shaders/PS_Luminance.hlsl"
+#define AM_DX_PS_KERNELS_SHDR "Resources/Shaders/PS_Kernels.hlsl"
+
+  /**
+  * GLSL Shaders
+  */
+#define AM_GL_VS_GBUFFER_SHDR 
+#define AM_GL_VS_GENERIC_SHDR 
+           
+#define AM_GL_PS_GBUFFER_SHDR
+#define AM_GL_PS_SSAO_SHDR
+#define AM_GL_PS_BLOOM_SHDR
+#define AM_GL_PS_LIGHTING_SHDR
+#define AM_GL_PS_LUMINANCE_SHDR
+#define AM_GL_PS_KERNELS_SHDR
+
   namespace amResourceBindFlags {
     enum E
     {

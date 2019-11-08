@@ -6,8 +6,15 @@
 #include "amDeviceContext.h"
 
 namespace amEngineSDK {
-  amDXPixelShader::amDXPixelShader() {
-    m_ps = nullptr;
+
+  amDXPixelShader::amDXPixelShader(const String _pathName,
+                                   const String _shaderName,
+                                   const String _entryPoint,
+                                   const String _shaderModel) {
+    m_pathFileName = _pathName;
+    m_shaderName = _shaderName;
+    m_entryPoint = _entryPoint;
+    m_shaderModel = _shaderModel;
   }
 
   amDXPixelShader::~amDXPixelShader() {
@@ -78,8 +85,15 @@ namespace amEngineSDK {
 
   void 
   amDXPixelShader::createPS(String pathFileName, amDevice* pDevice) {
-    CompileShaderFromFile(pathFileName.c_str(), "PS", "ps_5_0", reinterpret_cast<void**>(&m_blob));
+    CompileShaderFromFile(m_pathFileName.c_str(), "PS", "ps_5_0", reinterpret_cast<void**>(&m_blob));
     createPixelShader(pDevice);
+  }
+
+  void amDXPixelShader::Compile() {
+    CompileShaderFromFile(m_pathFileName,
+                          m_entryPoint.c_str(),
+                          m_shaderModel.c_str(),
+                          reinterpret_cast<void**>(&m_blob));
   }
 
 }

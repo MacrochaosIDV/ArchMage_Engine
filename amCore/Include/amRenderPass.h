@@ -27,11 +27,14 @@ namespace amEngineSDK {
   {
   public:
     amRenderPass() = default;
-    amRenderPass(amRenderPassStage::E _pass, String _strPS, String _strVS, String _name);
+    amRenderPass(const uint32 _pass, 
+                 String _strPS, 
+                 String _strVS, 
+                 String _name);
     ~amRenderPass();
 
     void 
-    render(Vector<amResource*> _renderObjs);
+    render(Vector<amResource*>* _renderObjs);
 
     int32 
     compileShaders();

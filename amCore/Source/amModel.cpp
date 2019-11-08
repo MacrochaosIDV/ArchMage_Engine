@@ -18,4 +18,9 @@ namespace amEngineSDK {
     }
   }
 
+  void 
+  amModel::setMaterial(amMaterial * _mat, const uint32 _matIndex) {
+    if (_matIndex <= m_vecMeshes.size() - 1)
+      m_vecMeshes[_matIndex]->setMaterial(_mat);
+  }
 }

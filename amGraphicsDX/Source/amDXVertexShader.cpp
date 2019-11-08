@@ -6,7 +6,15 @@
 #include "amDeviceContext.h"
 
 namespace amEngineSDK {
-  amDXVertexShader::amDXVertexShader() {
+
+  amDXVertexShader::amDXVertexShader(const String _pathName,
+                                     const String _shaderName,
+                                     const String _entryPoint,
+                                     const String _shaderModel) {
+    m_pathFileName = _pathName;
+    m_shaderName = _shaderName;
+    m_entryPoint = _entryPoint;
+    m_shaderModel = _shaderModel;
     m_vs = nullptr;
   }
 
@@ -19,10 +27,6 @@ namespace amEngineSDK {
 
   void
   amDXVertexShader::createVertexShader(amDevice* pDevice) {
-    /*pDevice->m_pDV->CreateVertexShader(m_pblob->GetBufferPointer(),
-                                       m_pblob->GetBufferSize(),
-                                       nullptr,
-                                       &m_vs);*/
     pDevice->createVertexShader(this);
   }
 
@@ -85,4 +89,10 @@ namespace amEngineSDK {
     createVertexShader(pDevice);
   }
 
+  void amDXVertexShader::Compile() {
+    CompileShaderFromFile(m_pathFileName,
+                          m_entryPoint.c_str(),
+                          m_shaderModel.c_str(),
+                          reinterpret_cast<void**>(&m_blob));
+  }
 }

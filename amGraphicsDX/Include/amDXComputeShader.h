@@ -6,7 +6,11 @@ namespace amEngineSDK {
   class amDXComputeShader : public amComputeShader
   {
   public:
-    amDXComputeShader();
+    amDXComputeShader() = default;
+    amDXComputeShader(const String _pathName,
+                      const String _shaderName,
+                      const String _entryPoint,
+                      const String _shaderModel);
     ~amDXComputeShader();
 
     virtual int32 CompileComputeShader(_In_ const WString& srcFile,

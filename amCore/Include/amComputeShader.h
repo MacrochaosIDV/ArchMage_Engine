@@ -5,10 +5,14 @@
 namespace amEngineSDK {
   class amDevice;
 
-  class AM_CORE_EXPORT amComputeShader : amShader
+  class AM_CORE_EXPORT amComputeShader : public amShader
   {
   public:
-    amComputeShader();
+    amComputeShader() = default;
+    amComputeShader(const String _pathName,
+                    const String _shaderName,
+                    const String _entryPoint,
+                    const String _shaderModel);
     ~amComputeShader();
 
     virtual int32 CompileComputeShader(_In_ const WString& srcFile,
@@ -16,6 +20,5 @@ namespace amEngineSDK {
                                        _In_ amDevice* device,
                                        _Outptr_ void** blob);
     
-
   };
 }

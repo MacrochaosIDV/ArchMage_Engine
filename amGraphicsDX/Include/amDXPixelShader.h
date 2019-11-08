@@ -25,12 +25,13 @@ namespace amEngineSDK {
   class amDXPixelShader : public amPixelShader
   {
    public:
-    amDXPixelShader();
+    amDXPixelShader() = default;
+    amDXPixelShader(const String _pathName,
+                    const String _shaderName,
+                    const String _entryPoint,
+                    const String _shaderModel);
     ~amDXPixelShader();
 
-  
-    //TODO: Change DXDevice to Device and make createPS into virtual from Core::PS
-    //TODO: change inheritance from amDXShader to amPS
    private:
     void
     createPixelShader(amDevice* pDevice);
@@ -48,6 +49,9 @@ namespace amEngineSDK {
 
     virtual void
     createPS(String pathFileName, amDevice* pDevice) override;
+
+    virtual void 
+    Compile() override;
 
     ID3D11PixelShader* m_ps;
     ID3DBlob* m_blob;

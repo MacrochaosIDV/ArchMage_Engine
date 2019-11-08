@@ -25,6 +25,9 @@ namespace amEngineSDK {
     virtual amMeshBufferSizes
     getVertexIndexSize();
 
+    void 
+    setMaterial(amMaterial* _mat);
+
     /*void 
     registerTextures(amDevice* _dv);*/
 

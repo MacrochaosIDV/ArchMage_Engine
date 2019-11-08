@@ -1,13 +1,18 @@
 #pragma once
 #include "amDXPreReqs.h"
+#include "amShader.h"
 
 namespace amEngineSDK {
   class amDXDeviceContext;
 
-  class amDXShader
+  class amDXShader : public amShader
   {
   public:
-    amDXShader();
+    amDXShader() = default;
+    amDXShader(const String _pathName,
+               const String _shaderName,
+               const String _entryPoint,
+               const String _shaderModel);
     ~amDXShader();
 
     virtual int32 
@@ -20,6 +25,6 @@ namespace amEngineSDK {
     setShader(amDXDeviceContext* pDC) = 0;
 
     ID3DBlob* m_pblob;
-    String m_shaderName;
+    String m_pathFileName;
   };
 }

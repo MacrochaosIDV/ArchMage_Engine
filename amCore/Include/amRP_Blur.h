@@ -8,5 +8,7 @@ namespace amEngineSDK {
   public:
     amRP_Blur();
     ~amRP_Blur();
+
+    uint32 m_kernelMode;
   };
 }

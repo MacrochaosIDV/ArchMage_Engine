@@ -9,7 +9,11 @@ namespace amEngineSDK {
   class amDXVertexShader : public amVertexShader
   {
   public:
-    amDXVertexShader();
+    amDXVertexShader() = default;
+    amDXVertexShader(const String _pathName,
+                     const String _shaderName,
+                     const String _entryPoint,
+                     const String _shaderModel);
     ~amDXVertexShader();
 
   private:
@@ -29,6 +33,9 @@ namespace amEngineSDK {
 
     void 
     createVS(const String pathFileName, amDevice* pDevice);
+
+    virtual void
+    Compile() override;
 
     ID3D11VertexShader* m_vs;
     ID3DBlob* m_blob;

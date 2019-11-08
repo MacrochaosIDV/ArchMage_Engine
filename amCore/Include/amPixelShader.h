@@ -9,7 +9,11 @@ namespace amEngineSDK {
   class AM_CORE_EXPORT amPixelShader : public amShader
   {
   public:
-    amPixelShader();
+    amPixelShader() = default;
+    amPixelShader(const String _pathName,
+                  const String _shaderName,
+                  const String _entryPoint,
+                  const String _shaderModel);
     ~amPixelShader();
 
     virtual void

@@ -9,6 +9,7 @@
 sampler Texture0;
 
 float2 fViewportDimensions;
+float kernelMode;
 
 struct PS_INPUT
 {
@@ -23,9 +24,9 @@ float4 PS(PS_INPUT Input) : COLOR0
    float a1 = tex2D(Texture0, float2(Input.TexCoords.x,           Input.TexCoords.y + Defaz.y)).x * 0.125f;
    float a2 = tex2D(Texture0, float2(Input.TexCoords.x + Defaz.x, Input.TexCoords.y + Defaz.y)).x * 0.0625f;
    
-   float b0 = tex2D(Texture0, float2(Input.TexCoords.x - Defaz.x, Input.TexCoords.y)).x * 0.125f;
-   float b1 = tex2D(Texture0, float2(Input.TexCoords.x,           Input.TexCoords.y)).x * 0.25f;
-   float b2 = tex2D(Texture0, float2(Input.TexCoords.x + Defaz.x, Input.TexCoords.y)).x * 0.125f;
+   float b0 = tex2D(Texture0, float2(Input.TexCoords.x - Defaz.x, Input.TexCoords.y          )).x * 0.125f;
+   float b1 = tex2D(Texture0, float2(Input.TexCoords.x,           Input.TexCoords.y          )).x * 0.25f;
+   float b2 = tex2D(Texture0, float2(Input.TexCoords.x + Defaz.x, Input.TexCoords.y          )).x * 0.125f;
    
    float c0 = tex2D(Texture0, float2(Input.TexCoords.x - Defaz.x, Input.TexCoords.y - Defaz.y)).x * 0.0625f;
    float c1 = tex2D(Texture0, float2(Input.TexCoords.x,           Input.TexCoords.y - Defaz.y)).x * 0.125f;
@@ -119,9 +120,9 @@ float4 Kernel(int kFlag, float2 kTexCoordInput, float2 Defaz, sampler Texture0, 
    a *= tex2D(Texture0, float2(kTexCoordInput.x - Defaz.x, kTexCoordInput.y + Defaz.y)).x;
    b *= tex2D(Texture0, float2(kTexCoordInput.x,           kTexCoordInput.y + Defaz.y)).x;
    c *= tex2D(Texture0, float2(kTexCoordInput.x + Defaz.x, kTexCoordInput.y + Defaz.y)).x;
-   d *= tex2D(Texture0, float2(kTexCoordInput.x - Defaz.x, kTexCoordInput.y)          ).x;
-   e *= tex2D(Texture0, float2(kTexCoordInput.x,           kTexCoordInput.y)          ).x;
-   f *= tex2D(Texture0, float2(kTexCoordInput.x + Defaz.x, kTexCoordInput.y)          ).x;
+   d *= tex2D(Texture0, float2(kTexCoordInput.x - Defaz.x, kTexCoordInput.y          )).x;
+   e *= tex2D(Texture0, float2(kTexCoordInput.x,           kTexCoordInput.y          )).x;
+   f *= tex2D(Texture0, float2(kTexCoordInput.x + Defaz.x, kTexCoordInput.y          )).x;
    g *= tex2D(Texture0, float2(kTexCoordInput.x - Defaz.x, kTexCoordInput.y - Defaz.y)).x;
    h *= tex2D(Texture0, float2(kTexCoordInput.x,           kTexCoordInput.y - Defaz.y)).x;
    i *= tex2D(Texture0, float2(kTexCoordInput.x + Defaz.x, kTexCoordInput.y - Defaz.y)).x;

@@ -49,9 +49,6 @@ namespace amEngineSDK {
 
   void 
   amDXGraphicsAPI::CleanupDevice() {
-    delete(m_pRenderManager);
-    delete(m_pResourceManager);
-    delete(m_pCamManager);
     delete(m_pDevice);
     delete(m_pSwapChain);
     delete(m_pCB_VP);
@@ -417,7 +414,7 @@ namespace amEngineSDK {
   amDXGraphicsAPI::tmpLoadResource() {
     m_testCube = createModel("Resources/3D_Meshes/Cube.x", 
                              amMeshLoadFlags::kNO_MATS);
-    m_testCube->m_vecMeshes[0]->m_mat = m_defaultMaterial;
+    m_testCube->m_vecMeshes[0]->setMaterial(m_defaultMaterial);
   }
 
   void 

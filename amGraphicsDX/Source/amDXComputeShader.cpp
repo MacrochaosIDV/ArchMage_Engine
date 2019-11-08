@@ -2,7 +2,16 @@
 #include "amDXDevice.h"
 
 namespace amEngineSDK {
-  amDXComputeShader::amDXComputeShader() {}
+
+  amDXComputeShader::amDXComputeShader(const String _pathName,
+                                       const String _shaderName,
+                                       const String _entryPoint,
+                                       const String _shaderModel) {
+    m_pathFileName = _pathName;
+    m_shaderName = _shaderName;
+    m_entryPoint = _entryPoint;
+    m_shaderModel = _shaderModel;
+  }
 
   amDXComputeShader::~amDXComputeShader() {}
   int32 amDXComputeShader::CompileComputeShader(const WString & srcFile,
@@ -51,7 +60,10 @@ namespace amEngineSDK {
   }
 
   void amDXComputeShader::Compile() {
-
+    CompileShaderFromFile(m_pathFileName,
+                          m_entryPoint.c_str(),
+                          m_shaderModel.c_str(),
+                          reinterpret_cast<void**>(&m_blob));
   }
 
   void amDXComputeShader::Dispatch() {

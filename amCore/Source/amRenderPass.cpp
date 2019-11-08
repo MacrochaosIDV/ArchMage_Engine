@@ -5,8 +5,11 @@
 namespace amEngineSDK {
 
   //TODO:make sure the shaders initialize during init content in graphics api
-  amRenderPass::amRenderPass(amRenderPassStage::E _pass, String _strPS, String _strVS, String _name) {
-    m_renderPassStage = _pass;
+  amRenderPass::amRenderPass(const uint32 _pass, 
+                             String _strPS, 
+                             String _strVS, 
+                             String _name) {
+    m_renderPassStage = static_cast<amRenderPassStage::E>(_pass);
     m_strPS = _strPS;
     m_strVS = _strVS;
     m_passName = _name;
@@ -17,8 +20,8 @@ namespace amEngineSDK {
   }
 
   void 
-  amRenderPass::render(Vector<amResource*>) {
-  
+  amRenderPass::render(Vector<amResource*>* _renderObjs) {
+    _renderObjs;
   }
 
   int32 
