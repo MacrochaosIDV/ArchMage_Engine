@@ -194,6 +194,7 @@
     <ClCompile Include="Source\amImage.cpp" />
     <ClCompile Include="Source\amIndexBuffer.cpp" />
     <ClCompile Include="Source\amInputLayout.cpp" />
+    <ClCompile Include="Source\amLight.cpp" />
     <ClCompile Include="Source\amMaterial.cpp" />
     <ClCompile Include="Source\amMesh.cpp" />
     <ClCompile Include="Source\amModel.cpp" />
@@ -255,6 +256,7 @@
     <ClInclude Include="Include\amImage.h" />
     <ClInclude Include="Include\amIndexBuffer.h" />
     <ClInclude Include="Include\amInputLayout.h" />
+    <ClInclude Include="Include\amLight.h" />
     <ClInclude Include="Include\amMaterial.h" />
     <ClInclude Include="Include\amMesh.h" />
     <ClInclude Include="Include\amModel.h" />

@@ -89,6 +89,9 @@ namespace amEngineSDK {
     virtual void
     setShaders(amRenderPass* _pass);
 
+    virtual void 
+    setRenderPass(amRenderPass* _pass);
+
     /**
     ************************
     * @brief These are called from the render manager to set shader specific constBuffers

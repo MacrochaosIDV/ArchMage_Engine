@@ -75,6 +75,11 @@ namespace amEngineSDK {
   }
 
   void 
+  amGraphicsAPI::setRenderPass(amRenderPass* _pass) {
+    _pass;
+  }
+
+  void 
   amGraphicsAPI::setConstantBuffer(amConstantBuffer * _cb, 
                                    const int32 _shaderFlags) {
     _cb;

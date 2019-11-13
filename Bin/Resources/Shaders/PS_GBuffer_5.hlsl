@@ -22,26 +22,30 @@ float3 fresnelSchlick(float3 F0, float cosTheta) {
     return F0 + (1.0f - F0) * pow(1.0f - cosTheta, 5.0f);
 }
 
+Texture2D AlbedoSampler : register (t0);
+Texture2D EmissiveSampler : register (t1);
+Texture2D NormalSampler : register (t2);
+Texture2D MetalnessSampler : register (t3);
+Texture2D RoughnessSampler : register (t4);
+
+cbuffer DataBuffer : register (c0)
+{
 float3 m_lightPos;
 float4 m_eyePos;
-Texture2D AlbedoSampler;
-Texture2D NormalSampler;
-Texture2D MetalnessSampler;
-Texture2D RoughnessSampler;
-Texture2D EmissiveSampler;
+}
 
-TextureCube IrradianceSampler;
-TextureCube SpecularIBL;
-Texture2D BRDFLut;
+Texture2D BRDFLut : register (t5);
+TextureCube IrradianceSampler : register (t6);
+TextureCube SpecularIBL : register (t7);
 
-SamplerState SS
+SamplerState SS : register (s0)
 {
     Filter = MIN_MAG_MIP_LINEAR;
     AddressU = Wrap;
     AddressV = Wrap;
 };
 
-SamplerState SS_Lut
+SamplerState SS_Lut : register (s1)
 {
     Filter = MIN_MAG_MIP_LINEAR;
     AddressU = Wrap;

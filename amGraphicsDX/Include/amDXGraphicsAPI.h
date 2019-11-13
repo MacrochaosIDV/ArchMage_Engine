@@ -47,6 +47,7 @@ namespace amEngineSDK {
   class amCamera;
   class amVector4;
   class amRenderPass;
+  class amLight;
 
   class AM_GRAPHICSDX_EXPORT amDXGraphicsAPI : public amGraphicsAPI
   {
@@ -84,7 +85,8 @@ namespace amEngineSDK {
     initSystems(void* _hWnd);
 
     virtual void 
-    setShaderResources(Vector<amResource *> _vecRes, uint32 _shaderFlags) override;
+    setShaderResources(Vector<amResource *> _vecRes, 
+                       uint32 _shaderFlags) override;
 
     virtual void 
     Draw(amMesh* _pMesh) override;
@@ -93,13 +95,17 @@ namespace amEngineSDK {
     setConstantBuffer(amConstantBuffer* _cb, int32 _shaderFlags) override;
 
     virtual void
-    setConstantBuffer(Vector<amConstantBuffer*> _cbVec, int32 _shaderFlags) override;
+    setConstantBuffer(Vector<amConstantBuffer*> _cbVec, 
+                      int32 _shaderFlags) override;
 
     virtual void 
     Present() override;
 
     virtual void
     clearRenderTargets() override;
+
+    virtual void 
+    setRenderPass(amRenderPass* _pass) override;
 
     void 
     tmpLoadResource();
@@ -188,6 +194,7 @@ namespace amEngineSDK {
     amRenderPass* m_RP_Bloom;
 
     amMaterial* m_defaultMaterial;
+    amLight m_light;
 
     amModel* m_testCube;
     

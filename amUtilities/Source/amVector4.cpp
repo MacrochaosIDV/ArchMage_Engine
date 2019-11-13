@@ -11,6 +11,7 @@
 ******************************************/
 #include "amVector3.h"
 #include "amVector4.h"
+#include "amColor.h"
 
 namespace amEngineSDK {
 
@@ -30,6 +31,33 @@ namespace amEngineSDK {
   const amVector4
   amVector4::FRONT = amVector4(FORCE_INIT_VECTOR4::kFRONT);
 
+  const amVector4 
+  amVector4::ONE = amVector4(FORCE_INIT_VECTOR4::kONE);
+
+  const amVector4 
+  amVector4::RED = amVector4(FORCE_INIT_VECTOR4::kRED);
+
+  const amVector4 
+  amVector4::GREEN = amVector4(FORCE_INIT_VECTOR4::KGREEN);
+
+  const amVector4 
+  amVector4::BLUE = amVector4(FORCE_INIT_VECTOR4::kBLUE);
+
+  const amVector4 
+  amVector4::YELLOW = amVector4(FORCE_INIT_VECTOR4::kYELLOW);
+
+  const amVector4 
+  amVector4::CYAN = amVector4(FORCE_INIT_VECTOR4::kCYAN);
+
+  const amVector4 
+  amVector4::MAGENTA = amVector4(FORCE_INIT_VECTOR4::kMAGENTA);
+
+  const amVector4 
+  amVector4::WHITE = amVector4(FORCE_INIT_VECTOR4::kWHITE);
+
+  const amVector4 
+  amVector4::BLACK = amVector4(FORCE_INIT_VECTOR4::kBLACK);
+
   amVector4::amVector4(const uint32 val) {
     memset(this, 0, sizeof(amVector4));
     if (val == FORCE_INIT_VECTOR4::kUP) {
@@ -40,6 +68,27 @@ namespace amEngineSDK {
     }
     if (val == FORCE_INIT_VECTOR4::kFRONT) {
       z = 1;
+    }
+    if (val == FORCE_INIT_VECTOR4::kONE) {
+      x = y = z = w = 1;
+    }
+    if (val == FORCE_INIT_VECTOR4::kRED) {
+      x = w = 1;
+    }
+    if (val == FORCE_INIT_VECTOR4::KGREEN) {
+      y = w = 1;
+    }
+    if (val == FORCE_INIT_VECTOR4::kBLUE) {
+      z = w = 1;
+    }
+    if (val == FORCE_INIT_VECTOR4::kYELLOW) {
+      x = y = w = 1;
+    }
+    if (val == FORCE_INIT_VECTOR4::kCYAN) {
+      y = z = w = 1;
+    }
+    if (val == FORCE_INIT_VECTOR4::kMAGENTA) {
+      x = z = w = 1;
     }
   }
 
@@ -182,6 +231,20 @@ namespace amEngineSDK {
     return res;
   }
 
+  amColor 
+  amVector4::color(const bool _normalized) {
+    if (_normalized) {
+      return amColor(amMath::min(x / 255, 255.0f),
+                     amMath::min(y / 255, 255.0f),
+                     amMath::min(z / 255, 255.0f),
+                     amMath::min(w, 255.0f));
+    }
+    return amColor(amMath::min(x, 255.0f),
+                   amMath::min(y, 255.0f),
+                   amMath::min(z, 255.0f),
+                   amMath::min(w, 255.0f));
+    
+  }
   /*const float* amVector4::getVecArr() {
     float res[4] = {x,y,z,w};
     return res;

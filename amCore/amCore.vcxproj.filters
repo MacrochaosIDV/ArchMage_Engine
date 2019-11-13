@@ -38,6 +38,9 @@
     <Filter Include="Source Files\Core\Core management">
       <UniqueIdentifier>{f1fa8724-c1e7-4b70-94d1-095f9d8c3f54}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Core\Lights">
+      <UniqueIdentifier>{7456b11e-49c6-4ae5-843d-63ee9179b895}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\amComputeShader.cpp">
@@ -216,6 +219,9 @@
     </ClCompile>
     <ClCompile Include="Source\amRenderTarget.cpp">
       <Filter>Source Files\Resource classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\amLight.cpp">
+      <Filter>Source Files\Core\Lights</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -398,6 +404,9 @@
     </ClInclude>
     <ClInclude Include="Include\amRenderTarget.h">
       <Filter>Source Files\Resource classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amLight.h">
+      <Filter>Source Files\Core\Lights</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

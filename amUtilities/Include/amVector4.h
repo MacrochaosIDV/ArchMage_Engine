@@ -7,7 +7,7 @@
  *
  * @brief Implements a 4D vector
  *
- * @note
+ * @note Vector 4 is can also be used for colors
 ******************************************/
 #pragma once
 /***********************
@@ -20,6 +20,8 @@
 #include "amVector3.h"
 
 namespace amEngineSDK {
+  class amColor;
+
   namespace FORCE_INIT_VECTOR4 {
     enum E
     {
@@ -27,7 +29,15 @@ namespace amEngineSDK {
       kFRONT,
       kUP,
       kRIGHT,
-      kCOUNT
+      kONE,
+      kRED,
+      KGREEN,
+      kBLUE,
+      kYELLOW,
+      kCYAN,
+      kMAGENTA,
+      kWHITE = kONE,
+      kBLACK = kZERO
     };
   }
 
@@ -37,14 +47,30 @@ namespace amEngineSDK {
     amVector4();
     ~amVector4();
 
+    /**
+    ************************
+    *  Constant direction and color
+    ************************
+    */
     static const amVector4 ZERO;
     static const amVector4 FRONT;
     static const amVector4 UP;
     static const amVector4 RIGHT;
+    static const amVector4 ONE;
+
+    static const amVector4 RED;
+    static const amVector4 GREEN;
+    static const amVector4 BLUE;
+    static const amVector4 YELLOW;
+    static const amVector4 CYAN;
+    static const amVector4 MAGENTA;
+    static const amVector4 WHITE;
+    static const amVector4 BLACK;
+
 
     /**
     ************************
-    *  @brief Constructor for firectional constants
+    *  @brief Constructor for directional and color constants
     ************************
     */
     amVector4
@@ -135,7 +161,7 @@ namespace amEngineSDK {
     DotNormalized(amVector4& ProjectedOn);
 
     /***********************
-    *  @brief Checks if all the components in this vector are exactly 0
+    *  @brief Checks if all the components in this vector are close to or 0
     ***********************/
     bool 
     isZero();
@@ -145,6 +171,15 @@ namespace amEngineSDK {
     ***********************/
     amVector4
     cross3(const amVector4& vec);
+
+    /**
+    ************************
+    *  @brief returns the vector data as unsigned chars
+    *  @param _normalized: if true will return the vector xyz data /255
+    ************************
+    */
+    amColor 
+    color(const bool _normalized);
 
     /*const float*
     getVecArr();*/

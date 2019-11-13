@@ -85,6 +85,9 @@
     <ClCompile Include="Source\amModule.cpp">
       <Filter>Source Files\Systems</Filter>
     </ClCompile>
+    <ClCompile Include="Source\amColor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\amMath.h">
@@ -176,6 +179,9 @@
     </ClInclude>
     <ClInclude Include="Include\half.hpp">
       <Filter>Source Files\Prerequisites</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\amColor.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -7,6 +7,7 @@
 #include <amMesh.h>
 #include <amResource.h>
 #include <amMaterial.h>
+#include <amLight.h>
 
 #include <stb_image.h>
 #include <assimp/Importer.hpp> // C++ importer interface
@@ -73,24 +74,31 @@ namespace amEngineSDK {
 
   void 
   amDXGraphicsAPI::Run() {
+
     m_pContext->setInputLayout(m_pInputLayout);
     m_pContext->setPrimitiveTopology();
     m_pContext->setVertexShader(m_pVertexShader);
     m_pContext->setPixelShader(m_pPixelShader);
     m_pContext->setVS_CB(0, 1, m_pCB_VP);
 
-    // Draw with index buffers
+    setRenderPass(m_RP_Gbuffer);
+    /**
+    ************************
+    *  Draw G-buffer
+    ************************
+    */
     Draw(m_testCube->m_vecMeshes[0]);
+    /**
+    ************************
+    *  Post-processing here
+    ************************
+    */
     Present();
   }
 
   void 
   amDXGraphicsAPI::initContent() {
-    /**
-    ************************
-    *  @TODO: set up Render passes
-    ************************
-    */
+    
     m_clearColor = amVector4(0.0f, 0.0f, 0.0f, 1.0f);
     m_pVertexShader->createVS("Resources/Shaders/VS_GBuffer.hlsl", m_pDevice);
     m_pPixelShader->createPS("Resources/Shaders/PS_PBR.hlsl", m_pDevice);
@@ -356,6 +364,9 @@ namespace amEngineSDK {
     * Set the Textures
     ************************
     */
+    for (uint32 i = 0; i < 5; ++i) {
+      m_pContext->setPSResources(i, 1, _pMesh->m_mat->m_vecTex[i]);
+    }
     
     //TODO: this
     /**
@@ -409,6 +420,8 @@ namespace amEngineSDK {
     m_pContext->clearRenderTargetView(m_rtLuminance, &m_clearColor);
     m_pContext->clearRenderTargetView(m_rtMADR, &m_clearColor);
   }
+
+  void amDXGraphicsAPI::setRenderPass(amRenderPass * _pass) {}
 
   void 
   amDXGraphicsAPI::tmpLoadResource() {

@@ -186,6 +186,7 @@
     <ClCompile Include="Source\amBox2D.cpp" />
     <ClCompile Include="Source\amCapsule.cpp" />
     <ClCompile Include="Source\amCircle2D.cpp" />
+    <ClCompile Include="Source\amColor.cpp" />
     <ClCompile Include="Source\amFrustrum.cpp" />
     <ClCompile Include="Source\amLine2D.cpp" />
     <ClCompile Include="Source\amModule.cpp" />
@@ -209,6 +210,7 @@
     <ClInclude Include="Include\amBox2D.h" />
     <ClInclude Include="Include\amCapsule.h" />
     <ClInclude Include="Include\amCircle2D.h" />
+    <ClInclude Include="Include\amColor.h" />
     <ClInclude Include="Include\amFrustrum.h" />
     <ClInclude Include="Include\amIOStream.h" />
     <ClInclude Include="Include\amLine2D.h" />
