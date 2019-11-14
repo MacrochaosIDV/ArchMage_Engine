@@ -75,8 +75,9 @@ namespace amEngineSDK {
   }
 
   void 
-  amGraphicsAPI::setRenderPass(amRenderPass* _pass) {
+  amGraphicsAPI::setRenderPass(amRenderPass* _pass, amDeviceContext* _dc) {
     _pass;
+    _dc;
   }
 
   void 

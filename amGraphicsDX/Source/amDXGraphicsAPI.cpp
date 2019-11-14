@@ -81,7 +81,7 @@ namespace amEngineSDK {
     m_pContext->setPixelShader(m_pPixelShader);
     m_pContext->setVS_CB(0, 1, m_pCB_VP);
 
-    setRenderPass(m_RP_Gbuffer);
+    setRenderPass(m_RP_Gbuffer, m_pContext);
     /**
     ************************
     *  Draw G-buffer
@@ -421,7 +421,10 @@ namespace amEngineSDK {
     m_pContext->clearRenderTargetView(m_rtMADR, &m_clearColor);
   }
 
-  void amDXGraphicsAPI::setRenderPass(amRenderPass * _pass) {}
+  void amDXGraphicsAPI::setRenderPass(amRenderPass * _pass, 
+                                      amDeviceContext* _dv) {
+    _pass->setUp(_dv);
+  }
 
   void 
   amDXGraphicsAPI::tmpLoadResource() {

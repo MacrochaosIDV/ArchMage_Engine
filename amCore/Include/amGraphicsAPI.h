@@ -90,7 +90,7 @@ namespace amEngineSDK {
     setShaders(amRenderPass* _pass);
 
     virtual void 
-    setRenderPass(amRenderPass* _pass);
+    setRenderPass(amRenderPass* _pass, amDeviceContext* _dc);
 
     /**
     ************************

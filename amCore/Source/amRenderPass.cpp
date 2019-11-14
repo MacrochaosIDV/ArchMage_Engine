@@ -1,6 +1,7 @@
 #include "amRenderPass.h"
 #include "amVertexShader.h"
 #include "amPixelShader.h"
+#include "amDeviceContext.h"
 
 namespace amEngineSDK {
 
@@ -46,6 +47,11 @@ namespace amEngineSDK {
   void 
   amRenderPass::setRenderTargetsInputs(Vector<amRenderTarget*> _vecRenderTargets) {
     m_vecRenderTargets = _vecRenderTargets;
+  }
+
+  void 
+  amRenderPass::setUp(amDeviceContext * _dc) {
+    _dc;
   }
 
 

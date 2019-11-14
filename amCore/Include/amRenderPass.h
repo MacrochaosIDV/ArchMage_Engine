@@ -8,6 +8,7 @@ namespace amEngineSDK {
   class amConstantBuffer;
   class amRenderTarget;
   class amResource;
+  class amDeviceContext;
 
   namespace amRenderPassStage {
     enum E
@@ -47,6 +48,9 @@ namespace amEngineSDK {
 
     void 
     setRenderTargetsInputs(Vector<amRenderTarget*> _vecRenderTargets);
+
+    void 
+    setUp(amDeviceContext* _dc);
 
 
     bool m_computeShading;

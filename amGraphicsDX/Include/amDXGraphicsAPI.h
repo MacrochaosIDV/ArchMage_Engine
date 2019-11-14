@@ -105,7 +105,7 @@ namespace amEngineSDK {
     clearRenderTargets() override;
 
     virtual void 
-    setRenderPass(amRenderPass* _pass) override;
+    setRenderPass(amRenderPass* _pass, amDeviceContext* _dv) override;
 
     void 
     tmpLoadResource();
