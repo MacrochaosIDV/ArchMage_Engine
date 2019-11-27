@@ -9,7 +9,10 @@ namespace amEngineSDK {
     amConstantBuffer();
     ~amConstantBuffer();
 
+    void 
+    setBuffer(void* _data, const uint32 _dataSize);
+
     void* m_pCBuffer;
-    SIZE_T m_size;
+    uint32 m_size;
   };
 }

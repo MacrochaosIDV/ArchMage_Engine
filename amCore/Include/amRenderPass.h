@@ -40,17 +40,20 @@ namespace amEngineSDK {
     int32 
     compileShaders();
 
-    void 
+    virtual void
     setShaders(String _strPS, String _strVS);
 
-    void 
+    virtual void
     setShaderPointers(amVertexShader* _pVS, amPixelShader* _pPS);
 
-    void 
+    virtual void
     setRenderTargetsInputs(Vector<amRenderTarget*> _vecRenderTargets);
 
-    void 
+    virtual void 
     setUp(amDeviceContext* _dc);
+
+    virtual void 
+    addModels(Vector<amResource*>* _mdls);
 
 
     bool m_computeShading;
@@ -60,7 +63,8 @@ namespace amEngineSDK {
     amRenderPassStage::E m_renderPassStage;
     amVertexShader* m_pVS;
     amPixelShader* m_pPS;
-    //move to renderer
+    amConstantBuffer* m_vsConstBuffer;
+    amConstantBuffer* m_psConstBuffer;
     Vector<amResource*> m_vecPassModels;
     Vector<amConstantBuffer*> m_vecPassConstBuffers;
     Vector<amRenderTarget*> m_vecRenderTargets;

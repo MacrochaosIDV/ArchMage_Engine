@@ -103,5 +103,12 @@ namespace amEngineSDK {
     _format;
     return nullptr;
   }
+
+  amTexture* 
+  amDevice::createCubeMap(amTexture * _tex, 
+                          const int32 _format, 
+                          const int32 _rbf) {
+    return nullptr;
+  }
  
 }

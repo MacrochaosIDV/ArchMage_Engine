@@ -54,6 +54,7 @@ namespace amEngineSDK {
     _dc;
   }
 
-
-
+  void amRenderPass::addModels(Vector<amResource*>* _mdls) {
+    m_vecPassModels.insert(m_vecPassModels.end(), _mdls->begin(), _mdls->end());
+  }
 }

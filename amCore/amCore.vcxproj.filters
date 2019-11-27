@@ -70,9 +70,6 @@
     <ClCompile Include="Source\amRasterizerState.cpp">
       <Filter>Source Files\Renderer classes</Filter>
     </ClCompile>
-    <ClCompile Include="Source\amSamplerState.cpp">
-      <Filter>Source Files\Renderer classes</Filter>
-    </ClCompile>
     <ClCompile Include="Source\amTexture.cpp">
       <Filter>Source Files\Resource classes</Filter>
     </ClCompile>
@@ -223,6 +220,12 @@
     <ClCompile Include="Source\amLight.cpp">
       <Filter>Source Files\Core\Lights</Filter>
     </ClCompile>
+    <ClCompile Include="Source\amSamplerState.cpp">
+      <Filter>Source Files\Shader Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="amCubemap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\amComputeShader.h">
@@ -250,9 +253,6 @@
       <Filter>Source Files\Renderer classes</Filter>
     </ClInclude>
     <ClInclude Include="Include\amRasterizerState.h">
-      <Filter>Source Files\Renderer classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\amSamplerState.h">
       <Filter>Source Files\Renderer classes</Filter>
     </ClInclude>
     <ClInclude Include="Include\amPrerequisitesCore.h">
@@ -408,5 +408,9 @@
     <ClInclude Include="Include\amLight.h">
       <Filter>Source Files\Core\Lights</Filter>
     </ClInclude>
+    <ClInclude Include="Include\amSamplerState.h">
+      <Filter>Source Files\Shader Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="amCubemap.h" />
   </ItemGroup>
 </Project>

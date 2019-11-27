@@ -72,5 +72,10 @@ namespace amEngineSDK {
                   const int32 _format,
                   const int32 _rbf);
 
+    virtual amTexture* 
+    createCubeMap(amTexture* _tex,
+                  const int32 _format,
+                  const int32 _rbf);
+
   };
 }

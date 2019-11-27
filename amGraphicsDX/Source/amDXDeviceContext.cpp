@@ -4,6 +4,7 @@
 #include "amDXComputeShader.h"
 #include "amDXDepthStencilView.h"
 #include "amDXRenderTargetView.h"
+#include "amDXShaderResourceView.h"
 #include "amDXVertexBuffer.h"
 #include "amDXIndexBuffer.h"
 #include "amDXInputLayout.h"
@@ -16,7 +17,7 @@ namespace amEngineSDK {
 
   amDXDeviceContext::~amDXDeviceContext() {}
 
-  void amDXDeviceContext::setPrimitiveTopology(amPrimitiveTopology::E _pt) {
+  void amDXDeviceContext::setPrimitiveTopology(const uint32 _pt) {
     m_pDC->IASetPrimitiveTopology(static_cast<D3D11_PRIMITIVE_TOPOLOGY>(_pt));
   }
 
@@ -43,38 +44,32 @@ namespace amEngineSDK {
 
   void
   amDXDeviceContext::setPixelShader(amPixelShader* _PS) {
-    m_pDC->PSSetShader(reinterpret_cast<amDXPixelShader*>(_PS)->m_ps, nullptr, 0);
+    m_pDC->PSSetShader(reinterpret_cast<amDXPixelShader*>(_PS)->m_ps, 
+                       nullptr, 
+                       0);
   }
 
   void 
   amDXDeviceContext::setVertexShader(amVertexShader* _VS) {
-    m_pDC->VSSetShader(reinterpret_cast<amDXVertexShader*>(_VS)->m_vs, nullptr, 0);
+    m_pDC->VSSetShader(reinterpret_cast<amDXVertexShader*>(_VS)->m_vs, 
+                       nullptr, 
+                       0);
   }
 
   void amDXDeviceContext::setComputeShader(amComputeShader* _CS) {
-    m_pDC->CSSetShader(reinterpret_cast<amDXComputeShader*>(_CS)->m_cs, nullptr, 0);
+    m_pDC->CSSetShader(reinterpret_cast<amDXComputeShader*>(_CS)->m_cs, 
+                       nullptr, 
+                       0);
   }
 
   void amDXDeviceContext::clearDepthStencilView(amDepthStencilView * _pDSV, 
                                                 uint32 _clearFlags,
                                                 float _depth,
                                                 uint8 _stencil) {
-    m_pDC->ClearDepthStencilView(reinterpret_cast<amDXDepthStencilView*>(_pDSV)->m_pDSV, _clearFlags, _depth, _stencil);
-  }
-
-  void amDXDeviceContext::setConstBuffer(amConstantBuffer * _CB, amShaderType::E _shdr) {
-    if(_shdr == amShaderType::kPIXEL){
-      setPS_CB(0, 0, _CB);
-    }
-    else if (_shdr == amShaderType::kVERTEX) {
-      setVS_CB(0, 0, _CB);
-    }
-    else if (_shdr == amShaderType::kCOMPUTE) {
-      setCS_CB(0, 0, _CB);
-    }
-    else {
-      // @TODO: throw error
-    }
+    m_pDC->ClearDepthStencilView(reinterpret_cast<amDXDepthStencilView*>(_pDSV)->m_pDSV, 
+                                 _clearFlags, 
+                                 _depth, 
+                                 _stencil);
   }
 
   void 
@@ -99,6 +94,14 @@ namespace amEngineSDK {
     m_pDC->VSSetConstantBuffers(_starSlot, 
                                 _nViews, 
                                 &reinterpret_cast<amDXConstantBuffer*>(_CB)->m_pCB);
+  }
+
+  void 
+  amDXDeviceContext::setPSResources(uint32 _starSlot, 
+                                    uint32 _nViews, 
+                                    amShaderResourceView* _SRV) {
+    amDXShaderResourceView* pDxSRV = reinterpret_cast<amDXShaderResourceView*>(_SRV);
+    m_pDC->PSSetShaderResources(_starSlot, _nViews, &pDxSRV->m_pSRV);
   }
 
   void 

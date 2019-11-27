@@ -124,9 +124,7 @@ namespace amEngineSDK {
 
     D3D11_SUBRESOURCE_DATA subRes;
     memset(&subRes, 0, sizeof(subRes));
-    subRes.pSysMem = &_tex->m_tBuffer[0];
-    subRes.SysMemPitch = 0;
-    subRes.SysMemSlicePitch = 0;
+    dxTex->m_subRes.pSysMem = &_tex->m_tBuffer[0];
 
     //Set the ID3D11_TEXTURE2D_DESC
     memset(&dxTex->m_desc, 0, sizeof(dxTex->m_desc));

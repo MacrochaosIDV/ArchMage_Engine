@@ -12,7 +12,7 @@ namespace amEngineSDK {
 
   amDeviceContext::~amDeviceContext() {}
 
-  void amDeviceContext::setPrimitiveTopology(amPrimitiveTopology::E _pt) {
+  void amDeviceContext::setPrimitiveTopology(const uint32 _pt) {
     _pt;
   }
 

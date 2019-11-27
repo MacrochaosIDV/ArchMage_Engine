@@ -234,15 +234,15 @@ namespace amEngineSDK {
   amColor 
   amVector4::color(const bool _normalized) {
     if (_normalized) {
-      return amColor(amMath::min(x / 255, 255.0f),
-                     amMath::min(y / 255, 255.0f),
-                     amMath::min(z / 255, 255.0f),
-                     amMath::min(w, 255.0f));
+      return amColor(static_cast<UANSICHAR>(amMath::min(x / 255, 255.0f)),
+                     static_cast<UANSICHAR>(amMath::min(y / 255, 255.0f)),
+                     static_cast<UANSICHAR>(amMath::min(z / 255, 255.0f)),
+                     static_cast<UANSICHAR>(amMath::min(w, 255.0f)));
     }
-    return amColor(amMath::min(x, 255.0f),
-                   amMath::min(y, 255.0f),
-                   amMath::min(z, 255.0f),
-                   amMath::min(w, 255.0f));
+    return amColor(static_cast<UANSICHAR>(amMath::min(x, 255.0f)),
+                   static_cast<UANSICHAR>(amMath::min(y, 255.0f)),
+                   static_cast<UANSICHAR>(amMath::min(z, 255.0f)),
+                   static_cast<UANSICHAR>(amMath::min(w, 255.0f)));
     
   }
   /*const float* amVector4::getVecArr() {

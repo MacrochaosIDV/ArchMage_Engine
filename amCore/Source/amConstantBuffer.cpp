@@ -6,4 +6,10 @@ namespace amEngineSDK {
   }
 
   amConstantBuffer::~amConstantBuffer() {}
+
+  void 
+  amConstantBuffer::setBuffer(void * _data, const uint32 _dataSize) {
+    m_size = _dataSize;
+    m_pCBuffer = _data;
+  }
 }

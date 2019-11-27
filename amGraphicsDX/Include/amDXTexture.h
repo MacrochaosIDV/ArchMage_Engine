@@ -11,5 +11,6 @@ namespace amEngineSDK {
 
     ID3D11Texture2D* m_tex;
     D3D11_TEXTURE2D_DESC m_desc;
+    D3D11_SUBRESOURCE_DATA m_subRes;
   };
 }

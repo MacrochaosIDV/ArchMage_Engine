@@ -22,17 +22,17 @@ float3 fresnelSchlick(float3 F0, float cosTheta) {
     return F0 + (1.0f - F0) * pow(1.0f - cosTheta, 5.0f);
 }
 
-Texture2D AlbedoSampler : register (t0);
-Texture2D EmissiveSampler : register (t1);
-Texture2D NormalSampler : register (t2);
-Texture2D MetalnessSampler : register (t3);
-Texture2D RoughnessSampler : register (t4);
-
 cbuffer DataBuffer : register (c0)
 {
 float3 m_lightPos;
 float4 m_eyePos;
 }
+
+Texture2D AlbedoSampler : register (t0);
+Texture2D EmissiveSampler : register (t1);
+Texture2D NormalSampler : register (t2);
+Texture2D MetalnessSampler : register (t3);
+Texture2D RoughnessSampler : register (t4);
 
 Texture2D BRDFLut : register (t5);
 TextureCube IrradianceSampler : register (t6);
@@ -69,7 +69,7 @@ struct PS_OUTPUT
    //TODO: add metal, ao, rough & depth
 };
 
-PS_OUTPUT PS(PS_INPUT Input) {
+float4 PS(PS_INPUT Input) {
     PS_OUTPUT Output = (PS_OUTPUT)0;
     float Epsilon = 0.00001f;
     float fDiElectric = 0.03f;
@@ -102,7 +102,7 @@ PS_OUTPUT PS(PS_INPUT Input) {
     float D = ndfGGX(NdH, roughness);
 
     float3 kd = lerp(1.0f - F, 0.0f, metalness);
-    float3 diffuseBRDF = kd * albedo;
+    float3 diffuseBRDF = kd * albedo.xyz;
     float3 specularBRDF = (F * D * G) / max(Epsilon, 4.0f * NdL * NdV);
 
     float3 directLighting = (pow(diffuseBRDF, 2.2f) + pow(specularBRDF, 2.2f));
@@ -114,7 +114,7 @@ PS_OUTPUT PS(PS_INPUT Input) {
         float3 F2 = fresnelSchlick(F0, NdV);
         float kd2 = lerp(1.0f - F2, 0.0f, metalness);
 
-        float3 diffuseIBL = kd2 * albedo * irradiance;
+        float3 diffuseIBL = kd2 * albedo.xyz * irradiance;
 
         uint specularTextureLevels = 9;
         float3 Lr = 2.0f * NdV * normal - viewDir;
@@ -134,8 +134,11 @@ PS_OUTPUT PS(PS_INPUT Input) {
 
     Output.Color = float4( pow(
         pow(directLighting, 2.2f) + pow(ambienLighting,2.2f), 1.0f/2.2f), albedo.w);
+
+    return Output.Color;
     Output.NormalDepth = float4(normal, Input.Depth);
     Output.Emissive = float4(pow(emissive, 2.2f), 1.0f);
+
     return Output;
 
 

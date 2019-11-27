@@ -23,6 +23,7 @@
 #include <amGraphicsAPI.h>
 #include <amCamera.h>
 #include <amVector4.h>
+#include <amLight.h>
 
 struct aiMesh;
 struct aiMaterial;
@@ -150,6 +151,9 @@ namespace amEngineSDK {
     virtual amModel*
     createModel(const String& _pathName, 
                 const uint32 _meshLoadFlags = 0) override;
+
+    virtual amShaderResourceView* 
+    loadCubeMap(const String& _pathFileName, const bool _hdr) override;
 
    private:
     void

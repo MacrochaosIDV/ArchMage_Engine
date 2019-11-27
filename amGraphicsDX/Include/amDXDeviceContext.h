@@ -10,8 +10,8 @@ namespace amEngineSDK {
     ~amDXDeviceContext();
 
     virtual void 
-    setPrimitiveTopology(amPrimitiveTopology::E _pt = 
-                           amPrimitiveTopology::E::kPRIMITIVE_TOPOLOGY_TRIANGLELIST);
+    setPrimitiveTopology(const uint32 _pt = 
+                         amPrimitiveTopology::kPRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
     virtual void 
     setInputLayout(amInputLayout* _il) override;
@@ -40,9 +40,6 @@ namespace amEngineSDK {
                           uint8 _stencil) override;
 
     virtual void 
-    setConstBuffer(amConstantBuffer* _CB, amShaderType::E _shdr) override;
-
-    virtual void 
     setCS_CB(uint32 _starSlot, uint32 _nViews, amConstantBuffer* _CB) override;
 
     virtual void 
@@ -52,7 +49,14 @@ namespace amEngineSDK {
     setVS_CB(uint32 _starSlot, uint32 _nViews, amConstantBuffer* _CB) override;
 
     virtual void 
-    clearRenderTargetView(amRenderTargetView* _pRTV, amVector4* _color) override;
+    setPSResources(uint32 _starSlot, 
+                   uint32 _nViews, 
+                   amShaderResourceView* _SRV) override;
+
+
+    virtual void 
+    clearRenderTargetView(amRenderTargetView* _pRTV, 
+                          amVector4* _color) override;
 
     ID3D11DeviceContext* m_pDC;
   };

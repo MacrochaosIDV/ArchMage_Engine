@@ -1,12 +1,10 @@
 #pragma once
 #include "amPrerequisitesCore.h"
 #include "amResource.h"
+#include "amVector3.h"
+#include "amColor.h"
 
 namespace amEngineSDK {
-  class amVector3;
-  class amVector4;
-  class amColor;
-
   namespace amLightMode {
     enum E
     {

@@ -20,6 +20,9 @@
     <Filter Include="Source Files\Shader Resources">
       <UniqueIdentifier>{b5406f22-f8c3-4e99-a4f1-78b92a01aef5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\DDS Loader">
+      <UniqueIdentifier>{32aa3efc-1f21-4670-8ba1-6d267043a86c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\amDXComputeShader.cpp">
@@ -81,6 +84,9 @@
     </ClCompile>
     <ClCompile Include="Source\amDXTextureObject.cpp">
       <Filter>Source Files\Shader Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\dds.cpp">
+      <Filter>Source Files\DDS Loader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -146,6 +152,9 @@
     </ClInclude>
     <ClInclude Include="Include\amDXTextureObject.h">
       <Filter>Source Files\Shader Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\dds.h">
+      <Filter>Source Files\DDS Loader</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

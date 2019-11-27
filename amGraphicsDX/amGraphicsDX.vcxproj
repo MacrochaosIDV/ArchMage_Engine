@@ -39,6 +39,7 @@
     <ClCompile Include="Source\amDXVertexBuffer.cpp" />
     <ClCompile Include="Source\amDXVertexShader.cpp" />
     <ClCompile Include="Source\amDXViewPort.cpp" />
+    <ClCompile Include="Source\dds.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\amDXComputeShader.h" />
@@ -62,6 +63,7 @@
     <ClInclude Include="Include\amDXVertexBuffer.h" />
     <ClInclude Include="Include\amDXVertexShader.h" />
     <ClInclude Include="Include\amDXViewPort.h" />
+    <ClInclude Include="Include\dds.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

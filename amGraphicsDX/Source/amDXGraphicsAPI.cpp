@@ -8,6 +8,7 @@
 #include <amResource.h>
 #include <amMaterial.h>
 #include <amLight.h>
+#include <amRenderPass.h>
 
 #include <stb_image.h>
 #include <assimp/Importer.hpp> // C++ importer interface
@@ -15,6 +16,7 @@
 #include <assimp/postprocess.h> // Post processing flags
 #include <assimp/pbrmaterial.h> // Post processing flags
 
+#include "dds.h"
 #include "amDXTexture.h"
 #include "amDXTextureObject.h"
 #include "amDXConstantBuffer.h"
@@ -77,22 +79,32 @@ namespace amEngineSDK {
 
     m_pContext->setInputLayout(m_pInputLayout);
     m_pContext->setPrimitiveTopology();
+
     m_pContext->setVertexShader(m_pVertexShader);
     m_pContext->setPixelShader(m_pPixelShader);
+
     m_pContext->setVS_CB(0, 1, m_pCB_VP);
 
     setRenderPass(m_RP_Gbuffer, m_pContext);
+
+    //get all geometry in camera
     /**
     ************************
     *  Draw G-buffer
     ************************
     */
+    //TODO: draw all geometry in camera
     Draw(m_testCube->m_vecMeshes[0]);
     /**
     ************************
-    *  Post-processing here
+    *  Post-processing
     ************************
     */
+    setRenderPass(m_RP_SSAO, m_pContext);
+    setRenderPass(m_RP_Blur, m_pContext);
+    setRenderPass(m_RP_Bloom, m_pContext);
+    setRenderPass(m_RP_Lighting, m_pContext);
+    setRenderPass(m_RP_Luminance, m_pContext);
     Present();
   }
 
@@ -615,6 +627,20 @@ namespace amEngineSDK {
     //m_vecResources.push_back(model);
 
     return model;
+  }
+
+  amShaderResourceView* 
+  amDXGraphicsAPI::loadCubeMap(const String & _pathFileName, 
+                               const bool _hdr) {
+    amDXTexture* tex = new amDXTexture();
+    tex->m_resBindFlag = amResourceBindFlags::kBIND_SHADER_RESOURCE;
+    DDS_Loader::dds_info out;
+    DDS_Loader::dds_load_from_file(_pathFileName.c_str(), &out, 0);
+
+    uint32 texSize = out.image.size;
+    //m_pDevice->
+
+    return nullptr;
   }
 
   /**

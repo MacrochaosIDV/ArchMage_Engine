@@ -48,6 +48,7 @@ namespace amEngineSDK {
 
     ID3D11ShaderResourceView* m_pSRV;
     D3D11_SHADER_RESOURCE_VIEW_DESC m_SRV_Desc;
+    D3D11_SUBRESOURCE_DATA m_subRes;
     amDXSRV_Types::E m_type;
   };
 }
