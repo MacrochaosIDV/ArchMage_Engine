@@ -49,6 +49,12 @@ namespace amEngineSDK {
   class amVector4;
   class amRenderPass;
   class amLight;
+  class amRP_GBuffer;
+  class amRP_SSAO;
+  class amRP_Blur;
+  class amRP_DownScaleBloom;
+  class amRP_Lighting;
+  class amRP_Luminance;
 
   class AM_GRAPHICSDX_EXPORT amDXGraphicsAPI : public amGraphicsAPI
   {
@@ -127,6 +133,7 @@ namespace amEngineSDK {
     loadTexture(const String& _pathName,
                 const uint32 _textureFlags = 0);
 
+
     virtual amDXRenderTargetView*
     createRenderTargetV(const uint32 _height,
                         const uint32 _width,
@@ -152,8 +159,8 @@ namespace amEngineSDK {
     createModel(const String& _pathName, 
                 const uint32 _meshLoadFlags = 0) override;
 
-    virtual amShaderResourceView* 
-    loadCubeMap(const String& _pathFileName, const bool _hdr) override;
+    amDXShaderResourceView* 
+    loadCubeMap(const String& _pathFileName, const bool _hdr);
 
    private:
     void
@@ -183,6 +190,9 @@ namespace amEngineSDK {
     amDXConstantBuffer* m_matWorld;
     amDXConstantBuffer* m_matViewProjection;
 
+    amDXShaderResourceView* m_specularIBL_Cube;
+    amDXShaderResourceView* m_irradiance_Cube;
+
     amRenderTargetView* m_rtFullColor;
     amRenderTargetView* m_rtEmissive;
     amRenderTargetView* m_rtNormals;
@@ -190,12 +200,13 @@ namespace amEngineSDK {
     amRenderTargetView* m_rtLuminance;
     amRenderTargetView* m_rtMADR;
 
-    amRenderPass* m_RP_Gbuffer;
-    amRenderPass* m_RP_Blur;
-    amRenderPass* m_RP_SSAO;
-    amRenderPass* m_RP_Lighting;
-    amRenderPass* m_RP_Luminance;
-    amRenderPass* m_RP_Bloom;
+    amRP_GBuffer* m_RP_Gbuffer;
+    amRP_SSAO* m_RP_SSAO;
+    amRP_Blur* m_RP_Blur;
+    amRP_DownScaleBloom* m_RP_Bloom;
+    amRP_Lighting* m_RP_Lighting;
+    amRP_Luminance* m_RP_Luminance;
+
 
     amMaterial* m_defaultMaterial;
     amLight m_light;

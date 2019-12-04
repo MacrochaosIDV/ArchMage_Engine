@@ -66,6 +66,20 @@ namespace amEngineSDK {
     return nullptr;
   }
 
+  amShaderResourceView* 
+  amDevice::createCubeShaderResourceView(amShaderResourceView * _SRV, 
+                                         amTexture * _texResource, 
+                                         const int32 _amSRV_type, 
+                                         const int32 _format, 
+                                         const int32 _rbf) {
+    _SRV;
+    _texResource;
+    _amSRV_type;
+    _format;
+    _rbf;
+    return nullptr;
+  }
+
   amDepthStencilView* 
   amDevice::createDepthStencilView(amDepthStencilView * _DSV,
                                    const int32 _RBF,
@@ -105,9 +119,14 @@ namespace amEngineSDK {
   }
 
   amTexture* 
-  amDevice::createCubeMap(amTexture * _tex, 
-                          const int32 _format, 
-                          const int32 _rbf) {
+  amDevice::createTextureArray(amTexture * _tex,
+                               const int32 _format, 
+                               const int32 _rbf,
+                               const uint32 _arrSize) {
+    _tex;
+    _format;
+    _rbf;
+    _arrSize;
     return nullptr;
   }
  

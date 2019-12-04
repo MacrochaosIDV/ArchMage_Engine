@@ -101,11 +101,12 @@ namespace amEngineSDK {
     _meshLoadFlags;
     return nullptr;
   }
-  amShaderResourceView* 
+
+  /*amShaderResourceView* 
   amGraphicsAPI::loadCubeMap(const String & _pathFileName, 
                              const bool _hdr) {
     _pathFileName;
     _hdr;
     return nullptr;
-  }
+  }*/
 }

@@ -1,7 +1,7 @@
 #include "amDXConstantBuffer.h"
 
 namespace amEngineSDK {
-  amDXConstantBuffer::amDXConstantBuffer(void* _pCB, const SIZE_T _size) {
+  amDXConstantBuffer::amDXConstantBuffer(void* _pCB, const uint32 _size) {
     m_pCBuffer = _pCB;
     m_size = _size;
   }

@@ -97,17 +97,17 @@ namespace amEngineSDK {
   */
 
   /**
-  * HLSL Shaders
+  * HLSL Shaders in shader model 5
   */
-#define AM_DX_VS_GBUFFER_SHDR "Resources/Shaders/VS_GBuffer.hlsl"
-#define AM_DX_VS_GENERIC_SHDR "Resources/Shaders/VS_Generic.hlsl"
+#define AM_DX_VS_GBUFFER_SHDR "Resources/Shaders/VS_GBuffer_5.hlsl"
+#define AM_DX_VS_GENERIC_SHDR "Resources/Shaders/VS_Generic_5.hlsl"
 
-#define AM_DX_PS_GBUFFER_SHDR "Resources/Shaders/ibl_brdf_lut.hlsl"
-#define AM_DX_PS_SSAO_SHDR "Resources/Shaders/PS_SSAO.hlsl"
-#define AM_DX_PS_BLOOM_SHDR "Resources/Shaders/PS_Bloom.hlsl"
-#define AM_DX_PS_LIGHTING_SHDR "Resources/Shaders/PS_Lighting.hlsl"
-#define AM_DX_PS_LUMINANCE_SHDR "Resources/Shaders/PS_Luminance.hlsl"
-#define AM_DX_PS_KERNELS_SHDR "Resources/Shaders/PS_Kernels.hlsl"
+#define AM_DX_PS_GBUFFER_SHDR "Resources/Shaders/PS_GBuffer_5.hlsl"
+#define AM_DX_PS_SSAO_SHDR "Resources/Shaders/PS_SSAO_5.hlsl"
+#define AM_DX_PS_BLOOM_SHDR "Resources/Shaders/PS_Bloom_5.hlsl"
+#define AM_DX_PS_LIGHTING_SHDR "Resources/Shaders/PS_Lighting_5.hlsl"
+#define AM_DX_PS_LUMINANCE_SHDR "Resources/Shaders/PS_Luminance_5.hlsl"
+#define AM_DX_PS_KERNELS_SHDR "Resources/Shaders/PS_Kernels_5.hlsl"
 
   /**
   * GLSL Shaders

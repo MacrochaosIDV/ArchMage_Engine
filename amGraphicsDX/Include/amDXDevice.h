@@ -65,6 +65,13 @@ namespace amEngineSDK {
                              const int32 _format, 
                              const int32 _rbf) override;
 
+    virtual amShaderResourceView* 
+    createCubeShaderResourceView(amShaderResourceView* _SRV, 
+                                 amTexture* _texResource, 
+                                 const int32 amSRV_type, 
+                                 const int32 _format, 
+                                 const int32 _rbf) override;
+
     virtual amRenderTargetView* 
     createRenderTargetView(amRenderTargetView* _RTV, 
                            const int32 _format,
@@ -79,6 +86,12 @@ namespace amEngineSDK {
     createDepthStencilView(amDepthStencilView* _DSV,
                            const int32 _RBF = amResourceBindFlags::kBIND_DEPTH_STENCIL,
                            const int32 _format = amFormats::kFORMAT_D24_UNORM_S8_UINT);
+
+    virtual amTexture*
+    createTextureArray(amTexture* _tex,
+                       const int32 _format,
+                       const int32 _rbf,
+                       const uint32 _arrSize) override;
 
     ID3D11Device* m_pDV;
   };

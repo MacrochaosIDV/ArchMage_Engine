@@ -51,6 +51,13 @@ namespace amEngineSDK {
                              const int32 _format,
                              const int32 _rbf);
 
+    virtual amShaderResourceView*
+    createCubeShaderResourceView(amShaderResourceView* _SRV,
+                                 amTexture* _texResource,
+                                 const int32 amSRV_type,
+                                 const int32 _format,
+                                 const int32 _rbf);
+
     virtual amDepthStencilView*
     createDepthStencilView(amDepthStencilView* _DSV,
                            const int32 _RBF = 
@@ -73,9 +80,12 @@ namespace amEngineSDK {
                   const int32 _rbf);
 
     virtual amTexture* 
-    createCubeMap(amTexture* _tex,
-                  const int32 _format,
-                  const int32 _rbf);
+    createTextureArray(amTexture* _tex,
+                       const int32 _format,
+                       const int32 _rbf, 
+                       const uint32 _arrSize);
+
+
 
   };
 }

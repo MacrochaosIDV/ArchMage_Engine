@@ -109,9 +109,9 @@ namespace amEngineSDK {
     createModel(const String& _pathName,
                 const uint32 _meshLoadFlags = 0);
 
-    virtual amShaderResourceView* 
+    /*virtual amShaderResourceView* 
     loadCubeMap(const String& _pathFileName, 
-                const bool _hdr);
+                const bool _hdr);*/
 
     float m_bloomIntensity;
     float m_fov;

@@ -18,7 +18,7 @@ namespace amEngineSDK {
   amDXDevice::~amDXDevice() {}
 
   amVertexShader* 
-  amDXDevice::createVertexShader(amVertexShader * _pVS) {
+  amDXDevice::createVertexShader(amVertexShader* _pVS) {
     amDXVertexShader* dxVS = reinterpret_cast<amDXVertexShader*>(_pVS);
 
     HRESULT h = m_pDV->CreateVertexShader(dxVS->m_blob->GetBufferPointer(),
@@ -31,7 +31,7 @@ namespace amEngineSDK {
   }
 
   amPixelShader* 
-  amDXDevice::createPixelShader(amPixelShader * _pPS) {
+  amDXDevice::createPixelShader(amPixelShader* _pPS) {
     amDXPixelShader* dxPS = reinterpret_cast<amDXPixelShader*>(_pPS);
 
     HRESULT h = m_pDV->CreatePixelShader(dxPS->m_blob->GetBufferPointer(),
@@ -44,7 +44,7 @@ namespace amEngineSDK {
   }
 
   amComputeShader* 
-  amDXDevice::createComputeShader(amComputeShader * _pCS) {
+  amDXDevice::createComputeShader(amComputeShader* _pCS) {
     amDXComputeShader* dxCS = reinterpret_cast<amDXComputeShader*>(_pCS);
 
     HRESULT h = m_pDV->CreateComputeShader(dxCS->m_blob->GetBufferPointer(),
@@ -57,7 +57,7 @@ namespace amEngineSDK {
   }
 
   amShaderResourceView* 
-  amDXDevice::createShaderResourceView(amShaderResourceView * _pSRV,
+  amDXDevice::createShaderResourceView(amShaderResourceView* _pSRV,
                                        amTexture* _texResource,
                                        const int32 amSRV_type,
                                        const int32 _format, 
@@ -84,8 +84,36 @@ namespace amEngineSDK {
     return nullptr;
   }
 
+  amShaderResourceView* 
+  amDXDevice::createCubeShaderResourceView(amShaderResourceView* _SRV,
+                                           amTexture* _texResource, 
+                                           const int32 amSRV_type, 
+                                           const int32 _format, 
+                                           const int32 _rbf) {
+
+    amDXTexture* texDX = reinterpret_cast<amDXTexture*>(_texResource);
+
+    _texResource = createTextureArray(_texResource, _format, _rbf, 6);
+
+    amDXShaderResourceView* _pDXSRV = new amDXShaderResourceView();
+
+    memset(&_pDXSRV->m_SRV_Desc, 0, sizeof(_pDXSRV->m_SRV_Desc));
+    _pDXSRV->m_SRV_Desc.Format = static_cast<DXGI_FORMAT>(_format);
+    _pDXSRV->m_SRV_Desc.ViewDimension = static_cast<D3D11_SRV_DIMENSION>(amSRV_type);
+    _pDXSRV->m_SRV_Desc.Texture2D.MipLevels = 1;
+    _pDXSRV->m_SRV_Desc.Texture2D.MostDetailedMip = 0;
+
+    HRESULT h = m_pDV->CreateShaderResourceView(texDX->m_tex,
+                                                &_pDXSRV->m_SRV_Desc,
+                                                &_pDXSRV->m_pSRV);
+
+    if (h == S_OK)
+      return _SRV;
+    return nullptr;
+  }
+
   amRenderTargetView* 
-  amDXDevice::createRenderTargetView(amRenderTargetView * _RTV, 
+  amDXDevice::createRenderTargetView(amRenderTargetView* _RTV, 
                                      const int32 _format, 
                                      const int32 _rbf) {
 
@@ -117,13 +145,13 @@ namespace amEngineSDK {
   }
 
   amTexture* 
-  amDXDevice::createTexture(amTexture * _tex, 
+  amDXDevice::createTexture(amTexture* _tex, 
                             const int32 _format,
                             const int32 _rbf) {
     amDXTexture* dxTex = reinterpret_cast<amDXTexture*>(_tex);
 
-    D3D11_SUBRESOURCE_DATA subRes;
-    memset(&subRes, 0, sizeof(subRes));
+    //D3D11_SUBRESOURCE_DATA subRes;
+    memset(&dxTex->m_subRes, 0, sizeof(dxTex->m_subRes));
     dxTex->m_subRes.pSysMem = &_tex->m_tBuffer[0];
 
     //Set the ID3D11_TEXTURE2D_DESC
@@ -147,7 +175,7 @@ namespace amEngineSDK {
   }
 
   amDepthStencilView* 
-  amDXDevice::createDepthStencilView(amDepthStencilView * _DSV, 
+  amDXDevice::createDepthStencilView(amDepthStencilView* _DSV, 
                                      const int32 _RBF, 
                                      const int32 _format) {
     amDXDepthStencilView* dxDS = reinterpret_cast<amDXDepthStencilView*>(_DSV);
@@ -167,14 +195,52 @@ namespace amEngineSDK {
                                               &dxDS->m_pDSV);
     if (h != S_OK)
       return nullptr;
-    return dxDS;
+    return _DSV;
   }
 
-  /**
-  ************************
-  * @TODO: The buffers for cleaner code
-  ************************
-  */
+  amTexture*
+  amDXDevice::createTextureArray(amTexture* _tex,
+                                 const int32 _format,
+                                 const int32 _rbf,
+                                 const uint32 _arrSize) {
+    amDXTexture* dxTex = reinterpret_cast<amDXTexture*>(_tex);
+
+    
+    AM_ASSERT(_arrSize > 0);
+    //Set the ID3D11_TEXTURE2D_DESC
+    memset(&dxTex->m_desc, 0, sizeof(dxTex->m_desc));
+    dxTex->m_desc.Width = _tex->m_width;
+    dxTex->m_desc.Height = _tex->m_height;
+    dxTex->m_desc.MipLevels = 1; 
+    dxTex->m_desc.ArraySize = _arrSize;
+    dxTex->m_desc.Format = static_cast<DXGI_FORMAT>(_format);
+    dxTex->m_desc.SampleDesc.Count = 1;
+    dxTex->m_desc.SampleDesc.Quality = 0;
+    dxTex->m_desc.Usage = D3D11_USAGE_DEFAULT;
+    dxTex->m_desc.BindFlags = static_cast<D3D11_BIND_FLAG>(_rbf);
+    dxTex->m_desc.CPUAccessFlags = 0;
+    dxTex->m_desc.MiscFlags = D3D11_RESOURCE_MISC_TEXTURECUBE;
+
+    //D3D11_SUBRESOURCE_DATA subRes;
+    //memset(&dxTex->m_subRes, 0, sizeof(dxTex->m_subRes));
+    //dxTex->m_subRes.pSysMem = &_tex->m_tBuffer[0];
+    uint32 texSize = _tex->m_width * _tex->m_height;
+   
+    Vector<D3D11_SUBRESOURCE_DATA> ArrSubRes;
+    ArrSubRes.resize(_arrSize);
+    memset(&ArrSubRes[0], 0, sizeof(D3D11_SUBRESOURCE_DATA) * _arrSize);
+    for (uint32 i = 0; i < _arrSize; ++i) {
+      ArrSubRes[i].pSysMem = &_tex->m_tBuffer[0] + (texSize * i);
+      ArrSubRes[i].SysMemPitch = _tex->m_width * 4;
+    }
+
+    HRESULT h = m_pDV->CreateTexture2D(&dxTex->m_desc, &ArrSubRes[0], &dxTex->m_tex);
+
+    if (h != S_OK)
+      return nullptr;
+    return _tex;
+  }
+
   amIndexBuffer*
   amDXDevice::createIndexBuffer(amIndexBuffer* _pIB,
                                 const int32 _RBF) {
@@ -213,5 +279,4 @@ namespace amEngineSDK {
       return pVB;
     return nullptr;
   }
-
 }

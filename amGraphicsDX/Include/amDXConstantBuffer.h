@@ -9,7 +9,7 @@ namespace amEngineSDK {
   {
   public:
     amDXConstantBuffer() = default;
-    amDXConstantBuffer(void* _pCB, const SIZE_T _size);
+    amDXConstantBuffer(void* _pCB, const uint32 _size);
     ~amDXConstantBuffer();
 
     void

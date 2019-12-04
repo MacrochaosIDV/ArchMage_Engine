@@ -9,6 +9,12 @@
 #include <amMaterial.h>
 #include <amLight.h>
 #include <amRenderPass.h>
+#include <amRP_GBuffer.h>
+#include <amRP_SSAO.h>
+#include <amRP_Blur.h>
+#include <amRP_DownScaleBloom.h>
+#include <amRP_Lighting.h>
+#include <amRP_Luminance.h>
 
 #include <stb_image.h>
 #include <assimp/Importer.hpp> // C++ importer interface
@@ -112,9 +118,16 @@ namespace amEngineSDK {
   amDXGraphicsAPI::initContent() {
     
     m_clearColor = amVector4(0.0f, 0.0f, 0.0f, 1.0f);
-    m_pVertexShader->createVS("Resources/Shaders/VS_GBuffer.hlsl", m_pDevice);
-    m_pPixelShader->createPS("Resources/Shaders/PS_PBR.hlsl", m_pDevice);
+    //m_pVertexShader->createVS("Resources/Shaders/VS_GBuffer.hlsl", m_pDevice);
+    //m_pPixelShader->createPS("Resources/Shaders/PS_PBR.hlsl", m_pDevice);
     m_pInputLayout->Create(m_pDevice, m_pVertexShader);
+
+    /**
+    ************************
+    *  Render Pass initialize
+    ************************
+    */
+
 
     m_defaultMaterial = new amMaterial("Default Material");
     m_defaultMaterial->addTextureToMat(createTextureShaderResourceV(AM_MISSING_TEX, 
@@ -386,6 +399,7 @@ namespace amEngineSDK {
     * Set constant buffers, deltaTime
     ************************
     */
+    //m_pContext->setVS_CB(0, 1, );
 
     /**
     ************************
@@ -443,6 +457,8 @@ namespace amEngineSDK {
     m_testCube = createModel("Resources/3D_Meshes/Cube.x", 
                              amMeshLoadFlags::kNO_MATS);
     m_testCube->m_vecMeshes[0]->setMaterial(m_defaultMaterial);
+
+    m_irradiance_Cube = loadCubeMap("Resources/3D_Meshes/Vela/Textures/Irradiance.dds", false);
   }
 
   void 
@@ -629,7 +645,7 @@ namespace amEngineSDK {
     return model;
   }
 
-  amShaderResourceView* 
+  amDXShaderResourceView* 
   amDXGraphicsAPI::loadCubeMap(const String & _pathFileName, 
                                const bool _hdr) {
     amDXTexture* tex = new amDXTexture();
@@ -638,9 +654,11 @@ namespace amEngineSDK {
     DDS_Loader::dds_load_from_file(_pathFileName.c_str(), &out, 0);
 
     uint32 texSize = out.image.size;
+    texSize;
     //m_pDevice->
 
     return nullptr;
+    _hdr;
   }
 
   /**

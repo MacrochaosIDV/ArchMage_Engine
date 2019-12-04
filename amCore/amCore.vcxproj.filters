@@ -224,7 +224,7 @@
       <Filter>Source Files\Shader Resources</Filter>
     </ClCompile>
     <ClCompile Include="amCubemap.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Resource classes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -411,6 +411,8 @@
     <ClInclude Include="Include\amSamplerState.h">
       <Filter>Source Files\Shader Resources</Filter>
     </ClInclude>
-    <ClInclude Include="amCubemap.h" />
+    <ClInclude Include="amCubemap.h">
+      <Filter>Source Files\Resource classes</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
