@@ -14,7 +14,7 @@ namespace amEngineSDK {
   }
 
   void 
-  amGraphicsAPI::init(void * _wnd) {
+  amGraphicsAPI::init(void* _wnd) {
     _wnd;
   }
 
@@ -40,8 +40,8 @@ namespace amEngineSDK {
   amGraphicsAPI::initScene() {}
 
   void 
-  amGraphicsAPI::renderResourcesOnCam(amCamera * _cam, 
-                                      amRenderPass * _pass) {
+  amGraphicsAPI::renderResourcesOnCam(amCamera* _cam, 
+                                      amRenderPass* _pass) {
     _cam; _pass;
   }
 
@@ -64,8 +64,8 @@ namespace amEngineSDK {
   amGraphicsAPI::Present() {}
 
   void 
-  amGraphicsAPI::setShaders(amVertexShader * _VS, 
-                            amPixelShader * _PS) {
+  amGraphicsAPI::setShaders(amVertexShader* _VS, 
+                            amPixelShader* _PS) {
     _VS; _PS;
   }
 
@@ -81,7 +81,13 @@ namespace amEngineSDK {
   }
 
   void 
-  amGraphicsAPI::setConstantBuffer(amConstantBuffer * _cb, 
+  amGraphicsAPI::createPassShaders(amPixelShader** _ps, amVertexShader** _vs) {
+    _vs;
+    _ps;
+  }
+
+  void 
+  amGraphicsAPI::setConstantBuffer(amConstantBuffer* _cb, 
                                    const int32 _shaderFlags) {
     _cb;
     _shaderFlags;

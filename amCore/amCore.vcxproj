@@ -175,7 +175,6 @@
     <ClCompile Include="..\..\..\..\..\..\..\..\..\..\Development\imgui\imgui.cpp" />
     <ClCompile Include="..\..\..\..\..\..\..\..\..\..\Development\imgui\imgui_demo.cpp" />
     <ClCompile Include="..\..\..\..\..\..\..\..\..\..\Development\imgui\imgui_draw.cpp" />
-    <ClCompile Include="amCubemap.cpp" />
     <ClCompile Include="Source\amAnimationMesh.cpp" />
     <ClCompile Include="Source\amBaseApp.cpp" />
     <ClCompile Include="Source\amBlob.cpp" />
@@ -238,7 +237,6 @@
     <ClInclude Include="..\..\..\..\..\..\..\..\..\..\Development\imgui\imconfig.h" />
     <ClInclude Include="..\..\..\..\..\..\..\..\..\..\Development\imgui\imgui.h" />
     <ClInclude Include="..\..\..\..\..\..\..\..\..\..\Development\imgui\imgui_internal.h" />
-    <ClInclude Include="amCubemap.h" />
     <ClInclude Include="Include\amAnimationMesh.h" />
     <ClInclude Include="Include\amBaseApp.h" />
     <ClInclude Include="Include\amBlob.h" />

@@ -27,7 +27,7 @@ namespace amEngineSDK {
     virtual void 
     Compile();
 
-    amBlob m_buffer;
+    //amBlob m_buffer;
     String m_shaderName;
     String m_pathFileName;
     String m_entryPoint;

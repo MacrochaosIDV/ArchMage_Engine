@@ -92,7 +92,7 @@ namespace amEngineSDK {
 
   /**
   ************************
-  *  Pre-defined paths to Shaders
+  *  Predefined paths to Shaders
   ************************
   */
 

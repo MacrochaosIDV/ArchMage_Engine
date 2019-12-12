@@ -39,7 +39,8 @@
 #include <unordered_set>
 #include <stack>
 #include <deque>
-
+#include <memory>
+#include <utility>
 
 #endif
 
@@ -131,6 +132,17 @@ namespace amEngineSDK {
   */
 
   //template<class T1, class T2>
-  //using Pair = std::pair<T1, T2, std::allocator<_Ty>>;
+  using Pair = std::pair<class T1, class T2>;
+  using SharedPtr = std::shared_ptr<class T>;
+
+  /**
+  ************************
+  *  @Function encapsulation for std
+  ************************
+  */
+  template<typename T>
+  static T Move(T val) {
+    return std::move(val);
+  }
 #endif
 }

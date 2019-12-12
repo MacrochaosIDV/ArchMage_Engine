@@ -3,6 +3,7 @@
 
 namespace amEngineSDK {
   class amResource;
+  class amGameObject;
 
   namespace amComponentType {
     enum E
@@ -11,9 +12,12 @@ namespace amEngineSDK {
       kTRANSFORM,
       kRESOURCE,
       kCAMERA,
+      kSCRIPT,
+      kLIGHT,
       COUNT
     };
   }
+
   class AM_CORE_EXPORT amComponent
   {
   public:
@@ -23,8 +27,21 @@ namespace amEngineSDK {
     amResource* 
     getResource();
 
+    void
+    setGameObj(amGameObject* _obj);
+
+    virtual void 
+    onAddComp();
+
+    virtual void 
+    onRemoveComp();
+
+    virtual void 
+    onMoveComp();
+
     bool m_hasRenderableResource;
     amResource* m_resourceComponent;
+    amGameObject* m_obj;
     amComponentType::E m_type;
   };
 }

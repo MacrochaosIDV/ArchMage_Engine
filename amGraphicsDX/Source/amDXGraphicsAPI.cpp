@@ -63,8 +63,8 @@ namespace amEngineSDK {
     delete(m_pCB_VP);
     delete(m_pDepthStencil);
     delete(m_pCamManager);
-    delete(m_pPixelShader);
-    delete(m_pVertexShader);
+    //delete(m_pPixelShader);
+    //delete(m_pVertexShader);
     delete(m_pInputLayout);
     delete(m_pRenderManager);
     delete(m_pResourceManager);
@@ -86,8 +86,8 @@ namespace amEngineSDK {
     m_pContext->setInputLayout(m_pInputLayout);
     m_pContext->setPrimitiveTopology();
 
-    m_pContext->setVertexShader(m_pVertexShader);
-    m_pContext->setPixelShader(m_pPixelShader);
+    //m_pContext->setVertexShader(m_pVertexShader);
+    //m_pContext->setPixelShader(m_pPixelShader);
 
     m_pContext->setVS_CB(0, 1, m_pCB_VP);
 
@@ -120,13 +120,46 @@ namespace amEngineSDK {
     m_clearColor = amVector4(0.0f, 0.0f, 0.0f, 1.0f);
     //m_pVertexShader->createVS("Resources/Shaders/VS_GBuffer.hlsl", m_pDevice);
     //m_pPixelShader->createPS("Resources/Shaders/PS_PBR.hlsl", m_pDevice);
-    m_pInputLayout->Create(m_pDevice, m_pVertexShader);
-
     /**
     ************************
     *  Render Pass initialize
     ************************
     */
+    m_RP_Gbuffer = new amRP_GBuffer(amRenderPassStage::kG_BUFFER, 
+                                    AM_DX_PS_GBUFFER_SHDR, 
+                                    AM_DX_VS_GBUFFER_SHDR, 
+                                    "Geometry Buffer");
+
+    m_RP_SSAO = new amRP_SSAO(amRenderPassStage::kSSAO,
+                              AM_DX_PS_SSAO_SHDR, 
+                              AM_DX_VS_GENERIC_SHDR, 
+                              "Screen Space Ambient Occlusion");
+
+    m_RP_Blur = new amRP_Blur(amRenderPassStage::kBLUR_H, 
+                              AM_DX_PS_KERNELS_SHDR, 
+                              AM_DX_VS_GENERIC_SHDR, 
+                              "Blur");
+
+    m_RP_Bloom = new amRP_DownScaleBloom(amRenderPassStage::kDOWNSCALE_BLOOM, 
+                                         AM_DX_PS_BLOOM_SHDR, 
+                                         AM_DX_VS_GENERIC_SHDR,
+                                         "Bloom");
+    m_RP_Lighting = new amRP_Lighting(amRenderPassStage::kFINAL, 
+                                      AM_DX_PS_LIGHTING_SHDR, 
+                                      AM_DX_VS_GENERIC_SHDR, 
+                                      "Lighting");
+
+    m_RP_Luminance = new amRP_Luminance(amRenderPassStage::kLUMINANCE, 
+                                        AM_DX_PS_LUMINANCE_SHDR, 
+                                        AM_DX_VS_GENERIC_SHDR, 
+                                        "Luminance");
+
+    m_RP_Gbuffer->init(m_pDevice, this);
+    m_RP_SSAO->init(m_pDevice, this);
+    m_RP_Blur->init(m_pDevice, this);
+    m_RP_Bloom->init(m_pDevice, this);
+    m_RP_Lighting->init(m_pDevice, this);
+    m_RP_Luminance->init(m_pDevice, this);
 
 
     m_defaultMaterial = new amMaterial("Default Material");
@@ -142,6 +175,7 @@ namespace amEngineSDK {
                                                                     amTexType::kMETALNESS));
     m_pResourceManager->addMaterial(m_defaultMaterial);
 
+    m_pInputLayout->Create(m_pDevice, m_RP_Gbuffer->m_pVS);
     tmpLoadResource();
   }
 
@@ -161,8 +195,8 @@ namespace amEngineSDK {
     m_pSwapChain = new amDXSwapChain();
     m_pCB_VP = new amDXConstantBuffer();
     m_pContext = new amDXDeviceContext();
-    m_pPixelShader = new amDXPixelShader();
-    m_pVertexShader = new amDXVertexShader();
+    //m_pPixelShader = new amDXPixelShader();
+    //m_pVertexShader = new amDXVertexShader();
     m_pInputLayout = new  amDXInputLayout();
     m_pRenderTargetView = new amDXRenderTargetView();
 
@@ -468,8 +502,8 @@ namespace amEngineSDK {
     delete(m_pCB_VP);
     delete(m_pDepthStencil);
     delete(m_pCamManager);
-    delete(m_pPixelShader);
-    delete(m_pVertexShader);
+    //delete(m_pPixelShader);
+    //delete(m_pVertexShader);
     delete(m_pInputLayout);
     delete(m_pRenderManager);
     delete(m_pResourceManager);
@@ -731,6 +765,12 @@ namespace amEngineSDK {
     */
     _dv->createVertexBuffer(_mesh->m_vb);
     _dv->createIndexBuffer(_mesh->m_ib);
+  }
+
+  void 
+  amDXGraphicsAPI::createPassShaders(amPixelShader** _ps, amVertexShader** _vs) {
+    *_ps = new amDXPixelShader();
+    *_vs = new amDXVertexShader();
   }
 
   /**

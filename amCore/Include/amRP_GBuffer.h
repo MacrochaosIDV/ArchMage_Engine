@@ -5,10 +5,14 @@
 namespace amEngineSDK {
   class amShaderResourceView;
 
-  class amRP_GBuffer : public amRenderPass
+  class AM_CORE_EXPORT amRP_GBuffer : public amRenderPass
   {
   public:
     amRP_GBuffer();
+    amRP_GBuffer(const uint32 _pass,
+                 const String& _strPS,
+                 const String& _strVS,
+                 const String& _name);
     ~amRP_GBuffer();
 
     virtual void

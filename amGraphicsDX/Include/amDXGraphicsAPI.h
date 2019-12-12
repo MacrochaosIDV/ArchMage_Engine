@@ -114,6 +114,9 @@ namespace amEngineSDK {
     virtual void 
     setRenderPass(amRenderPass* _pass, amDeviceContext* _dv) override;
 
+    virtual void
+    createPassShaders(amPixelShader** _ps, amVertexShader** _vs) override;
+
     void 
     tmpLoadResource();
 
@@ -172,12 +175,12 @@ namespace amEngineSDK {
     process_Mesh(aiMesh* _aiMesh, amMesh* _mesh, amDevice* _dv);
    public:
 
+    
+
     /**
     ************************************************
     ************************************************
     */
-
-
 
     amVector4 m_clearColor;
 
@@ -212,6 +215,8 @@ namespace amEngineSDK {
     amLight m_light;
 
     amModel* m_testCube;
+
+    amModel* m_screenAlignedQuad;
     
     amDXDeviceContext*                  m_pContext = NULL;
     amDXDepthStencilView*               m_pDepthStencilView = NULL;
@@ -219,8 +224,8 @@ namespace amEngineSDK {
     amDXSamplerState*                   m_pSamplerLinear = NULL;
     amDXInputLayout*                    m_pInputLayout = NULL;
     amDXTexture*                        m_pDepthStencil = NULL;
-    amDXVertexShader*                   m_pVertexShader = NULL;
-    amDXPixelShader*                    m_pPixelShader = NULL;
+    //amDXVertexShader*                   m_pVertexShader = NULL;
+    //amDXPixelShader*                    m_pPixelShader = NULL;
     amDXShaderResourceView*             m_pTextureRV = NULL;
     amDXSwapChain*                      m_pSwapChain = NULL;
     amDXDevice*                         m_pDevice = NULL;

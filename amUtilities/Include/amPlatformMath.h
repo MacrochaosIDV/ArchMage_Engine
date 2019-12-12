@@ -32,6 +32,8 @@ namespace amEngineSDK {
     static const float RAD2DEG; // = 57.29577951;
     static const float DEG2RAD; // = 0.017453292519;
 
+    static const float FPS60MUL;// = 1/60;
+
     ////* Implementations *////
 
     /***********************

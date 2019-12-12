@@ -14,7 +14,9 @@
 #pragma once
 
 #include <fstream>
+#include <ostream>
 
 namespace amEngineSDK {
   using FStream = std::fstream;
+  using COut = std::ostream;
 }

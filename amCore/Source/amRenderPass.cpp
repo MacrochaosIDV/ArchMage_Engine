@@ -2,14 +2,17 @@
 #include "amVertexShader.h"
 #include "amPixelShader.h"
 #include "amDeviceContext.h"
+#include "amDevice.h"
+#include "amGraphicsAPI.h"
+
+//using std::move;
 
 namespace amEngineSDK {
 
-  //TODO:make sure the shaders initialize during init content in graphics api
-  amRenderPass::amRenderPass(const uint32 _pass, 
-                             String _strPS, 
-                             String _strVS, 
-                             String _name) {
+  amRenderPass::amRenderPass(const uint32 _pass,
+                             const String& _strPS,
+                             const String& _strVS,
+                             const String& _name) {
     m_renderPassStage = static_cast<amRenderPassStage::E>(_pass);
     m_strPS = _strPS;
     m_strVS = _strVS;
@@ -34,12 +37,14 @@ namespace amEngineSDK {
     return ((m_pVS) ? 0 : 1 + ((m_pPS) ? 0 : 10));
   }
 
-  void amRenderPass::setShaders(String _strPS, String _strVS) {
+  void 
+  amRenderPass::setShaders(String _strPS, String _strVS) {
     m_strPS = _strPS;
     m_strVS = _strVS;
   }
 
-  void amRenderPass::setShaderPointers(amVertexShader * _pVS, amPixelShader * _pPS) {
+  void 
+  amRenderPass::setShaderPointers(amVertexShader* _pVS, amPixelShader* _pPS) {
     m_pVS = _pVS;
     m_pPS = _pPS;
   }
@@ -50,11 +55,36 @@ namespace amEngineSDK {
   }
 
   void 
-  amRenderPass::setUp(amDeviceContext * _dc) {
+  amRenderPass::setUp(amDeviceContext* _dc) {
     _dc;
   }
 
-  void amRenderPass::addModels(Vector<amResource*>* _mdls) {
+  void 
+  amRenderPass::addModels(Vector<amResource*>* _mdls) {
     m_vecPassModels.insert(m_vecPassModels.end(), _mdls->begin(), _mdls->end());
+  }
+
+  void 
+  amRenderPass::clearPassGeom() {
+    m_vecPassModels.clear();
+  }
+
+  void 
+  amRenderPass::createShaders(amDevice* _dv) {
+    _dv->createVertexShader(m_pVS);
+    _dv->createPixelShader(m_pPS);
+  }
+
+  void 
+  amRenderPass::init(amDevice * _dv, amGraphicsAPI* _api) {
+    _api->createPassShaders(&m_pPS, &m_pVS);
+    m_pPS->m_pathFileName = m_strPS;
+    m_pPS->m_entryPoint = Move("PS");
+    m_pPS->m_shaderModel = Move("ps_5_0");
+    m_pVS->m_pathFileName = m_strVS;
+    m_pVS->m_entryPoint = Move("VS");
+    m_pVS->m_shaderModel = Move("vs_5_0");
+    compileShaders();
+    createShaders(_dv);
   }
 }

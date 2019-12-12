@@ -3,10 +3,14 @@
 #include "amRenderPass.h"
 
 namespace amEngineSDK {
-  class amRP_DownScaleBloom : public amRenderPass
+  class AM_CORE_EXPORT amRP_DownScaleBloom : public amRenderPass
   {
   public:
     amRP_DownScaleBloom();
+    amRP_DownScaleBloom(const uint32 _pass,
+                        const String& _strPS,
+                        const String& _strVS,
+                        const String& _name);
     ~amRP_DownScaleBloom();
   };
 }

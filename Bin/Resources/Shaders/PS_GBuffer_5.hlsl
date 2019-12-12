@@ -22,7 +22,7 @@ float3 fresnelSchlick(float3 F0, float cosTheta) {
     return F0 + (1.0f - F0) * pow(1.0f - cosTheta, 5.0f);
 }
 
-cbuffer DataBuffer : register (c0)
+cbuffer DataBuffer : register (b0)
 {
 float3 m_lightPos;
 float4 m_eyePos;
@@ -69,7 +69,7 @@ struct PS_OUTPUT
    //TODO: add metal, ao, rough & depth
 };
 
-float4 PS(PS_INPUT Input) {
+PS_OUTPUT PS(PS_INPUT Input) {
     PS_OUTPUT Output = (PS_OUTPUT)0;
     float Epsilon = 0.00001f;
     float fDiElectric = 0.03f;
@@ -135,7 +135,7 @@ float4 PS(PS_INPUT Input) {
     Output.Color = float4( pow(
         pow(directLighting, 2.2f) + pow(ambienLighting,2.2f), 1.0f/2.2f), albedo.w);
 
-    return Output.Color;
+    //return Output.Color;
     Output.NormalDepth = float4(normal, Input.Depth);
     Output.Emissive = float4(pow(emissive, 2.2f), 1.0f);
 

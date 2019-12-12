@@ -28,6 +28,7 @@ namespace amEngineSDK {
     const float amPlatformMath::TWOPI = std::tanf(1.0f) * 8.0f;
     const float amPlatformMath::RAD2DEG = 180.0f / PI;
     const float amPlatformMath::DEG2RAD = PI / 180.0f;
+    const float amPlatformMath::FPS60MUL = 1.0f / 60.0f;
                                 
     ////* Implementations *////
 

@@ -3,10 +3,14 @@
 #include "amRenderPass.h"
 
 namespace amEngineSDK {
-  class amRP_SSAO : public amRenderPass
+  class AM_CORE_EXPORT amRP_SSAO : public amRenderPass
   {
   public:
-    amRP_SSAO(amRenderPassStage::E _pass, String _strPS, String _strVS, String _name);
+    amRP_SSAO();
+    amRP_SSAO(const uint32 _pass,
+              const String& _strPS,
+              const String& _strVS,
+              const String& _name);
     ~amRP_SSAO();
   };
 }

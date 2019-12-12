@@ -4,11 +4,11 @@ namespace amEngineSDK {
   {
   public:
     amPerformanceCounter() = default;
-    amPerformanceCounter(const uint32 _refreshRate);
+    amPerformanceCounter(const uint32 _refreshRateMul);
     ~amPerformanceCounter() = default;
 
     void 
-    setRefreshRate(uint32 _refreshRate);
+    setRefreshRate(uint32 _refreshRateMul);
 
     void 
     startCounterNano();
@@ -18,6 +18,9 @@ namespace amEngineSDK {
 
     void 
     startCounterMili();
+
+    void 
+    resetCounter();
 
     double 
     getCounter();

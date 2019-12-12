@@ -9,6 +9,8 @@ namespace amEngineSDK {
   class amRenderTarget;
   class amResource;
   class amDeviceContext;
+  class amDevice;
+  class amGraphicsAPI;
 
   namespace amRenderPassStage {
     enum E
@@ -28,10 +30,10 @@ namespace amEngineSDK {
   {
   public:
     amRenderPass() = default;
-    amRenderPass(const uint32 _pass, 
-                 String _strPS, 
-                 String _strVS, 
-                 String _name);
+    amRenderPass(const uint32 _pass,
+                 const String& _strPS,
+                 const String& _strVS,
+                 const String& _name);
     ~amRenderPass();
 
     void 
@@ -55,12 +57,21 @@ namespace amEngineSDK {
     virtual void 
     addModels(Vector<amResource*>* _mdls);
 
+    virtual void 
+    clearPassGeom();
+
+    virtual void 
+    createShaders(amDevice* _dv);
+
+    virtual void 
+    init(amDevice* _dv, amGraphicsAPI* _api);
+
 
     bool m_computeShading;
     String m_passName;
     String m_strPS;
     String m_strVS;
-    amRenderPassStage::E m_renderPassStage;
+    uint32 m_renderPassStage;
     amVertexShader* m_pVS;
     amPixelShader* m_pPS;
     amConstantBuffer* m_vsConstBuffer;

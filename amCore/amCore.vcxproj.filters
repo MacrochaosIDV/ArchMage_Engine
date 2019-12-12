@@ -211,9 +211,6 @@
     <ClCompile Include="Source\amRP_Luminance.cpp">
       <Filter>Source Files\Renderer classes\Render Passes</Filter>
     </ClCompile>
-    <ClCompile Include="Source\amTextureObject.cpp">
-      <Filter>Source Files\Resource classes</Filter>
-    </ClCompile>
     <ClCompile Include="Source\amRenderTarget.cpp">
       <Filter>Source Files\Resource classes</Filter>
     </ClCompile>
@@ -223,7 +220,7 @@
     <ClCompile Include="Source\amSamplerState.cpp">
       <Filter>Source Files\Shader Resources</Filter>
     </ClCompile>
-    <ClCompile Include="amCubemap.cpp">
+    <ClCompile Include="Source\amTextureObject.cpp">
       <Filter>Source Files\Resource classes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -399,9 +396,6 @@
     <ClInclude Include="Include\amRP_Luminance.h">
       <Filter>Source Files\Renderer classes\Render Passes</Filter>
     </ClInclude>
-    <ClInclude Include="Include\amTextureObject.h">
-      <Filter>Source Files\Resource classes</Filter>
-    </ClInclude>
     <ClInclude Include="Include\amRenderTarget.h">
       <Filter>Source Files\Resource classes</Filter>
     </ClInclude>
@@ -411,7 +405,7 @@
     <ClInclude Include="Include\amSamplerState.h">
       <Filter>Source Files\Shader Resources</Filter>
     </ClInclude>
-    <ClInclude Include="amCubemap.h">
+    <ClInclude Include="Include\amTextureObject.h">
       <Filter>Source Files\Resource classes</Filter>
     </ClInclude>
   </ItemGroup>

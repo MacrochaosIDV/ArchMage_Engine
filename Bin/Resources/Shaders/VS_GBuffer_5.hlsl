@@ -5,7 +5,7 @@
 *
 ************************
 */
-cbuffer DataBuffer : register (c0) {
+cbuffer DataBuffer : register (b0) {
 float4x4 matViewProjection;
 float4x4 matWorld;
 float fFarClipPlane;

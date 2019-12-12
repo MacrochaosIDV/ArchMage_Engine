@@ -92,6 +92,9 @@ namespace amEngineSDK {
     virtual void 
     setRenderPass(amRenderPass* _pass, amDeviceContext* _dc);
 
+    virtual void
+    createPassShaders(amPixelShader** _ps, amVertexShader** _vs);
+
     /**
     ************************
     * @brief These are called from the render manager to set shader specific constBuffers
