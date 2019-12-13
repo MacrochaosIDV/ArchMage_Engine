@@ -1,6 +1,7 @@
 #pragma once
 #include "amPrerequisitesCore.h"
 #include "amComponent.h"
+#include <amVector3.h>
 
 namespace amEngineSDK {
   class amVector3;

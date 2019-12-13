@@ -108,6 +108,7 @@ namespace amEngineSDK {
 
   }GCC_ALIGN(16);
   
+  using float128 = QWord;
   using int128 = QWord; // signed 128 bit integer
   using uint128 = QWord; // signed 128 bit integer
 

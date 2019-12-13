@@ -9,9 +9,9 @@ namespace amEngineSDK {
 
   amGameObject::~amGameObject() {}
 
-  amVector3 
+  amVector3& 
   amGameObject::getPosition() {
-    return m_transform.m_transform.getPosition();
+    return m_transform.m_position;
   }
 
   amComponent * 

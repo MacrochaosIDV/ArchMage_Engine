@@ -69,7 +69,7 @@ struct PS_OUTPUT
    //TODO: add metal, ao, rough & depth
 };
 
-PS_OUTPUT PS(PS_INPUT Input) {
+float4 PS(PS_INPUT Input) : SV_Target0 {
     PS_OUTPUT Output = (PS_OUTPUT)0;
     float Epsilon = 0.00001f;
     float fDiElectric = 0.03f;
@@ -139,7 +139,7 @@ PS_OUTPUT PS(PS_INPUT Input) {
     Output.NormalDepth = float4(normal, Input.Depth);
     Output.Emissive = float4(pow(emissive, 2.2f), 1.0f);
 
-    return Output;
+    return Output.Color;
 
 
     //return float4( pow(

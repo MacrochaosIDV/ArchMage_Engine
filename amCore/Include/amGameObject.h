@@ -14,7 +14,7 @@ namespace amEngineSDK {
     amGameObject(amSceneNode* _node);
     ~amGameObject();
 
-    amVector3 
+    amVector3& 
     getPosition();
 
     amComponent*

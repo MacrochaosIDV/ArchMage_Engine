@@ -24,6 +24,21 @@ namespace amEngineSDK {
       kCOUNT
     };
   }
+
+  struct cubeMapLoadAssist 
+  {
+    uint32 texSize;
+    uint32 hdrSize;
+    uint32 height;
+    uint32 width;
+    uint32 side0_OffSet;
+    uint32 side1_OffSet;
+    uint32 side2_OffSet;
+    uint32 side3_OffSet;
+    uint32 side4_OffSet;
+    uint32 side5_OffSet;
+  };
+
   class AM_CORE_EXPORT amTexture : public amResource
   {
   public:
@@ -44,6 +59,9 @@ namespace amEngineSDK {
 
     virtual void
     resizeTex(const uint32 _size);
+
+    uint32 
+    getSize();
     /**
     ************************
     * The data buffer

@@ -63,8 +63,6 @@ namespace amEngineSDK {
     delete(m_pCB_VP);
     delete(m_pDepthStencil);
     delete(m_pCamManager);
-    //delete(m_pPixelShader);
-    //delete(m_pVertexShader);
     delete(m_pInputLayout);
     delete(m_pRenderManager);
     delete(m_pResourceManager);
@@ -106,11 +104,11 @@ namespace amEngineSDK {
     *  Post-processing
     ************************
     */
-    setRenderPass(m_RP_SSAO, m_pContext);
-    setRenderPass(m_RP_Blur, m_pContext);
-    setRenderPass(m_RP_Bloom, m_pContext);
-    setRenderPass(m_RP_Lighting, m_pContext);
-    setRenderPass(m_RP_Luminance, m_pContext);
+    //setRenderPass(m_RP_SSAO, m_pContext);
+    //setRenderPass(m_RP_Blur, m_pContext);
+    //setRenderPass(m_RP_Bloom, m_pContext);
+    //setRenderPass(m_RP_Lighting, m_pContext);
+    //setRenderPass(m_RP_Luminance, m_pContext);
     Present();
   }
 
@@ -155,11 +153,11 @@ namespace amEngineSDK {
                                         "Luminance");
 
     m_RP_Gbuffer->init(m_pDevice, this);
-    m_RP_SSAO->init(m_pDevice, this);
-    m_RP_Blur->init(m_pDevice, this);
-    m_RP_Bloom->init(m_pDevice, this);
-    m_RP_Lighting->init(m_pDevice, this);
-    m_RP_Luminance->init(m_pDevice, this);
+    //m_RP_SSAO->init(m_pDevice, this);
+    //m_RP_Blur->init(m_pDevice, this);
+    //m_RP_Bloom->init(m_pDevice, this);
+    //m_RP_Lighting->init(m_pDevice, this);
+    //m_RP_Luminance->init(m_pDevice, this);
 
 
     m_defaultMaterial = new amMaterial("Default Material");
@@ -423,9 +421,11 @@ namespace amEngineSDK {
     * Set the Textures
     ************************
     */
-    for (uint32 i = 0; i < 5; ++i) {
-      m_pContext->setPSResources(i, 1, _pMesh->m_mat->m_vecTex[i]);
-    }
+    m_pContext->setPSResources(0, 1, _pMesh->m_mat->m_vecTex[0]);
+    m_pContext->setPSResources(1, 1, _pMesh->m_mat->m_vecTex[1]);
+    m_pContext->setPSResources(2, 1, _pMesh->m_mat->m_vecTex[2]);
+    m_pContext->setPSResources(3, 1, _pMesh->m_mat->m_vecTex[3]);
+    m_pContext->setPSResources(4, 1, _pMesh->m_mat->m_vecTex[4]);
     
     //TODO: this
     /**
@@ -492,6 +492,8 @@ namespace amEngineSDK {
                              amMeshLoadFlags::kNO_MATS);
     m_testCube->m_vecMeshes[0]->setMaterial(m_defaultMaterial);
 
+    m_specularIBL_Cube = loadCubeMap("Resources/3D_Meshes/Vela/Textures/SpecularIBL.dds", false);
+
     m_irradiance_Cube = loadCubeMap("Resources/3D_Meshes/Vela/Textures/Irradiance.dds", false);
   }
 
@@ -502,8 +504,6 @@ namespace amEngineSDK {
     delete(m_pCB_VP);
     delete(m_pDepthStencil);
     delete(m_pCamManager);
-    //delete(m_pPixelShader);
-    //delete(m_pVertexShader);
     delete(m_pInputLayout);
     delete(m_pRenderManager);
     delete(m_pResourceManager);
@@ -680,19 +680,28 @@ namespace amEngineSDK {
   }
 
   amDXShaderResourceView* 
-  amDXGraphicsAPI::loadCubeMap(const String & _pathFileName, 
-                               const bool _hdr) {
+  amDXGraphicsAPI::loadCubeMap(const String& _pathFileName) {
     amDXTexture* tex = new amDXTexture();
     tex->m_resBindFlag = amResourceBindFlags::kBIND_SHADER_RESOURCE;
     DDS_Loader::dds_info out;
     DDS_Loader::dds_load_from_file(_pathFileName.c_str(), &out, 0);
 
-    uint32 texSize = out.image.size;
-    texSize;
-    //m_pDevice->
+    amFormats::E format = static_cast<amFormats::E>(out.image.format);
+    if (out.image.size > 32) {
+      bool hdr = true;
+      if (out.image.size > 64) {
 
-    return nullptr;
-    _hdr;
+      }
+    }
+    uint32 texSize = out.image.size;
+    amDXShaderResourceView* texCube = new amDXShaderResourceView();
+    m_pDevice->createCubeShaderResourceView(texCube,
+                                            tex, 
+                                            amSRV_Types::kSRV_TEXTURECUBE, 
+                                            format, 
+                                            tex->m_resBindFlag);
+
+    return texCube;
   }
 
   /**
@@ -891,5 +900,13 @@ namespace amEngineSDK {
     aiString aiStr;
     aiStr.Set(str);
     return aiStr;
+  }
+
+  Vector<HALF> covertTexHDR128(Vector<float128>& _texData) {
+
+  }
+
+  Vector<HALF> covertTexHDR128(Vector<double>& _texData) {
+
   }
 }

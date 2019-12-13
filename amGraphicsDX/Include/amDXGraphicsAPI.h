@@ -163,7 +163,7 @@ namespace amEngineSDK {
                 const uint32 _meshLoadFlags = 0) override;
 
     amDXShaderResourceView* 
-    loadCubeMap(const String& _pathFileName, const bool _hdr);
+    loadCubeMap(const String& _pathFileName);
 
    private:
     void
@@ -224,8 +224,6 @@ namespace amEngineSDK {
     amDXSamplerState*                   m_pSamplerLinear = NULL;
     amDXInputLayout*                    m_pInputLayout = NULL;
     amDXTexture*                        m_pDepthStencil = NULL;
-    //amDXVertexShader*                   m_pVertexShader = NULL;
-    //amDXPixelShader*                    m_pPixelShader = NULL;
     amDXShaderResourceView*             m_pTextureRV = NULL;
     amDXSwapChain*                      m_pSwapChain = NULL;
     amDXDevice*                         m_pDevice = NULL;
