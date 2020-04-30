@@ -15,7 +15,7 @@ namespace amEngineSDK {
     void
     setBufferData(uint32 _usageF, uint32 _cpuAccessFlags, void* _data = nullptr);
 
-    ID3D11Buffer* m_pCB;
+    ID3D11Buffer* m_pCB = nullptr;
     D3D11_BUFFER_DESC m_bd;
     D3D11_SUBRESOURCE_DATA m_subResData;
   };

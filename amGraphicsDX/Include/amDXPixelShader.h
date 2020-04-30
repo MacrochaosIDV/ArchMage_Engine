@@ -53,7 +53,7 @@ namespace amEngineSDK {
     virtual void 
     Compile() override;
 
-    ID3D11PixelShader* m_ps;
-    ID3DBlob* m_blob;
+    ID3D11PixelShader* m_ps = nullptr;
+    ID3DBlob* m_blob = nullptr;;
   };
 }

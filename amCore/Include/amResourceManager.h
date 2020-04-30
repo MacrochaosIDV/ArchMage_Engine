@@ -35,7 +35,7 @@ namespace amEngineSDK {
     addTexture(amResource* _tex);
 
 
-    amMaterial* m_defaultMat;
+    amMaterial* m_defaultMat = nullptr;
 
     Vector<amResource*> m_vecModels;
     Vector<amResource*> m_vecSceneSharedRes;

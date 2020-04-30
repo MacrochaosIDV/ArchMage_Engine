@@ -140,13 +140,13 @@ namespace amEngineSDK {
     virtual amDXRenderTargetView*
     createRenderTargetV(const uint32 _height,
                         const uint32 _width,
-                        const amFormats::E _format,
+                        const uint32 _format,
                         const float _scale = 1.0f);
 
     virtual amDXTexture*
     createTexture(const uint32 _height,
                   const uint32 _width,
-                  const amFormats::E _format,
+                  const uint32 _format,
                   const int32 _rbf);
 
     virtual amDXTexture*
@@ -188,45 +188,45 @@ namespace amEngineSDK {
     amCamera m_cam;
     amMatrix4x4 matProjecton;
     amMatrix4x4 matView;
-    amDXConstantBuffer* m_nearPlane;
-    amDXConstantBuffer* m_farPlane;
-    amDXConstantBuffer* m_matWorld;
-    amDXConstantBuffer* m_matViewProjection;
+    amDXConstantBuffer* m_nearPlane = nullptr;
+    amDXConstantBuffer* m_farPlane = nullptr;
+    amDXConstantBuffer* m_matWorld = nullptr;
+    amDXConstantBuffer* m_matViewProjection = nullptr;
 
-    amDXShaderResourceView* m_specularIBL_Cube;
-    amDXShaderResourceView* m_irradiance_Cube;
+    amDXShaderResourceView* m_specularIBL_Cube = nullptr;
+    amDXShaderResourceView* m_irradiance_Cube = nullptr;
 
-    amRenderTargetView* m_rtFullColor;
-    amRenderTargetView* m_rtEmissive;
-    amRenderTargetView* m_rtNormals;
-    amRenderTargetView* m_rtBlur;
-    amRenderTargetView* m_rtLuminance;
-    amRenderTargetView* m_rtMADR;
+    amRenderTargetView* m_rtFullColor = nullptr;
+    amRenderTargetView* m_rtEmissive = nullptr;
+    amRenderTargetView* m_rtNormals = nullptr;
+    amRenderTargetView* m_rtBlur = nullptr;
+    amRenderTargetView* m_rtLuminance = nullptr;
+    amRenderTargetView* m_rtMADR = nullptr;
 
-    amRP_GBuffer* m_RP_Gbuffer;
-    amRP_SSAO* m_RP_SSAO;
-    amRP_Blur* m_RP_Blur;
-    amRP_DownScaleBloom* m_RP_Bloom;
-    amRP_Lighting* m_RP_Lighting;
-    amRP_Luminance* m_RP_Luminance;
+    amRP_GBuffer* m_RP_Gbuffer = nullptr;
+    amRP_SSAO* m_RP_SSAO = nullptr;
+    amRP_Blur* m_RP_Blur = nullptr;
+    amRP_DownScaleBloom* m_RP_Bloom = nullptr;
+    amRP_Lighting* m_RP_Lighting = nullptr;
+    amRP_Luminance* m_RP_Luminance = nullptr;
 
 
-    amMaterial* m_defaultMaterial;
+    amMaterial* m_defaultMaterial = nullptr;
     amLight m_light;
 
-    amModel* m_testCube;
+    amModel* m_testCube = nullptr;
 
-    amModel* m_screenAlignedQuad;
+    amModel* m_screenAlignedQuad = nullptr;
     
-    amDXDeviceContext*                  m_pContext = NULL;
-    amDXDepthStencilView*               m_pDepthStencilView = NULL;
-    amDXRenderTargetView*               m_pRenderTargetView = NULL;
-    amDXSamplerState*                   m_pSamplerLinear = NULL;
-    amDXInputLayout*                    m_pInputLayout = NULL;
-    amDXTexture*                        m_pDepthStencil = NULL;
-    amDXShaderResourceView*             m_pTextureRV = NULL;
-    amDXSwapChain*                      m_pSwapChain = NULL;
-    amDXDevice*                         m_pDevice = NULL;
-    amDXConstantBuffer*                 m_pCB_VP = NULL;
+    amDXDeviceContext*                  m_pContext = nullptr;
+    amDXDepthStencilView*               m_pDepthStencilView = nullptr;
+    amDXRenderTargetView*               m_pRenderTargetView = nullptr;
+    amDXSamplerState*                   m_pSamplerLinear = nullptr;
+    amDXInputLayout*                    m_pInputLayout = nullptr;
+    amDXTexture*                        m_pDepthStencil = nullptr;
+    amDXShaderResourceView*             m_pTextureRV = nullptr;
+    amDXSwapChain*                      m_pSwapChain = nullptr;
+    amDXDevice*                         m_pDevice = nullptr;
+    amDXConstantBuffer*                 m_pCB_VP = nullptr;
   };
 }

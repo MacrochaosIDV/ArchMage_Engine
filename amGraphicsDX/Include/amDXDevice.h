@@ -93,6 +93,6 @@ namespace amEngineSDK {
                        const int32 _rbf,
                        const uint32 _arrSize) override;
 
-    ID3D11Device* m_pDV;
+    ID3D11Device* m_pDV = nullptr;
   };
 }

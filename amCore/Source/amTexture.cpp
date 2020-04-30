@@ -38,6 +38,6 @@ namespace amEngineSDK {
 
   uint32 
   amTexture::getSize() {
-    return m_tBuffer.size();
+    return static_cast<uint32>(m_tBuffer.size());
   }
 }

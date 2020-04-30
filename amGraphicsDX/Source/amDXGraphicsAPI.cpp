@@ -48,8 +48,8 @@ namespace amEngineSDK {
   amVector3
   get_Pos(const aiVector3D& other);
 
-  D3D_DRIVER_TYPE  g_driverType = D3D_DRIVER_TYPE_NULL;
-  D3D_FEATURE_LEVEL g_featureLevel = D3D_FEATURE_LEVEL_11_0;
+  D3D_DRIVER_TYPE  g_driverType = D3D_DRIVER_TYPE::D3D_DRIVER_TYPE_NULL;
+  D3D_FEATURE_LEVEL g_featureLevel = D3D_FEATURE_LEVEL::D3D_FEATURE_LEVEL_11_0;
 
 
   amDXGraphicsAPI::~amDXGraphicsAPI() {
@@ -492,9 +492,9 @@ namespace amEngineSDK {
                              amMeshLoadFlags::kNO_MATS);
     m_testCube->m_vecMeshes[0]->setMaterial(m_defaultMaterial);
 
-    m_specularIBL_Cube = loadCubeMap("Resources/3D_Meshes/Vela/Textures/SpecularIBL.dds", false);
+    m_specularIBL_Cube = loadCubeMap("Resources/3D_Meshes/Vela/Textures/SpecularIBL.dds");
 
-    m_irradiance_Cube = loadCubeMap("Resources/3D_Meshes/Vela/Textures/Irradiance.dds", false);
+    m_irradiance_Cube = loadCubeMap("Resources/3D_Meshes/Vela/Textures/Irradiance.dds");
   }
 
   void 
@@ -546,7 +546,7 @@ namespace amEngineSDK {
   amDXRenderTargetView*
   amDXGraphicsAPI::createRenderTargetV(const uint32 _height, 
                                        const uint32 _width, 
-                                       const amFormats::E _format, 
+                                       const uint32 _format,
                                        const float _scale) {
 
     amDXRenderTargetView* dxRTV = new amDXRenderTargetView(_height, _width, _scale);
@@ -573,7 +573,7 @@ namespace amEngineSDK {
   amDXTexture*
   amDXGraphicsAPI::createTexture(const uint32 _height, 
                                  const uint32 _width, 
-                                 const amFormats::E _format,
+                                 const uint32 _format,
                                  const int32 _rbf) {
     amDXTexture* tex = new amDXTexture();
     tex->resize(_height, _width);
@@ -687,13 +687,15 @@ namespace amEngineSDK {
     DDS_Loader::dds_load_from_file(_pathFileName.c_str(), &out, 0);
 
     amFormats::E format = static_cast<amFormats::E>(out.image.format);
+    //TODO: out.image.size is the byte size for the entire texture
+    //find what tells of the format width
     if (out.image.size > 32) {
-      bool hdr = true;
+      //bool hdr = true;
       if (out.image.size > 64) {
 
       }
     }
-    uint32 texSize = out.image.size;
+    //uint32 texSize = out.image.size;
     amDXShaderResourceView* texCube = new amDXShaderResourceView();
     m_pDevice->createCubeShaderResourceView(texCube,
                                             tex, 
@@ -903,10 +905,12 @@ namespace amEngineSDK {
   }
 
   Vector<HALF> covertTexHDR128(Vector<float128>& _texData) {
-
+      _texData;
+      return Vector<HALF>();
   }
 
   Vector<HALF> covertTexHDR128(Vector<double>& _texData) {
-
+      _texData;
+      return Vector<HALF>();
   }
 }
