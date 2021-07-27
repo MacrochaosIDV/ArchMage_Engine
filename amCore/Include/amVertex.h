@@ -4,7 +4,7 @@
 #include "amVector3.h"
 #include "amVector2.h"
 
-//TODO: turn this into temple class
+//TODO: turn this into template class
 namespace amEngineSDK {
   class AM_CORE_EXPORT amVertex
   {

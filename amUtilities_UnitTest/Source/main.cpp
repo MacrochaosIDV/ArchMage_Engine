@@ -12,7 +12,7 @@
 #include <amPrerequisitesUtilities.h>
 #include <amMath.h>
 #include <conio.h>
-#include <gtest\gtest.h>
+#include <gtest/gtest.h>
 using namespace amEngineSDK;
 //using amMath;
 

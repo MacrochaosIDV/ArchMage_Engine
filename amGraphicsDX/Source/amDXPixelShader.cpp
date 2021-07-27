@@ -34,7 +34,10 @@ namespace amEngineSDK {
   }
 
   int32 
-  amDXPixelShader::CompileShaderFromFile(const String szFileName, const ANSICHAR * szEntryPoint, const ANSICHAR * szShaderModel, void ** ppBlobOut) {
+  amDXPixelShader::CompileShaderFromFile(const String szFileName, 
+                                         const ANSICHAR * szEntryPoint, 
+                                         const ANSICHAR * szShaderModel, 
+                                         void ** ppBlobOut) {
     HRESULT hr = S_OK;
 
     DWORD dwShaderFlags = D3DCOMPILE_ENABLE_STRICTNESS;
@@ -59,8 +62,16 @@ namespace amEngineSDK {
 
     ID3DBlob* pErrorBlob;
     //ID3DBlob* pOutBlob;
-    hr = D3DCompile(&fileBuffer[0], fileSize, szFileName.c_str(), nullptr, NULL, szEntryPoint, szShaderModel, dwShaderFlags,
-                    0, reinterpret_cast<ID3DBlob**>(ppBlobOut), &pErrorBlob);
+    hr = D3DCompile(&fileBuffer[0], 
+                    fileSize, 
+                    szFileName.c_str(), 
+                    nullptr, 
+                    NULL, 
+                    szEntryPoint, 
+                    szShaderModel, 
+                    dwShaderFlags,
+                    0, 
+                    reinterpret_cast<ID3DBlob**>(ppBlobOut), &pErrorBlob);
     if (FAILED(hr)) {
       if (pErrorBlob != NULL) {
         String _error = reinterpret_cast<ANSICHAR*>(pErrorBlob->GetBufferPointer());
@@ -85,7 +96,10 @@ namespace amEngineSDK {
 
   void 
   amDXPixelShader::createPS(String pathFileName, amDevice* pDevice) {
-    CompileShaderFromFile(m_pathFileName.c_str(), "PS", "ps_5_0", reinterpret_cast<void**>(&m_blob));
+    CompileShaderFromFile(m_pathFileName.c_str(), 
+                          "PS", 
+                          "ps_5_0", 
+                          reinterpret_cast<void**>(&m_blob));
     createPixelShader(pDevice);
   }
 

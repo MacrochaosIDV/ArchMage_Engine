@@ -680,22 +680,26 @@ namespace amEngineSDK {
   }
 
   amDXShaderResourceView* 
-  amDXGraphicsAPI::loadCubeMap(const String& _pathFileName) {
+    amDXGraphicsAPI::loadCubeMap(const String& _pathFileName) {
     amDXTexture* tex = new amDXTexture();
     tex->m_resBindFlag = amResourceBindFlags::kBIND_SHADER_RESOURCE;
     DDS_Loader::dds_info out;
     DDS_Loader::dds_load_from_file(_pathFileName.c_str(), &out, 0);
 
     amFormats::E format = static_cast<amFormats::E>(out.image.format);
-    //TODO: out.image.size is the byte size for the entire texture
-    //find what tells of the format width
-    if (out.image.size > 32) {
-      //bool hdr = true;
-      if (out.image.size > 64) {
+    uint32 mipCount = out.mipcount;
+    uint32 h = out.image.height;
+    uint32 w = out.image.width;
+    uint32 imgPixelWidth = out.hdrsize;
+    uint32 hdrBitToByte = static_cast<uint32>(out.hdrsize * 0.125f);
+    Vector<uint32> sideOffsets;
+    sideOffsets.resize(6);
 
-      }
+    for (int32 i = 0; i < 6; ++i) {
+      sideOffsets[i] = h * w * imgPixelWidth * i;
     }
-    //uint32 texSize = out.image.size;
+
+
     amDXShaderResourceView* texCube = new amDXShaderResourceView();
     m_pDevice->createCubeShaderResourceView(texCube,
                                             tex, 
@@ -827,11 +831,11 @@ namespace amEngineSDK {
       else if (texTYpe == aiTextureType::aiTextureType_NORMALS) {
         _mesh->m_mat->m_vecTex[j]->m_texResource->m_tType = amTexType::E::kNORMAL;
       }
-      else if (texTYpe == 
-               aiTextureType::AI_MATKEY_GLTF_PBRMETALLICROUGHNESS_METALLICROUGHNESS_TEXTURE) {
-        //if (_aiMat->GetTexture(AI_MATKEY_GLTF_PBRMETALLICROUGHNESS_METALLIC_FACTOR, j, )) {
-          //TODO: add metalness & roughness, revert to spec = metal & shiny = rough
-        //}
+      else if (texTYpe == aiTextureType::aiTextureType_SPECULAR) {
+        _mesh->m_mat->m_vecTex[j]->m_texResource->m_tType = amTexType::E::kMETALNESS;
+      }
+      else if (texTYpe == aiTextureType::aiTextureType_SHININESS) {
+        _mesh->m_mat->m_vecTex[j]->m_texResource->m_tType = amTexType::E::kROUGHNESS;
       }
       else {
         _mesh->m_mat->m_vecTex[j]->m_texResource->m_tType = amTexType::E::kDEFAULT;

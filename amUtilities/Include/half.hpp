@@ -22,6 +22,9 @@
 #ifndef HALF_HALF_HPP
 #define HALF_HALF_HPP
 
+#pragma warning(disable: 26812)
+#pragma warning(disable: 26454)
+
 #define HALF_GCC_VERSION (__GNUC__*100+__GNUC_MINOR__)
 
 #if defined(__INTEL_COMPILER)
